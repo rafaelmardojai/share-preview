@@ -1,0 +1,19 @@
+on:
+  push:
+    branches: [master]
+  pull_request:
+name: CI
+jobs:
+  flatpak:
+    name: "Flatpak"
+    runs-on: ubuntu-20.04
+    container:
+      image: bilelmoussaoui/flatpak-github-actions:gnome-40
+      options: --privileged
+    steps:
+    - uses: actions/checkout@v2
+    - uses: bilelmoussaoui/flatpak-github-actions@v2
+      with:
+        bundle: "share-preview.flatpak"
+        manifest-path: "build-aux/com.rafaelmardojai.SharePreview.Devel.json"
+        run-tests: "true"

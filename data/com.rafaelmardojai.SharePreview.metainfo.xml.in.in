@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Rafael Mardojai CM 2019 <email@rafaelmardojai.com> -->
+<component type="desktop-application">
+  <id>@app-id@</id>
+  <metadata_license>CC0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <name>Share Preview</name>
+  <summary>A GTK + Rust application template.</summary>
+  <description>
+    <p>A boilerplate template for GTK + Rust. It uses Meson as a build system and has flatpak support by default.</p>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://github.com/rafaelmardojai/share-preview/raw/master/data/resources/screenshots/screenshot1.png</image>
+      <caption>Main Window</caption>
+    </screenshot>
+  </screenshots>
+  <url type="homepage">https://github.com/rafaelmardojai/share-preview</url>
+  <url type="bugtracker">https://github.com/rafaelmardojai/share-preview/issues</url>
+  <content_rating type="oars-1.0" />
+  <releases>
+    <release version="0.0.1" date="2019-07-11" />
+  </releases>
+  <kudos>
+     <!--
+       GNOME Software kudos:
+       https://gitlab.gnome.org/GNOME/gnome-software/blob/master/doc/kudos.md
+     -->
+     <kudo>ModernToolkit</kudo>
+     <kudo>HiDpiIcon</kudo>
+  </kudos>
+  <developer_name>Rafael Mardojai CM</developer_name>
+  <update_contact>email@rafaelmardojai.com</update_contact>
+  <translation type="gettext">@gettext-package@</translation>
+  <launchable type="desktop-id">@app-id@.desktop</launchable>
+</component>

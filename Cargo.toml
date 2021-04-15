@@ -1,0 +1,16 @@
+[package]
+name = "share-preview"
+version = "0.1.0"
+authors = ["Rafael Mardojai CM <email@rafaelmardojai.com>"]
+edition = "2018"
+
+[dependencies]
+log = "0.4"
+pretty_env_logger = "0.4"
+gettext-rs = { version = "0.6", features = ["gettext-system"] }
+gtk-macros = "0.2"
+once_cell = "1.5"
+
+[dependencies.gtk]
+package = "gtk4"
+git = "https://github.com/gtk-rs/gtk4-rs"
