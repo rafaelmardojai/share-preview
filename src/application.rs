@@ -1,5 +1,5 @@
 use crate::config;
-use crate::window::ExampleApplicationWindow;
+use crate::window::SharePreviewApplicationWindow;
 use gio::ApplicationFlags;
 use glib::clone;
 use glib::WeakRef;
@@ -14,24 +14,24 @@ mod imp {
     use super::*;
 
     #[derive(Debug, Default)]
-    pub struct ExampleApplication {
-        pub window: OnceCell<WeakRef<ExampleApplicationWindow>>,
+    pub struct SharePreviewApplication {
+        pub window: OnceCell<WeakRef<SharePreviewApplicationWindow>>,
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for ExampleApplication {
-        const NAME: &'static str = "ExampleApplication";
-        type Type = super::ExampleApplication;
+    impl ObjectSubclass for SharePreviewApplication {
+        const NAME: &'static str = "SharePreviewApplication";
+        type Type = super::SharePreviewApplication;
         type ParentType = gtk::Application;
     }
 
-    impl ObjectImpl for ExampleApplication {}
+    impl ObjectImpl for SharePreviewApplication {}
 
-    impl gio::subclass::prelude::ApplicationImpl for ExampleApplication {
+    impl gio::subclass::prelude::ApplicationImpl for SharePreviewApplication {
         fn activate(&self, app: &Self::Type) {
-            debug!("GtkApplication<ExampleApplication>::activate");
+            debug!("GtkApplication<SharePreviewApplication>::activate");
 
-            let priv_ = ExampleApplication::from_instance(app);
+            let priv_ = SharePreviewApplication::from_instance(app);
             if let Some(window) = priv_.window.get() {
                 let window = window.upgrade().unwrap();
                 window.show();
@@ -42,7 +42,7 @@ mod imp {
             app.set_resource_base_path(Some("/com/rafaelmardojai/SharePreview/"));
             app.setup_css();
 
-            let window = ExampleApplicationWindow::new(app);
+            let window = SharePreviewApplicationWindow::new(app);
             self.window
                 .set(window.downgrade())
                 .expect("Window already set.");
@@ -54,20 +54,20 @@ mod imp {
         }
 
         fn startup(&self, app: &Self::Type) {
-            debug!("GtkApplication<ExampleApplication>::startup");
+            debug!("GtkApplication<SharePreviewApplication>::startup");
             self.parent_startup(app);
         }
     }
 
-    impl GtkApplicationImpl for ExampleApplication {}
+    impl GtkApplicationImpl for SharePreviewApplication {}
 }
 
 glib::wrapper! {
-    pub struct ExampleApplication(ObjectSubclass<imp::ExampleApplication>)
+    pub struct SharePreviewApplication(ObjectSubclass<imp::SharePreviewApplication>)
         @extends gio::Application, gtk::Application, @implements gio::ActionMap, gio::ActionGroup;
 }
 
-impl ExampleApplication {
+impl SharePreviewApplication {
     pub fn new() -> Self {
         glib::Object::new(&[
             ("application-id", &Some(config::APP_ID)),
@@ -76,8 +76,8 @@ impl ExampleApplication {
         .expect("Application initialization failed...")
     }
 
-    fn get_main_window(&self) -> ExampleApplicationWindow {
-        let priv_ = imp::ExampleApplication::from_instance(self);
+    fn get_main_window(&self) -> SharePreviewApplicationWindow {
+        let priv_ = imp::SharePreviewApplication::from_instance(self);
         priv_.window.get().unwrap().upgrade().unwrap()
     }
 

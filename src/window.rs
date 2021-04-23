@@ -1,4 +1,4 @@
-use crate::application::ExampleApplication;
+use crate::application::SharePreviewApplication;
 use crate::config::{APP_ID, PROFILE};
 use glib::signal::Inhibit;
 use gtk::subclass::prelude::*;
@@ -11,16 +11,16 @@ mod imp {
 
     #[derive(Debug, CompositeTemplate)]
     #[template(resource = "/com/rafaelmardojai/SharePreview/window.ui")]
-    pub struct ExampleApplicationWindow {
+    pub struct SharePreviewApplicationWindow {
         #[template_child]
         pub headerbar: TemplateChild<gtk::HeaderBar>,
         pub settings: gio::Settings,
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for ExampleApplicationWindow {
-        const NAME: &'static str = "ExampleApplicationWindow";
-        type Type = super::ExampleApplicationWindow;
+    impl ObjectSubclass for SharePreviewApplicationWindow {
+        const NAME: &'static str = "SharePreviewApplicationWindow";
+        type Type = super::SharePreviewApplicationWindow;
         type ParentType = gtk::ApplicationWindow;
 
         fn new() -> Self {
@@ -40,7 +40,7 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for ExampleApplicationWindow {
+    impl ObjectImpl for SharePreviewApplicationWindow {
         fn constructed(&self, obj: &Self::Type) {
             self.parent_constructed(obj);
 
@@ -51,7 +51,7 @@ mod imp {
 
             // Devel Profile
             if PROFILE == "Devel" {
-                obj.get_style_context().add_class("devel");
+                obj.style_context().add_class("devel");
             }
 
             // load latest window state
@@ -59,8 +59,8 @@ mod imp {
         }
     }
 
-    impl WidgetImpl for ExampleApplicationWindow {}
-    impl WindowImpl for ExampleApplicationWindow {
+    impl WidgetImpl for SharePreviewApplicationWindow {}
+    impl WindowImpl for SharePreviewApplicationWindow {
         // save window state on delete event
         fn close_request(&self, obj: &Self::Type) -> Inhibit {
             if let Err(err) = obj.save_window_size() {
@@ -70,18 +70,18 @@ mod imp {
         }
     }
 
-    impl ApplicationWindowImpl for ExampleApplicationWindow {}
+    impl ApplicationWindowImpl for SharePreviewApplicationWindow {}
 }
 
 glib::wrapper! {
-    pub struct ExampleApplicationWindow(ObjectSubclass<imp::ExampleApplicationWindow>)
+    pub struct SharePreviewApplicationWindow(ObjectSubclass<imp::SharePreviewApplicationWindow>)
         @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow, @implements gio::ActionMap, gio::ActionGroup;
 }
 
-impl ExampleApplicationWindow {
-    pub fn new(app: &ExampleApplication) -> Self {
+impl SharePreviewApplicationWindow {
+    pub fn new(app: &SharePreviewApplication) -> Self {
         let window: Self =
-            glib::Object::new(&[]).expect("Failed to create ExampleApplicationWindow");
+            glib::Object::new(&[]).expect("Failed to create SharePreviewApplicationWindow");
         window.set_application(Some(app));
 
         // Set icons for shell
@@ -91,9 +91,9 @@ impl ExampleApplicationWindow {
     }
 
     pub fn save_window_size(&self) -> Result<(), glib::BoolError> {
-        let settings = &imp::ExampleApplicationWindow::from_instance(self).settings;
+        let settings = &imp::SharePreviewApplicationWindow::from_instance(self).settings;
 
-        let size = self.get_default_size();
+        let size = self.default_size();
 
         settings.set_int("window-width", size.0)?;
         settings.set_int("window-height", size.1)?;
@@ -104,7 +104,7 @@ impl ExampleApplicationWindow {
     }
 
     fn load_window_size(&self) {
-        let settings = &imp::ExampleApplicationWindow::from_instance(self).settings;
+        let settings = &imp::SharePreviewApplicationWindow::from_instance(self).settings;
 
         let width = settings.get_int("window-width");
         let height = settings.get_int("window-height");

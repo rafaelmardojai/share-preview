@@ -3,7 +3,7 @@ mod application;
 mod config;
 mod window;
 
-use application::ExampleApplication;
+use application::SharePreviewApplication;
 use config::{GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};
 use gettextrs::*;
 use gtk::gio;
@@ -25,6 +25,6 @@ fn main() {
     let res = gio::Resource::load(RESOURCES_FILE).expect("Could not load gresource file");
     gio::resources_register(&res);
 
-    let app = ExampleApplication::new();
+    let app = SharePreviewApplication::new();
     app.run();
 }
