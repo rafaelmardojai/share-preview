@@ -1,72 +1,50 @@
-# GTK + Rust + Meson + Flatpak = <3
+<h1 align="center">
+	<img src="brand/logo.svg" alt="Share Preview" width="128" height="128"/><br>
+	Share Preview
+</h1>
 
-A boilerplate template to get started with GTK, Rust, Meson, Flatpak made for GNOME. It can be adapted for other desktop environments like elementary.
+[![Please do not theme this app](https://stopthemingmy.app/badge.svg)](https://stopthemingmy.app) 
+[![GitHub](https://img.shields.io/github/license/rafaelmardojai/share-preview.svg)](https://github.com/rafaelmardojai/share-preview/blob/master/COPYING)
+[![Donate](https://img.shields.io/badge/PayPal-Donate-gray.svg?style=flat&logo=paypal&colorA=0071bb&logoColor=fff)](https://paypal.me/RafaelMardojaiCM)
 
-<div align="center">
-![Main Window](data/resources/screenshots/screenshot1.png "Main Window")
-</div>
+<p align="center"><strong>Preview share cards</strong></p>
 
-## What does it contains?
+<p align="center">
+  <a href="https://flathub.org/apps/details/com.rafaelmardojai.SharePreview"><img width="200" alt="Download on Flathub" src="https://flathub.org/assets/badges/flathub-badge-en.png"/></a>
+</p>
 
-- A simple window with a headerbar
-- Bunch of useful files that you SHOULD ship with your application on Linux:
-  - Metainfo: describe your application for the different application stores out there;
-  - Desktop: the application launcher;
-  - Icons: This repo contains three icons, a normal, a nightly & monochromatic icon (symbolic) per the GNOME HIG, exported using [App Icon Preview](https://flathub.org/apps/details/org.gnome.design.AppIconPreview).
-- Flatpak Manifest for nightly builds
-- Dual installation support
-- Uses Meson for building the application
-- Bundles the UI files & the CSS using gresources
-- A pre-commit hook to run rustfmt on your code
-- Tests to validate your Metainfo, Schemas & Desktop files
-- Gsettings to store the window state, more settings could be added
-- Gitlab CI to produce flatpak nightlies
-- i18n support
+<p align="center">
+  <img src="brand/screenshot-1.png"/>
+</p>
 
-## How to init a project ?
 
-The template ships a simple python script to init a project easily. It asks you a few questions and replaces & renames all the necessary files.
+## Description
+Preview and debug websites metadata tags for social media share.
 
-The script requires having `git` installed on your system.
+## Third Party Packages 
 
-You can run it with,
+| Distribution | Package | Maintainer |
+|:-:|:-:|:-:|
 
-```shell
-python3 create-project.py
+
+## Build from source
+
+- You can clone and run from GNOME Builder.
+
+### Requirements
+
+TODO
+
+- Alternatively, use the following commands to build it with meson.
+```bash
+meson builddir --prefix=/usr/local
+sudo ninja -C builddir install
 ```
-
-```shell
-➜ python3 create-project.py
-Welcome to GTK Rust Template
-Name: Contrast
-Project Name: contrast
-Application ID (see: https://developer.gnome.org/ChooseApplicationID/): org.gnome.design.Contrast
-Author: Bilal Elmoussaoui
-Email: bil.elmoussaoui@gmail.com
-Github/Gitlab repository: https://gitlab.gnome.org/World/design/contrast/
-Use gtk4 [Y/n]: y
-```
-
-A new directory named `contrast` containing the generated project
-
-## Building the project
-
-Make sure you have `flatpak` and `flatpak-builder` installed. Then run the commands below. Replace `<application_id>` with the value you entered during project creation. Please note that these commands are just for demonstration purposes. Normally this would be handled by your IDE, such as GNOME Builder or VS Code with the Flatpak extension.
-
-```
-flatpak install org.gnome.Sdk//40 org.freedesktop.Sdk.Extension.rust-stable//20.08 org.gnome.Platform//40
-flatpak-builder --user flatpak_app build-aux/<application_id>.Devel.json
-```
-
-## Running the project
-
-Once the project is build, run the command below. Replace Replace `<application_id>` and `<project_name>` with the values you entered during project creation. Please note that these commands are just for demonstration purposes. Normally this would be handled by your IDE, such as GNOME Builder or VS Code with the Flatpak extension.
-
-```
-flatpak-builder --run flatpak_app build-aux/<application_id>.Devel.json <project_name>
-```
-
 ## Credits
+Developed by **[Rafael Mardojai CM](https://github.com/rafaelmardojai)** and [contributors](https://github.com/rafaelmardojai/share-preview/graphs/contributors).
 
-- [Podcasts](https://gitlab.gnome.org/World/podcasts)
-- [Shortwave](https://gitlab.gnome.org/World/Shortwave)
+## Translations
+Share Preview is translated into several languages. If your language is missing or incomplete, please help to [translate Share Preview](https://github.com/rafaelmardojai/share-preview/tree/master/po).
+
+## Donate
+If you want to support development, consider donating via [PayPal](https://paypal.me/RafaelMardojaiCM).
