@@ -77,23 +77,11 @@ mod imp {
 
             // Setup window actions
             obj.setup_gactions();
-
-            // load latest window state
-            obj.load_window_size();
         }
     }
 
     impl WidgetImpl for SharePreviewApplicationWindow {}
-    impl WindowImpl for SharePreviewApplicationWindow {
-        // save window state on delete event
-        fn close_request(&self, obj: &Self::Type) -> Inhibit {
-            if let Err(err) = obj.save_window_size() {
-                warn!("Failed to save window state, {}", &err);
-            }
-            Inhibit(false)
-        }
-    }
-
+    impl WindowImpl for SharePreviewApplicationWindow {}
     impl ApplicationWindowImpl for SharePreviewApplicationWindow {}
 }
 
@@ -135,32 +123,5 @@ impl SharePreviewApplicationWindow {
                 });
             })
         );
-    }
-
-    pub fn save_window_size(&self) -> Result<(), glib::BoolError> {
-        let settings = &imp::SharePreviewApplicationWindow::from_instance(self).settings;
-
-        let size = self.default_size();
-
-        settings.set_int("window-width", size.0)?;
-        settings.set_int("window-height", size.1)?;
-
-        settings.set_boolean("is-maximized", self.is_maximized())?;
-
-        Ok(())
-    }
-
-    fn load_window_size(&self) {
-        let settings = &imp::SharePreviewApplicationWindow::from_instance(self).settings;
-
-        let width = settings.get_int("window-width");
-        let height = settings.get_int("window-height");
-        let is_maximized = settings.get_boolean("is-maximized");
-
-        self.set_default_size(width, height);
-
-        if is_maximized {
-            self.maximize();
-        }
     }
 }
