@@ -1,9 +1,12 @@
 use crate::application::SharePreviewApplication;
 use crate::config::{APP_ID, PROFILE};
+use crate::metadata::scraper::scrape;
+use glib::clone;
 use glib::signal::Inhibit;
 use gtk::subclass::prelude::*;
 use gtk::{self, prelude::*};
 use gtk::{gio, glib, CompositeTemplate};
+use gtk_macros::{action, spawn};
 use log::warn;
 
 mod imp {
@@ -12,9 +15,21 @@ mod imp {
     #[derive(Debug, CompositeTemplate)]
     #[template(resource = "/com/rafaelmardojai/SharePreview/window.ui")]
     pub struct SharePreviewApplicationWindow {
+        pub settings: gio::Settings,
         #[template_child]
         pub headerbar: TemplateChild<gtk::HeaderBar>,
-        pub settings: gio::Settings,
+        #[template_child]
+        pub url_entry: TemplateChild<gtk::Entry>,
+        #[template_child]
+        pub card_stack: TemplateChild<gtk::Stack>,
+        #[template_child]
+        pub spinner: TemplateChild<gtk::Spinner>,
+        #[template_child]
+        pub card_title: TemplateChild<gtk::Label>,
+        #[template_child]
+        pub card_description: TemplateChild<gtk::Label>,
+        #[template_child]
+        pub card_url: TemplateChild<gtk::Label>,
     }
 
     #[glib::object_subclass]
@@ -25,8 +40,14 @@ mod imp {
 
         fn new() -> Self {
             Self {
-                headerbar: TemplateChild::default(),
                 settings: gio::Settings::new(APP_ID),
+                headerbar: TemplateChild::default(),                
+                url_entry: TemplateChild::default(),
+                card_stack: TemplateChild::default(),
+                spinner: TemplateChild::default(),
+                card_title: TemplateChild::default(),
+                card_description: TemplateChild::default(),
+                card_url: TemplateChild::default(),
             }
         }
 
@@ -53,6 +74,9 @@ mod imp {
             if PROFILE == "Devel" {
                 obj.style_context().add_class("devel");
             }
+
+            // Setup window actions
+            obj.setup_gactions();
 
             // load latest window state
             obj.load_window_size();
@@ -88,6 +112,29 @@ impl SharePreviewApplicationWindow {
         gtk::Window::set_default_icon_name(APP_ID);
 
         window
+    }
+
+    fn setup_gactions(&self) {
+        let self_ = imp::SharePreviewApplicationWindow::from_instance(self);
+        let url = &*self_.url_entry;
+        let stack = &*self_.card_stack;
+        let spinner = &*self_.spinner;
+        let title = &*self_.card_title;
+        // Run
+        action!(
+            self,
+            "run",
+            clone!(@weak url, @weak stack, @weak spinner, @weak title => move |_, _| {
+                stack.set_visible_child_name("loading");
+                spinner.start();
+                spawn!(async move {
+                    // TODO: match
+                    let metadata = scrape(url.text().as_str()).await.unwrap();                    
+                    title.set_label(&metadata.title);
+                    stack.set_visible_child_name("card");
+                });
+            })
+        );
     }
 
     pub fn save_window_size(&self) -> Result<(), glib::BoolError> {

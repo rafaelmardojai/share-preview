@@ -1,4 +1,12 @@
-.title-header{
-  font-size: 36px;
-  font-weight: bold;
+
+headerbar.flat {
+  background-image: none;
+  border: none;
+  background-color: @theme_bg_color;
 }
+
+.main-box {
+  padding: 24px;
+}
+
+
