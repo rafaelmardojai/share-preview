@@ -1,5 +1,5 @@
 use crate::config;
-use crate::window::SharePreviewApplicationWindow;
+use crate::window::SharePreviewWindow;
 use gio::ApplicationFlags;
 use glib::clone;
 use glib::WeakRef;
@@ -15,7 +15,7 @@ mod imp {
 
     #[derive(Debug, Default)]
     pub struct SharePreviewApplication {
-        pub window: OnceCell<WeakRef<SharePreviewApplicationWindow>>,
+        pub window: OnceCell<WeakRef<SharePreviewWindow>>,
     }
 
     #[glib::object_subclass]
@@ -42,7 +42,7 @@ mod imp {
             app.set_resource_base_path(Some("/com/rafaelmardojai/SharePreview/"));
             app.setup_css();
 
-            let window = SharePreviewApplicationWindow::new(app);
+            let window = SharePreviewWindow::new(app);
             self.window
                 .set(window.downgrade())
                 .expect("Window already set.");
@@ -76,7 +76,7 @@ impl SharePreviewApplication {
         .expect("Application initialization failed...")
     }
 
-    fn get_main_window(&self) -> SharePreviewApplicationWindow {
+    fn get_main_window(&self) -> SharePreviewWindow {
         let priv_ = imp::SharePreviewApplication::from_instance(self);
         priv_.window.get().unwrap().upgrade().unwrap()
     }

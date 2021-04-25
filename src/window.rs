@@ -14,7 +14,7 @@ mod imp {
 
     #[derive(Debug, CompositeTemplate)]
     #[template(resource = "/com/rafaelmardojai/SharePreview/window.ui")]
-    pub struct SharePreviewApplicationWindow {
+    pub struct SharePreviewWindow {
         pub settings: gio::Settings,
         #[template_child]
         pub headerbar: TemplateChild<gtk::HeaderBar>,
@@ -33,9 +33,9 @@ mod imp {
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for SharePreviewApplicationWindow {
-        const NAME: &'static str = "SharePreviewApplicationWindow";
-        type Type = super::SharePreviewApplicationWindow;
+    impl ObjectSubclass for SharePreviewWindow {
+        const NAME: &'static str = "SharePreviewWindow";
+        type Type = super::SharePreviewWindow;
         type ParentType = gtk::ApplicationWindow;
 
         fn new() -> Self {
@@ -61,7 +61,7 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for SharePreviewApplicationWindow {
+    impl ObjectImpl for SharePreviewWindow {
         fn constructed(&self, obj: &Self::Type) {
             self.parent_constructed(obj);
 
@@ -80,20 +80,20 @@ mod imp {
         }
     }
 
-    impl WidgetImpl for SharePreviewApplicationWindow {}
-    impl WindowImpl for SharePreviewApplicationWindow {}
-    impl ApplicationWindowImpl for SharePreviewApplicationWindow {}
+    impl WidgetImpl for SharePreviewWindow {}
+    impl WindowImpl for SharePreviewWindow {}
+    impl ApplicationWindowImpl for SharePreviewWindow {}
 }
 
 glib::wrapper! {
-    pub struct SharePreviewApplicationWindow(ObjectSubclass<imp::SharePreviewApplicationWindow>)
+    pub struct SharePreviewWindow(ObjectSubclass<imp::SharePreviewWindow>)
         @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow, @implements gio::ActionMap, gio::ActionGroup;
 }
 
-impl SharePreviewApplicationWindow {
+impl SharePreviewWindow {
     pub fn new(app: &SharePreviewApplication) -> Self {
         let window: Self =
-            glib::Object::new(&[]).expect("Failed to create SharePreviewApplicationWindow");
+            glib::Object::new(&[]).expect("Failed to create SharePreviewWindow");
         window.set_application(Some(app));
 
         // Set icons for shell
@@ -103,7 +103,7 @@ impl SharePreviewApplicationWindow {
     }
 
     fn setup_gactions(&self) {
-        let self_ = imp::SharePreviewApplicationWindow::from_instance(self);
+        let self_ = imp::SharePreviewWindow::from_instance(self);
         let url = &*self_.url_entry;
         let stack = &*self_.card_stack;
         let spinner = &*self_.spinner;
