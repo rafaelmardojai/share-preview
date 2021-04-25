@@ -9,6 +9,7 @@
         "--socket=fallback-x11",
         "--socket=wayland",
         "--device=dri",
+        "--share=network",
         "--talk-name=org.a11y.Bus",
         "--env=RUST_LOG=share-preview=debug",
         "--env=G_MESSAGES_DEBUG=none"
