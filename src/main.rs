@@ -2,6 +2,7 @@ mod application;
 #[rustfmt::skip]
 mod config;
 mod window;
+mod metadata;
 
 use application::SharePreviewApplication;
 use config::{GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};
