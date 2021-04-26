@@ -12,7 +12,7 @@
       </item>
     </section>
   </menu>
-  <template class="SharePreviewWindow" parent="GtkApplicationWindow">
+  <template class="SharePreviewWindow" parent="AdwApplicationWindow">
     <property name="resizable">false</property>
     <property name="default_width">460</property>
     <property name="default_height">396</property>

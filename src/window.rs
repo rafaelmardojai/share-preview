@@ -11,6 +11,7 @@ use gtk::{self, prelude::*};
 use gtk::{gio, glib, CompositeTemplate};
 use gtk_macros::{action, spawn};
 use log::warn;
+use libadwaita::subclass::prelude::*;
 
 mod imp {
     use super::*;
@@ -39,7 +40,7 @@ mod imp {
     impl ObjectSubclass for SharePreviewWindow {
         const NAME: &'static str = "SharePreviewWindow";
         type Type = super::SharePreviewWindow;
-        type ParentType = gtk::ApplicationWindow;
+        type ParentType = libadwaita::ApplicationWindow;
 
         fn new() -> Self {
             Self {
@@ -83,11 +84,13 @@ mod imp {
     impl WidgetImpl for SharePreviewWindow {}
     impl WindowImpl for SharePreviewWindow {}
     impl ApplicationWindowImpl for SharePreviewWindow {}
+    impl AdwApplicationWindowImpl for SharePreviewWindow {}
 }
 
 glib::wrapper! {
     pub struct SharePreviewWindow(ObjectSubclass<imp::SharePreviewWindow>)
-        @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow, @implements gio::ActionMap, gio::ActionGroup;
+        @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow, libadwaita::ApplicationWindow,
+        @implements gio::ActionMap, gio::ActionGroup;
 }
 
 impl SharePreviewWindow {
