@@ -77,9 +77,6 @@ mod imp {
             if PROFILE == "Devel" {
                 obj.style_context().add_class("devel");
             }
-
-            // Setup window actions
-            obj.setup_gactions();
         }
     }
 
@@ -101,11 +98,13 @@ impl SharePreviewWindow {
 
         // Set icons for shell
         gtk::Window::set_default_icon_name(APP_ID);
+        // Setup window actions
+        window.setup_actions();
 
         window
     }
 
-    fn setup_gactions(&self) {
+    fn setup_actions(&self) {
         let self_ = imp::SharePreviewWindow::from_instance(self);
         let url = &*self_.url_entry;
         let stack = &*self_.card_stack;
@@ -120,7 +119,7 @@ impl SharePreviewWindow {
                 spinner.start();
                 spawn!(async move {
                     // TODO: match
-                    let metadata = scrape(url.text().as_str()).await.unwrap();                    
+                    let metadata = scrape(url.text().as_str()).await.unwrap();
                     title.set_label(&metadata.title);
                     stack.set_visible_child_name("card");
                 });
