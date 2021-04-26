@@ -100,6 +100,8 @@ impl SharePreviewWindow {
         gtk::Window::set_default_icon_name(APP_ID);
         // Setup window actions
         window.setup_actions();
+         // Setup widgets signals
+        window.setup_signals();
 
         window
     }
@@ -125,5 +127,13 @@ impl SharePreviewWindow {
                 });
             })
         );
+    }
+
+    fn setup_signals(&self) {
+        let self_ = imp::SharePreviewWindow::from_instance(self);
+
+        self_.url_entry.connect_activate(clone!(@weak self as win => move |_| {
+                WidgetExt::activate_action(&win, "win.run", None);
+        }));
     }
 }
