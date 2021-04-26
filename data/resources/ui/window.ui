@@ -138,10 +138,6 @@
                             <child>
                               <object class="GtkLabel" id="card_title">
                                 <property name="xalign">0</property>
-                                <style>
-                                  <class name="circular"/>
-                                  <class name="large"/>
-                                </style>
                               </object>
                             </child>
                             <child>

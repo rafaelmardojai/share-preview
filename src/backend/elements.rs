@@ -52,9 +52,9 @@ impl Metadata {
             let key: &str = &(prop.0);
             let val = prop.1.clone();
             match key {
-                "title"    => { result.title = val; },
-                "description"    => { result.description = Some(val); },
-                "og:title"    => { result.og_title = Some(val); },
+                "title" => { result.title = val; },
+                "description" => { result.description = Some(val); },
+                "og:title" => { result.og_title = Some(val); },
                 "og:description" => { result.og_description = Some(val); },
                 "og:image" => { result.og_image = Some(Image::new(val)); },
                 "twitter:title" => { result.tw_title = Some(val); },
