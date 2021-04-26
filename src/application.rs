@@ -113,7 +113,7 @@ impl SharePreviewApplication {
     fn setup_css(&self) {
         let provider = gtk::CssProvider::new();
         provider.load_from_resource("/com/rafaelmardojai/SharePreview/style.css");
-        if let Some(display) = gdk::Display::get_default() {
+        if let Some(display) = gdk::Display::default() {
             gtk::StyleContext::add_provider_for_display(
                 &display,
                 &provider,

@@ -70,7 +70,7 @@ mod imp {
 
             let builder =
                 gtk::Builder::from_resource("/com/rafaelmardojai/SharePreview/shortcuts.ui");
-            let shortcuts = builder.get_object("shortcuts").unwrap();
+            let shortcuts = builder.object("shortcuts").unwrap();
             obj.set_help_overlay(Some(&shortcuts));
 
             // Devel Profile
