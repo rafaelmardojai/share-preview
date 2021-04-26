@@ -1,4 +1,4 @@
-mod elements;
+pub mod elements;
 pub mod scraper;
 
 pub use self::{

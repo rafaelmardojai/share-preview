@@ -1,6 +1,9 @@
 use crate::application::SharePreviewApplication;
 use crate::config::{APP_ID, PROFILE};
-use crate::metadata::scraper::scrape;
+use crate::backend::{
+    scraper::scrape,
+    elements::{Metadata, Error}
+};
 use glib::clone;
 use glib::signal::Inhibit;
 use gtk::subclass::prelude::*;

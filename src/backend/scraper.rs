@@ -3,7 +3,7 @@ use url::Url;
 use scraper::{Html, Selector};
 use scraper::element_ref::ElementRef;
 
-use crate::metadata::elements::{Metadata, Image, Error};
+use super::elements::{Metadata, Image, Error};
 
 pub async fn scrape(url: &str) -> Result<Metadata, Error> {
     let mut resp = surf::get(&url).await?;

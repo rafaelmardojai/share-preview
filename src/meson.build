@@ -19,9 +19,9 @@ run_command(
 )
 
 sources = files(
-  'metadata/mod.rs',
-  'metadata/elements.rs',
-  'metadata/scraper.rs',
+  'backend/mod.rs',
+  'backend/elements.rs',
+  'backend/scraper.rs',
   'application.rs',
   'config.rs',
   'main.rs',
