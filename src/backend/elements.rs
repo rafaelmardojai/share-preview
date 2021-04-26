@@ -7,6 +7,7 @@ use url::{Url, ParseError};
 #[derive(Debug)]
 pub enum Error {
     NetworkError(surf::Error),
+    InvalidUrl(ParseError),
     Unexpected,
 }
 
@@ -14,6 +15,7 @@ impl Display for Error {
     fn fmt(&self, f: &mut Formatter) -> FmtResult {
         match *self {
             Error::NetworkError(ref e) => write!(f, "NetworkError:  {}", e),
+            Error::InvalidUrl(ref e) => write!(f, "InvalidUrl:  {}", e),
             Error::Unexpected => write!(f, "UnexpectedError"),
         }
     }
@@ -22,6 +24,12 @@ impl Display for Error {
 impl From<surf::Error> for Error {
     fn from(err: surf::Error) -> Error {
         Error::NetworkError(err)
+    }
+}
+
+impl From<ParseError> for Error {
+    fn from(err: ParseError) -> Error {
+        Error::InvalidUrl(err)
     }
 }
 

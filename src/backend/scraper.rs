@@ -6,8 +6,8 @@ use scraper::element_ref::ElementRef;
 use super::elements::{Metadata, Image, Error};
 
 pub async fn scrape(url: &str) -> Result<Metadata, Error> {
+    let url = Url::parse(&url)?;
     let mut resp = surf::get(&url).await?;
-    let url = Url::parse(&url).unwrap();
 
     if resp.status().is_success() {
         let mut meta = Vec::new(); // Empty Vec<(String, String)> to store meta tags
