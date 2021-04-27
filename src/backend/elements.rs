@@ -111,6 +111,8 @@ impl Card {
                 
             },
             Social::Mastodon => {
+                image_find = vec_of_strings!["og:image"];
+
                 if metadata.contains_key("og:site_name") {
                     site = metadata.get("og:site_name").unwrap().to_string();
                 }                
