@@ -1,11 +1,16 @@
+// Copyright 2021 Rafael Mardojai CM
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+use std::fmt::{Display, Formatter, Result as FmtResult};
 use std::collections::HashMap;
+use std::error;
 
 use surf;
 use url::Url;
 use scraper::{Html, Selector};
 use scraper::element_ref::ElementRef;
 
-use super::elements::{Data, Image, Error};
+use super::{Data, Image};
 
 pub async fn scrape(url: &Url) -> Result<Data, Error> {
     let mut resp = surf::get(&url).await?;
@@ -84,4 +89,29 @@ async fn get_html_data(text: &String,
 fn get_meta_prop(element: &ElementRef, name: &str) -> Option<(String, String)> {
     element.value().attr(name).and_then(|key|
         element.value().attr("content").map(|content| (key.to_string(), content.to_string())))
+}
+
+#[derive(Debug)]
+pub enum Error {
+    NetworkError(surf::Error),
+    Unexpected,
+}
+
+impl Display for Error {
+    fn fmt(&self, f: &mut Formatter) -> FmtResult {
+        match *self {
+            Error::NetworkError(ref e) => write!(f, "NetworkError:  {}", e),
+            Error::Unexpected => write!(f, "UnexpectedError"),
+        }
+    }
+}
+
+impl From<surf::Error> for Error {
+    fn from(err: surf::Error) -> Error {
+        Error::NetworkError(err)
+    }
+}
+
+impl error::Error for Error {
+    fn description(&self) -> &str { "" }
 }

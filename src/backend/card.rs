@@ -1,81 +1,12 @@
-use std::fmt::{Display, Formatter, Result as FmtResult};
-use std::collections::HashMap;
-use std::error;
+// Copyright 2021 Rafael Mardojai CM
+// SPDX-License-Identifier: GPL-3.0-or-later
 
-use surf;
-use url::{Url, ParseError};
+use std::collections::HashMap;
+
+use super::{Data, Image};
 
 macro_rules! vec_of_strings {
     ($($x:expr),*) => (vec![$($x.to_string()),*]);
-}
-
-#[derive(Debug)]
-pub enum Error {
-    NetworkError(surf::Error),
-    Unexpected,
-}
-
-impl Display for Error {
-    fn fmt(&self, f: &mut Formatter) -> FmtResult {
-        match *self {
-            Error::NetworkError(ref e) => write!(f, "NetworkError:  {}", e),
-            Error::Unexpected => write!(f, "UnexpectedError"),
-        }
-    }
-}
-
-impl From<surf::Error> for Error {
-    fn from(err: surf::Error) -> Error {
-        Error::NetworkError(err)
-    }
-}
-
-impl error::Error for Error {
-    fn description(&self) -> &str { "" }
-}
-
-#[derive(Debug, Default, Clone)]
-pub struct Data {
-    pub url: String,
-    pub images: Vec<Image>,
-    pub metadata: HashMap<String, String>,
-}
-
-impl Data {
-    pub fn get_card(&self, social: Social) -> Card {
-       Card::new(&self, social)
-    }
-}
-
-#[derive(Debug, Clone)]
-pub struct Image {
-    pub url: String
-}
-
-impl Image {
-    pub fn new(url: String) -> Image {
-        Image {url}
-    }
-    pub fn normalize(&mut self, url: &Url) -> &mut Image {
-        if let Err(e) = Url::parse(&self.url) {
-            match e {
-                ParseError::RelativeUrlWithoutBase => {
-                    if let Ok(url) = url.join(&self.url) {
-                        self.url = url.to_string();
-                    }
-                },
-                _ => (),
-            }
-        }
-        self
-    }
-}
-
-#[derive(Debug, Clone)]
-pub enum CardSize {
-    Small, // Mastodon
-    Medium, // Twitter sumary
-    Large, // Twitter summary with large image || Facebook
 }
 
 #[derive(Debug, Clone)]
@@ -83,6 +14,13 @@ pub enum Social {
     Facebook,
     Mastodon,
     Twitter,
+}
+
+#[derive(Debug, Clone)]
+pub enum CardSize {
+    Small, // Mastodon
+    Medium, // Twitter sumary
+    Large, // Twitter summary with large image || Facebook
 }
 
 #[derive(Debug, Clone)]

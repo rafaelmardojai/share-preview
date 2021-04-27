@@ -18,9 +18,11 @@ run_command(
   check: true
 )
 
-sources = files(
+sources = files(  
+  'backend/card.rs',
+  'backend/data.rs',
+  'backend/image.rs',
   'backend/mod.rs',
-  'backend/elements.rs',
   'backend/scraper.rs',
   'application.rs',
   'config.rs',
