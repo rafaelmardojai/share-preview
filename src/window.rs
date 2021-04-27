@@ -1,15 +1,16 @@
 use crate::application::SharePreviewApplication;
-use crate::config::{APP_ID, PROFILE};
 use crate::backend::{scrape, Error, Social};
+use crate::config::{APP_ID, PROFILE};
+use gettextrs::*;
 use glib::clone;
 use glib::signal::Inhibit;
 use gtk::subclass::prelude::*;
 use gtk::{self, prelude::*};
 use gtk::{gio, glib, CompositeTemplate};
 use gtk_macros::{action, spawn};
+use libadwaita::subclass::prelude::*;
 use log::warn;
 use url::Url;
-use libadwaita::subclass::prelude::*;
 
 mod imp {
     use super::*;
@@ -156,10 +157,10 @@ impl SharePreviewWindow {
                                 }
                                 Err(error) => {
                                     let error_text = match error {
-                                        Error::NetworkError(_) => {"Network error"}
-                                        Error::Unexpected => {"Unexpected error"}
+                                        Error::NetworkError(_) => gettext("Network error"),
+                                        Error::Unexpected => gettext("Unexpected error")
                                     };
-                                    error_title.set_label(error_text);
+                                    error_title.set_label(&error_text);
                                     stack.set_visible_child_name("error");
                                 }
                             }
