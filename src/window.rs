@@ -2,7 +2,7 @@ use crate::application::SharePreviewApplication;
 use crate::config::{APP_ID, PROFILE};
 use crate::backend::{
     scraper::scrape,
-    elements::{Metadata, Error}
+    elements::{Social, Error}
 };
 use glib::clone;
 use glib::signal::Inhibit;
@@ -11,6 +11,7 @@ use gtk::{self, prelude::*};
 use gtk::{gio, glib, CompositeTemplate};
 use gtk_macros::{action, spawn};
 use log::warn;
+use url::Url;
 use libadwaita::subclass::prelude::*;
 
 mod imp {
@@ -28,6 +29,10 @@ mod imp {
         pub card_stack: TemplateChild<gtk::Stack>,
         #[template_child]
         pub spinner: TemplateChild<gtk::Spinner>,
+        #[template_child]
+        pub error_title: TemplateChild<gtk::Label>,
+        #[template_child]
+        pub error_message: TemplateChild<gtk::Label>,
         #[template_child]
         pub card_title: TemplateChild<gtk::Label>,
         #[template_child]
@@ -49,6 +54,8 @@ mod imp {
                 url_entry: TemplateChild::default(),
                 card_stack: TemplateChild::default(),
                 spinner: TemplateChild::default(),
+                error_title: TemplateChild::default(),
+                error_message: TemplateChild::default(),
                 card_title: TemplateChild::default(),
                 card_description: TemplateChild::default(),
                 card_url: TemplateChild::default(),
@@ -111,23 +118,61 @@ impl SharePreviewWindow {
 
     fn setup_actions(&self) {
         let self_ = imp::SharePreviewWindow::from_instance(self);
-        let url = &*self_.url_entry;
+        let url_entry = &*self_.url_entry;
         let stack = &*self_.card_stack;
         let spinner = &*self_.spinner;
+        let error_title = &*self_.error_title;
+        let error_message = &*self_.error_message;
         let title = &*self_.card_title;
+        let description = &*self_.card_description;
+        let card_url = &*self_.card_url;
         // Run
         action!(
             self,
             "run",
-            clone!(@weak url, @weak stack, @weak spinner, @weak title => move |_, _| {
-                stack.set_visible_child_name("loading");
-                spinner.start();
-                spawn!(async move {
-                    // TODO: match
-                    let metadata = scrape(url.text().as_str()).await.unwrap();
-                    title.set_label(&metadata.title);
-                    stack.set_visible_child_name("card");
-                });
+            clone!(@weak url_entry, @weak stack, @weak spinner,
+                   @weak error_title, @weak error_message,
+                   @weak title, @weak description, @weak card_url => move |_, _| {
+
+                match Url::parse(url_entry.text().as_str()) {
+                    Ok(url) => {
+                        stack.set_visible_child_name("loading");
+                        spinner.start();
+                        spawn!(async move {
+                            match scrape(&url).await {
+                                Ok(data) => {
+                                    let card = data.get_card(Social::Facebook);
+                                    println!["{:#?}", &card];
+                                    
+                                    title.set_label(&card.title);
+                                    match card.description {
+                                        Some(text) => {
+                                            description.set_label(&text);
+                                            description.set_visible(true);
+                                        }
+                                        None => {
+                                            description.set_visible(false);
+                                        }
+                                    }
+                                    card_url.set_label(&card.site);
+                                    stack.set_visible_child_name("card");
+                                }
+                                Err(error) => {
+                                    let error_texts = match error {
+                                        Error::NetworkError(_) => {"Network error"}
+                                        Error::Unexpected => {"Unexpected error"}
+                                    };
+                                    error_title.set_label(error_texts);
+                                    stack.set_visible_child_name("error");
+                                }
+                            }
+                            spinner.stop();
+                        });
+                    }
+                    Err(err) => {
+                        
+                    }
+                }
             })
         );
     }
