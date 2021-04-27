@@ -143,7 +143,7 @@ impl SharePreviewWindow {
                                 Ok(data) => {
                                     let card = data.get_card(Social::Facebook);
                                     println!["{:#?}", &card];
-                                    
+
                                     title.set_label(&card.title);
                                     match card.description {
                                         Some(text) => {
@@ -158,11 +158,11 @@ impl SharePreviewWindow {
                                     stack.set_visible_child_name("card");
                                 }
                                 Err(error) => {
-                                    let error_texts = match error {
+                                    let error_text = match error {
                                         Error::NetworkError(_) => {"Network error"}
                                         Error::Unexpected => {"Unexpected error"}
                                     };
-                                    error_title.set_label(error_texts);
+                                    error_title.set_label(error_text);
                                     stack.set_visible_child_name("error");
                                 }
                             }
