@@ -191,6 +191,7 @@ impl SharePreviewWindow {
     fn setup_signals(&self) {
         let self_ = imp::SharePreviewWindow::from_instance(self);        
         let url_entry = &*self_.url_entry;
+        let social = &*self_.social;
 
         self_.url_entry.connect_activate(clone!(@weak self as win, @weak url_entry => move |_| {
             WidgetExt::activate_action(&win, "win.run", None);
@@ -212,6 +213,16 @@ impl SharePreviewWindow {
                 url_entry.set_icon_sensitive(EntryIconPosition::Secondary, true);
             }
         }));
+
+        self_.social.connect_local(
+            "notify::selected",
+            false,
+            clone!(@weak self as win => @default-return None, move |_| {
+                WidgetExt::activate_action(&win, "win.run", None);
+                None
+            }),
+        )
+        .unwrap();
     }
 
     fn get_social(i: &u32) -> Social {
