@@ -53,48 +53,54 @@
                 <property name="orientation">vertical</property>
                 <property name="spacing">12</property>
                 <child>
-                  <object class="GtkBox" id="url_box">
-                    <property name="hexpand">true</property>
-                    <property name="halign">fill</property>
-                    <property name="spacing">0</property>
-                    <style>
-                      <class name="linked"/>
-                    </style>
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkDropDown" id="social">
-                        <property name="halign">end</property>
-                        <property name="valign">center</property>
-                        <property name="model">
-                          <object class="GtkStringList">
-                            <items>
-                              <item>Facebook</item>
-                              <item>Mastodon</item>
-                              <item>Twitter</item>
-                            </items>
-                          </object>
-                        </property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkEntry" id="url_entry">
+                      <object class="GtkBox" id="url_box">
                         <property name="hexpand">true</property>
-                        <property name="secondary-icon-name">go-next-symbolic</property>
-                        <property name="secondary-icon-sensitive">false</property>
+                        <property name="halign">fill</property>
+                        <property name="spacing">0</property>
+                        <style>
+                          <class name="linked"/>
+                        </style>
+                        <child>
+                          <object class="GtkDropDown" id="social">
+                            <property name="halign">end</property>
+                            <property name="valign">center</property>
+                            <property name="model">
+                              <object class="GtkStringList">
+                                <items>
+                                  <item>Facebook</item>
+                                  <item>Mastodon</item>
+                                  <item>Twitter</item>
+                                </items>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="url_entry">
+                            <property name="hexpand">true</property>
+                            <property name="secondary-icon-name">go-next-symbolic</property>
+                            <property name="secondary-icon-sensitive">false</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkRevealer" id="url_error">
-                    <property name="transition-type">slide-down</property>
-                    <property name="reveal-child">false</property>
                     <child>
-                      <object class="GtkLabel">
-                        <property name="label" translatable="yes">Invalid URL</property>
-                        <property name="halign">center</property>
-                        <style>
-                          <class name="error"/>
-                        </style>
+                      <object class="GtkRevealer" id="url_error">
+                        <property name="transition-type">slide-down</property>
+                        <property name="reveal-child">false</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="label" translatable="yes">Invalid URL</property>
+                            <property name="halign">center</property>
+                            <property name="margin-top">6</property>
+                            <style>
+                              <class name="error"/>
+                            </style>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
@@ -183,40 +189,54 @@
                             <property name="orientation">vertical</property>
                             <property name="spacing">6</property>
                             <property name="halign">fill</property>
-                            <style>
-                              <class name="content"/>
-                              <class name="card"/>
-                            </style>
                             <child>
-                              <object class="GtkPicture" id="card_picture">
-                                <property name="visible">false</property>
+                              <object class="GtkBox" id="card_box">
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkPicture" id="card_picture">
+                                    <property name="visible">false</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="card_title">
+                                    <property name="xalign">0</property>
+                                    <property name="wrap">true</property>
+                                    <property name="wrap-mode">word-char</property>
+                                    <style>
+                                      <class name="title-2"/>
+                                    </style>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="card_description">
+                                    <property name="xalign">0</property>
+                                    <property name="wrap">true</property>
+                                    <property name="wrap-mode">word-char</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="card_url">
+                                    <property name="xalign">0</property>
+                                    <style>
+                                      <class name="caption-heading"/>
+                                    </style>
+                                  </object>
+                                </child>  
                               </object>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="card_title">
-                                <property name="xalign">0</property>
-                                <property name="wrap">true</property>
-                                <property name="wrap-mode">word-char</property>
+                              <object class="GtkButton">
+                                <property name="action-name">win.metadata</property>
+                                <property name="icon-name">view-list-bullet-symbolic</property>
+                                <property name="halign">center</property>
+                                <property name="vexpand">true</property>
+                                <property name="valign">end</property>
                                 <style>
-                                  <class name="title-2"/>
+                                  <class name="circular"/>
+                                  <class name="large"/>
                                 </style>
                               </object>
                             </child>
-                            <child>
-                              <object class="GtkLabel" id="card_description">
-                                <property name="xalign">0</property>
-                                <property name="wrap">true</property>
-                                <property name="wrap-mode">word-char</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="card_url">
-                                <property name="xalign">0</property>
-                                <style>
-                                  <class name="caption-heading"/>
-                                </style>
-                              </object>
-                            </child>                   
                           </object>
                         </property>
                       </object>

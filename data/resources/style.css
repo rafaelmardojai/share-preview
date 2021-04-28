@@ -16,3 +16,7 @@ headerbar.flat {
   padding: 12px;
 }
 
+button.large {
+  min-width: 48px;
+  min-height: 48px;
+}
