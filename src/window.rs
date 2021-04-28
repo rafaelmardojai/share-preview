@@ -153,11 +153,18 @@ impl SharePreviewWindow {
                                         stack.set_visible_child_name("card");
                                     }
                                     Err(error) => {
-                                        let error_text = match error {
-                                            Error::NetworkError(_) => gettext("Network error"),
-                                            Error::Unexpected => gettext("Unexpected error")
+                                        let error_texts = match error {
+                                            Error::NetworkError(_) => (
+                                                gettext("Network error"),
+                                                gettext("Couldn't connect to the given URL.")
+                                            ),
+                                            Error::Unexpected => (
+                                                gettext("Unexpected error"),
+                                                gettext("Couldn't connect to the given URL.")
+                                            )
                                         };
-                                        error_title.set_label(&error_text);
+                                        error_title.set_label(&error_texts.0);
+                                        error_message.set_label(&error_texts.1);
                                         stack.set_visible_child_name("error");
                                     }
                                 }

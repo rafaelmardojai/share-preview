@@ -163,9 +163,10 @@
                         <property name="name">error</property>
                         <property name="child">
                           <object class="GtkBox">
+                            <property name="orientation">vertical</property>
                             <property name="halign">center</property>
                             <property name="valign">center</property>
-                            <property name="spacing">6</property>
+                            <property name="spacing">12</property>
                             <child>
                               <object class="GtkLabel" id="error_title">
                                 <property name="label"></property>
