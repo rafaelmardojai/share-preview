@@ -4,7 +4,7 @@ pub mod image;
 pub mod scraper;
 
 pub use self::{
-    card::{Card, Social},
+    card::{Card, CardSize, Social},
     data::Data,
     image::Image,
     scraper::{scrape, Error}

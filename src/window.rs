@@ -1,5 +1,6 @@
 use crate::application::SharePreviewApplication;
 use crate::backend::{scrape, Error, Social};
+use crate::card_widget::CardWidget;
 use crate::config::{APP_ID, PROFILE};
 use gettextrs::*;
 use glib::clone;
@@ -24,11 +25,13 @@ mod imp {
         #[template_child]
         pub social: TemplateChild<gtk::DropDown>,
         #[template_child]
+        pub url_box: TemplateChild<gtk::Box>,
+        #[template_child]
         pub url_entry: TemplateChild<gtk::Entry>,
         #[template_child]
         pub url_error: TemplateChild<gtk::Revealer>,
         #[template_child]
-        pub card_stack: TemplateChild<gtk::Stack>,
+        pub stack: TemplateChild<gtk::Stack>,
         #[template_child]
         pub spinner: TemplateChild<gtk::Spinner>,
         #[template_child]
@@ -36,11 +39,7 @@ mod imp {
         #[template_child]
         pub error_message: TemplateChild<gtk::Label>,
         #[template_child]
-        pub card_title: TemplateChild<gtk::Label>,
-        #[template_child]
-        pub card_description: TemplateChild<gtk::Label>,
-        #[template_child]
-        pub card_url: TemplateChild<gtk::Label>,
+        pub card: TemplateChild<CardWidget>,
     }
 
     #[glib::object_subclass]
@@ -54,15 +53,14 @@ mod imp {
                 settings: gio::Settings::new(APP_ID),
                 headerbar: TemplateChild::default(),
                 social: TemplateChild::default(),
+                url_box: TemplateChild::default(),
                 url_entry: TemplateChild::default(),
                 url_error: TemplateChild::default(),
-                card_stack: TemplateChild::default(),
+                stack: TemplateChild::default(),
                 spinner: TemplateChild::default(),
                 error_title: TemplateChild::default(),
                 error_message: TemplateChild::default(),
-                card_title: TemplateChild::default(),
-                card_description: TemplateChild::default(),
-                card_url: TemplateChild::default(),
+                card: TemplateChild::default(),
             }
         }
 
@@ -114,7 +112,7 @@ impl SharePreviewWindow {
         gtk::Window::set_default_icon_name(APP_ID);
         // Setup window actions
         window.setup_actions();
-         // Setup widgets signals
+        // Setup widgets signals
         window.setup_signals();
 
         window
@@ -123,28 +121,29 @@ impl SharePreviewWindow {
     fn setup_actions(&self) {
         let self_ = imp::SharePreviewWindow::from_instance(self);
         let social = &*self_.social;
+        let url_box = &*self_.url_box;
         let url_entry = &*self_.url_entry;
         let url_error = &*self_.url_error;
-        let stack = &*self_.card_stack;
+        let stack = &*self_.stack;
         let spinner = &*self_.spinner;
         let error_title = &*self_.error_title;
         let error_message = &*self_.error_message;
-        let title = &*self_.card_title;
-        let description = &*self_.card_description;
-        let card_url = &*self_.card_url;
+        let cardwidget = &*self_.card;
+
         // Run
         action!(
             self,
             "run",
             clone!(
-                    @weak social, @weak url_entry, @weak url_error, @weak stack, 
-                    @weak spinner, @weak error_title, @weak error_message,
-                    @weak title, @weak description, @weak card_url => move |_, _| {
+                    @weak social, @weak url_entry, @weak url_error, @weak url_box,
+                    @weak stack, @weak spinner, @weak error_title, @weak error_message,
+                    @weak cardwidget => move |_, _| {
                 
                 if !url_entry.text().is_empty() {
                     match Url::parse(url_entry.text().as_str()) {
                         Ok(url) => {
                             url_error.set_reveal_child(false);
+                            url_box.set_sensitive(false);
                             stack.set_visible_child_name("loading");
                             spinner.start();
                             spawn!(async move {
@@ -152,19 +151,7 @@ impl SharePreviewWindow {
                                     Ok(data) => {
                                         let social = Self::get_social(&social.selected());
                                         let card = data.get_card(social);
-                                        println!["{:#?}", &card];
-
-                                        title.set_label(&card.title);
-                                        match card.description {
-                                            Some(text) => {
-                                                description.set_label(&text);
-                                                description.set_visible(true);
-                                            }
-                                            None => {
-                                                description.set_visible(false);
-                                            }
-                                        }
-                                        card_url.set_label(&card.site);
+                                        &cardwidget.set_card(&card);
                                         stack.set_visible_child_name("card");
                                     }
                                     Err(error) => {
@@ -177,6 +164,7 @@ impl SharePreviewWindow {
                                     }
                                 }
                                 spinner.stop();
+                                url_box.set_sensitive(true);
                             });
                         }
                         Err(_) => {
@@ -191,7 +179,6 @@ impl SharePreviewWindow {
     fn setup_signals(&self) {
         let self_ = imp::SharePreviewWindow::from_instance(self);        
         let url_entry = &*self_.url_entry;
-        let social = &*self_.social;
 
         self_.url_entry.connect_activate(
             clone!(@weak self as win, @weak url_entry => move |_| {

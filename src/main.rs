@@ -1,8 +1,9 @@
 mod application;
+mod backend;
 #[rustfmt::skip]
 mod config;
+mod card_widget;
 mod window;
-mod backend;
 
 use application::SharePreviewApplication;
 use config::{GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};

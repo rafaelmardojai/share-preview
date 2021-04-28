@@ -25,6 +25,7 @@ sources = files(
   'backend/mod.rs',
   'backend/scraper.rs',
   'application.rs',
+  'card_widget.rs',
   'config.rs',
   'main.rs',
   'window.rs',
