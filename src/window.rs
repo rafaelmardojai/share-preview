@@ -150,7 +150,7 @@ impl SharePreviewWindow {
                             spawn!(async move {
                                 match scrape(&url).await {
                                     Ok(data) => {
-                                        let social = SharePreviewWindow::get_social(&social.selected());
+                                        let social = Self::get_social(&social.selected());
                                         let card = data.get_card(social);
                                         println!["{:#?}", &card];
 
