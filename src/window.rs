@@ -6,7 +6,7 @@ use glib::clone;
 use glib::signal::Inhibit;
 use gtk::subclass::prelude::*;
 use gtk::{self, prelude::*};
-use gtk::{gio, glib, CompositeTemplate};
+use gtk::{gio, glib, CompositeTemplate, EntryIconPosition};
 use gtk_macros::{action, spawn};
 use libadwaita::subclass::prelude::*;
 use log::warn;
@@ -22,7 +22,11 @@ mod imp {
         #[template_child]
         pub headerbar: TemplateChild<gtk::HeaderBar>,
         #[template_child]
+        pub social: TemplateChild<gtk::DropDown>,
+        #[template_child]
         pub url_entry: TemplateChild<gtk::Entry>,
+        #[template_child]
+        pub url_error: TemplateChild<gtk::Revealer>,
         #[template_child]
         pub card_stack: TemplateChild<gtk::Stack>,
         #[template_child]
@@ -48,8 +52,10 @@ mod imp {
         fn new() -> Self {
             Self {
                 settings: gio::Settings::new(APP_ID),
-                headerbar: TemplateChild::default(),                
+                headerbar: TemplateChild::default(),
+                social: TemplateChild::default(),
                 url_entry: TemplateChild::default(),
+                url_error: TemplateChild::default(),
                 card_stack: TemplateChild::default(),
                 spinner: TemplateChild::default(),
                 error_title: TemplateChild::default(),
@@ -116,7 +122,9 @@ impl SharePreviewWindow {
 
     fn setup_actions(&self) {
         let self_ = imp::SharePreviewWindow::from_instance(self);
+        let social = &*self_.social;
         let url_entry = &*self_.url_entry;
+        let url_error = &*self_.url_error;
         let stack = &*self_.card_stack;
         let spinner = &*self_.spinner;
         let error_title = &*self_.error_title;
@@ -128,47 +136,52 @@ impl SharePreviewWindow {
         action!(
             self,
             "run",
-            clone!(@weak url_entry, @weak stack, @weak spinner,
-                   @weak error_title, @weak error_message,
-                   @weak title, @weak description, @weak card_url => move |_, _| {
+            clone!(
+                    @weak social, @weak url_entry, @weak url_error, @weak stack, 
+                    @weak spinner, @weak error_title, @weak error_message,
+                    @weak title, @weak description, @weak card_url => move |_, _| {
+                
+                if !url_entry.text().is_empty() {
+                    match Url::parse(url_entry.text().as_str()) {
+                        Ok(url) => {
+                            url_error.set_reveal_child(false);
+                            stack.set_visible_child_name("loading");
+                            spinner.start();
+                            spawn!(async move {
+                                match scrape(&url).await {
+                                    Ok(data) => {
+                                        let social = SharePreviewWindow::get_social(&social.selected());
+                                        let card = data.get_card(social);
+                                        println!["{:#?}", &card];
 
-                match Url::parse(url_entry.text().as_str()) {
-                    Ok(url) => {
-                        stack.set_visible_child_name("loading");
-                        spinner.start();
-                        spawn!(async move {
-                            match scrape(&url).await {
-                                Ok(data) => {
-                                    let card = data.get_card(Social::Facebook);
-                                    println!["{:#?}", &card];
-
-                                    title.set_label(&card.title);
-                                    match card.description {
-                                        Some(text) => {
-                                            description.set_label(&text);
-                                            description.set_visible(true);
+                                        title.set_label(&card.title);
+                                        match card.description {
+                                            Some(text) => {
+                                                description.set_label(&text);
+                                                description.set_visible(true);
+                                            }
+                                            None => {
+                                                description.set_visible(false);
+                                            }
                                         }
-                                        None => {
-                                            description.set_visible(false);
-                                        }
+                                        card_url.set_label(&card.site);
+                                        stack.set_visible_child_name("card");
                                     }
-                                    card_url.set_label(&card.site);
-                                    stack.set_visible_child_name("card");
+                                    Err(error) => {
+                                        let error_text = match error {
+                                            Error::NetworkError(_) => gettext("Network error"),
+                                            Error::Unexpected => gettext("Unexpected error")
+                                        };
+                                        error_title.set_label(&error_text);
+                                        stack.set_visible_child_name("error");
+                                    }
                                 }
-                                Err(error) => {
-                                    let error_text = match error {
-                                        Error::NetworkError(_) => gettext("Network error"),
-                                        Error::Unexpected => gettext("Unexpected error")
-                                    };
-                                    error_title.set_label(&error_text);
-                                    stack.set_visible_child_name("error");
-                                }
-                            }
-                            spinner.stop();
-                        });
-                    }
-                    Err(err) => {
-                        
+                                spinner.stop();
+                            });
+                        }
+                        Err(_) => {
+                            url_error.set_reveal_child(true);
+                        }
                     }
                 }
             })
@@ -176,10 +189,37 @@ impl SharePreviewWindow {
     }
 
     fn setup_signals(&self) {
-        let self_ = imp::SharePreviewWindow::from_instance(self);
+        let self_ = imp::SharePreviewWindow::from_instance(self);        
+        let url_entry = &*self_.url_entry;
 
-        self_.url_entry.connect_activate(clone!(@weak self as win => move |_| {
-                WidgetExt::activate_action(&win, "win.run", None);
+        self_.url_entry.connect_activate(clone!(@weak self as win, @weak url_entry => move |_| {
+            WidgetExt::activate_action(&win, "win.run", None);
         }));
+
+        self_.url_entry.connect_icon_press(clone!(@weak self as win, @weak url_entry => move |_,icon| {
+            match icon {
+                EntryIconPosition::Secondary => {
+                    WidgetExt::activate_action(&win, "win.run", None);
+                },
+                _ => {}
+            }
+        }));
+
+        self_.url_entry.connect_changed(clone!(@weak url_entry => move |_| {
+            if url_entry.text().is_empty() {
+                url_entry.set_icon_sensitive(EntryIconPosition::Secondary, false);
+            } else if !url_entry.text().is_empty() && !url_entry.icon_is_sensitive(EntryIconPosition::Secondary) {
+                url_entry.set_icon_sensitive(EntryIconPosition::Secondary, true);
+            }
+        }));
+    }
+
+    fn get_social(i: &u32) -> Social {
+        match i {
+            0 => Social::Facebook,
+            1 => Social::Mastodon,
+            2 => Social::Twitter,
+            _ => unimplemented!()
+        }
     }
 }

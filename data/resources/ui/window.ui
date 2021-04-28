@@ -51,29 +51,50 @@
             <child>
               <object class="GtkBox">
                 <property name="orientation">vertical</property>
+                <property name="spacing">12</property>
                 <child>
                   <object class="GtkBox" id="url_box">
                     <property name="hexpand">true</property>
                     <property name="halign">fill</property>
-                    <property name="spacing">12</property>
+                    <property name="spacing">0</property>
+                    <style>
+                      <class name="linked"/>
+                    </style>
                     <child>
-                      <object class="GtkEntry" id="url_entry">
-                        <property name="hexpand">true</property>
+                      <object class="GtkDropDown" id="social">
+                        <property name="halign">end</property>
+                        <property name="valign">center</property>
+                        <property name="model">
+                          <object class="GtkStringList">
+                            <items>
+                              <item>Facebook</item>
+                              <item>Mastodon</item>
+                              <item>Twitter</item>
+                            </items>
+                          </object>
+                        </property>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkButton" id="run">
-                        <property name="action_name">win.run</property>
-                        <property name="valign">center</property>
+                      <object class="GtkEntry" id="url_entry">
+                        <property name="hexpand">true</property>
+                        <property name="secondary-icon-name">go-next-symbolic</property>
+                        <property name="secondary-icon-sensitive">false</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkRevealer" id="url_error">
+                    <property name="transition-type">slide-down</property>
+                    <property name="reveal-child">false</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="label" translatable="yes">Invalid URL</property>
+                        <property name="halign">center</property>
                         <style>
-                          <class name="suggested-action"/>
-                          <class name="circular"/>
+                          <class name="error"/>
                         </style>
-                        <child>
-                          <object class="GtkImage" id="run_icon">
-                            <property name="icon-name">go-next-symbolic</property>
-                          </object>
-                        </child>
                       </object>
                     </child>
                   </object>
