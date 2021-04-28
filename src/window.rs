@@ -4,13 +4,11 @@ use crate::card_widget::CardWidget;
 use crate::config::{APP_ID, PROFILE};
 use gettextrs::*;
 use glib::clone;
-use glib::signal::Inhibit;
 use gtk::subclass::prelude::*;
 use gtk::{self, prelude::*};
 use gtk::{gio, glib, CompositeTemplate, EntryIconPosition};
 use gtk_macros::{action, spawn};
 use libadwaita::subclass::prelude::*;
-use log::warn;
 use url::Url;
 
 mod imp {
