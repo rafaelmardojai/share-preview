@@ -193,26 +193,32 @@ impl SharePreviewWindow {
         let url_entry = &*self_.url_entry;
         let social = &*self_.social;
 
-        self_.url_entry.connect_activate(clone!(@weak self as win, @weak url_entry => move |_| {
-            WidgetExt::activate_action(&win, "win.run", None);
-        }));
+        self_.url_entry.connect_activate(
+            clone!(@weak self as win, @weak url_entry => move |_| {
+                WidgetExt::activate_action(&win, "win.run", None);
+            })
+        );
 
-        self_.url_entry.connect_icon_press(clone!(@weak self as win, @weak url_entry => move |_,icon| {
-            match icon {
-                EntryIconPosition::Secondary => {
-                    WidgetExt::activate_action(&win, "win.run", None);
-                },
-                _ => {}
-            }
-        }));
+        self_.url_entry.connect_icon_press(
+            clone!(@weak self as win, @weak url_entry => move |_,icon| {
+                match icon {
+                    EntryIconPosition::Secondary => {
+                        WidgetExt::activate_action(&win, "win.run", None);
+                    },
+                    _ => {}
+                }
+            })
+        );
 
-        self_.url_entry.connect_changed(clone!(@weak url_entry => move |_| {
-            if url_entry.text().is_empty() {
-                url_entry.set_icon_sensitive(EntryIconPosition::Secondary, false);
-            } else if !url_entry.text().is_empty() && !url_entry.icon_is_sensitive(EntryIconPosition::Secondary) {
-                url_entry.set_icon_sensitive(EntryIconPosition::Secondary, true);
-            }
-        }));
+        self_.url_entry.connect_changed(
+            clone!(@weak url_entry => move |_| {
+                if url_entry.text().is_empty() {
+                    url_entry.set_icon_sensitive(EntryIconPosition::Secondary, false);
+                } else if !url_entry.text().is_empty() && !url_entry.icon_is_sensitive(EntryIconPosition::Secondary) {
+                    url_entry.set_icon_sensitive(EntryIconPosition::Secondary, true);
+                }
+            })
+        );
 
         self_.social.connect_local(
             "notify::selected",
