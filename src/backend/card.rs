@@ -46,7 +46,7 @@ impl Card {
 
         match social {
             Social::Facebook => {
-                
+                site = site.to_uppercase();
             },
             Social::Mastodon => {
                 image_find = vec_of_strings!["og:image"];

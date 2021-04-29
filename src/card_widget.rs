@@ -13,37 +13,17 @@ mod imp {
     #[template(resource = "/com/rafaelmardojai/SharePreview/card.ui")]
     pub struct CardWidget {
         #[template_child]
-        pub stack: TemplateChild<gtk::Stack>,
+        pub large_image: TemplateChild<gtk::Picture>,
         #[template_child]
-        pub fb_image: TemplateChild<gtk::Picture>,
+        pub small_image: TemplateChild<gtk::Picture>,
         #[template_child]
-        pub fb_title: TemplateChild<gtk::Label>,
+        pub textbox: TemplateChild<gtk::Box>,
         #[template_child]
-        pub fb_description: TemplateChild<gtk::Label>,
+        pub title: TemplateChild<gtk::Label>,
         #[template_child]
-        pub fb_site: TemplateChild<gtk::Label>,
+        pub description: TemplateChild<gtk::Label>,
         #[template_child]
-        pub ms_image: TemplateChild<gtk::Picture>,
-        #[template_child]
-        pub ms_title: TemplateChild<gtk::Label>,
-        #[template_child]
-        pub ms_site: TemplateChild<gtk::Label>,
-        #[template_child]
-        pub tw1_image: TemplateChild<gtk::Picture>,
-        #[template_child]
-        pub tw1_title: TemplateChild<gtk::Label>,
-        #[template_child]
-        pub tw1_description: TemplateChild<gtk::Label>,
-        #[template_child]
-        pub tw1_site: TemplateChild<gtk::Label>,
-        #[template_child]
-        pub tw2_image: TemplateChild<gtk::Picture>,
-        #[template_child]
-        pub tw2_title: TemplateChild<gtk::Label>,
-        #[template_child]
-        pub tw2_description: TemplateChild<gtk::Label>,
-        #[template_child]
-        pub tw2_site: TemplateChild<gtk::Label>,
+        pub site: TemplateChild<gtk::Label>,
     }
 
     #[glib::object_subclass]
@@ -54,22 +34,12 @@ mod imp {
 
         fn new() -> Self {
             Self {
-                stack: TemplateChild::default(),
-                fb_image: TemplateChild::default(),
-                fb_title: TemplateChild::default(),
-                fb_description: TemplateChild::default(),
-                fb_site: TemplateChild::default(),
-                ms_image: TemplateChild::default(),
-                ms_title: TemplateChild::default(),
-                ms_site: TemplateChild::default(),
-                tw1_image: TemplateChild::default(),
-                tw1_title: TemplateChild::default(),
-                tw1_description: TemplateChild::default(),
-                tw1_site: TemplateChild::default(),
-                tw2_image: TemplateChild::default(),
-                tw2_title: TemplateChild::default(),
-                tw2_description: TemplateChild::default(),
-                tw2_site: TemplateChild::default(),
+                large_image: TemplateChild::default(),
+                small_image: TemplateChild::default(),
+                textbox: TemplateChild::default(),
+                title: TemplateChild::default(),
+                description: TemplateChild::default(),
+                site: TemplateChild::default(),
             }
         }
 
@@ -113,76 +83,46 @@ impl CardWidget {
         let self_ = imp::CardWidget::from_instance(self);
 
         // Get Widgets
-        let stack =  &*self_.stack;
-        let fb_image = &*self_.fb_image;
-        let fb_title = &*self_.fb_title;
-        let fb_description = &*self_.fb_description;
-        let fb_site = &*self_.fb_site;
-        let ms_image = &*self_.ms_image;
-        let ms_title = &*self_.ms_title;
-        let ms_site = &*self_.ms_site;
-        let tw1_image = &*self_.tw1_image;
-        let tw1_title = &*self_.tw1_title;
-        let tw1_description = &*self_.tw1_description;
-        let tw1_site = &*self_.tw1_site;
-        let tw2_image = &*self_.tw2_image;
-        let tw2_title = &*self_.tw2_title;
-        let tw2_description = &*self_.tw2_description;
-        let tw2_site = &*self_.tw2_site;
+        let large_image = &*self_.large_image;
+        let small_image = &*self_.small_image;
+        let textbox = &*self_.textbox;
+        let title = &*self_.title;
+        let description = &*self_.description;
+        let site = &*self_.site;
 
+        title.set_label(&card.title);
+        if let Some(text) = &card.description {
+            description.set_label(&text); 
+        }
+        site.set_label(&card.site);
+        
         match &card.social {
             Social::Facebook => {
-                stack.set_visible_child_name("facebook");
-                fb_title.set_label(&card.title);
-                match &card.description {
-                    Some(text) => {
-                        if &card.title.len() <= &64 {
-                            fb_description.set_label(&text);
-                            fb_description.set_visible(true);
-                        } else {
-                            fb_description.set_visible(false);
-                        }                        
-                    }
-                    None => {
-                        fb_description.set_visible(false);
+                textbox.reorder_child_after(site, None::<&gtk::Widget>);
+                title.set_lines(2);
+                title.set_wrap(true);
+                if let Some(_) = &card.description {
+                    if &card.title.len() <= &60 {
+                        description.set_visible(true);
                     }
                 }
-                fb_site.set_label(&card.site.to_uppercase());
+
             }
             Social::Mastodon => {
-                stack.set_visible_child_name("mastodon");                
-                ms_title.set_label(&card.title);
-                ms_site.set_label(&card.site);
+                            
             }
             Social::Twitter => {
+                if let Some(_) = &card.description {
+                    description.set_visible(true);
+                    description.set_wrap(true);
+                }
+
                 match card.size.as_ref().unwrap() {
                     CardSize::Medium => {
-                        stack.set_visible_child_name("twitter-1");                        
-                        tw1_title.set_label(&card.title);
-                        match &card.description {
-                            Some(text) => {
-                                tw1_description.set_label(&text);
-                                tw1_description.set_visible(true);                  
-                            }
-                            None => {
-                                tw1_description.set_visible(false);
-                            }
-                        }
-                        tw1_site.set_label(&card.site);
+                        description.set_lines(3);
                     }
                     CardSize::Large => {
-                        stack.set_visible_child_name("twitter-2");                        
-                        tw2_title.set_label(&card.title);
-                        match &card.description {
-                            Some(text) => {
-                                tw2_description.set_label(&text);
-                                tw2_description.set_visible(true);                  
-                            }
-                            None => {
-                                tw2_description.set_visible(false);
-                            }
-                        }
-                        tw2_site.set_label(&card.site);
+                        description.set_lines(2);
                     }
                     _ => {}
                 }
