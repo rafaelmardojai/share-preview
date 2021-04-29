@@ -103,6 +103,12 @@ impl CardWidget {
         glib::Object::new(&[]).expect("Failed to create CardWidget")
     }
 
+    pub fn new_from_card(card: &Card) -> Self {
+        let new = CardWidget::new();
+        new.set_card(&card);
+        new
+    }
+
     pub fn set_card(&self, card: &Card) {
         let self_ = imp::CardWidget::from_instance(self);
 
@@ -126,7 +132,7 @@ impl CardWidget {
 
         match &card.social {
             Social::Facebook => {
-                stack.set_visible_child_name("facebook");                
+                stack.set_visible_child_name("facebook");
                 fb_title.set_label(&card.title);
                 match &card.description {
                     Some(text) => {

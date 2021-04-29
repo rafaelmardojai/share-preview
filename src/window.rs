@@ -10,6 +10,7 @@ use gtk::{gio, glib, CompositeTemplate, EntryIconPosition};
 use gtk_macros::{action, spawn};
 use libadwaita::subclass::prelude::*;
 use url::Url;
+use std::cell::RefCell;
 
 mod imp {
     use super::*;
@@ -37,7 +38,8 @@ mod imp {
         #[template_child]
         pub error_message: TemplateChild<gtk::Label>,
         #[template_child]
-        pub card: TemplateChild<CardWidget>,
+        pub cardbox: TemplateChild<gtk::Box>,
+        pub card: RefCell<Option<CardWidget>>,
     }
 
     #[glib::object_subclass]
@@ -58,7 +60,8 @@ mod imp {
                 spinner: TemplateChild::default(),
                 error_title: TemplateChild::default(),
                 error_message: TemplateChild::default(),
-                card: TemplateChild::default(),
+                cardbox: TemplateChild::default(),
+                card: RefCell::new(Option::default()),
             }
         }
 
@@ -126,16 +129,17 @@ impl SharePreviewWindow {
         let spinner = &*self_.spinner;
         let error_title = &*self_.error_title;
         let error_message = &*self_.error_message;
-        let cardwidget = &*self_.card;
+        let cardbox = &*self_.cardbox;
 
         // Run
         action!(
             self,
             "run",
             clone!(
-                    @weak social, @weak url_entry, @weak url_error, @weak url_box,
+                    @weak self as win, @weak social,
+                    @weak url_entry, @weak url_error, @weak url_box,
                     @weak stack, @weak spinner, @weak error_title, @weak error_message,
-                    @weak cardwidget => move |_, _| {
+                    @weak cardbox => move |_, _| {
                 
                 if !url_entry.text().is_empty() {
                     match Url::parse(url_entry.text().as_str()) {
@@ -148,8 +152,15 @@ impl SharePreviewWindow {
                                 match scrape(&url).await {
                                     Ok(data) => {
                                         let social = Self::get_social(&social.selected());
-                                        let card = data.get_card(social);
-                                        &cardwidget.set_card(&card);
+                                        let card_data = data.get_card(social);
+
+                                        let self_ = imp::SharePreviewWindow::from_instance(&win);                                        
+                                        let old_card = self_.card.replace(Some(CardWidget::new_from_card(&card_data)));
+                                        
+                                        if let Some(c) = old_card {
+                                            cardbox.remove(&c);
+                                        }
+                                        cardbox.prepend(self_.card.borrow().as_ref().unwrap());
                                         stack.set_visible_child_name("card");
                                     }
                                     Err(error) => {
