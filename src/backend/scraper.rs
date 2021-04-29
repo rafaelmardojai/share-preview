@@ -5,15 +5,15 @@ use std::fmt::{Display, Formatter, Result as FmtResult};
 use std::collections::HashMap;
 use std::error;
 
-use surf;
+use surf::Error as SurfError;
 use url::Url;
 use scraper::{Html, Selector};
 use scraper::element_ref::ElementRef;
 
-use super::{Data, Image};
+use super::{Data, Image, CLIENT};
 
 pub async fn scrape(url: &Url) -> Result<Data, Error> {
-    let mut resp = surf::get(&url).await?;
+    let mut resp = CLIENT.get(&url).await?;
 
     if resp.status().is_success() {
         let mut metadata = HashMap::new(); // Empty HashMap<String, String> to store meta tags
@@ -106,8 +106,8 @@ impl Display for Error {
     }
 }
 
-impl From<surf::Error> for Error {
-    fn from(err: surf::Error) -> Error {
+impl From<SurfError> for Error {
+    fn from(err: SurfError) -> Error {
         Error::NetworkError(err)
     }
 }

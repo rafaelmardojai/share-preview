@@ -1,7 +1,11 @@
+use once_cell::sync::Lazy;
 pub mod card;
 pub mod data;
 pub mod image;
 pub mod scraper;
+
+pub static CLIENT: Lazy<surf::Client> =
+    Lazy::new(|| surf::Client::new().with(surf::middleware::Redirect::default()));
 
 pub use self::{
     card::{Card, CardSize, Social},
