@@ -76,16 +76,25 @@ impl MetadataList {
             self_.model.append(&item);
         }
 
-        let expression = gtk::PropertyExpression::new(
-            MetadataItem::static_type(),
-            None::<&gtk::Expression>,
-            "key"
+        let key_expression = gtk::PropertyExpression::new(
+            MetadataItem::static_type(), None::<&gtk::Expression>, "key"
         );
-        let filter = gtk::StringFilter::new(Some(&expression));
+        let key_filter = gtk::StringFilter::new(Some(&key_expression));
+        let value_expression = gtk::PropertyExpression::new(
+            MetadataItem::static_type(), None::<&gtk::Expression>, "value"
+        );
+        let value_filter = gtk::StringFilter::new(Some(&value_expression));
+        let filter = gtk::AnyFilter::new();
+        filter.append(&key_filter);
+        filter.append(&value_filter);
         let filter_model = gtk::FilterListModel::new(Some(&self_.model), Some(&filter));
         filter_model.set_incremental(true);
 
-        search.bind_property("text", &filter, "search")
+        //search.set_key_capture_widget(Some(&self_));
+        search.bind_property("text", &key_filter, "search")
+            .flags(glib::BindingFlags::SYNC_CREATE)
+            .build();
+        search.bind_property("text", &value_filter, "search")
             .flags(glib::BindingFlags::SYNC_CREATE)
             .build();
 
