@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="MetadataList" parent="GtkBox">
+    <property name="orientation">vertical</property>
+    <property name="spacing">12</property>
+    <child>
+      <object class="GtkSearchEntry" id="search">
+        <property name="hexpand">true</property>
+      </object>
+    </child>
     <child>
       <object class="GtkScrolledWindow">
         <property name="hexpand">true</property>

@@ -15,6 +15,8 @@ mod imp {
     pub struct MetadataList {
         pub model: gio::ListStore,
         #[template_child]
+        pub search: TemplateChild<gtk::SearchEntry>,
+        #[template_child]
         pub list: TemplateChild<gtk::ListView>,
     }
 
@@ -27,6 +29,7 @@ mod imp {
         fn new() -> Self {
             Self {
                 model: gio::ListStore::new(MetadataItem::static_type()),
+                search: TemplateChild::default(),
                 list: TemplateChild::default(),
             }
         }
@@ -64,6 +67,7 @@ impl MetadataList {
     pub fn set_items(&self, items: &HashMap<String, String>) {
         let self_ = imp::MetadataList::from_instance(self);
 
+        let search = &*self_.search;
         let list = &*self_.list;
 
         self_.model.remove_all();
@@ -72,10 +76,23 @@ impl MetadataList {
             self_.model.append(&item);
         }
 
+        let expression = gtk::PropertyExpression::new(
+            MetadataItem::static_type(),
+            None::<&gtk::Expression>,
+            "key"
+        );
+        let filter = gtk::StringFilter::new(Some(&expression));
+        let filter_model = gtk::FilterListModel::new(Some(&self_.model), Some(&filter));
+        filter_model.set_incremental(true);
+
+        search.bind_property("text", &filter, "search")
+            .flags(glib::BindingFlags::SYNC_CREATE)
+            .build();
+
         let factory = gtk::BuilderListItemFactory::from_resource(
             None::<&gtk::BuilderScope>, "/com/rafaelmardojai/SharePreview/metadata-item.ui"
         );
-        let selection_model = gtk::NoSelection::new(Some(&self_.model));
+        let selection_model = gtk::NoSelection::new(Some(&filter_model));
 
         list.set_factory(Some(&factory));
         list.set_model(Some(&selection_model));
