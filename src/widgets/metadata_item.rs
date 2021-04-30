@@ -80,9 +80,4 @@ impl MetadataItem {
             ("value", &value)
         ]).expect("Failed to create MetadataItem")
     }
-
-    pub fn get(&self) -> (String, String) {
-        let self_ = imp::MetadataItem::from_instance(self);
-        (self_.key.borrow().to_string(), self_.value.borrow().to_string())
-    }
 }
