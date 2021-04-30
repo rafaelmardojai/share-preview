@@ -26,6 +26,8 @@ sources = files(
   'backend/scraper.rs',
   'widgets/card.rs',
   'widgets/image.rs',
+  'widgets/metadata_item.rs',
+  'widgets/metadata_list.rs',
   'application.rs',
   'config.rs',
   'main.rs',

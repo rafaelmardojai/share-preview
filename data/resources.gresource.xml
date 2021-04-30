@@ -5,6 +5,8 @@
     <file compressed="true" preprocess="xml-stripblanks" alias="window.ui">resources/ui/window.ui</file>
     <file compressed="true" preprocess="xml-stripblanks" alias="card.ui">resources/ui/card.ui</file>
     <file compressed="true" preprocess="xml-stripblanks" alias="image.ui">resources/ui/image.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks" alias="metadata.ui">resources/ui/metadata.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks" alias="metadata-item.ui">resources/ui/metadata-item.ui</file>
 
     <file compressed="true" alias="style.css">resources/style.css</file>
   </gresource>

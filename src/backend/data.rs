@@ -16,4 +16,12 @@ impl Data {
     pub fn get_card(&self, social: Social) -> Card {
        Card::new(&self, social)
     }
+
+    pub fn get_metadata(&self) -> HashMap<String, String> {
+        self.metadata.iter().map(|(k,v)| {
+            let k = k.clone();
+            let v = v.clone();
+            (k, v)
+        }).collect::<HashMap<String, String>>()
+    }
 }

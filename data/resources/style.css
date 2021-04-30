@@ -9,6 +9,16 @@ headerbar.flat {
   padding: 0 18px 18px;
 }
 
+scrolledwindow.content {
+  background-color: @theme_base_color;
+  border: 1px solid @borders;
+  border-radius: 9px;
+}
+
+.metadata-item {
+  padding: 12px;
+}
+
 .card {
   background-color: @theme_base_color;
   border: 1px solid @borders;

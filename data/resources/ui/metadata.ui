@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="MetadataList" parent="GtkBox">
+    <child>
+      <object class="GtkScrolledWindow">
+        <property name="hexpand">true</property>
+        <property name="vexpand">true</property>
+        <property name="overflow">hidden</property>
+        <style>
+          <class name="content"/>
+        </style>
+        <property name="child">
+          <object class="GtkListView" id="list">
+            <property name="show-separators">true</property>
+          </object>
+        </property>
+      </object>
+    </child>
+  </template>
+</interface>

@@ -1,7 +1,7 @@
 use crate::application::SharePreviewApplication;
 use crate::backend::{scrape, Error, Social};
 use crate::config::{APP_ID, PROFILE};
-use crate::widgets::CardBox;
+use crate::widgets::{CardBox, MetadataList};
 use gettextrs::*;
 use glib::clone;
 use gtk::subclass::prelude::*;
@@ -11,6 +11,7 @@ use gtk_macros::{action, spawn};
 use libadwaita::subclass::prelude::*;
 use url::Url;
 use std::cell::RefCell;
+use std::collections::HashMap;
 
 mod imp {
     use super::*;
@@ -19,8 +20,12 @@ mod imp {
     #[template(resource = "/com/rafaelmardojai/SharePreview/window.ui")]
     pub struct SharePreviewWindow {
         pub settings: gio::Settings,
+        pub card: RefCell<Option<CardBox>>,
+        pub card_metadata: RefCell<HashMap<String, String>>,
         #[template_child]
-        pub headerbar: TemplateChild<gtk::HeaderBar>,
+        pub main_stack: TemplateChild<gtk::Stack>,
+        #[template_child]
+        pub metadata: TemplateChild<MetadataList>,
         #[template_child]
         pub social: TemplateChild<gtk::DropDown>,
         #[template_child]
@@ -39,7 +44,6 @@ mod imp {
         pub error_message: TemplateChild<gtk::Label>,
         #[template_child]
         pub cardbox: TemplateChild<gtk::Box>,
-        pub card: RefCell<Option<CardBox>>,
     }
 
     #[glib::object_subclass]
@@ -51,7 +55,10 @@ mod imp {
         fn new() -> Self {
             Self {
                 settings: gio::Settings::new(APP_ID),
-                headerbar: TemplateChild::default(),
+                card: RefCell::new(Option::default()),
+                card_metadata: RefCell::new(HashMap::default()),
+                main_stack: TemplateChild::default(),
+                metadata: TemplateChild::default(),
                 social: TemplateChild::default(),
                 url_box: TemplateChild::default(),
                 url_entry: TemplateChild::default(),
@@ -61,7 +68,6 @@ mod imp {
                 error_title: TemplateChild::default(),
                 error_message: TemplateChild::default(),
                 cardbox: TemplateChild::default(),
-                card: RefCell::new(Option::default()),
             }
         }
 
@@ -121,6 +127,8 @@ impl SharePreviewWindow {
 
     fn setup_actions(&self) {
         let self_ = imp::SharePreviewWindow::from_instance(self);
+        let main_stack = &*self_.main_stack;
+        let metadata = &*self_.metadata;
         let social = &*self_.social;
         let url_box = &*self_.url_box;
         let url_entry = &*self_.url_entry;
@@ -154,13 +162,14 @@ impl SharePreviewWindow {
                                         let social = Self::get_social(&social.selected());
                                         let card_data = data.get_card(social);
 
-                                        let self_ = imp::SharePreviewWindow::from_instance(&win);                                        
-                                        let old_card = self_.card.replace(Some(CardBox::new_from_card(&card_data)));
+                                        let win_ = imp::SharePreviewWindow::from_instance(&win);
+                                        win_.card_metadata.replace(data.get_metadata());
+                                        let old_card = win_.card.replace(Some(CardBox::new_from_card(&card_data)));
                                         
                                         if let Some(c) = old_card {
                                             cardbox.remove(&c);
                                         }
-                                        cardbox.prepend(self_.card.borrow().as_ref().unwrap());
+                                        cardbox.prepend(win_.card.borrow().as_ref().unwrap());
                                         stack.set_visible_child_name("card");
                                     }
                                     Err(error) => {
@@ -188,6 +197,27 @@ impl SharePreviewWindow {
                         }
                     }
                 }
+            })
+        );
+
+        // Metadata
+        action!(
+            self,
+            "metadata",
+            clone!(@weak self as win, @weak main_stack, @weak metadata, => move |_, _| {
+                let win_ = imp::SharePreviewWindow::from_instance(&win);
+                let data = win_.card_metadata.borrow();
+                metadata.set_items(&data);
+                main_stack.set_visible_child_name("metadata");
+            })
+        );
+
+        // Back
+        action!(
+            self,
+            "back",
+            clone!(@weak main_stack => move |_, _| {
+                main_stack.set_visible_child_name("home");
             })
         );
     }
