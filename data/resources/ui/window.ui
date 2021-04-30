@@ -28,7 +28,6 @@
                 <property name="child">
                   <object class="GtkBox">
                     <property name="orientation">vertical</property>
-                    <property name="spacing">6</property>
                     <child>
                       <object class="GtkHeaderBar" id="headerbar">
                         <child type="title">
@@ -65,7 +64,6 @@
                               <object class="GtkBox" id="url_box">
                                 <property name="hexpand">true</property>
                                 <property name="halign">fill</property>
-                                <property name="spacing">0</property>
                                 <style>
                                   <class name="linked"/>
                                 </style>
