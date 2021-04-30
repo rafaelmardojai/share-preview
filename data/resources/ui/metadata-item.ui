@@ -12,6 +12,7 @@
           <object class="GtkLabel">
             <property name="xalign">0</property>
             <property name="wrap">true</property>
+            <property name="wrap-mode">word-char</property>
             <property name="selectable">true</property>
             <binding name="label">
               <lookup name="key" type="MetadataItem">
@@ -27,6 +28,7 @@
           <object class="GtkLabel">
             <property name="xalign">0</property>
             <property name="wrap">true</property>
+            <property name="wrap-mode">word-char</property>
             <property name="selectable">true</property>
             <binding name="label">
               <lookup name="value" type="MetadataItem">
