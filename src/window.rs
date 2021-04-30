@@ -1,7 +1,7 @@
 use crate::application::SharePreviewApplication;
 use crate::backend::{scrape, Error, Social};
-use crate::card_widget::CardWidget;
 use crate::config::{APP_ID, PROFILE};
+use crate::widgets::CardBox;
 use gettextrs::*;
 use glib::clone;
 use gtk::subclass::prelude::*;
@@ -39,7 +39,7 @@ mod imp {
         pub error_message: TemplateChild<gtk::Label>,
         #[template_child]
         pub cardbox: TemplateChild<gtk::Box>,
-        pub card: RefCell<Option<CardWidget>>,
+        pub card: RefCell<Option<CardBox>>,
     }
 
     #[glib::object_subclass]
@@ -155,7 +155,7 @@ impl SharePreviewWindow {
                                         let card_data = data.get_card(social);
 
                                         let self_ = imp::SharePreviewWindow::from_instance(&win);                                        
-                                        let old_card = self_.card.replace(Some(CardWidget::new_from_card(&card_data)));
+                                        let old_card = self_.card.replace(Some(CardBox::new_from_card(&card_data)));
                                         
                                         if let Some(c) = old_card {
                                             cardbox.remove(&c);

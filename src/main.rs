@@ -2,7 +2,7 @@ mod application;
 mod backend;
 #[rustfmt::skip]
 mod config;
-mod card_widget;
+mod widgets;
 mod window;
 
 use application::SharePreviewApplication;

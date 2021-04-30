@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="CardWidget" parent="GtkBox">
+  <template class="CardBox" parent="GtkBox">
     <child>
-      <object class="GtkBox">
+      <object class="GtkBox" id="cardbox">
         <property name="orientation">vertical</property>
         <property name="spacing">6</property>
         <property name="hexpand">true</property>
@@ -11,45 +11,35 @@
           <class name="card"/>
         </style>
         <child>
-          <object class="GtkPicture" id="large_image">
+          <object class="CardImage" id="image">
             <property name="visible">false</property>
           </object>
         </child>
         <child>
-          <object class="GtkBox">
-            <property name="spacing">6</property>
+          <object class="GtkBox" id="textbox">
+            <property name="orientation">vertical</property>
             <child>
-              <object class="GtkPicture" id="small_image">
+              <object class="GtkLabel" id="title">
+                <property name="xalign">0</property>
+                <property name="ellipsize">end</property>
+                <style>
+                  <class name="title-4"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="description">
+                <property name="xalign">0</property>
+                <property name="ellipsize">end</property>
                 <property name="visible">false</property>
               </object>
             </child>
             <child>
-              <object class="GtkBox" id="textbox">
-                <property name="orientation">vertical</property>
-                <child>
-                  <object class="GtkLabel" id="title">
-                    <property name="xalign">0</property>
-                    <property name="ellipsize">end</property>
-                    <style>
-                      <class name="title-4"/>
-                    </style>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="description">
-                    <property name="xalign">0</property>
-                    <property name="ellipsize">end</property>
-                    <property name="visible">false</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="site">
-                    <property name="xalign">0</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                  </object>
-                </child>
+              <object class="GtkLabel" id="site">
+                <property name="xalign">0</property>
+                <style>
+                  <class name="dim-label"/>
+                </style>
               </object>
             </child>
           </object>

@@ -1,6 +1,7 @@
 // Copyright 2021 Rafael Mardojai CM
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+use super::{CardImage};
 use crate::backend::{Card, CardSize, Social};
 use gtk::subclass::prelude::*;
 use gtk::{self, prelude::*};
@@ -11,11 +12,11 @@ mod imp {
 
     #[derive(Debug, CompositeTemplate)]
     #[template(resource = "/com/rafaelmardojai/SharePreview/card.ui")]
-    pub struct CardWidget {
+    pub struct CardBox {
         #[template_child]
-        pub large_image: TemplateChild<gtk::Picture>,
+        pub cardbox: TemplateChild<gtk::Box>,
         #[template_child]
-        pub small_image: TemplateChild<gtk::Picture>,
+        pub image: TemplateChild<CardImage>,
         #[template_child]
         pub textbox: TemplateChild<gtk::Box>,
         #[template_child]
@@ -27,15 +28,15 @@ mod imp {
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for CardWidget {
-        const NAME: &'static str = "CardWidget";
-        type Type = super::CardWidget;
+    impl ObjectSubclass for CardBox {
+        const NAME: &'static str = "CardBox";
+        type Type = super::CardBox;
         type ParentType = gtk::Box;
 
         fn new() -> Self {
             Self {
-                large_image: TemplateChild::default(),
-                small_image: TemplateChild::default(),
+                cardbox: TemplateChild::default(),
+                image: TemplateChild::default(),
                 textbox: TemplateChild::default(),
                 title: TemplateChild::default(),
                 description: TemplateChild::default(),
@@ -53,38 +54,38 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for CardWidget {
+    impl ObjectImpl for CardBox {
         fn constructed(&self, obj: &Self::Type) {
             self.parent_constructed(obj);
         }
     }
 
-    impl WidgetImpl for CardWidget {}
-    impl BoxImpl for CardWidget {}
+    impl WidgetImpl for CardBox {}
+    impl BoxImpl for CardBox {}
 }
 
 glib::wrapper! {
-    pub struct CardWidget(ObjectSubclass<imp::CardWidget>)
+    pub struct CardBox(ObjectSubclass<imp::CardBox>)
         @extends gtk::Widget, gtk::Box;
 }
 
-impl CardWidget {
+impl CardBox {
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create CardWidget")
+        glib::Object::new(&[]).expect("Failed to create CardBox")
     }
 
     pub fn new_from_card(card: &Card) -> Self {
-        let new = CardWidget::new();
+        let new = CardBox::new();
         new.set_card(&card);
         new
     }
 
     pub fn set_card(&self, card: &Card) {
-        let self_ = imp::CardWidget::from_instance(self);
+        let self_ = imp::CardBox::from_instance(self);
 
         // Get Widgets
-        let large_image = &*self_.large_image;
-        let small_image = &*self_.small_image;
+        let cardbox = &*self_.cardbox;
+        let image = &*self_.image;
         let textbox = &*self_.textbox;
         let title = &*self_.title;
         let description = &*self_.description;
@@ -95,6 +96,12 @@ impl CardWidget {
             description.set_label(&text); 
         }
         site.set_label(&card.site);
+
+        if let Some(img) = &card.image {
+            //let img = img.clone();
+            image.set_image(&img);
+            image.set_visible(true);                     
+        }
         
         match &card.social {
             Social::Facebook => {
@@ -108,9 +115,7 @@ impl CardWidget {
                 }
 
             }
-            Social::Mastodon => {
-                            
-            }
+            Social::Mastodon => {}
             Social::Twitter => {
                 if let Some(_) = &card.description {
                     description.set_visible(true);
