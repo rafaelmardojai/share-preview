@@ -115,7 +115,9 @@ impl CardBox {
                 }
 
             }
-            Social::Mastodon => {}
+            Social::Mastodon => {
+                cardbox.set_orientation(gtk::Orientation::Horizontal);
+            }
             Social::Twitter => {
                 if let Some(_) = &card.description {
                     description.set_visible(true);
@@ -124,6 +126,7 @@ impl CardBox {
 
                 match card.size.as_ref().unwrap() {
                     CardSize::Medium => {
+                        cardbox.set_orientation(gtk::Orientation::Horizontal);
                         description.set_lines(3);
                     }
                     CardSize::Large => {

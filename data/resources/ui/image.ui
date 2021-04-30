@@ -4,7 +4,7 @@
     <child>
       <object class="GtkStack" id="stack">
         <property name="transition-type">crossfade</property>
-        <property name="vexpand">true</property>
+        <property name="hexpand">true</property>
         <child>
           <object class="GtkStackPage">
             <property name="name">loading</property>

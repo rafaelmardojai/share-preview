@@ -4,7 +4,7 @@
     <child>
       <object class="GtkBox" id="cardbox">
         <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
+        <property name="spacing">12</property>
         <property name="hexpand">true</property>
         <property name="valign">center</property>
         <style>
@@ -13,11 +13,13 @@
         <child>
           <object class="CardImage" id="image">
             <property name="visible">false</property>
+            <property name="hexpand">true</property>
           </object>
         </child>
         <child>
           <object class="GtkBox" id="textbox">
             <property name="orientation">vertical</property>
+            <property name="spacing">6</property>
             <child>
               <object class="GtkLabel" id="title">
                 <property name="xalign">0</property>
