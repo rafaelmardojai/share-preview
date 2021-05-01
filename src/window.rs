@@ -23,6 +23,8 @@ mod imp {
         pub card: RefCell<Option<CardBox>>,
         pub card_metadata: RefCell<HashMap<String, String>>,
         #[template_child]
+        pub dark_theme: TemplateChild<gtk::ToggleButton>,
+        #[template_child]
         pub main_stack: TemplateChild<gtk::Stack>,
         #[template_child]
         pub metadata: TemplateChild<MetadataList>,
@@ -57,6 +59,7 @@ mod imp {
                 settings: gio::Settings::new(APP_ID),
                 card: RefCell::new(Option::default()),
                 card_metadata: RefCell::new(HashMap::default()),
+                dark_theme: TemplateChild::default(),
                 main_stack: TemplateChild::default(),
                 metadata: TemplateChild::default(),
                 social: TemplateChild::default(),
@@ -117,12 +120,27 @@ impl SharePreviewWindow {
 
         // Set icons for shell
         gtk::Window::set_default_icon_name(APP_ID);
+        // Setup widgets
+        window.setup_widgets();
         // Setup window actions
         window.setup_actions();
         // Setup widgets signals
         window.setup_signals();
 
         window
+    }
+
+    fn setup_widgets(&self) {
+        let self_ = imp::SharePreviewWindow::from_instance(self);
+        let gtk_settings = gtk::Settings::default().unwrap();
+        
+        self_.settings.bind(
+            "dark-theme",
+            &gtk_settings,
+            "gtk-application-prefer-dark-theme",
+        ).build();
+
+        self_.settings.bind("dark-theme", &*self_.dark_theme, "active").build();
     }
 
     fn setup_actions(&self) {

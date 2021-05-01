@@ -43,6 +43,17 @@
                             <property name="has-frame">False</property>
                             <property name="menu_model">primary_menu</property>
                             <property name="icon_name">open-menu-symbolic</property>
+                            <property name="tooltip-text" translatable="yes">Menu</property>
+                            <style>
+                              <class name="circular"/>
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkToggleButton" id="dark_theme">
+                            <property name="has-frame">False</property>
+                            <property name="icon_name">display-brightness-symbolic</property>
+                            <property name="tooltip-text" translatable="yes">Toggle Dark Mode</property>
                             <style>
                               <class name="circular"/>
                             </style>
