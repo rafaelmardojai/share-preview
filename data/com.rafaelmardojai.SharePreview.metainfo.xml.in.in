@@ -5,21 +5,20 @@
   <metadata_license>CC0</metadata_license>
   <project_license>GPL-3.0+</project_license>
   <name>Share Preview</name>
-  <summary>A GTK + Rust application template.</summary>
+  <summary></summary>
   <description>
-    <p>A boilerplate template for GTK + Rust. It uses Meson as a build system and has flatpak support by default.</p>
+    <p>Preview and debug websites metadata tags for social media share.</p>
   </description>
   <screenshots>
     <screenshot type="default">
-      <image>https://github.com/rafaelmardojai/share-preview/raw/master/data/resources/screenshots/screenshot1.png</image>
-      <caption>Main Window</caption>
+      <image>https://github.com/rafaelmardojai/share-preview/raw/master/brand/screenshot-1.png</image>
     </screenshot>
   </screenshots>
   <url type="homepage">https://github.com/rafaelmardojai/share-preview</url>
   <url type="bugtracker">https://github.com/rafaelmardojai/share-preview/issues</url>
   <content_rating type="oars-1.0" />
   <releases>
-    <release version="0.0.1" date="2019-07-11" />
+    <release version="0.1.0" date="2021-05-00" />
   </releases>
   <kudos>
      <!--

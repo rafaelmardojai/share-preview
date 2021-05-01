@@ -1,0 +1,91 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the share-preview package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: share-preview\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-01 09:04-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/resources/ui/shortcuts.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr ""
+
+#: data/resources/ui/shortcuts.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr ""
+
+#: data/resources/ui/shortcuts.ui:20
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr ""
+
+#: data/resources/ui/window.ui:6
+msgid "_Keyboard Shortcuts"
+msgstr ""
+
+#: data/resources/ui/window.ui:10
+msgid "_About Share Preview"
+msgstr ""
+
+#: data/resources/ui/window.ui:46
+msgid "Menu"
+msgstr ""
+
+#: data/resources/ui/window.ui:56
+msgid "Toggle Dark Mode"
+msgstr ""
+
+#: data/resources/ui/window.ui:111
+msgid "Invalid URL"
+msgstr ""
+
+#: data/resources/ui/window.ui:148
+msgid "Set a URL to preview"
+msgstr ""
+
+#: data/resources/ui/window.ui:214 data/resources/ui/window.ui:246
+msgid "View Found Metadata"
+msgstr ""
+
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
+msgid "Share Preview"
+msgstr ""
+
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
+msgid "Gnome;GTK;"
+msgstr ""
+
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
+msgid "Preview and debug websites metadata tags for social media share."
+msgstr ""
+
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:31
+msgid "Rafael Mardojai CM"
+msgstr ""
+
+#: src/window.rs:196
+msgid "Network error"
+msgstr ""
+
+#: src/window.rs:197 src/window.rs:201
+msgid "Couldn't connect to the given URL."
+msgstr ""
+
+#: src/window.rs:200
+msgid "Unexpected error"
+msgstr ""

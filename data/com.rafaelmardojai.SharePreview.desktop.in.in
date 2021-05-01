@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Share Preview
-Comment=A GTK + Rust application boilerplate template
+Comment=
 Type=Application
 Exec=share-preview
 Terminal=false
