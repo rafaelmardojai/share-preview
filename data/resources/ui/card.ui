@@ -24,9 +24,6 @@
               <object class="GtkLabel" id="title">
                 <property name="xalign">0</property>
                 <property name="ellipsize">end</property>
-                <style>
-                  <class name="title-4"/>
-                </style>
               </object>
             </child>
             <child>

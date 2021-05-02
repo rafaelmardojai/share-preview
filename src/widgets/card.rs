@@ -107,6 +107,7 @@ impl CardBox {
                 textbox.reorder_child_after(site, None::<&gtk::Widget>);
                 title.set_lines(2);
                 title.set_wrap(true);
+                title.style_context().add_class("title-4");
                 if let Some(_) = &card.description {
                     if &card.title.len() <= &60 {
                         description.set_visible(true);
@@ -116,8 +117,10 @@ impl CardBox {
             }
             Social::Mastodon => {
                 cardbox.set_orientation(gtk::Orientation::Horizontal);
+                title.style_context().add_class("heading");
             }
             Social::Twitter => {
+                title.style_context().add_class("heading");
                 if let Some(_) = &card.description {
                     description.set_visible(true);
                     description.set_wrap(true);
