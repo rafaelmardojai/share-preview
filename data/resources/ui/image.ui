@@ -4,7 +4,6 @@
     <child>
       <object class="GtkStack" id="stack">
         <property name="transition-type">crossfade</property>
-        <property name="hexpand">true</property>
         <child>
           <object class="GtkStackPage">
             <property name="name">loading</property>
@@ -34,6 +33,8 @@
                 <property name="spacing">24</property>
                 <child>
                   <object class="GtkPicture" id="image">
+                    <property name="height_request">250</property>
+                    <property name="width_request">500</property>
                   </object>
                 </child>
               </object>

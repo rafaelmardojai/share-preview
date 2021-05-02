@@ -1,7 +1,7 @@
 // Copyright 2021 Rafael Mardojai CM
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-use crate::backend::{CardSize, Social, Image};
+use crate::backend::{CardSize, Image};
 use gtk::subclass::prelude::*;
 use gtk::{self, prelude::*};
 use gtk::{glib, CompositeTemplate};
@@ -65,7 +65,7 @@ impl CardImage {
         glib::Object::new(&[]).expect("Failed to create CardImage")
     }
 
-    pub fn set_image(&self, img: &Image) {
+    pub fn set_image(&self, img: &Image, size: &CardSize) {
         let self_ = imp::CardImage::from_instance(self);
 
         // Get Widgets
@@ -74,11 +74,30 @@ impl CardImage {
         let image = self_.image.clone();
         //let title = &*self_.title;
 
+        let width: u32;
+        let height: u32;
+        match size {
+            CardSize::Small => {
+                width = 64;
+                height = 64;
+            },
+            CardSize::Medium => {
+                width = 150;
+                height = 150;
+            },
+            CardSize::Large => {
+                width = 500;
+                height = 250;
+            }
+        }
+        image.set_width_request(width as i32);
+        image.set_height_request(height as i32);
+
         spinner.start();
 
         let img = img.clone();
         spawn!(async move {
-            match img.fetch().await {
+            match img.fetch(width, height).await {
                 Ok(pixbuf) => {
                     image.set_pixbuf(Some(&pixbuf));
                     stack.set_visible_child_name("image");

@@ -29,7 +29,7 @@ pub struct Card {
     pub site: String,
     pub description: Option<String>,
     pub image: Option<Image>,
-    pub size: Option<CardSize>,
+    pub size: CardSize,
     pub social: Social,
 }
 
@@ -38,7 +38,7 @@ impl Card {
         
         let metadata = data.metadata.clone();
         let mut site = data.url.clone();
-        let mut size = None;
+        let mut size = CardSize::Large;
 
         let mut title_find = vec_of_strings!["og:title", "twitter:title", "title"];
         let mut description_find = vec_of_strings!["og:description", "twitter:description", "description"];
@@ -50,6 +50,7 @@ impl Card {
             },
             Social::Mastodon => {
                 image_find = vec_of_strings!["og:image"];
+                size = CardSize::Small;
 
                 if metadata.contains_key("og:site_name") {
                     site = metadata.get("og:site_name").unwrap().to_string();
@@ -62,12 +63,12 @@ impl Card {
 
                 if metadata.contains_key("twitter:card") {
                     match metadata.get("twitter:card").unwrap().as_str() {
-                        "summary_large_image" => size = Some(CardSize::Large),
-                        "summary" => size = Some(CardSize::Medium),
+                        "summary_large_image" => (),
+                        "summary" => size = CardSize::Medium,
                         _ => ()
                     }
                 } else {
-                    size = Some(CardSize::Medium);
+                    size = CardSize::Medium;
                 }
             }
         }

@@ -98,9 +98,8 @@ impl CardBox {
         site.set_label(&card.site);
 
         if let Some(img) = &card.image {
-            //let img = img.clone();
-            image.set_image(&img);
-            image.set_visible(true);                     
+            image.set_image(&img, &card.size);
+            image.set_visible(true);
         }
         
         match &card.social {
@@ -123,8 +122,7 @@ impl CardBox {
                     description.set_visible(true);
                     description.set_wrap(true);
                 }
-
-                match card.size.as_ref().unwrap() {
+                match card.size {
                     CardSize::Medium => {
                         cardbox.set_orientation(gtk::Orientation::Horizontal);
                         description.set_lines(3);

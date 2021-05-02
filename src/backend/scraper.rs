@@ -5,7 +5,6 @@ use std::fmt::{Display, Formatter, Result as FmtResult};
 use std::collections::HashMap;
 use std::error;
 
-use surf::Error as SurfError;
 use url::Url;
 use scraper::{Html, Selector};
 use scraper::element_ref::ElementRef;
@@ -106,8 +105,8 @@ impl Display for Error {
     }
 }
 
-impl From<SurfError> for Error {
-    fn from(err: SurfError) -> Error {
+impl From<surf::Error> for Error {
+    fn from(err: surf::Error) -> Error {
         Error::NetworkError(err)
     }
 }

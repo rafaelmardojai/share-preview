@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="CardBox" parent="GtkBox">
+    <property name="vexpand">true</property>
     <child>
       <object class="GtkBox" id="cardbox">
         <property name="orientation">vertical</property>
@@ -13,7 +14,6 @@
         <child>
           <object class="CardImage" id="image">
             <property name="visible">false</property>
-            <property name="hexpand">true</property>
           </object>
         </child>
         <child>
