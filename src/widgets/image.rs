@@ -82,8 +82,8 @@ impl CardImage {
                 height = 64;
             },
             CardSize::Medium => {
-                width = 150;
-                height = 150;
+                width = 125;
+                height = 125;
             },
             CardSize::Large => {
                 width = 500;
