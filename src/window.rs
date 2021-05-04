@@ -168,7 +168,16 @@ impl SharePreviewWindow {
                     @weak cardbox => move |_, _| {
                 
                 if !url_entry.text().is_empty() {
-                    match Url::parse(url_entry.text().as_str()) {
+                    let mut url = url_entry.text().to_string();
+                    match (url.starts_with("http://"), url.starts_with("https://")) {
+                        (false, false) => {
+                            url.insert_str(0, "http://");
+                            url_entry.set_text(&url);
+                        },
+                        _ => ()
+                    }
+
+                    match Url::parse(&url) {
                         Ok(url) => {
                             url_error.set_reveal_child(false);
                             url_box.set_sensitive(false);
