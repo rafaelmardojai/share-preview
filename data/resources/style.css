@@ -3,10 +3,11 @@ headerbar.flat {
   background-image: none;
   border: none;
   background-color: @theme_bg_color;
+  padding: 6px 12px;
 }
 
 .main-box {
-  padding: 0 18px 18px;
+  padding: 6px 18px 18px;
 }
 
 scrolledwindow.content {
