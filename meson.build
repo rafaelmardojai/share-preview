@@ -1,7 +1,7 @@
 project('share-preview',
         'rust',
         version: '0.0.1',
-        license: 'MIT',
+        license: 'GPL-3.0',
   meson_version: '>= 0.50')
 
 i18n = import('i18n')

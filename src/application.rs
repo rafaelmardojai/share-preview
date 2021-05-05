@@ -126,7 +126,7 @@ impl SharePreviewApplication {
         let dialog = gtk::AboutDialogBuilder::new()
             .program_name("Share Preview")
             .logo_icon_name(config::APP_ID)
-            .license_type(gtk::License::MitX11)
+            .license_type(gtk::License::Gpl30)
             .website("https://github.com/rafaelmardojai/share-preview/")
             .version(config::VERSION)
             .transient_for(&self.get_main_window())
