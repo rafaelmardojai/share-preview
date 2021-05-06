@@ -1,5 +1,5 @@
 use crate::application::SharePreviewApplication;
-use crate::backend::{scrape, Error, Social};
+use crate::backend::{scrape, Data, Error, Social};
 use crate::config::{APP_ID, PROFILE};
 use crate::widgets::{CardBox, MetadataList};
 use gettextrs::*;
@@ -11,7 +11,6 @@ use gtk_macros::{action, spawn};
 use libadwaita::subclass::prelude::*;
 use url::Url;
 use std::cell::RefCell;
-use std::collections::HashMap;
 
 mod imp {
     use super::*;
@@ -21,7 +20,8 @@ mod imp {
     pub struct SharePreviewWindow {
         pub settings: gio::Settings,
         pub card: RefCell<Option<CardBox>>,
-        pub card_metadata: RefCell<HashMap<String, String>>,
+        pub data: RefCell<Data>,
+        pub active_url: RefCell<String>,
         #[template_child]
         pub dark_theme: TemplateChild<gtk::ToggleButton>,
         #[template_child]
@@ -58,7 +58,8 @@ mod imp {
             Self {
                 settings: gio::Settings::new(APP_ID),
                 card: RefCell::new(Option::default()),
-                card_metadata: RefCell::new(HashMap::default()),
+                data: RefCell::new(Data::default()),
+                active_url: RefCell::new(String::default()),
                 dark_theme: TemplateChild::default(),
                 main_stack: TemplateChild::default(),
                 metadata: TemplateChild::default(),
@@ -186,17 +187,10 @@ impl SharePreviewWindow {
                             spawn!(async move {
                                 match scrape(&url).await {
                                     Ok(data) => {
-                                        let social = Self::get_social(&social.selected());
-                                        let card_data = data.get_card(social);
-
                                         let win_ = imp::SharePreviewWindow::from_instance(&win);
-                                        win_.card_metadata.replace(data.get_metadata());
-                                        let old_card = win_.card.replace(Some(CardBox::new_from_card(&card_data)));
-                                        
-                                        if let Some(c) = old_card {
-                                            cardbox.remove(&c);
-                                        }
-                                        cardbox.prepend(win_.card.borrow().as_ref().unwrap());
+                                        win_.data.replace(data);
+                                        win_.active_url.replace(url.to_string());
+                                        win.update_card();
                                         stack.set_visible_child_name("card");
                                     }
                                     Err(error) => {
@@ -233,8 +227,8 @@ impl SharePreviewWindow {
             "metadata",
             clone!(@weak self as win, @weak main_stack, @weak metadata, => move |_, _| {
                 let win_ = imp::SharePreviewWindow::from_instance(&win);
-                let data = win_.card_metadata.borrow();
-                metadata.set_items(&data);
+                let data = win_.data.borrow();
+                metadata.set_items(&data.get_metadata());
                 main_stack.set_visible_child_name("metadata");
             })
         );
@@ -283,12 +277,36 @@ impl SharePreviewWindow {
         self_.social.connect_local(
             "notify::selected",
             false,
-            clone!(@weak self as win => @default-return None, move |_| {
-                WidgetExt::activate_action(&win, "win.run", None);
+            clone!(@weak self as win, @weak url_entry => @default-return None, move |_| {
+                let win_ = imp::SharePreviewWindow::from_instance(&win);
+                let active_url = win_.active_url.borrow().to_string();
+                let entry_url = url_entry.text().to_string();
+
+                if active_url == entry_url {
+                    win.update_card();
+                } else {
+                    WidgetExt::activate_action(&win, "win.run", None);
+                }
                 None
             }),
         )
         .unwrap();
+    }
+
+    pub fn update_card(&self) {
+        let self_ = imp::SharePreviewWindow::from_instance(self);
+        let social = &*self_.social;
+        let social = Self::get_social(&social.selected());
+        let cardbox = &*self_.cardbox;
+        let data = self_.data.borrow();
+        let card = data.get_card(social);
+        
+        let old_card = self_.card.replace(Some(CardBox::new_from_card(&card)));
+        
+        if let Some(c) = old_card {
+            cardbox.remove(&c);
+        }
+        cardbox.prepend(self_.card.borrow().as_ref().unwrap());
     }
 
     fn get_social(i: &u32) -> Social {
