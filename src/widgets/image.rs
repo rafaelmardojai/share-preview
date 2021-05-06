@@ -72,24 +72,9 @@ impl CardImage {
         let stack = self_.stack.clone();
         let spinner = self_.spinner.clone();
         let image = self_.image.clone();
-        //let title = &*self_.title;
 
-        let width: u32;
-        let height: u32;
-        match size {
-            CardSize::Small => {
-                width = 64;
-                height = 64;
-            },
-            CardSize::Medium => {
-                width = 125;
-                height = 125;
-            },
-            CardSize::Large => {
-                width = 500;
-                height = 250;
-            }
-        }
+        let (width, height) = size.image_size();
+
         image.set_width_request(width as i32);
         image.set_height_request(height as i32);
 

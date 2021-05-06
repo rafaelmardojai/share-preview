@@ -23,6 +23,22 @@ pub enum CardSize {
     Large, // Twitter summary with large image || Facebook
 }
 
+impl CardSize {
+    pub fn image_size(&self) -> (u32, u32) {
+        match self {
+            Self::Small => {
+                (64, 64)
+            },
+            Self::Medium => {
+                (125, 125)
+            },
+            Self::Large => {
+                (500, 250)
+            }
+        }
+    }
+}
+
 #[derive(Debug, Clone)]
 pub struct Card {
     pub title: String,
