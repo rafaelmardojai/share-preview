@@ -23,7 +23,7 @@ mod imp {
         pub data: RefCell<Data>,
         pub active_url: RefCell<String>,
         #[template_child]
-        pub dark_theme: TemplateChild<gtk::ToggleButton>,
+        pub dark_theme: TemplateChild<gtk::Button>,
         #[template_child]
         pub main_stack: TemplateChild<gtk::Stack>,
         #[template_child]
@@ -140,8 +140,6 @@ impl SharePreviewWindow {
             &gtk_settings,
             "gtk-application-prefer-dark-theme",
         ).build();
-
-        self_.settings.bind("dark-theme", &*self_.dark_theme, "active").build();
     }
 
     fn setup_actions(&self) {
@@ -244,17 +242,25 @@ impl SharePreviewWindow {
     }
 
     fn setup_signals(&self) {
-        let self_ = imp::SharePreviewWindow::from_instance(self);        
+        let self_ = imp::SharePreviewWindow::from_instance(self);
         let url_entry = &*self_.url_entry;
 
+        self_.dark_theme.connect_clicked(
+            clone!(@weak self as win => move |_| {
+                let win_ = imp::SharePreviewWindow::from_instance(&win);
+                win_.settings.set_boolean("dark-theme", !win_.settings.boolean("dark-theme"))
+                .expect("Error setting dark theme.");
+            })
+        );
+
         self_.url_entry.connect_activate(
-            clone!(@weak self as win, @weak url_entry => move |_| {
+            clone!(@weak self as win => move |_| {
                 WidgetExt::activate_action(&win, "win.run", None);
             })
         );
 
         self_.url_entry.connect_icon_press(
-            clone!(@weak self as win, @weak url_entry => move |_,icon| {
+            clone!(@weak self as win => move |_, icon| {
                 match icon {
                     EntryIconPosition::Secondary => {
                         WidgetExt::activate_action(&win, "win.run", None);
