@@ -16,6 +16,10 @@ scrolledwindow.content {
   border-radius: 9px;
 }
 
+listview.separators row {
+  border-bottom-color: @borders;
+}
+
 .metadata-item {
   padding: 8px;
 }
