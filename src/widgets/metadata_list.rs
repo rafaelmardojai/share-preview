@@ -65,15 +65,12 @@ impl MetadataList {
     }
 
     pub fn set_items(&self, items: &HashMap<String, String>) {
-        let self_ = imp::MetadataList::from_instance(self);
+        let imp = imp::MetadataList::from_instance(self);
 
-        let search = &*self_.search;
-        let list = &*self_.list;
-
-        self_.model.remove_all();
+        imp.model.remove_all();
         for (key, val) in items.iter() {
             let item = MetadataItem::new(&key, &val);
-            self_.model.append(&item);
+            imp.model.append(&item);
         }
 
         let key_expression = gtk::PropertyExpression::new(
@@ -87,14 +84,13 @@ impl MetadataList {
         let filter = gtk::AnyFilter::new();
         filter.append(&key_filter);
         filter.append(&value_filter);
-        let filter_model = gtk::FilterListModel::new(Some(&self_.model), Some(&filter));
+        let filter_model = gtk::FilterListModel::new(Some(&imp.model), Some(&filter));
         filter_model.set_incremental(true);
 
-        //search.set_key_capture_widget(Some(&self_));
-        search.bind_property("text", &key_filter, "search")
+        imp.search.bind_property("text", &key_filter, "search")
             .flags(glib::BindingFlags::SYNC_CREATE)
             .build();
-        search.bind_property("text", &value_filter, "search")
+        imp.search.bind_property("text", &value_filter, "search")
             .flags(glib::BindingFlags::SYNC_CREATE)
             .build();
 
@@ -103,7 +99,7 @@ impl MetadataList {
         );
         let selection_model = gtk::NoSelection::new(Some(&filter_model));
 
-        list.set_factory(Some(&factory));
-        list.set_model(Some(&selection_model));
+        imp.list.set_factory(Some(&factory));
+        imp.list.set_model(Some(&selection_model));
     }
 }

@@ -143,18 +143,18 @@ impl SharePreviewWindow {
     }
 
     fn setup_actions(&self) {
-        let self_ = imp::SharePreviewWindow::from_instance(self);
-        let main_stack = &*self_.main_stack;
-        let metadata = &*self_.metadata;
-        let social = &*self_.social;
-        let url_box = &*self_.url_box;
-        let url_entry = &*self_.url_entry;
-        let url_error = &*self_.url_error;
-        let stack = &*self_.stack;
-        let spinner = &*self_.spinner;
-        let error_title = &*self_.error_title;
-        let error_message = &*self_.error_message;
-        let cardbox = &*self_.cardbox;
+        let imp = imp::SharePreviewWindow::from_instance(self);
+        let main_stack = &*imp.main_stack;
+        let metadata = &*imp.metadata;
+        let social = &*imp.social;
+        let url_box = &*imp.url_box;
+        let url_entry = &*imp.url_entry;
+        let url_error = &*imp.url_error;
+        let stack = &*imp.stack;
+        let spinner = &*imp.spinner;
+        let error_title = &*imp.error_title;
+        let error_message = &*imp.error_message;
+        let cardbox = &*imp.cardbox;
 
         // Run
         action!(
@@ -242,10 +242,10 @@ impl SharePreviewWindow {
     }
 
     fn setup_signals(&self) {
-        let self_ = imp::SharePreviewWindow::from_instance(self);
-        let url_entry = &*self_.url_entry;
+        let imp = imp::SharePreviewWindow::from_instance(self);
+        let url_entry = &*imp.url_entry;
 
-        self_.dark_theme.connect_clicked(
+        imp.dark_theme.connect_clicked(
             clone!(@weak self as win => move |_| {
                 let win_ = imp::SharePreviewWindow::from_instance(&win);
                 win_.settings.set_boolean("dark-theme", !win_.settings.boolean("dark-theme"))
@@ -253,13 +253,13 @@ impl SharePreviewWindow {
             })
         );
 
-        self_.url_entry.connect_activate(
+        imp.url_entry.connect_activate(
             clone!(@weak self as win => move |_| {
                 WidgetExt::activate_action(&win, "win.run", None);
             })
         );
 
-        self_.url_entry.connect_icon_press(
+        imp.url_entry.connect_icon_press(
             clone!(@weak self as win => move |_, icon| {
                 match icon {
                     EntryIconPosition::Secondary => {
@@ -270,7 +270,7 @@ impl SharePreviewWindow {
             })
         );
 
-        self_.url_entry.connect_changed(
+        imp.url_entry.connect_changed(
             clone!(@weak url_entry => move |_| {
                 if url_entry.text().is_empty() {
                     url_entry.set_icon_sensitive(EntryIconPosition::Secondary, false);
@@ -280,7 +280,7 @@ impl SharePreviewWindow {
             })
         );
 
-        self_.social.connect_local(
+        imp.social.connect_local(
             "notify::selected",
             false,
             clone!(@weak self as win, @weak url_entry => @default-return None, move |_| {

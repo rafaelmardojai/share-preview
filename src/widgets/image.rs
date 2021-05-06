@@ -66,12 +66,12 @@ impl CardImage {
     }
 
     pub fn set_image(&self, img: &Image, size: &CardSize) {
-        let self_ = imp::CardImage::from_instance(self);
+        let imp = imp::CardImage::from_instance(self);
 
         // Get Widgets
-        let stack = self_.stack.clone();
-        let spinner = self_.spinner.clone();
-        let image = self_.image.clone();
+        let stack = imp.stack.clone();
+        let spinner = imp.spinner.clone();
+        let image = imp.image.clone();
 
         let (width, height) = size.image_size();
 

@@ -81,57 +81,49 @@ impl CardBox {
     }
 
     pub fn set_card(&self, card: &Card) {
-        let self_ = imp::CardBox::from_instance(self);
+        let imp = imp::CardBox::from_instance(self);
 
-        // Get Widgets
-        let cardbox = &*self_.cardbox;
-        let image = &*self_.image;
-        let textbox = &*self_.textbox;
-        let title = &*self_.title;
-        let description = &*self_.description;
-        let site = &*self_.site;
-
-        title.set_label(&card.title);
+        imp.title.set_label(&card.title);
         if let Some(text) = &card.description {
-            description.set_label(&text); 
+            imp.description.set_label(&text); 
         }
-        site.set_label(&card.site);
+        imp.site.set_label(&card.site);
 
         if let Some(img) = &card.image {
-            image.set_image(&img, &card.size);
-            image.set_visible(true);
+            imp.image.set_image(&img, &card.size);
+            imp.image.set_visible(true);
         }
         
         match &card.social {
             Social::Facebook => {
-                textbox.reorder_child_after(site, None::<&gtk::Widget>);
-                title.set_lines(2);
-                title.set_wrap(true);
-                title.style_context().add_class("title-4");
+                imp.textbox.reorder_child_after(&*imp.site, None::<&gtk::Widget>);
+                imp.title.set_lines(2);
+                imp.title.set_wrap(true);
+                imp.title.style_context().add_class("title-4");
                 if let Some(_) = &card.description {
                     if &card.title.len() <= &60 {
-                        description.set_visible(true);
+                        imp.description.set_visible(true);
                     }
                 }
 
             }
             Social::Mastodon => {
-                cardbox.set_orientation(gtk::Orientation::Horizontal);
-                title.style_context().add_class("heading");
+                imp.cardbox.set_orientation(gtk::Orientation::Horizontal);
+                imp.title.style_context().add_class("heading");
             }
             Social::Twitter => {
-                title.style_context().add_class("heading");
+                imp.title.style_context().add_class("heading");
                 if let Some(_) = &card.description {
-                    description.set_visible(true);
-                    description.set_wrap(true);
+                    imp.description.set_visible(true);
+                    imp.description.set_wrap(true);
                 }
                 match card.size {
                     CardSize::Medium => {
-                        cardbox.set_orientation(gtk::Orientation::Horizontal);
-                        description.set_lines(3);
+                        imp.cardbox.set_orientation(gtk::Orientation::Horizontal);
+                        imp.description.set_lines(3);
                     }
                     CardSize::Large => {
-                        description.set_lines(2);
+                        imp.description.set_lines(2);
                     }
                     _ => {}
                 }
