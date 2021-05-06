@@ -12,26 +12,28 @@ use scraper::element_ref::ElementRef;
 use super::{Data, Image, CLIENT};
 
 pub async fn scrape(url: &Url) -> Result<Data, Error> {
+    //! Request URL html body and scrape it to get the needed data
+
     let mut resp = CLIENT.get(&url).await?;
 
     if resp.status().is_success() {
         let mut metadata = HashMap::new(); // Empty HashMap<String, String> to store meta tags
         let mut images = Vec::new(); // Empty Vec<Image> to store images from HTML
 
-        // Call function to get data from request text:
+        // Call function to get data from html:
         get_html_data(&resp.body_string().await?, &mut metadata, &mut images).await; // Write html data to a Vec<>
 
         let mut data = Data::default();
-        data.url = url.host_str().unwrap().to_string(); // Set Metadata URL
+        data.url = url.host_str().unwrap().to_string(); // Set Data URL
         data.metadata = metadata;
-        // Collect a new Images Vec<> with the local URLs normalized:
+        // Collect a new Images Vec<> with the relative URLs normalized:
         data.images = images.iter().map(|i| {
             let mut i = i.clone();
             i.normalize(&url);
             i
         }).collect::<Vec<Image>>();
 
-        Ok(data) // Return Metadata
+        Ok(data)
     } else {
         Err(Error::Unexpected)
     }
@@ -40,6 +42,7 @@ pub async fn scrape(url: &Url) -> Result<Data, Error> {
 async fn get_html_data(text: &String,
                  meta: &mut HashMap<String, String>,
                  images: &mut Vec<Image>) {
+    //! Parse html and get data
 
     let document = Html::parse_document(&text); // HTML document from request text
 

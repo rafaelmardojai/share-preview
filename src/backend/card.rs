@@ -51,22 +51,25 @@ pub struct Card {
 
 impl Card {
     pub fn new(data: &Data, social: Social) -> Card {
+        //! Create a new Card from the found metadata based on the given Social
         
         let metadata = data.metadata.clone();
         let mut site = data.url.clone();
-        let mut size = CardSize::Large;
+        let mut size = CardSize::Large; // Dafault card size
 
+        // Default meta-tags to lookup the needed values
         let mut title_find = vec_of_strings!["og:title", "twitter:title", "title"];
         let mut description_find = vec_of_strings!["og:description", "twitter:description", "description"];
         let mut image_find = vec_of_strings!["og:image", "twitter:image", "twitter:image:src"];
 
+        // Change meta-tags to lookup and default values by the given Social:
         match social {
             Social::Facebook => {
                 site = site.to_uppercase();
             },
             Social::Mastodon => {
                 image_find = vec_of_strings!["og:image"];
-                size = CardSize::Small;
+                size = CardSize::Small; // Mastodon always use a small card size
 
                 if metadata.contains_key("og:site_name") {
                     site = metadata.get("og:site_name").unwrap().to_string();
@@ -77,9 +80,10 @@ impl Card {
                 description_find = vec_of_strings!["twitter:description", "og:description", "description"];
                 image_find = vec_of_strings!["twitter:image", "twitter:image:src", "og:image"];
 
+                // Change card size by the value of "twitter:card" meta-tag
                 if metadata.contains_key("twitter:card") {
                     match metadata.get("twitter:card").unwrap().as_str() {
-                        "summary_large_image" => (),
+                        "summary_large_image" => (), // Do nothing
                         "summary" => size = CardSize::Medium,
                         _ => ()
                     }
@@ -89,10 +93,12 @@ impl Card {
             }
         }
 
-        let pre_image = Card::get_correct_tag(&image_find, &metadata);
+        // Get first available value from meta-tags to lookup
         let title = Card::get_correct_tag(&title_find, &metadata).unwrap();
         let description = Card::get_correct_tag(&description_find, &metadata);
-        let image = match pre_image {
+        let pre_image = Card::get_correct_tag(&image_find, &metadata);
+        
+        let image = match pre_image { // Convert image String to a Image struct:
             Some(url) => Some(Image::new(url)),
             None => (None)
         };
@@ -103,6 +109,7 @@ impl Card {
     pub fn get_correct_tag(
             list: &Vec<String>,
             metadata: &HashMap<String, String>) -> Option<String> {
+        //! Get first available value from meta-tags to lookup
 
         for term in list.iter() {
             match metadata.get(term) {

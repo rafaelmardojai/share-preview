@@ -83,6 +83,7 @@ impl CardBox {
     pub fn set_card(&self, card: &Card) {
         let imp = imp::CardBox::from_instance(self);
 
+        // Put the card values on the widgets
         imp.title.set_label(&card.title);
         if let Some(text) = &card.description {
             imp.description.set_label(&text); 
@@ -93,7 +94,8 @@ impl CardBox {
             imp.image.set_image(&img, &card.size);
             imp.image.set_visible(true);
         }
-        
+
+        // Change widget aparence by social
         match &card.social {
             Social::Facebook => {
                 imp.textbox.reorder_child_after(&*imp.site, None::<&gtk::Widget>);

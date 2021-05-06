@@ -4,6 +4,7 @@ pub mod data;
 pub mod image;
 pub mod scraper;
 
+// surf Client for backend requests
 pub static CLIENT: Lazy<surf::Client> =
     Lazy::new(|| surf::Client::new().with(surf::middleware::Redirect::default()));
 

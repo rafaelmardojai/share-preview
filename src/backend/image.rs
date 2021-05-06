@@ -22,6 +22,8 @@ impl Image {
     }
     
     pub fn normalize(&mut self, url: &Url) -> &mut Image {
+        //! Normalize image URL if is relative
+        
         if let Err(e) = Url::parse(&self.url) {
             match e {
                 ParseError::RelativeUrlWithoutBase => {
@@ -36,6 +38,9 @@ impl Image {
     }
 
     pub async fn fetch(&self, width: u32, height: u32) -> Result<gdk_pixbuf::Pixbuf, ImageError> {
+        //! Fecth image and crop it to the given size
+        //! return a Pixbuf to use in a GtkPicture
+        
         let mut resp = CLIENT.get(&self.url).await?;
 
         if resp.status().is_success() {
@@ -43,15 +48,17 @@ impl Image {
             let format = image::guess_format(&bytes);
 
             let mut dir = temp_dir();
-            let file_name = Uuid::new_v4().to_string();
-            dir.push(file_name);
+            let file_name = Uuid::new_v4().to_string(); // Generate a random name for the temp file
+            dir.push(file_name); // Push temp file name to the temp folder path
 
             match format {
                 Ok(format) => {
                     let image = image::load_from_memory(&bytes).unwrap();
+                    // Risize and crop image to the give size:
                     let thumbnail = image.resize_to_fill(width, height, image::imageops::FilterType::Triangle);
-                    let dir = dir.to_str().unwrap();
+                    let dir = dir.to_str().unwrap(); // Convert temp file path to String
 
+                    // Save image to temp file and create a Pixbuf from it:
                     match thumbnail.save_with_format(&dir, format) {
                         Ok(_) => {
                             match gdk_pixbuf::Pixbuf::from_file(&dir) {
@@ -81,7 +88,7 @@ pub enum ImageError {
 impl Display for ImageError {
     fn fmt(&self, f: &mut Formatter) -> FmtResult {
         match *self {
-            ImageError::FetchError(ref e) => write!(f, "NetworkError:  {}", e),
+            ImageError::FetchError(ref e) => write!(f, "NetworkError: {}", e),
             ImageError::InvalidFormat => write!(f, "InvalidFormat"),
             ImageError::PixbufError => write!(f, "PixbufError"),
             ImageError::Unexpected => write!(f, "UnexpectedError"),

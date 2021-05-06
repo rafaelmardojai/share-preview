@@ -67,26 +67,35 @@ impl MetadataList {
     pub fn set_items(&self, items: &HashMap<String, String>) {
         let imp = imp::MetadataList::from_instance(self);
 
-        imp.model.remove_all();
+        imp.model.remove_all(); // Remove previous model items
+        // Add new items from HashMap:
         for (key, val) in items.iter() {
             let item = MetadataItem::new(&key, &val);
             imp.model.append(&item);
         }
 
-        let key_expression = gtk::PropertyExpression::new(
-            MetadataItem::static_type(), None::<&gtk::Expression>, "key"
-        );
-        let key_filter = gtk::StringFilter::new(Some(&key_expression));
-        let value_expression = gtk::PropertyExpression::new(
-            MetadataItem::static_type(), None::<&gtk::Expression>, "value"
-        );
-        let value_filter = gtk::StringFilter::new(Some(&value_expression));
+        // Expresions and filters to get propeties from MetadataItem:
+        let key_filter = gtk::StringFilter::new(Some(
+            &gtk::PropertyExpression::new(
+                MetadataItem::static_type(), None::<&gtk::Expression>, "key"
+            )
+        ));
+        let value_filter = gtk::StringFilter::new(Some(
+            &gtk::PropertyExpression::new(
+                MetadataItem::static_type(), None::<&gtk::Expression>, "value"
+            )
+        ));
+
+        // Group filters in one:
         let filter = gtk::AnyFilter::new();
         filter.append(&key_filter);
         filter.append(&value_filter);
+
+        // Create new filterable model from ListStore and filter:
         let filter_model = gtk::FilterListModel::new(Some(&imp.model), Some(&filter));
         filter_model.set_incremental(true);
 
+        // Bind search entry text with MetadataItem propeties filters
         imp.search.bind_property("text", &key_filter, "search")
             .flags(glib::BindingFlags::SYNC_CREATE)
             .build();
@@ -94,11 +103,13 @@ impl MetadataList {
             .flags(glib::BindingFlags::SYNC_CREATE)
             .build();
 
+        // Items factory for ListView from UI resource
         let factory = gtk::BuilderListItemFactory::from_resource(
             None::<&gtk::BuilderScope>, "/com/rafaelmardojai/SharePreview/metadata-item.ui"
         );
-        let selection_model = gtk::NoSelection::new(Some(&filter_model));
+        let selection_model = gtk::NoSelection::new(Some(&filter_model)); // Selection model
 
+        // Set factory and model to ListView
         imp.list.set_factory(Some(&factory));
         imp.list.set_model(Some(&selection_model));
     }

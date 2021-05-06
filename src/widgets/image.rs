@@ -73,13 +73,15 @@ impl CardImage {
         let spinner = imp.spinner.clone();
         let image = imp.image.clone();
 
-        let (width, height) = size.image_size();
+        let (width, height) = size.image_size(); // Get image size
 
+        // Set image widget size
         image.set_width_request(width as i32);
         image.set_height_request(height as i32);
 
         spinner.start();
 
+        // Fetch image and set it to the widget 
         let img = img.clone();
         spawn!(async move {
             match img.fetch(width, height).await {
