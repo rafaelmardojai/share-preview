@@ -132,10 +132,10 @@ impl SharePreviewWindow {
     }
 
     fn setup_widgets(&self) {
-        let self_ = imp::SharePreviewWindow::from_instance(self);
+        let imp = imp::SharePreviewWindow::from_instance(self);
         let gtk_settings = gtk::Settings::default().unwrap();
         
-        self_.settings.bind(
+        imp.settings.bind(
             "dark-theme",
             &gtk_settings,
             "gtk-application-prefer-dark-theme",
@@ -300,19 +300,17 @@ impl SharePreviewWindow {
     }
 
     pub fn update_card(&self) {
-        let self_ = imp::SharePreviewWindow::from_instance(self);
-        let social = &*self_.social;
-        let social = Self::get_social(&social.selected());
-        let cardbox = &*self_.cardbox;
-        let data = self_.data.borrow();
+        let imp = imp::SharePreviewWindow::from_instance(self);
+        let social = Self::get_social(&imp.social.selected());
+        let data = imp.data.borrow();
         let card = data.get_card(social);
         
-        let old_card = self_.card.replace(Some(CardBox::new_from_card(&card)));
+        let old_card = imp.card.replace(Some(CardBox::new_from_card(&card)));
         
         if let Some(c) = old_card {
-            cardbox.remove(&c);
+            imp.cardbox.remove(&c);
         }
-        cardbox.prepend(self_.card.borrow().as_ref().unwrap());
+        imp.cardbox.prepend(imp.card.borrow().as_ref().unwrap());
     }
 
     fn get_social(i: &u32) -> Social {
