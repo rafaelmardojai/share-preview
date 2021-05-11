@@ -288,7 +288,7 @@ impl SharePreviewWindow {
                 let active_url = win_.active_url.borrow().to_string();
                 let entry_url = url_entry.text().to_string();
 
-                if active_url == entry_url {
+                if active_url == entry_url && !entry_url.is_empty() {
                     win.update_card();
                 } else {
                     WidgetExt::activate_action(&win, "win.run", None);
