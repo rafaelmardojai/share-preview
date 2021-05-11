@@ -94,10 +94,13 @@ impl Card {
         }
 
         // Get first available value from meta-tags to lookup
-        let title = Card::get_correct_tag(&title_find, &metadata).unwrap();
+        let pre_title = Card::get_correct_tag(&title_find, &metadata);
+        let title = match pre_title { // Convert image String to a Image struct:
+            Some(title) => title,
+            None => site.to_string()
+        };
         let description = Card::get_correct_tag(&description_find, &metadata);
-        let pre_image = Card::get_correct_tag(&image_find, &metadata);
-        
+        let pre_image = Card::get_correct_tag(&image_find, &metadata);        
         let image = match pre_image { // Convert image String to a Image struct:
             Some(url) => Some(Image::new(url)),
             None => (None)
