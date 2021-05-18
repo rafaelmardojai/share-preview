@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Rafael Mardojai CM 2019 <email@rafaelmardojai.com> -->
+<!-- Rafael Mardojai CM 2021 <email@rafaelmardojai.com> -->
 <component type="desktop-application">
   <id>@app-id@</id>
   <metadata_license>CC0</metadata_license>
   <project_license>GPL-3.0+</project_license>
   <name>Share Preview</name>
-  <summary>Preview and debug websites metadata tags for social media share</summary>
+  <summary>Test social media cards locally</summary>
   <description>
     <p>Preview and debug websites metadata tags for social media share.</p>
   </description>

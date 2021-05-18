@@ -7,7 +7,7 @@
 [![GitHub](https://img.shields.io/github/license/rafaelmardojai/share-preview.svg)](https://github.com/rafaelmardojai/share-preview/blob/master/COPYING)
 [![Donate](https://img.shields.io/badge/PayPal-Donate-gray.svg?style=flat&logo=paypal&colorA=0071bb&logoColor=fff)](https://paypal.me/RafaelMardojaiCM)
 
-<p align="center"><strong>Preview share cards</strong></p>
+<p align="center"><strong>Test social media cards locally</strong></p>
 
 <p align="center">
   <a href="https://flathub.org/apps/details/com.rafaelmardojai.SharePreview"><img width="200" alt="Download on Flathub" src="https://flathub.org/assets/badges/flathub-badge-en.png"/></a>
