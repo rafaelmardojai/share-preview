@@ -242,11 +242,24 @@
                     <child>
                       <object class="GtkHeaderBar">
                         <child type="title">
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">View Found Metadata</property>
-                            <style>
-                              <class name="title"/>
-                            </style>
+                          <object class="GtkBox">
+                            <property name="orientation">vertical</property>
+                            <property name="spacing">6</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label" translatable="yes">View Found Metadata</property>
+                                <style>
+                                  <class name="title"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="site_title">
+                                <style>
+                                  <class name="subtitle"/>
+                                </style>
+                              </object>
+                            </child>
                           </object>
                         </child>
                         <child>

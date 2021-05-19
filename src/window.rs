@@ -29,6 +29,8 @@ mod imp {
         #[template_child]
         pub metadata: TemplateChild<MetadataList>,
         #[template_child]
+        pub site_title: TemplateChild<gtk::Label>,
+        #[template_child]
         pub social: TemplateChild<gtk::DropDown>,
         #[template_child]
         pub url_box: TemplateChild<gtk::Box>,
@@ -63,6 +65,7 @@ mod imp {
                 dark_theme: TemplateChild::default(),
                 main_stack: TemplateChild::default(),
                 metadata: TemplateChild::default(),
+                site_title: TemplateChild::default(),
                 social: TemplateChild::default(),
                 url_box: TemplateChild::default(),
                 url_entry: TemplateChild::default(),
@@ -134,7 +137,7 @@ impl SharePreviewWindow {
     fn setup_widgets(&self) {
         let imp = imp::SharePreviewWindow::from_instance(self);
         let gtk_settings = gtk::Settings::default().unwrap();
-        
+
         imp.settings.bind(
             "dark-theme",
             &gtk_settings,
@@ -146,6 +149,7 @@ impl SharePreviewWindow {
         let imp = imp::SharePreviewWindow::from_instance(self);
         let main_stack = &*imp.main_stack;
         let metadata = &*imp.metadata;
+        let site_title = &*imp.site_title;
         let social = &*imp.social;
         let url_box = &*imp.url_box;
         let url_entry = &*imp.url_entry;
@@ -161,11 +165,11 @@ impl SharePreviewWindow {
             self,
             "run",
             clone!(
-                    @weak self as win, @weak social,
+                    @weak self as win, @weak site_title, @weak social,
                     @weak url_entry, @weak url_error, @weak url_box,
                     @weak stack, @weak spinner, @weak error_title, @weak error_message,
                     @weak cardbox => move |_, _| {
-                
+
                 if !url_entry.text().is_empty() {
                     let mut url = url_entry.text().to_string();
                     match (url.starts_with("http://"), url.starts_with("https://")) {
@@ -186,6 +190,13 @@ impl SharePreviewWindow {
                                 match scrape(&url).await {
                                     Ok(data) => {
                                         let win_ = imp::SharePreviewWindow::from_instance(&win);
+
+                                        let site_title = match &data.title {
+                                            Some(title) => title.to_string(),
+                                            None => data.url.to_string()
+                                        };
+                                        win_.site_title.set_label(&site_title);
+
                                         win_.data.replace(data);
                                         win_.active_url.replace(url.to_string());
                                         win.update_card();
