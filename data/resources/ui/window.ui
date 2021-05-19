@@ -244,7 +244,8 @@
                         <child type="title">
                           <object class="GtkBox">
                             <property name="orientation">vertical</property>
-                            <property name="spacing">6</property>
+                            <property name="valign">center</property>
+                            <property name="spacing">4</property>
                             <child>
                               <object class="GtkLabel">
                                 <property name="label" translatable="yes">View Found Metadata</property>
@@ -255,6 +256,7 @@
                             </child>
                             <child>
                               <object class="GtkLabel" id="site_title">
+                                <property name="ellipsize">end</property>
                                 <style>
                                   <class name="subtitle"/>
                                 </style>

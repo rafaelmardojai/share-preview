@@ -196,6 +196,7 @@ impl SharePreviewWindow {
                                             None => data.url.to_string()
                                         };
                                         win_.site_title.set_label(&site_title);
+                                        win_.site_title.set_tooltip_text(Some(&site_title));
 
                                         win_.data.replace(data);
                                         win_.active_url.replace(url.to_string());
