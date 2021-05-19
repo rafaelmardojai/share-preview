@@ -17,15 +17,13 @@ pub async fn scrape(url: &Url) -> Result<Data, Error> {
     let mut resp = CLIENT.get(&url).await?;
 
     if resp.status().is_success() {
-        let mut metadata = HashMap::new(); // Empty HashMap<String, String> to store meta tags
+        let mut data = Data::default(); // Empty Data
         let mut images = Vec::new(); // Empty Vec<Image> to store images from HTML
 
         // Call function to get data from html:
-        get_html_data(&resp.body_string().await?, &mut metadata, &mut images).await; // Write html data to a Vec<>
+        get_html_data(&resp.body_string().await?, &mut data, &mut images).await; // Write html data to a Vec<>
 
-        let mut data = Data::default();
         data.url = url.host_str().unwrap().to_string(); // Set Data URL
-        data.metadata = metadata;
         // Collect a new Images Vec<> with the relative URLs normalized:
         data.images = images.iter().map(|i| {
             let mut i = i.clone();
@@ -39,18 +37,24 @@ pub async fn scrape(url: &Url) -> Result<Data, Error> {
     }
 }
 
-async fn get_html_data(text: &String,
-                 meta: &mut HashMap<String, String>,
-                 images: &mut Vec<Image>) {
+async fn get_html_data(
+        text: &String,
+        data: &mut Data,
+        images: &mut Vec<Image>) {
     //! Parse html and get data
 
     let document = Html::parse_document(&text); // HTML document from request text
+    let mut metadata = HashMap::new(); // Empty HashMap<String, String> to store metadata
 
     // Get document title
     let selector = Selector::parse("title").unwrap(); // HTML <title> selector
-    let title = document.select(&selector).next().unwrap();
-    // Push title to the meta Vec<>
-    meta.insert(String::from("title"), title.inner_html().trim().to_string());
+    // Try to get document title
+    match document.select(&selector).next() {
+        Some(title) => {
+            data.title = Some(title.inner_html().trim().to_string());
+        },
+        None => ()
+    }
 
     // Get meta tags
     let selector = Selector::parse("meta").unwrap();
@@ -59,7 +63,7 @@ async fn get_html_data(text: &String,
             Some((key, content)) => {
                 let mut content = content.trim().to_string();
                 content = content.replace('\n', " ");
-                meta.insert(key, content);
+                metadata.insert(key, content);
             }
             None => (),
         }
@@ -67,11 +71,12 @@ async fn get_html_data(text: &String,
             Some((key, content)) => {
                 let mut content = content.trim().to_string();
                 content = content.replace('\n', " ");
-                meta.insert(key, content);
+                metadata.insert(key, content);
             },
             None => (),
         }
     }
+    data.metadata = metadata;
 
     // Get images
     let selector = Selector::parse("img").unwrap();
