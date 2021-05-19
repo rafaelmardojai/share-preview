@@ -132,7 +132,7 @@ impl SharePreviewApplication {
             .transient_for(&self.get_main_window())
             .modal(true)
             .authors(vec!["Rafael Mardojai CM".into()])
-            .artists(vec!["Rafael Mardojai CM".into()])
+            .artists(vec!["Rafael Mardojai CM".into(), "Tobias Bernard".into()])
             .build();
 
         dialog.show();

@@ -1,5 +1,5 @@
 <h1 align="center">
-	<img src="brand/logo.svg" alt="Share Preview" width="128" height="128"/><br>
+	<img src="brand/logo.svg" alt="Share Preview" width="150" height="150"/><br>
 	Share Preview
 </h1>
 
