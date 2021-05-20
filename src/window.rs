@@ -206,11 +206,11 @@ impl SharePreviewWindow {
                                     Err(error) => {
                                         let error_texts = match error {
                                             Error::NetworkError(_) => (
-                                                gettext("Network error"),
+                                                gettext("Network Error"),
                                                 gettext("Couldn't connect to the given URL.")
                                             ),
                                             Error::Unexpected => (
-                                                gettext("Unexpected error"),
+                                                gettext("Unexpected Error"),
                                                 gettext("Couldn't connect to the given URL.")
                                             )
                                         };
@@ -316,12 +316,17 @@ impl SharePreviewWindow {
         let social = Self::get_social(&imp.social.selected());
         let data = imp.data.borrow();
         let card = data.get_card(social);
-        
-        let old_card = imp.card.replace(Some(CardBox::new_from_card(&card)));
-        
+
+        let card = match card {
+            Ok(card) => CardBox::new_from_card(&card),
+            Err(error) => CardBox::new_from_error(&error)
+        };
+
+        let old_card = imp.card.replace(Some(card));
         if let Some(c) = old_card {
             imp.cardbox.remove(&c);
         }
+
         imp.cardbox.prepend(imp.card.borrow().as_ref().unwrap());
     }
 

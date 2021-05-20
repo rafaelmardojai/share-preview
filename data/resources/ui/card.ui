@@ -3,47 +3,80 @@
   <template class="CardBox" parent="GtkBox">
     <property name="vexpand">true</property>
     <child>
-      <object class="GtkBox" id="cardbox">
-        <property name="orientation">vertical</property>
-        <property name="spacing">12</property>
-        <property name="hexpand">true</property>
-        <property name="valign">center</property>
-        <style>
-          <class name="card"/>
-        </style>
-        <child>
-          <object class="CardImage" id="image">
-            <property name="visible">false</property>
+      <object class="GtkStack" id="stack">
+      <child>
+          <object class="GtkStackPage">
+            <property name="name">card</property>
+            <property name="child">
+              <object class="GtkBox" id="cardbox">
+                <property name="orientation">vertical</property>
+                <property name="spacing">12</property>
+                <property name="hexpand">true</property>
+                <property name="valign">center</property>
+                <style>
+                  <class name="card"/>
+                </style>
+                <child>
+                  <object class="CardImage" id="image">
+                    <property name="visible">false</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox" id="textbox">
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">6</property>
+                    <child>
+                      <object class="GtkLabel" id="title">
+                        <property name="xalign">0</property>
+                        <property name="ellipsize">end</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="description">
+                        <property name="xalign">0</property>
+                        <property name="ellipsize">end</property>
+                        <property name="visible">false</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="site">
+                        <property name="xalign">0</property>
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </property>
           </object>
         </child>
         <child>
-          <object class="GtkBox" id="textbox">
-            <property name="orientation">vertical</property>
-            <property name="spacing">6</property>
-            <child>
-              <object class="GtkLabel" id="title">
-                <property name="xalign">0</property>
-                <property name="ellipsize">end</property>
+          <object class="GtkStackPage">
+            <property name="name">error</property>
+            <property name="child">
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="spacing">12</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label" translatable="yes">Card Error</property>
+                    <style>
+                      <class name="large-title"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="error_message"></object>
+                </child>
               </object>
-            </child>
-            <child>
-              <object class="GtkLabel" id="description">
-                <property name="xalign">0</property>
-                <property name="ellipsize">end</property>
-                <property name="visible">false</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkLabel" id="site">
-                <property name="xalign">0</property>
-                <style>
-                  <class name="dim-label"/>
-                </style>
-              </object>
-            </child>
+            </property>
           </object>
         </child>
       </object>
-    </child> 
+    </child>
   </template>
 </interface>

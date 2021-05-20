@@ -3,7 +3,7 @@
 
 use std::collections::HashMap;
 
-use super::{Card, Image, Social};
+use super::{Card, CardError, Image, Social};
 
 #[derive(Debug, Default, Clone)]
 pub struct Data {
@@ -14,7 +14,7 @@ pub struct Data {
 }
 
 impl Data {
-    pub fn get_card(&self, social: Social) -> Card {
+    pub fn get_card(&self, social: Social) -> Result<Card, CardError> {
        Card::new(&self, social)
     }
 

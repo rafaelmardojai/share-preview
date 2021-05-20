@@ -2,7 +2,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 use super::{CardImage};
-use crate::backend::{Card, CardSize, Social};
+use crate::backend::{Card, CardError, CardSize, Social};
+use gettextrs::*;
 use gtk::subclass::prelude::*;
 use gtk::{self, prelude::*};
 use gtk::{glib, CompositeTemplate};
@@ -13,6 +14,8 @@ mod imp {
     #[derive(Debug, CompositeTemplate)]
     #[template(resource = "/com/rafaelmardojai/SharePreview/card.ui")]
     pub struct CardBox {
+        #[template_child]
+        pub stack: TemplateChild<gtk::Stack>,
         #[template_child]
         pub cardbox: TemplateChild<gtk::Box>,
         #[template_child]
@@ -25,6 +28,8 @@ mod imp {
         pub description: TemplateChild<gtk::Label>,
         #[template_child]
         pub site: TemplateChild<gtk::Label>,
+        #[template_child]
+        pub error_message: TemplateChild<gtk::Label>,
     }
 
     #[glib::object_subclass]
@@ -35,12 +40,14 @@ mod imp {
 
         fn new() -> Self {
             Self {
+                stack: TemplateChild::default(),
                 cardbox: TemplateChild::default(),
                 image: TemplateChild::default(),
                 textbox: TemplateChild::default(),
                 title: TemplateChild::default(),
                 description: TemplateChild::default(),
                 site: TemplateChild::default(),
+                error_message: TemplateChild::default(),
             }
         }
 
@@ -80,13 +87,28 @@ impl CardBox {
         new
     }
 
+    pub fn new_from_error(error: &CardError) -> Self {
+        let new = CardBox::new();
+        let imp = imp::CardBox::from_instance(&new);
+
+        let error_text = match error {
+            CardError::NotEnoughData => {
+                gettext("Couldn't find enough data to generate a card for this social media.")
+            }
+        };
+
+        imp.error_message.set_label(&error_text);
+        imp.stack.set_visible_child_name("error");
+        new
+    }
+
     pub fn set_card(&self, card: &Card) {
         let imp = imp::CardBox::from_instance(self);
 
         // Put the card values on the widgets
         imp.title.set_label(&card.title);
         if let Some(text) = &card.description {
-            imp.description.set_label(&text); 
+            imp.description.set_label(&text);
         }
         imp.site.set_label(&card.site);
 

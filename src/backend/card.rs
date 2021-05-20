@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 use std::collections::HashMap;
+use std::error;
+use std::fmt::{Display, Formatter, Result as FmtResult};
 
 use super::{Data, Image};
 
@@ -50,9 +52,9 @@ pub struct Card {
 }
 
 impl Card {
-    pub fn new(data: &Data, social: Social) -> Card {
+    pub fn new(data: &Data, social: Social) -> Result<Card, CardError> {
         //! Create a new Card from the found metadata based on the given Social
-        
+
         let metadata = data.metadata.clone();
         let mut site = data.url.clone();
         let mut size = CardSize::Large; // Dafault card size
@@ -73,7 +75,7 @@ impl Card {
 
                 if metadata.contains_key("og:site_name") {
                     site = metadata.get("og:site_name").unwrap().to_string();
-                }                
+                }
             },
             Social::Twitter => {
                 title_find = vec_of_strings!["twitter:title", "og:title", "title"];
@@ -105,13 +107,13 @@ impl Card {
             }
         };
         let description = Card::get_correct_tag(&description_find, &metadata);
-        let pre_image = Card::get_correct_tag(&image_find, &metadata);        
+        let pre_image = Card::get_correct_tag(&image_find, &metadata);
         let image = match pre_image { // Convert image String to a Image struct:
             Some(url) => Some(Image::new(url)),
             None => (None)
         };
 
-        Card {title, site, description, image, size, social}
+        Ok(Card {title, site, description, image, size, social})
     }
 
     pub fn get_correct_tag(
@@ -132,3 +134,18 @@ impl Card {
         None
     }
 }
+
+#[derive(Debug)]
+pub enum CardError {
+    NotEnoughData
+}
+
+impl Display for CardError {
+    fn fmt(&self, f: &mut Formatter) -> FmtResult {
+        match *self {
+            CardError::NotEnoughData => write!(f, "NotEnoughData"),
+        }
+    }
+}
+
+impl error::Error for CardError {}

@@ -9,7 +9,7 @@ pub static CLIENT: Lazy<surf::Client> =
     Lazy::new(|| surf::Client::new().with(surf::middleware::Redirect::default()));
 
 pub use self::{
-    card::{Card, CardSize, Social},
+    card::{Card, CardError, CardSize, Social},
     data::Data,
     image::Image,
     scraper::{scrape, Error}
