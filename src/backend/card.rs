@@ -122,10 +122,28 @@ impl Card {
         };
         let description = Card::get_correct_tag(&description_find, &metadata);
         let pre_image = Card::get_correct_tag(&image_find, &metadata);
-        let image = match pre_image { // Convert image String to a Image struct:
+        let mut image = match pre_image { // Convert image String to a Image struct:
             Some(url) => Some(Image::new(url)),
-            None => (None)
+            None => None
         };
+
+        // Final match
+        match social {
+            Social::Facebook => {
+                if let None = image {
+                    if data.images.len() > 0 {
+                        image = Some(data.images[0].clone());
+                        size = CardSize::Medium;
+                    }
+                }
+            },
+            Social::Mastodon => {
+
+            },
+            Social::Twitter => {
+
+            },
+        }
 
         Ok(Card {title, site, description, image, size, social})
     }
