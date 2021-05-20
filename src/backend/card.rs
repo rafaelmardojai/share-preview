@@ -77,6 +77,7 @@ impl Card {
         let mut title_find = vec_of_strings!["og:title", "twitter:title", "title"];
         let mut description_find = vec_of_strings!["og:description", "twitter:description", "description"];
         let mut image_find = vec_of_strings!["og:image", "twitter:image", "twitter:image:src"];
+        let mut type_find = vec_of_strings!["og:type"];
 
         // Change meta-tags to lookup and default values by the given Social:
         match social {
@@ -93,8 +94,9 @@ impl Card {
             },
             Social::Twitter => {
                 title_find = vec_of_strings!["twitter:title", "og:title", "title"];
-                description_find = vec_of_strings!["twitter:description", "og:description", "description"];
+                description_find = vec_of_strings!["twitter:description", "og:description"];
                 image_find = vec_of_strings!["twitter:image", "twitter:image:src", "og:image"];
+                type_find = vec_of_strings!["twitter:card", "og:type"];
 
                 // Change card size by the value of "twitter:card" meta-tag
                 if metadata.contains_key("twitter:card") {
@@ -126,6 +128,7 @@ impl Card {
             Some(url) => Some(Image::new(url)),
             None => None
         };
+        let card_type = Card::get_correct_tag(&type_find, &metadata);
 
         // Final match
         match social {
@@ -137,11 +140,11 @@ impl Card {
                     }
                 }
             },
-            Social::Mastodon => {
-
-            },
+            Social::Mastodon => {},
             Social::Twitter => {
-
+                if let None = card_type {
+                    return Err(CardError::TwitterNoCardFound);
+                }
             },
         }
 
@@ -169,13 +172,15 @@ impl Card {
 
 #[derive(Debug)]
 pub enum CardError {
-    NotEnoughData
+    NotEnoughData,
+    TwitterNoCardFound
 }
 
 impl Display for CardError {
     fn fmt(&self, f: &mut Formatter) -> FmtResult {
         match *self {
             CardError::NotEnoughData => write!(f, "NotEnoughData"),
+            CardError::TwitterNoCardFound => write!(f, "TwitterNoCardFound"),
         }
     }
 }

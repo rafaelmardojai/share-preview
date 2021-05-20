@@ -94,6 +94,9 @@ impl CardBox {
         let error_text = match error {
             CardError::NotEnoughData => {
                 gettext("Couldn't find enough data to generate a card for this social media.")
+            },
+            CardError::TwitterNoCardFound => {
+                gettext("Twitter: No card found.")
             }
         };
 
