@@ -113,8 +113,8 @@ impl Card {
 
         // Get first available value from meta-tags to lookup
         let pre_title = Card::get_correct_tag(&title_find, &metadata);
-        let title = match pre_title { // Convert image String to a Image struct:
-            Some(title) => title,
+        let title = match &pre_title { // Convert image String to a Image struct:
+            Some(title) => title.to_string(),
             None => {
                 match &data.title {
                     Some(title) => title.to_string(),
@@ -131,10 +131,10 @@ impl Card {
         let card_type = Card::get_correct_tag(&type_find, &metadata);
 
         // Return error if no basic data is found
-        match (pre_title, description) {
+        match (&pre_title, &description) {
             (None, None) => {
                 return Err(CardError::NotEnoughData);
-            }
+            },
             _ => ()
         }
 
