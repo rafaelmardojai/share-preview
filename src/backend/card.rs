@@ -130,9 +130,18 @@ impl Card {
         };
         let card_type = Card::get_correct_tag(&type_find, &metadata);
 
-        // Final match
+        // Return error if no basic data is found
+        match (pre_title, description) {
+            (None, None) => {
+                return Err(CardError::NotEnoughData);
+            }
+            _ => ()
+        }
+
+        // Final per social media match with obtained results
         match social {
             Social::Facebook => {
+                // Facebook: If no image found in metada, get first document image
                 if let None = image {
                     if data.images.len() > 0 {
                         image = Some(data.images[0].clone());
