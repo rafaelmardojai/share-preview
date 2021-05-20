@@ -295,12 +295,11 @@ impl SharePreviewWindow {
         imp.social.connect_local(
             "notify::selected",
             false,
-            clone!(@weak self as win, @weak url_entry => @default-return None, move |_| {
+            clone!(@weak self as win => @default-return None, move |_| {
                 let win_ = imp::SharePreviewWindow::from_instance(&win);
                 let active_url = win_.active_url.borrow().to_string();
-                let entry_url = url_entry.text().to_string();
 
-                if active_url == entry_url && !entry_url.is_empty() {
+                if !active_url.is_empty() {
                     win.update_card();
                 } else {
                     WidgetExt::activate_action(&win, "win.run", None);
