@@ -11,7 +11,6 @@
               <object class="GtkBox">
                 <property name="halign">center</property>
                 <property name="valign">center</property>
-                <property name="spacing">6</property>
                 <child>
                   <object class="GtkSpinner" id="spinner">
                   <property name="height_request">32</property>
@@ -24,18 +23,31 @@
         </child>
         <child>
           <object class="GtkStackPage">
+            <property name="name">fallback</property>
+            <property name="child">
+              <object class="GtkBox" id="fallback_box">
+                <property name="hexpand-set">true</property>
+                <child>
+                  <object class="GtkImage" id="fallback_icon">
+                    <property name="hexpand">true</property>
+                    <property name="halign">center</property>
+                    <property name="icon-name">x-office-document-symbolic</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkStackPage">
             <property name="name">image</property>
             <property name="child">
               <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
-                <property name="spacing">24</property>
                 <child>
-                  <object class="GtkPicture" id="image">
-                    <property name="height_request">250</property>
-                    <property name="width_request">500</property>
-                  </object>
+                  <object class="GtkPicture" id="image"></object>
                 </child>
               </object>
             </property>

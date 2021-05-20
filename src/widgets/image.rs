@@ -18,6 +18,10 @@ mod imp {
         #[template_child]
         pub spinner: TemplateChild<gtk::Spinner>,
         #[template_child]
+        pub fallback_box: TemplateChild<gtk::Box>,
+        #[template_child]
+        pub fallback_icon: TemplateChild<gtk::Image>,
+        #[template_child]
         pub image: TemplateChild<gtk::Picture>,
     }
 
@@ -31,6 +35,8 @@ mod imp {
             Self {
                 stack: TemplateChild::default(),
                 spinner: TemplateChild::default(),
+                fallback_box: TemplateChild::default(),
+                fallback_icon: TemplateChild::default(),
                 image: TemplateChild::default(),
             }
         }
@@ -81,7 +87,7 @@ impl CardImage {
 
         spinner.start();
 
-        // Fetch image and set it to the widget 
+        // Fetch image and set it to the widget
         let img = img.clone();
         spawn!(async move {
             match img.fetch(width, height).await {
@@ -94,5 +100,19 @@ impl CardImage {
                 }
             }
         });
+    }
+
+    pub fn set_fallback(&self, size: &CardSize) {
+        let imp = imp::CardImage::from_instance(self);
+
+        let (width, height) = size.image_size(); // Get image size
+
+        // Set box widget size
+        imp.fallback_box.set_width_request(width as i32);
+        imp.fallback_box.set_height_request(height as i32);
+
+        imp.fallback_icon.set_pixel_size(size.icon_size());
+
+        imp.stack.set_visible_child_name("fallback");
     }
 }

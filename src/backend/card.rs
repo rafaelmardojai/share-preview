@@ -39,6 +39,20 @@ impl CardSize {
             }
         }
     }
+
+    pub fn icon_size(&self) -> i32 {
+        match self {
+            Self::Small => {
+                32
+            },
+            Self::Medium => {
+                48
+            },
+            Self::Large => {
+                64
+            }
+        }
+    }
 }
 
 #[derive(Debug, Clone)]

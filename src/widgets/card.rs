@@ -115,6 +115,14 @@ impl CardBox {
         if let Some(img) = &card.image {
             imp.image.set_image(&img, &card.size);
             imp.image.set_visible(true);
+        } else {
+            match &card.social {
+                Social::Mastodon | Social::Twitter => {
+                    imp.image.set_fallback(&card.size);
+                    imp.image.set_visible(true);
+                }
+                _ => ()
+            }
         }
 
         // Change widget aparence by social
