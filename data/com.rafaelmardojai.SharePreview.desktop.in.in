@@ -4,7 +4,7 @@ Comment=
 Type=Application
 Exec=share-preview
 Terminal=false
-Categories=GNOME;GTK;
+Categories=Utility;GNOME;GTK;
 Keywords=Gnome;GTK;
 # Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 Icon=@icon@
