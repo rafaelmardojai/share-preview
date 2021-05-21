@@ -1,6 +1,10 @@
+data/resources/ui/card.ui
+data/resources/ui/image.ui
 data/resources/ui/shortcuts.ui
 data/resources/ui/window.ui
 data/com.rafaelmardojai.SharePreview.desktop.in.in
 data/com.rafaelmardojai.SharePreview.gschema.xml.in
 data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in
 src/window.rs
+src/widgets/card.rs
+src/widgets/image.rs

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-01 09:04-0500\n"
+"POT-Creation-Date: 2021-05-20 20:22-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: data/resources/ui/card.ui:66
+msgid "Card Error"
+msgstr ""
+
+#: data/resources/ui/image.ui:68
+msgid "Image Error"
+msgstr ""
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -41,23 +49,23 @@ msgstr ""
 msgid "_About Share Preview"
 msgstr ""
 
-#: data/resources/ui/window.ui:46
+#: data/resources/ui/window.ui:47
 msgid "Menu"
 msgstr ""
 
-#: data/resources/ui/window.ui:56
+#: data/resources/ui/window.ui:57
 msgid "Toggle Dark Mode"
 msgstr ""
 
-#: data/resources/ui/window.ui:111
+#: data/resources/ui/window.ui:112
 msgid "Invalid URL"
 msgstr ""
 
-#: data/resources/ui/window.ui:148
+#: data/resources/ui/window.ui:149
 msgid "Set a URL to preview"
 msgstr ""
 
-#: data/resources/ui/window.ui:214 data/resources/ui/window.ui:246
+#: data/resources/ui/window.ui:215 data/resources/ui/window.ui:252
 msgid "View Found Metadata"
 msgstr ""
 
@@ -70,6 +78,10 @@ msgstr ""
 msgid "Gnome;GTK;"
 msgstr ""
 
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:8
+msgid "Test social media cards locally"
+msgstr ""
+
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
 msgstr ""
@@ -78,14 +90,34 @@ msgstr ""
 msgid "Rafael Mardojai CM"
 msgstr ""
 
-#: src/window.rs:196
-msgid "Network error"
+#: src/window.rs:209
+msgid "Network Error"
 msgstr ""
 
-#: src/window.rs:197 src/window.rs:201
+#: src/window.rs:210 src/window.rs:214
 msgid "Couldn't connect to the given URL."
 msgstr ""
 
-#: src/window.rs:200
-msgid "Unexpected error"
+#: src/window.rs:213
+msgid "Unexpected Error"
+msgstr ""
+
+#: src/widgets/card.rs:96
+msgid "Couldn't find enough data to generate a card for this social media."
+msgstr ""
+
+#: src/widgets/card.rs:99
+msgid "Twitter: No card found."
+msgstr ""
+
+#: src/widgets/image.rs:106
+msgid "Failure when receiving image from the peer."
+msgstr ""
+
+#: src/widgets/image.rs:109
+msgid "Invalid image format."
+msgstr ""
+
+#: src/widgets/image.rs:112
+msgid "Unexpected image error."
 msgstr ""
