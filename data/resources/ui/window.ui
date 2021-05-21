@@ -17,6 +17,7 @@
     <property name="default_width">562</property>
     <property name="default_height">562</property>
     <property name="width_request">562</property>
+    <property name="focus_widget">url_entry</property>
     <property name="child">
       <object class="GtkWindowHandle" id="handle">
         <property name="child">
