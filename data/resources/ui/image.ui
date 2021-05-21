@@ -53,7 +53,39 @@
             </property>
           </object>
         </child>
+        <child>
+          <object class="GtkStackPage">
+            <property name="name">error</property>
+            <property name="child">
+              <object class="GtkBox">
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <child>
+                  <object class="GtkMenuButton" id="error_btn">
+                    <property name="has-frame">False</property>
+                    <property name="popover">error_popover</property>
+                    <property name="icon-name">dialog-error-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Image Error</property>
+                  </object>
+                </child>
+              </object>
+            </property>
+          </object>
+        </child>
       </object>
     </child>
   </template>
+  <object class="GtkPopover" id="error_popover">
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkBox">
+        <child>
+          <object class="GtkLabel" id="error_message">
+            <property name="xalign">0</property>
+            <property name="wrap">true</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
 </interface>

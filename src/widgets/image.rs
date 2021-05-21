@@ -1,7 +1,8 @@
 // Copyright 2021 Rafael Mardojai CM
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-use crate::backend::{CardSize, Image};
+use crate::backend::{CardSize, Image, ImageError};
+use gettextrs::*;
 use gtk::subclass::prelude::*;
 use gtk::{self, prelude::*};
 use gtk::{glib, CompositeTemplate};
@@ -23,6 +24,8 @@ mod imp {
         pub fallback_icon: TemplateChild<gtk::Image>,
         #[template_child]
         pub image: TemplateChild<gtk::Picture>,
+        #[template_child]
+        pub error_message: TemplateChild<gtk::Label>,
     }
 
     #[glib::object_subclass]
@@ -38,6 +41,7 @@ mod imp {
                 fallback_box: TemplateChild::default(),
                 fallback_icon: TemplateChild::default(),
                 image: TemplateChild::default(),
+                error_message: TemplateChild::default(),
             }
         }
 
@@ -78,6 +82,7 @@ impl CardImage {
         let stack = imp.stack.clone();
         let spinner = imp.spinner.clone();
         let image = imp.image.clone();
+        let error_message = imp.error_message.clone();
 
         let (width, height) = size.image_size(); // Get image size
 
@@ -95,7 +100,20 @@ impl CardImage {
                     image.set_pixbuf(Some(&pixbuf));
                     stack.set_visible_child_name("image");
                 }
-                Err(_) => {
+                Err(err) => {
+                    let error_text = match err {
+                        ImageError::FetchError(_) => {
+                            gettext("Failure when receiving image from the peer.")
+                        },
+                        ImageError::InvalidFormat => {
+                            gettext("Invalid image format.")
+                        },
+                        ImageError::PixbufError | ImageError::Unexpected => {
+                            gettext("Unexpected image error.")
+                        }
+                    };
+                    error_message.set_label(&error_text);
+                    stack.set_visible_child_name("error");
                     spinner.stop();
                 }
             }

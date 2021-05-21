@@ -11,6 +11,6 @@ pub static CLIENT: Lazy<surf::Client> =
 pub use self::{
     card::{Card, CardError, CardSize, Social},
     data::Data,
-    image::Image,
+    image::{Image, ImageError},
     scraper::{scrape, Error}
 };
