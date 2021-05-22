@@ -18,7 +18,11 @@
   <url type="bugtracker">https://github.com/rafaelmardojai/share-preview/issues</url>
   <content_rating type="oars-1.0" />
   <releases>
-    <release version="0.1.0" date="2021-04-30" />
+    <release version="0.1.0" date="2021-05-21">
+      <description>
+        <p>First public release.</p>
+      </description>
+    </release>
   </releases>
   <kudos>
      <!--
