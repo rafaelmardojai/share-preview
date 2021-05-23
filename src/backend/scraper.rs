@@ -49,31 +49,23 @@ async fn get_html_data(
     // Get document title
     let selector = Selector::parse("title").unwrap(); // HTML <title> selector
     // Try to get document title
-    match document.select(&selector).next() {
-        Some(title) => {
-            data.title = Some(title.inner_html().trim().to_string());
-        },
-        None => ()
+    if let Some(title) = document.select(&selector).next() {
+        data.title = Some(title.inner_html().trim().to_string());
     }
 
     // Get meta tags
     let selector = Selector::parse("meta").unwrap();
     for element in document.select(&selector) {
-        match get_meta_prop(&element, "property") {
-            Some((key, content)) => {
-                let mut content = content.trim().to_string();
-                content = content.replace('\n', " ");
-                metadata.insert(key, content);
-            }
-            None => (),
+        if let Some((key, content)) = get_meta_prop(&element, "property") {
+            let mut content = content.trim().to_string();
+            content = content.replace('\n', " ");
+            metadata.insert(key, content);
         }
-        match get_meta_prop(&element, "name") {
-            Some((key, content)) => {
-                let mut content = content.trim().to_string();
-                content = content.replace('\n', " ");
-                metadata.insert(key, content);
-            },
-            None => (),
+
+        if let Some((key, content)) = get_meta_prop(&element, "name") {
+            let mut content = content.trim().to_string();
+            content = content.replace('\n', " ");
+            metadata.insert(key, content);
         }
     }
     data.metadata = metadata;
@@ -81,14 +73,11 @@ async fn get_html_data(
     // Get images
     let selector = Selector::parse("img").unwrap();
     for element in document.select(&selector) {
-        match element.value().attr("src") {
-            Some(src) => {
-                let src = src.trim().to_string();
-                if src.contains(".jpg") || src.contains(".jpeg") || src.contains(".png"){
-                    images.push(Image::new(src))
-                }
-            },
-            None => (),
+        if let Some(src) = element.value().attr("src") {
+            let src = src.trim().to_string();
+            if src.contains(".jpg") || src.contains(".jpeg") || src.contains(".png"){
+                images.push(Image::new(src))
+            }
         }
     }
 }

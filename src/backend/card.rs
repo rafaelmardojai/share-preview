@@ -28,29 +28,17 @@ pub enum CardSize {
 impl CardSize {
     pub fn image_size(&self) -> (u32, u32) {
         match self {
-            Self::Small => {
-                (64, 64)
-            },
-            Self::Medium => {
-                (125, 125)
-            },
-            Self::Large => {
-                (500, 250)
-            }
+            Self::Small => (64, 64),
+            Self::Medium => (125, 125),
+            Self::Large => (500, 250)
         }
     }
 
     pub fn icon_size(&self) -> i32 {
         match self {
-            Self::Small => {
-                32
-            },
-            Self::Medium => {
-                48
-            },
-            Self::Large => {
-                64
-            }
+            Self::Small => 32,
+            Self::Medium => 48,
+            Self::Large => 64
         }
     }
 }
@@ -166,12 +154,9 @@ impl Card {
         //! Get first available value from meta-tags to lookup
 
         for term in list.iter() {
-            match metadata.get(term) {
-                Some(content) => {
-                    let content = content.clone();
-                    return Some(content);
-                },
-                None => ()
+            if let Some(content) = metadata.get(term) {
+                let content = content.clone();
+                return Some(content);
             }
         }
 

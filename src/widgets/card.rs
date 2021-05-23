@@ -140,11 +140,9 @@ impl CardBox {
                         imp.description.set_visible(true);
                     }
                 }
-                match card.size {
-                    CardSize::Medium => {
-                        imp.cardbox.set_orientation(gtk::Orientation::Horizontal);
-                    }
-                    _ => {}
+
+                if let CardSize::Medium = card.size {
+                    imp.cardbox.set_orientation(gtk::Orientation::Horizontal);
                 }
             }
             Social::Mastodon => {
