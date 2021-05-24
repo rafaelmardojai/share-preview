@@ -34,6 +34,7 @@
                         <child type="title">
                           <object class="GtkLabel">
                             <property name="label">Share Preview</property>
+                            <property name="ellipsize">end</property>
                             <style>
                               <class name="title"/>
                             </style>
@@ -147,6 +148,7 @@
                                     <child>
                                       <object class="GtkLabel">
                                         <property name="label" translatable="yes">Set a URL to preview</property>
+                                        <property name="wrap">true</property>
                                         <style>
                                           <class name="large-title"/>
                                         </style>
@@ -185,14 +187,16 @@
                                     <property name="spacing">12</property>
                                     <child>
                                       <object class="GtkLabel" id="error_title">
-                                        <property name="label"></property>
+                                        <property name="wrap">true</property>
                                         <style>
                                           <class name="large-title"/>
                                         </style>
                                       </object>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="error_message"></object>
+                                      <object class="GtkLabel" id="error_message">
+                                        <property name="wrap">true</property>
+                                      </object>
                                     </child>
                                   </object>
                                 </property>
@@ -250,6 +254,7 @@
                             <child>
                               <object class="GtkLabel">
                                 <property name="label" translatable="yes">View Found Metadata</property>
+                                <property name="ellipsize">end</property>
                                 <style>
                                   <class name="title"/>
                                 </style>
