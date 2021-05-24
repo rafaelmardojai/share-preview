@@ -1,7 +1,6 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) 2021
 # This file is distributed under the same license as the share-preview package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Bedirhan Tuhana GAYRETLİ <noteqnil@gmail.com>, 2021.
 #
 msgid ""
 msgstr ""
@@ -88,7 +87,7 @@ msgstr "Sosyal medya paylaşımı için web sitesi meta veri etiketlerini önizl
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:31
 msgid "Rafael Mardojai CM"
-msgstr "Rafael Mardojai CM"
+msgstr ""
 
 #: src/window.rs:209
 msgid "Network Error"
