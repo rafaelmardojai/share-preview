@@ -33,7 +33,7 @@
                       <object class="GtkHeaderBar" id="headerbar">
                         <child type="title">
                           <object class="GtkLabel">
-                            <property name="label">Share Preview</property>
+                            <property name="label" translatable="yes">Share Preview</property>
                             <property name="ellipsize">end</property>
                             <style>
                               <class name="title"/>

@@ -1,5 +1,6 @@
 use crate::config;
 use crate::window::SharePreviewWindow;
+use gettextrs::*;
 use gio::ApplicationFlags;
 use glib::clone;
 use glib::WeakRef;
@@ -124,7 +125,7 @@ impl SharePreviewApplication {
 
     fn show_about_dialog(&self) {
         let dialog = gtk::AboutDialogBuilder::new()
-            .program_name("Share Preview")
+            .program_name(&gettext("Share Preview"))
             .logo_icon_name(config::APP_ID)
             .license_type(gtk::License::Gpl30)
             .website("https://github.com/rafaelmardojai/share-preview/")
