@@ -18,6 +18,15 @@
   <url type="bugtracker">https://github.com/rafaelmardojai/share-preview/issues</url>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="0.1.2" date="2021-05-25">
+      <description>
+        <ul>
+          <li>Bug fixes</li>
+          <li>Added Turkish translation</li>
+          <li>Added Dutch translation</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.1.1" date="2021-05-23">
       <description>
         <p>Bug fixes and improvements.</p>
