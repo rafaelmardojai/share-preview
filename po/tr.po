@@ -2,20 +2,21 @@
 # This file is distributed under the same license as the share-preview package.
 # Bedirhan Tuhana GAYRETLİ <noteqnil@gmail.com>, 2021.
 #
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-20 20:22-0500\n"
+"POT-Creation-Date: 2021-05-25 12:01-0500\n"
 "PO-Revision-Date: 2021-05-24 14:57+0300\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.4.3\n"
-"Last-Translator: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: tr_TR\n"
 
 #: data/resources/ui/card.ui:66
 msgid "Card Error"
@@ -48,30 +49,32 @@ msgstr "_Klavye Kısayolları"
 msgid "_About Share Preview"
 msgstr "_Önizleme Paylaşma Hakkında"
 
-#: data/resources/ui/window.ui:47
+#: data/resources/ui/window.ui:36
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
+#: src/application.rs:128 src/main.rs:22
+msgid "Share Preview"
+msgstr "Önizlemeyi Paylaş"
+
+#: data/resources/ui/window.ui:48
 msgid "Menu"
 msgstr "Menü"
 
-#: data/resources/ui/window.ui:57
+#: data/resources/ui/window.ui:58
 msgid "Toggle Dark Mode"
 msgstr "Koyu Moda Geç"
 
-#: data/resources/ui/window.ui:112
+#: data/resources/ui/window.ui:113
 msgid "Invalid URL"
 msgstr "Geçersiz URL"
 
-#: data/resources/ui/window.ui:149
+#: data/resources/ui/window.ui:150
 msgid "Set a URL to preview"
 msgstr "Önizlemek için bir URL ayarla"
 
-#: data/resources/ui/window.ui:215 data/resources/ui/window.ui:252
+#: data/resources/ui/window.ui:219 data/resources/ui/window.ui:256
 msgid "View Found Metadata"
 msgstr "Bulunan Meta Verisini Göster"
-
-#: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
-#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
-msgid "Share Preview"
-msgstr "Önizlemeyi Paylaş"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
 msgid "Gnome;GTK;"
@@ -83,9 +86,12 @@ msgstr "Sosyal medya kartlarını yerel olarak test edin"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
-msgstr "Sosyal medya paylaşımı için web sitesi meta veri etiketlerini önizleyin ve hatalarını ayıklayın."
+msgstr ""
+"Sosyal medya paylaşımı için web sitesi meta veri etiketlerini önizleyin ve "
+"hatalarını ayıklayın."
 
-#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:31
+
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:49
 msgid "Rafael Mardojai CM"
 msgstr ""
 

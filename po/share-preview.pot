@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-20 20:22-0500\n"
+"POT-Creation-Date: 2021-05-25 12:01-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,29 +49,31 @@ msgstr ""
 msgid "_About Share Preview"
 msgstr ""
 
-#: data/resources/ui/window.ui:47
+#: data/resources/ui/window.ui:36
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
+#: src/application.rs:128 src/main.rs:22
+msgid "Share Preview"
+msgstr ""
+
+#: data/resources/ui/window.ui:48
 msgid "Menu"
 msgstr ""
 
-#: data/resources/ui/window.ui:57
+#: data/resources/ui/window.ui:58
 msgid "Toggle Dark Mode"
 msgstr ""
 
-#: data/resources/ui/window.ui:112
+#: data/resources/ui/window.ui:113
 msgid "Invalid URL"
 msgstr ""
 
-#: data/resources/ui/window.ui:149
+#: data/resources/ui/window.ui:150
 msgid "Set a URL to preview"
 msgstr ""
 
-#: data/resources/ui/window.ui:215 data/resources/ui/window.ui:252
+#: data/resources/ui/window.ui:219 data/resources/ui/window.ui:256
 msgid "View Found Metadata"
-msgstr ""
-
-#: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
-#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
-msgid "Share Preview"
 msgstr ""
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:9

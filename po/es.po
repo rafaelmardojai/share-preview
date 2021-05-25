@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-20 20:22-0500\n"
+"POT-Creation-Date: 2021-05-25 12:01-0500\n"
 "PO-Revision-Date: 2021-05-20 20:35-0500\n"
 "Last-Translator: Rafael Mardojai CM <mardojai.cardenas@gmail.com>\n"
 "Language-Team: Spanish; Castilian <mardojai.cardenas@gmail.com>\n"
@@ -51,30 +51,32 @@ msgstr "Atajos de teclado"
 msgid "_About Share Preview"
 msgstr "Acerca de Share Preview"
 
-#: data/resources/ui/window.ui:47
+#: data/resources/ui/window.ui:36
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
+#: src/application.rs:128 src/main.rs:22
+msgid "Share Preview"
+msgstr "Share Preview"
+
+#: data/resources/ui/window.ui:48
 msgid "Menu"
 msgstr "Menu"
 
-#: data/resources/ui/window.ui:57
+#: data/resources/ui/window.ui:58
 msgid "Toggle Dark Mode"
 msgstr "Alternar modo oscuro"
 
-#: data/resources/ui/window.ui:112
+#: data/resources/ui/window.ui:113
 msgid "Invalid URL"
 msgstr "URL invalido"
 
-#: data/resources/ui/window.ui:149
+#: data/resources/ui/window.ui:150
 msgid "Set a URL to preview"
 msgstr "Establecer una URL para obtener una vista previa"
 
-#: data/resources/ui/window.ui:215 data/resources/ui/window.ui:252
+#: data/resources/ui/window.ui:219 data/resources/ui/window.ui:256
 msgid "View Found Metadata"
 msgstr "Ver metadatos encontrados"
-
-#: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
-#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
-msgid "Share Preview"
-msgstr "Share Preview"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
 msgid "Gnome;GTK;"
@@ -90,7 +92,7 @@ msgstr ""
 "Obtenga una vista previa y depure las etiquetas de metadatos de sitios web "
 "para compartir en redes sociales."
 
-#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:31
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:49
 msgid "Rafael Mardojai CM"
 msgstr "Rafael Mardojai CM"
 
