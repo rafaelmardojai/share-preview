@@ -78,7 +78,10 @@ impl Card {
                 size = CardSize::Small; // Mastodon always use a small card size
 
                 if metadata.contains_key("og:site_name") {
-                    site = metadata.get("og:site_name").unwrap().to_string();
+                    let og_site = metadata.get("og:site_name").unwrap().to_string();
+                    if !og_site.is_empty() {
+                        site = og_site;
+                    }
                 }
             },
             Social::Twitter => {
