@@ -4,6 +4,7 @@
 use std::collections::HashMap;
 use std::error;
 use std::fmt::{Display, Formatter, Result as FmtResult};
+use url::Url;
 
 use super::{Data, Image};
 
@@ -100,7 +101,7 @@ impl Card {
         }
 
         // Get first available value from meta-tags to lookup
-        let pre_title = Card::get_correct_tag(&title_find, &metadata);
+        let pre_title = Card::get_correct_tag(&title_find, &metadata, false);
         let title = match &pre_title { // Convert image String to a Image struct:
             Some(title) => title.to_string(),
             None => {
@@ -110,13 +111,13 @@ impl Card {
                 }
             }
         };
-        let description = Card::get_correct_tag(&description_find, &metadata);
-        let pre_image = Card::get_correct_tag(&image_find, &metadata);
+        let description = Card::get_correct_tag(&description_find, &metadata, false);
+        let pre_image = Card::get_correct_tag(&image_find, &metadata, true);
         let mut image = match pre_image { // Convert image String to a Image struct:
             Some(url) => Some(Image::new(url)),
             None => None
         };
-        let card_type = Card::get_correct_tag(&type_find, &metadata);
+        let card_type = Card::get_correct_tag(&type_find, &metadata, false);
 
         // Return error if no basic data is found
         match (&pre_title, &description) {
@@ -150,12 +151,26 @@ impl Card {
 
     pub fn get_correct_tag(
             list: &Vec<String>,
-            metadata: &HashMap<String, String>) -> Option<String> {
+            metadata: &HashMap<String, String>,
+            is_url: bool) -> Option<String> {
         //! Get first available value from meta-tags to lookup
 
         for term in list.iter() {
             if let Some(content) = metadata.get(term) {
-                let content = content.clone();
+                let content = if is_url {
+                    match Url::parse(content.trim()) {
+                        Ok(_) => content.clone(),
+                        Err(_) => {
+                            continue
+                        }
+                    }
+                } else {
+                    if !content.is_empty() {
+                        content.clone()
+                    } else {
+                        continue
+                    }
+                };
                 return Some(content);
             }
         }
