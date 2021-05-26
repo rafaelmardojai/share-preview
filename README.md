@@ -26,6 +26,7 @@ Preview and debug websites metadata tags for social media share.
 
 | Distribution | Package | Maintainer |
 |:-:|:-:|:-:|
+| Arch Linux (AUR) | [share-preview](https://aur.archlinux.org/packages/share-preview), [share-preview-bin](https://aur.archlinux.org/packages/share-preview-bin) | [Archisman Panigrahi](https://github.com/apandada1/) |
 
 
 ## Build from source
