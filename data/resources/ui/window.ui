@@ -32,12 +32,8 @@
                     <child>
                       <object class="GtkHeaderBar" id="headerbar">
                         <child type="title">
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Share Preview</property>
-                            <property name="ellipsize">end</property>
-                            <style>
-                              <class name="title"/>
-                            </style>
+                          <object class="AdwWindowTitle">
+                            <property name="title" translatable="yes">Share Preview</property>
                           </object>
                         </child>
                         <child>
@@ -247,27 +243,8 @@
                     <child>
                       <object class="GtkHeaderBar">
                         <child type="title">
-                          <object class="GtkBox">
-                            <property name="orientation">vertical</property>
-                            <property name="valign">center</property>
-                            <property name="spacing">4</property>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="label" translatable="yes">View Found Metadata</property>
-                                <property name="ellipsize">end</property>
-                                <style>
-                                  <class name="title"/>
-                                </style>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="site_title">
-                                <property name="ellipsize">end</property>
-                                <style>
-                                  <class name="subtitle"/>
-                                </style>
-                              </object>
-                            </child>
+                          <object class="AdwWindowTitle" id="metadata_title">
+                            <property name="title" translatable="yes">View Found Metadata</property>
                           </object>
                         </child>
                         <child>
