@@ -15,7 +15,7 @@
   <template class="SharePreviewWindow" parent="AdwApplicationWindow">
     <property name="resizable">false</property>
     <property name="default_width">562</property>
-    <property name="default_height">562</property>
+    <property name="default_height">522</property>
     <property name="focus_widget">url_entry</property>
     <property name="child">
       <object class="GtkBox">
@@ -47,7 +47,7 @@
                   <object class="GtkButton">
                     <property name="action-name">win.metadata</property>
                     <property name="icon-name">system-search-symbolic</property>
-                    <property name="tooltip-text" translatable="yes">Show Found Data...</property>
+                    <property name="tooltip-text" translatable="yes">View Found Data...</property>
                   </object>
                 </property>
               </object>
@@ -181,6 +181,7 @@
                         <child>
                           <object class="GtkLabel" id="error_title">
                             <property name="wrap">true</property>
+                            <property name="justify">center</property>
                             <style>
                               <class name="large-title"/>
                             </style>
@@ -189,6 +190,7 @@
                         <child>
                           <object class="GtkLabel" id="error_message">
                             <property name="wrap">true</property>
+                            <property name="justify">center</property>
                           </object>
                         </child>
                       </object>

@@ -136,7 +136,7 @@ impl CardBox {
                 imp.title.set_wrap(true);
                 imp.title.style_context().add_class("title-4");
                 if let Some(_) = &card.description {
-                    if &card.title.len() <= &60 {
+                    if &card.title.len() <= &65 {
                         imp.description.set_visible(true);
                     }
                 }
