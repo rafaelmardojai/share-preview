@@ -73,6 +73,10 @@ impl SharePreviewApplication {
         glib::Object::new(&[
             ("application-id", &Some(config::APP_ID)),
             ("flags", &ApplicationFlags::empty()),
+            (
+                "resource-base-path",
+                &Some("/com/rafaelmardojai/SharePreview/"),
+            ),
         ])
         .expect("Application initialization failed...")
     }

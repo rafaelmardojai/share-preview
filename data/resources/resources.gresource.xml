@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/com/rafaelmardojai/SharePreview/">
+    <!-- CSS -->
+    <file compressed="true">style.css</file>
+
+    <!-- UI -->
+    <file compressed="true" preprocess="xml-stripblanks" alias="shortcuts.ui">ui/shortcuts.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks" alias="window.ui">ui/window.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks" alias="card.ui">ui/card.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks" alias="image.ui">ui/image.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks" alias="metadata.ui">ui/metadata.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks" alias="metadata-item.ui">ui/metadata-item.ui</file>
+
+    <!-- Icons -->
+    <file preprocess="xml-stripblanks">icons/tag-symbolic.svg</file>
+  </gresource>
+</gresources>
