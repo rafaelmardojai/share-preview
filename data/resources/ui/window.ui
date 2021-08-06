@@ -124,30 +124,9 @@
                   <object class="GtkStackPage">
                     <property name="name">splash</property>
                     <property name="child">
-                      <object class="GtkBox">
-                        <property name="orientation">vertical</property>
-                        <property name="halign">center</property>
-                        <property name="valign">center</property>
-                        <property name="spacing">24</property>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="icon-name">insert-link-symbolic</property>
-                            <property name="pixel-size">64</property>
-                            <style>
-                              <class name="dim-label"/>
-                            </style>
+                      <object class="AdwStatusPage" id="start_page">
+                            <property name="title">Set a URL to preview</property>
                           </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Set a URL to preview</property>
-                            <property name="wrap">true</property>
-                            <style>
-                              <class name="large-title"/>
-                            </style>
-                          </object>
-                        </child>
-                      </object>
                     </property>
                   </object>
                 </child>

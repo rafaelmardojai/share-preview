@@ -37,6 +37,8 @@ mod imp {
         #[template_child]
         pub stack: TemplateChild<gtk::Stack>,
         #[template_child]
+        pub start_page: TemplateChild<libadwaita::StatusPage>,
+        #[template_child]
         pub spinner: TemplateChild<gtk::Spinner>,
         #[template_child]
         pub error_title: TemplateChild<gtk::Label>,
@@ -65,6 +67,7 @@ mod imp {
                 url_entry: TemplateChild::default(),
                 url_error: TemplateChild::default(),
                 stack: TemplateChild::default(),
+                start_page: TemplateChild::default(),
                 spinner: TemplateChild::default(),
                 error_title: TemplateChild::default(),
                 error_message: TemplateChild::default(),
@@ -137,6 +140,8 @@ impl SharePreviewWindow {
             &gtk_settings,
             "gtk-application-prefer-dark-theme",
         ).build();
+
+        imp.start_page.set_icon_name(Some(APP_ID))
     }
 
     fn setup_actions(&self) {
