@@ -1,23 +1,21 @@
 
-headerbar.flat {
+/*headerbar.flat {
   background-image: none;
   border: none;
   background-color: @theme_bg_color;
   padding: 6px 12px;
+}*/*
+
+.urlbox {
+  padding: 6px;
 }
 
-.main-box {
-  padding: 6px 18px 18px;
+.card-container {
+  padding: 12px;
 }
 
-scrolledwindow.content {
-  background-color: @theme_base_color;
-  border: 1px solid @borders;
-  border-radius: 9px;
-}
-
-listview.separators row {
-  border-bottom-color: @borders;
+listview.content {
+  padding: 24px;
 }
 
 .metadata-item {

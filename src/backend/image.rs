@@ -20,10 +20,10 @@ impl Image {
     pub fn new(url: String) -> Image {
         Image {url}
     }
-    
+
     pub fn normalize(&mut self, url: &Url) -> &mut Image {
         //! Normalize image URL if is relative
-        
+
         if let Err(e) = Url::parse(&self.url) {
             match e {
                 ParseError::RelativeUrlWithoutBase => {
@@ -38,9 +38,9 @@ impl Image {
     }
 
     pub async fn fetch(&self, width: u32, height: u32) -> Result<gdk_pixbuf::Pixbuf, ImageError> {
-        //! Fecth image and crop it to the given size
+        //! Fetch image and crop it to the given size
         //! return a Pixbuf to use in a GtkPicture
-        
+
         let mut resp = CLIENT.get(&self.url).await?;
 
         if resp.status().is_success() {
@@ -54,7 +54,7 @@ impl Image {
             match format {
                 Ok(format) => {
                     let image = image::load_from_memory(&bytes).unwrap();
-                    // Risize and crop image to the give size:
+                    // Resize and crop image to the give size:
                     let thumbnail = image.resize_to_fill(width, height, image::imageops::FilterType::Triangle);
                     let dir = dir.to_str().unwrap(); // Convert temp file path to String
 
@@ -64,7 +64,7 @@ impl Image {
                             match gdk_pixbuf::Pixbuf::from_file(&dir) {
                                 Ok(pixbuf) => Ok(pixbuf),
                                 Err(_) => Err(ImageError::PixbufError)
-                            } 
+                            }
                         },
                         Err(_) => Err(ImageError::Unexpected)
                     }

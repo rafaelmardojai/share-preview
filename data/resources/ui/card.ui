@@ -2,6 +2,7 @@
 <interface>
   <template class="CardBox" parent="GtkBox">
     <property name="vexpand">true</property>
+    <property name="width_request">526</property>
     <child>
       <object class="GtkStack" id="stack">
       <child>

@@ -18,7 +18,7 @@ run_command(
   check: true
 )
 
-sources = files(  
+sources = files(
   'backend/card.rs',
   'backend/data.rs',
   'backend/image.rs',
@@ -27,7 +27,7 @@ sources = files(
   'widgets/card.rs',
   'widgets/image.rs',
   'widgets/metadata_item.rs',
-  'widgets/metadata_list.rs',
+  'widgets/data_dialog.rs',
   'application.rs',
   'config.rs',
   'main.rs',

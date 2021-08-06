@@ -1,7 +1,7 @@
 use crate::application::SharePreviewApplication;
 use crate::backend::{scrape, Data, Error, Social};
 use crate::config::{APP_ID, PROFILE};
-use crate::widgets::{CardBox, MetadataList};
+use crate::widgets::{CardBox, DataDialog};
 use gettextrs::*;
 use glib::clone;
 use gtk::subclass::prelude::*;
@@ -25,11 +25,7 @@ mod imp {
         #[template_child]
         pub dark_theme: TemplateChild<gtk::Button>,
         #[template_child]
-        pub main_stack: TemplateChild<gtk::Stack>,
-        #[template_child]
-        pub metadata: TemplateChild<MetadataList>,
-        #[template_child]
-        pub metadata_title: TemplateChild<libadwaita::WindowTitle>,
+        pub data_revealer: TemplateChild<gtk::Revealer>,
         #[template_child]
         pub social: TemplateChild<gtk::DropDown>,
         #[template_child]
@@ -63,9 +59,7 @@ mod imp {
                 data: RefCell::new(Data::default()),
                 active_url: RefCell::new(String::default()),
                 dark_theme: TemplateChild::default(),
-                main_stack: TemplateChild::default(),
-                metadata: TemplateChild::default(),
-                metadata_title: TemplateChild::default(),
+                data_revealer: TemplateChild::default(),
                 social: TemplateChild::default(),
                 url_box: TemplateChild::default(),
                 url_entry: TemplateChild::default(),
@@ -147,9 +141,7 @@ impl SharePreviewWindow {
 
     fn setup_actions(&self) {
         let imp = imp::SharePreviewWindow::from_instance(self);
-        let main_stack = &*imp.main_stack;
-        let metadata = &*imp.metadata;
-        let metadata_title = &*imp.metadata_title;
+        let data_revealer = &*imp.data_revealer;
         let social = &*imp.social;
         let url_box = &*imp.url_box;
         let url_entry = &*imp.url_entry;
@@ -165,9 +157,10 @@ impl SharePreviewWindow {
             self,
             "run",
             clone!(
-                    @weak self as win, @weak metadata_title, @weak social,
-                    @weak url_entry, @weak url_error, @weak url_box,
-                    @weak stack, @weak spinner, @weak error_title, @weak error_message,
+                    @weak self as win, @weak data_revealer,
+                    @weak social, @weak url_entry,
+                    @weak url_error, @weak url_box, @weak stack, @weak spinner,
+                    @weak error_title, @weak error_message,
                     @weak cardbox => move |_, _| {
 
                 if !url_entry.text().is_empty() {
@@ -186,22 +179,18 @@ impl SharePreviewWindow {
                             url_box.set_sensitive(false);
                             stack.set_visible_child_name("loading");
                             spinner.start();
+                            data_revealer.set_reveal_child(false);
                             spawn!(async move {
                                 match scrape(&url).await {
                                     Ok(data) => {
                                         let win_ = imp::SharePreviewWindow::from_instance(&win);
 
-                                        let site_title = match &data.title {
-                                            Some(title) => title.to_string(),
-                                            None => data.url.to_string()
-                                        };
-                                        win_.metadata_title.set_subtitle(Some(&site_title));
-                                        win_.metadata_title.set_tooltip_text(Some(&site_title));
-
                                         win_.data.replace(data);
                                         win_.active_url.replace(url.to_string());
                                         win.update_card();
                                         stack.set_visible_child_name("card");
+
+                                        data_revealer.set_reveal_child(true);
                                     }
                                     Err(error) => {
                                         let error_texts = match error {
@@ -235,20 +224,13 @@ impl SharePreviewWindow {
         action!(
             self,
             "metadata",
-            clone!(@weak self as win, @weak main_stack, @weak metadata, => move |_, _| {
+            clone!(@weak self as win => move |_, _| {
                 let win_ = imp::SharePreviewWindow::from_instance(&win);
                 let data = win_.data.borrow();
-                metadata.set_items(&data.get_metadata());
-                main_stack.set_visible_child_name("metadata");
-            })
-        );
 
-        // Back
-        action!(
-            self,
-            "back",
-            clone!(@weak main_stack => move |_, _| {
-                main_stack.set_visible_child_name("home");
+                let dialog = DataDialog::new(&data);
+                dialog.set_transient_for(Some(&win));
+                dialog.show();
             })
         );
     }

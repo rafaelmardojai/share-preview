@@ -16,271 +16,203 @@
     <property name="resizable">false</property>
     <property name="default_width">562</property>
     <property name="default_height">562</property>
-    <property name="width_request">562</property>
     <property name="focus_widget">url_entry</property>
     <property name="child">
-      <object class="GtkWindowHandle" id="handle">
-        <property name="child">
-          <object class="GtkStack" id="main_stack">
-            <property name="transition-type">crossfade</property>
-            <child>
-              <object class="GtkStackPage">
-                <property name="name">home</property>
-                <property name="child">
-                  <object class="GtkBox">
-                    <property name="orientation">vertical</property>
-                    <child>
-                      <object class="GtkHeaderBar" id="headerbar">
-                        <child type="title">
-                          <object class="AdwWindowTitle">
-                            <property name="title" translatable="yes">Share Preview</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkMenuButton" id="menu_button">
-                            <property name="has-frame">False</property>
-                            <property name="menu_model">primary_menu</property>
-                            <property name="icon_name">open-menu-symbolic</property>
-                            <property name="tooltip-text" translatable="yes">Menu</property>
-                            <style>
-                              <class name="circular"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="dark_theme">
-                            <property name="has-frame">False</property>
-                            <property name="icon_name">display-brightness-symbolic</property>
-                            <property name="tooltip-text" translatable="yes">Toggle Dark Mode</property>
-                            <style>
-                              <class name="circular"/>
-                            </style>
-                          </object>
-                        </child>
-                        <style>
-                          <class name="flat"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">12</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <object class="GtkBox" id="url_box">
-                                <property name="hexpand">true</property>
-                                <property name="halign">fill</property>
-                                <style>
-                                  <class name="linked"/>
-                                </style>
-                                <child>
-                                  <object class="GtkDropDown" id="social">
-                                    <property name="halign">end</property>
-                                    <property name="valign">center</property>
-                                    <property name="model">
-                                      <object class="GtkStringList">
-                                        <items>
-                                          <item>Facebook</item>
-                                          <item>Mastodon</item>
-                                          <item>Twitter</item>
-                                        </items>
-                                      </object>
-                                    </property>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkEntry" id="url_entry">
-                                    <property name="hexpand">true</property>
-                                    <property name="secondary-icon-name">go-next-symbolic</property>
-                                    <property name="secondary-icon-sensitive">false</property>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkRevealer" id="url_error">
-                                <property name="transition-type">slide-down</property>
-                                <property name="reveal-child">false</property>
-                                <child>
-                                  <object class="GtkLabel">
-                                    <property name="label" translatable="yes">Invalid URL</property>
-                                    <property name="halign">center</property>
-                                    <property name="margin-top">6</property>
-                                    <style>
-                                      <class name="error"/>
-                                    </style>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkStack" id="stack">
-                            <property name="transition-type">crossfade</property>
-                            <property name="hhomogeneous">true</property>
-                            <property name="vexpand">true</property>
-                            <child>
-                              <object class="GtkStackPage">
-                                <property name="name">splash</property>
-                                <property name="child">
-                                  <object class="GtkBox">
-                                    <property name="orientation">vertical</property>
-                                    <property name="halign">center</property>
-                                    <property name="valign">center</property>
-                                    <property name="spacing">24</property>
-                                    <child>
-                                      <object class="GtkImage">
-                                        <property name="icon-name">insert-link-symbolic</property>
-                                        <property name="pixel-size">64</property>
-                                        <style>
-                                          <class name="dim-label"/>
-                                        </style>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="GtkLabel">
-                                        <property name="label" translatable="yes">Set a URL to preview</property>
-                                        <property name="wrap">true</property>
-                                        <style>
-                                          <class name="large-title"/>
-                                        </style>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkStackPage">
-                                <property name="name">loading</property>
-                                <property name="child">
-                                  <object class="GtkBox">
-                                    <property name="halign">center</property>
-                                    <property name="valign">center</property>
-                                    <property name="spacing">6</property>
-                                    <child>
-                                      <object class="GtkSpinner" id="spinner">
-                                      <property name="height_request">32</property>
-                                        <property name="width_request">32</property>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkStackPage">
-                                <property name="name">error</property>
-                                <property name="child">
-                                  <object class="GtkBox">
-                                    <property name="orientation">vertical</property>
-                                    <property name="halign">center</property>
-                                    <property name="valign">center</property>
-                                    <property name="spacing">12</property>
-                                    <child>
-                                      <object class="GtkLabel" id="error_title">
-                                        <property name="wrap">true</property>
-                                        <style>
-                                          <class name="large-title"/>
-                                        </style>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="GtkLabel" id="error_message">
-                                        <property name="wrap">true</property>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkStackPage">
-                                <property name="name">card</property>
-                                <property name="child">
-                                  <object class="GtkBox" id="cardbox">
-                                    <property name="orientation">vertical</property>
-                                    <property name="spacing">12</property>
-                                    <property name="halign">fill</property>
-                                    <child>
-                                      <object class="GtkButton">
-                                        <property name="action-name">win.metadata</property>
-                                        <property name="icon-name">view-list-bullet-symbolic</property>
-                                        <property name="halign">center</property>
-                                        <property name="valign">end</property>
-                                        <property name="tooltip-text" translatable="yes">View Found Metadata</property>
-                                        <style>
-                                          <class name="circular"/>
-                                          <class name="large"/>
-                                        </style>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </property>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <style>
-                          <class name="main-box"/>
-                        </style>
-                      </object>
-                    </child>
-                  </object>
-                </property>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkHeaderBar" id="headerbar">
+            <child type="title">
+              <object class="AdwWindowTitle">
+                <property name="title" translatable="yes">Share Preview</property>
               </object>
             </child>
             <child>
-              <object class="GtkStackPage">
-                <property name="name">metadata</property>
+              <object class="GtkButton" id="dark_theme">
+                <property name="icon_name">display-brightness-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Toggle Dark Mode</property>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkMenuButton" id="menu_button">
+                <property name="menu_model">primary_menu</property>
+                <property name="icon_name">open-menu-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Menu</property>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkRevealer" id="data_revealer">
+                <property name="transition-type">slide-right</property>
                 <property name="child">
-                  <object class="GtkBox">
-                    <property name="orientation">vertical</property>
-                    <child>
-                      <object class="GtkHeaderBar">
-                        <child type="title">
-                          <object class="AdwWindowTitle" id="metadata_title">
-                            <property name="title" translatable="yes">View Found Metadata</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkButton">
-                            <property name="has-frame">False</property>
-                            <property name="action-name">win.back</property>
-                            <property name="icon-name">go-previous-symbolic</property>
-                            <style>
-                              <class name="circular"/>
-                            </style>
-                          </object>
-                        </child>
-                        <style>
-                          <class name="flat"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkBox">
-                        <style>
-                          <class name="main-box"/>
-                        </style>
-                        <child>
-                          <object class="MetadataList" id="metadata">
-                            <property name="hexpand">true</property>
-                            <property name="vexpand">true</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
+                  <object class="GtkButton">
+                    <property name="action-name">win.metadata</property>
+                    <property name="icon-name">system-search-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Show Found Data...</property>
                   </object>
                 </property>
               </object>
             </child>
           </object>
-        </property>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <style>
+                  <class name="urlbox"/>
+                </style>
+                <child>
+                  <object class="GtkBox" id="url_box">
+                    <property name="hexpand">true</property>
+                    <property name="halign">fill</property>
+                    <style>
+                      <class name="linked"/>
+                    </style>
+                    <child>
+                      <object class="GtkDropDown" id="social">
+                        <property name="halign">end</property>
+                        <property name="valign">center</property>
+                        <property name="model">
+                          <object class="GtkStringList">
+                            <items>
+                              <item>Facebook</item>
+                              <item>Mastodon</item>
+                              <item>Twitter</item>
+                            </items>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="url_entry">
+                        <property name="hexpand">true</property>
+                        <property name="secondary-icon-name">go-next-symbolic</property>
+                        <property name="secondary-icon-sensitive">false</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkRevealer" id="url_error">
+                    <property name="transition-type">slide-down</property>
+                    <property name="reveal-child">false</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="label" translatable="yes">Invalid URL</property>
+                        <property name="halign">center</property>
+                        <property name="margin-top">6</property>
+                        <style>
+                          <class name="error"/>
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkSeparator"></object>
+            </child>
+            <child>
+              <object class="GtkStack" id="stack">
+                <property name="transition-type">crossfade</property>
+                <property name="hhomogeneous">true</property>
+                <property name="vexpand">true</property>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="name">splash</property>
+                    <property name="child">
+                      <object class="GtkBox">
+                        <property name="orientation">vertical</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
+                        <property name="spacing">24</property>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="icon-name">insert-link-symbolic</property>
+                            <property name="pixel-size">64</property>
+                            <style>
+                              <class name="dim-label"/>
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="label" translatable="yes">Set a URL to preview</property>
+                            <property name="wrap">true</property>
+                            <style>
+                              <class name="large-title"/>
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="name">loading</property>
+                    <property name="child">
+                      <object class="GtkBox">
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkSpinner" id="spinner">
+                          <property name="height_request">32</property>
+                            <property name="width_request">32</property>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="name">error</property>
+                    <property name="child">
+                      <object class="GtkBox">
+                        <property name="orientation">vertical</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
+                        <property name="spacing">12</property>
+                        <child>
+                          <object class="GtkLabel" id="error_title">
+                            <property name="wrap">true</property>
+                            <style>
+                              <class name="large-title"/>
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="error_message">
+                            <property name="wrap">true</property>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="name">card</property>
+                    <property name="child">
+                      <object class="GtkBox" id="cardbox">
+                        <property name="orientation">vertical</property>
+                        <property name="halign">fill</property>
+                        <style>
+                          <class name="card-container"/>
+                        </style>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
       </object>
     </property>
   </template>
