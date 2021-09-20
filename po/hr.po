@@ -1,0 +1,126 @@
+# Croatian translation for share-preview.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the share-preview package.
+# Milo Ivir <mail@milotype.de>, 2021.
+#
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
+msgid ""
+msgstr ""
+"Project-Id-Version: share-preview\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-25 12:01-0500\n"
+"PO-Revision-Date: 2021-09-20 10:17+0100\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"Language-Team: \n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: data/resources/ui/card.ui:66
+msgid "Card Error"
+msgstr "Greška karte"
+
+#: data/resources/ui/image.ui:68
+msgid "Image Error"
+msgstr "Greška slike"
+
+#: data/resources/ui/shortcuts.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Opće"
+
+#: data/resources/ui/shortcuts.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Pokaži prečace"
+
+#: data/resources/ui/shortcuts.ui:20
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Zatvori program"
+
+#: data/resources/ui/window.ui:6
+msgid "_Keyboard Shortcuts"
+msgstr "_Tipkovni prečaci"
+
+#: data/resources/ui/window.ui:10
+msgid "_About Share Preview"
+msgstr "_Pregled dijeljenja – informacije"
+
+#: data/resources/ui/window.ui:36
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
+#: src/application.rs:128 src/main.rs:22
+msgid "Share Preview"
+msgstr "Pregled dijeljenja"
+
+#: data/resources/ui/window.ui:48
+msgid "Menu"
+msgstr "Izbornik"
+
+#: data/resources/ui/window.ui:58
+msgid "Toggle Dark Mode"
+msgstr "Uklj./isklj. tamni modus"
+
+#: data/resources/ui/window.ui:113
+msgid "Invalid URL"
+msgstr "Neispravna URL adresa"
+
+#: data/resources/ui/window.ui:150
+msgid "Set a URL to preview"
+msgstr "Zadaj URL adresu za pregled"
+
+#: data/resources/ui/window.ui:219 data/resources/ui/window.ui:256
+msgid "View Found Metadata"
+msgstr "Prikaz pronađenih metapodataka"
+
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
+msgid "Gnome;GTK;"
+msgstr "Gnome;GTK;"
+
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:8
+msgid "Test social media cards locally"
+msgstr "Ispitaj karte za društvene medije lokalno"
+
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
+msgid "Preview and debug websites metadata tags for social media share."
+msgstr "Pregledaj web-stranicu i otkloni greške u oznakama metapodataka za društvene medije."
+
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:31
+msgid "Rafael Mardojai CM"
+msgstr "Rafael Mardojai CM"
+
+#: src/window.rs:209
+msgid "Network Error"
+msgstr "Greška mreže"
+
+#: src/window.rs:210 src/window.rs:214
+msgid "Couldn't connect to the given URL."
+msgstr "Neuspjelo spajanje na zadanu URL adresu."
+
+#: src/window.rs:213
+msgid "Unexpected Error"
+msgstr "Neočekivana greška"
+
+#: src/widgets/card.rs:96
+msgid "Couldn't find enough data to generate a card for this social media."
+msgstr "Nema dovoljno podataka za izradu karte za ovaj društveni medij."
+
+#: src/widgets/card.rs:99
+msgid "Twitter: No card found."
+msgstr "Twitter: Nema karte."
+
+#: src/widgets/image.rs:106
+msgid "Failure when receiving image from the peer."
+msgstr "Neuspjelo preuzimanje slike."
+
+#: src/widgets/image.rs:109
+msgid "Invalid image format."
+msgstr "Neispravan format slike."
+
+#: src/widgets/image.rs:112
+msgid "Unexpected image error."
+msgstr "Neočekivana greška slike."
