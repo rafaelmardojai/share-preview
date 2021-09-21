@@ -3,10 +3,11 @@
 
 use crate::backend::{Data};
 use super::MetadataItem;
+
+use adw::subclass::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{self, prelude::*};
 use gtk::{gio, glib, CompositeTemplate};
-use libadwaita::subclass::prelude::*;
 
 mod imp {
     use super::*;
@@ -27,7 +28,7 @@ mod imp {
     impl ObjectSubclass for DataDialog {
         const NAME: &'static str = "DataDialog";
         type Type = super::DataDialog;
-        type ParentType = libadwaita::Window;
+        type ParentType = adw::Window;
 
         fn new() -> Self {
             Self {
@@ -48,12 +49,7 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for DataDialog {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
-        }
-    }
-
+    impl ObjectImpl for DataDialog {}
     impl WidgetImpl for DataDialog {}
     impl WindowImpl for DataDialog {}
     impl AdwWindowImpl for DataDialog {}
@@ -61,7 +57,7 @@ mod imp {
 
 glib::wrapper! {
     pub struct DataDialog(ObjectSubclass<imp::DataDialog>)
-        @extends gtk::Widget, gtk::Window, libadwaita::Window;
+        @extends gtk::Widget, gtk::Window, adw::Window;
 }
 
 impl DataDialog {

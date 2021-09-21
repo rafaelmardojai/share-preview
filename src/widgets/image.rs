@@ -55,12 +55,7 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for CardImage {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
-        }
-    }
-
+    impl ObjectImpl for CardImage {}
     impl WidgetImpl for CardImage {}
     impl BoxImpl for CardImage {}
 }

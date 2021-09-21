@@ -2,13 +2,14 @@ use crate::application::SharePreviewApplication;
 use crate::backend::{scrape, Data, Error, Social};
 use crate::config::{APP_ID, PROFILE};
 use crate::widgets::{CardBox, DataDialog};
+
+use adw::subclass::prelude::*;
 use gettextrs::*;
 use glib::clone;
 use gtk::subclass::prelude::*;
 use gtk::{self, prelude::*};
 use gtk::{gio, glib, CompositeTemplate, EntryIconPosition};
 use gtk_macros::{action, spawn};
-use libadwaita::subclass::prelude::*;
 use url::Url;
 use std::cell::RefCell;
 
@@ -25,8 +26,6 @@ mod imp {
         #[template_child]
         pub dark_theme: TemplateChild<gtk::Button>,
         #[template_child]
-        pub data_revealer: TemplateChild<gtk::Revealer>,
-        #[template_child]
         pub social: TemplateChild<gtk::DropDown>,
         #[template_child]
         pub url_box: TemplateChild<gtk::Box>,
@@ -37,7 +36,7 @@ mod imp {
         #[template_child]
         pub stack: TemplateChild<gtk::Stack>,
         #[template_child]
-        pub start_page: TemplateChild<libadwaita::StatusPage>,
+        pub start_page: TemplateChild<adw::StatusPage>,
         #[template_child]
         pub spinner: TemplateChild<gtk::Spinner>,
         #[template_child]
@@ -52,7 +51,7 @@ mod imp {
     impl ObjectSubclass for SharePreviewWindow {
         const NAME: &'static str = "SharePreviewWindow";
         type Type = super::SharePreviewWindow;
-        type ParentType = libadwaita::ApplicationWindow;
+        type ParentType = adw::ApplicationWindow;
 
         fn new() -> Self {
             Self {
@@ -61,7 +60,6 @@ mod imp {
                 data: RefCell::new(Data::default()),
                 active_url: RefCell::new(String::default()),
                 dark_theme: TemplateChild::default(),
-                data_revealer: TemplateChild::default(),
                 social: TemplateChild::default(),
                 url_box: TemplateChild::default(),
                 url_entry: TemplateChild::default(),
@@ -109,7 +107,7 @@ mod imp {
 
 glib::wrapper! {
     pub struct SharePreviewWindow(ObjectSubclass<imp::SharePreviewWindow>)
-        @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow, libadwaita::ApplicationWindow,
+        @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow, adw::ApplicationWindow,
         @implements gio::ActionMap, gio::ActionGroup;
 }
 
@@ -146,7 +144,6 @@ impl SharePreviewWindow {
 
     fn setup_actions(&self) {
         let imp = imp::SharePreviewWindow::from_instance(self);
-        let data_revealer = &*imp.data_revealer;
         let social = &*imp.social;
         let url_box = &*imp.url_box;
         let url_entry = &*imp.url_entry;
@@ -162,8 +159,7 @@ impl SharePreviewWindow {
             self,
             "run",
             clone!(
-                    @weak self as win, @weak data_revealer,
-                    @weak social, @weak url_entry,
+                    @weak self as win, @weak social, @weak url_entry,
                     @weak url_error, @weak url_box, @weak stack, @weak spinner,
                     @weak error_title, @weak error_message,
                     @weak cardbox => move |_, _| {
@@ -184,7 +180,6 @@ impl SharePreviewWindow {
                             url_box.set_sensitive(false);
                             stack.set_visible_child_name("loading");
                             spinner.start();
-                            data_revealer.set_reveal_child(false);
                             spawn!(async move {
                                 match scrape(&url).await {
                                     Ok(data) => {
@@ -194,8 +189,6 @@ impl SharePreviewWindow {
                                         win_.active_url.replace(url.to_string());
                                         win.update_card();
                                         stack.set_visible_child_name("card");
-
-                                        data_revealer.set_reveal_child(true);
                                     }
                                     Err(error) => {
                                         let error_texts = match error {

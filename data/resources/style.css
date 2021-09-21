@@ -1,21 +1,10 @@
 
-/*headerbar.flat {
-  background-image: none;
-  border: none;
-  background-color: @theme_bg_color;
-  padding: 6px 12px;
-}*/*
-
 .urlbox {
-  padding: 6px;
-}
-
-.card-container {
   padding: 12px;
 }
 
-listview.content {
-  padding: 24px;
+.card-container {
+  padding: 0 12px 12px;
 }
 
 .metadata-item {

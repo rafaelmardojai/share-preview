@@ -62,10 +62,6 @@ mod imp {
                 _ => unimplemented!(),
             }
         }
-        
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
-        }
     }
 }
 

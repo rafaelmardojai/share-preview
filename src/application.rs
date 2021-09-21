@@ -1,5 +1,7 @@
 use crate::config;
 use crate::window::SharePreviewWindow;
+
+use adw::subclass::prelude::*;
 use gettextrs::*;
 use gio::ApplicationFlags;
 use glib::clone;
@@ -23,14 +25,14 @@ mod imp {
     impl ObjectSubclass for SharePreviewApplication {
         const NAME: &'static str = "SharePreviewApplication";
         type Type = super::SharePreviewApplication;
-        type ParentType = gtk::Application;
+        type ParentType = adw::Application;
     }
 
     impl ObjectImpl for SharePreviewApplication {}
 
     impl gio::subclass::prelude::ApplicationImpl for SharePreviewApplication {
         fn activate(&self, app: &Self::Type) {
-            debug!("GtkApplication<SharePreviewApplication>::activate");
+            debug!("AdwApplication<SharePreviewApplication>::activate");
 
             let priv_ = SharePreviewApplication::from_instance(app);
             if let Some(window) = priv_.window.get() {
@@ -61,11 +63,13 @@ mod imp {
     }
 
     impl GtkApplicationImpl for SharePreviewApplication {}
+    impl AdwApplicationImpl for SharePreviewApplication {}
 }
 
 glib::wrapper! {
     pub struct SharePreviewApplication(ObjectSubclass<imp::SharePreviewApplication>)
-        @extends gio::Application, gtk::Application, @implements gio::ActionMap, gio::ActionGroup;
+        @extends gio::Application, gtk::Application, adw::Application,
+        @implements gio::ActionMap, gio::ActionGroup;
 }
 
 impl SharePreviewApplication {
