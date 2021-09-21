@@ -1,7 +1,7 @@
 {
     "app-id": "com.rafaelmardojai.SharePreview.Devel",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "40",
+    "runtime-version": "master",
     "sdk": "org.gnome.Sdk",
     "sdk-extensions": ["org.freedesktop.Sdk.Extension.rust-stable"],
     "command": "share-preview",
@@ -47,8 +47,7 @@
                 {
                     "type" : "git",
                     "url" : "https://gitlab.gnome.org/GNOME/libadwaita.git",
-                    "tag" : "1.0.0-alpha.2",
-                    "commit" : "f5932ab4250c8e709958c6e75a1a4941a5f0f386"
+                    "commit": "198e5593a08d5ae846802d21e9cca02df5559e1b"
                 }
             ]
         },
