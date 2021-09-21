@@ -21,6 +21,8 @@ mod imp {
         #[template_child]
         pub search: TemplateChild<gtk::SearchEntry>,
         #[template_child]
+        pub title: TemplateChild<gtk::Label>,
+        #[template_child]
         pub list: TemplateChild<gtk::ListView>,
     }
 
@@ -35,6 +37,7 @@ mod imp {
                 model: gio::ListStore::new(MetadataItem::static_type()),
                 search_bar: TemplateChild::default(),
                 search: TemplateChild::default(),
+                title: TemplateChild::default(),
                 list: TemplateChild::default(),
             }
         }
@@ -83,8 +86,7 @@ impl DataDialog {
             Some(title) => title.to_string(),
             None => data.url.to_string()
         };
-        //imp.title.set_subtitle(Some(&site_title));
-        //imp.title.set_tooltip_text(Some(&site_title));
+        imp.title.set_label(&site_title);
 
         // imp.model.remove_all(); // Remove previous model items
         // Add new items from HashMap:

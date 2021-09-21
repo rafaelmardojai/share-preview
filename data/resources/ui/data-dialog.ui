@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="DataDialog" parent="AdwWindow">
-    <property name="default_width">700</property>
+    <property name="default_width">600</property>
     <property name="default_height">400</property>
     <property name="modal">True</property>
     <property name="destroy_with_parent">True</property>
@@ -27,6 +27,8 @@
                 <property name="child">
                   <object class="GtkBox">
                     <property name="orientation">vertical</property>
+                    <property name="spacing">24</property>
+                    <property name="margin-bottom">24</property>
                     <child>
                       <object class="GtkSearchBar" id="search_bar">
                         <property name="search-mode-enabled">true</property>
@@ -38,18 +40,34 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkScrolledWindow">
-                        <property name="hexpand">true</property>
-                        <property name="vexpand">true</property>
+                      <object class="AdwClamp">
                         <property name="child">
-                          <object class="AdwClampScrollable">
-                            <property name="child">
-                              <object class="GtkListView" id="list">
+                          <object class="GtkBox">
+                            <property name="orientation">vertical</property>
+                            <property name="spacing">12</property>
+                            <child>
+                              <object class="GtkLabel" id="title">
+                                <property name="xalign">0</property>
+                                <property name="selectable">true</property>
+                                <property name="wrap">true</property>
                                 <style>
-                                  <class name="content" />
+                                  <class name="heading" />
                                 </style>
                               </object>
-                            </property>
+                            </child>
+                            <child>
+                              <object class="GtkScrolledWindow">
+                                <property name="hexpand">true</property>
+                                <property name="vexpand">true</property>
+                                <property name="child">
+                                  <object class="GtkListView" id="list">
+                                    <style>
+                                      <class name="content" />
+                                    </style>
+                                  </object>
+                                </property>
+                              </object>
+                            </child>
                           </object>
                         </property>
                       </object>
