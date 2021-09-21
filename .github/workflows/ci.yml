@@ -8,11 +8,11 @@ jobs:
     name: "Flatpak"
     runs-on: ubuntu-20.04
     container:
-      image: bilelmoussaoui/flatpak-github-actions:gnome-40
+      image: bilelmoussaoui/flatpak-github-actions:gnome-nightly
       options: --privileged
     steps:
     - uses: actions/checkout@v2
-    - uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v3
+    - uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v4
       with:
         bundle: "share-preview-devel.flatpak"
         manifest-path: "build-aux/com.rafaelmardojai.SharePreview.Devel.json"
