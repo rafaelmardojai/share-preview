@@ -1,0 +1,125 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the share-preview package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: share-preview\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-25 12:01-0500\n"
+"PO-Revision-Date: 2021-10-10 16:01+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fr\n"
+
+#: data/resources/ui/card.ui:66
+msgid "Card Error"
+msgstr "Erreur avec la carte"
+
+#: data/resources/ui/image.ui:68
+msgid "Image Error"
+msgstr "Erreur avec l'image"
+
+#: data/resources/ui/shortcuts.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Général"
+
+#: data/resources/ui/shortcuts.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Afficher les raccourcis"
+
+#: data/resources/ui/shortcuts.ui:20
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Quitter"
+
+#: data/resources/ui/window.ui:6
+msgid "_Keyboard Shortcuts"
+msgstr "_Raccourcis claviers"
+
+#: data/resources/ui/window.ui:10
+msgid "_About Share Preview"
+msgstr "_À propos d'Aperçu du Partage"
+
+#: data/resources/ui/window.ui:36
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
+#: src/application.rs:128 src/main.rs:22
+msgid "Share Preview"
+msgstr "Aperçu du Partage"
+
+#: data/resources/ui/window.ui:48
+msgid "Menu"
+msgstr "Menu"
+
+#: data/resources/ui/window.ui:58
+msgid "Toggle Dark Mode"
+msgstr "Basculer en mode sombre"
+
+#: data/resources/ui/window.ui:113
+msgid "Invalid URL"
+msgstr "URL invalide"
+
+#: data/resources/ui/window.ui:150
+msgid "Set a URL to preview"
+msgstr "Entrez une URL pour voir l'aperçu"
+
+#: data/resources/ui/window.ui:219 data/resources/ui/window.ui:256
+msgid "View Found Metadata"
+msgstr "Voir les métadonnées trouvées"
+
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
+msgid "Gnome;GTK;"
+msgstr "Gnome;GTK;"
+
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:8
+msgid "Test social media cards locally"
+msgstr "Tester les cartes des réseaux sociaux en local"
+
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
+msgid "Preview and debug websites metadata tags for social media share."
+msgstr "Prévisualiser et déboguer les balises de métadonnées des sites web pour le partage sur les réseaux sociaux."
+
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:31
+msgid "Rafael Mardojai CM"
+msgstr "Rafael Mardojai CM"
+
+#: src/window.rs:209
+msgid "Network Error"
+msgstr "Erreur de réseau"
+
+#: src/window.rs:210 src/window.rs:214
+msgid "Couldn't connect to the given URL."
+msgstr "Impossible de se connecter à l'URL donnée."
+
+#: src/window.rs:213
+msgid "Unexpected Error"
+msgstr "Erreur inattendue"
+
+#: src/widgets/card.rs:96
+msgid "Couldn't find enough data to generate a card for this social media."
+msgstr "Impossible de trouver suffisamment de données pour générer une carte pour ce réseau social."
+
+#: src/widgets/card.rs:99
+msgid "Twitter: No card found."
+msgstr "Twitter : Aucune carte trouvée."
+
+#: src/widgets/image.rs:106
+msgid "Failure when receiving image from the peer."
+msgstr "Erreur lors de la réception de l'image depuis le serveur."
+
+#: src/widgets/image.rs:109
+msgid "Invalid image format."
+msgstr "Format de l'image invalide."
+
+#: src/widgets/image.rs:112
+msgid "Unexpected image error."
+msgstr "Erreur inconnue avec l'image."
