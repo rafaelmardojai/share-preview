@@ -196,9 +196,13 @@ impl SharePreviewWindow {
                                                 gettext("Network Error"),
                                                 gettext("Couldn't connect to the given URL.")
                                             ),
-                                            Error::Unexpected => (
+                                            Error::Unexpected(status) => (
                                                 gettext("Unexpected Error"),
-                                                gettext("Couldn't connect to the given URL.")
+                                                if !status.is_empty() {
+                                                    gettext!("Server Error {}", status)
+                                                } else {
+                                                    gettext("Couldn't connect to the given URL.")
+                                                }
                                             )
                                         };
                                         error_title.set_label(&error_texts.0);

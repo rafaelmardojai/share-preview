@@ -33,7 +33,7 @@ pub async fn scrape(url: &Url) -> Result<Data, Error> {
 
         Ok(data)
     } else {
-        Err(Error::Unexpected)
+        Err(Error::Unexpected(resp.status().to_string()))
     }
 }
 
@@ -90,14 +90,14 @@ fn get_meta_prop(element: &ElementRef, name: &str) -> Option<(String, String)> {
 #[derive(Debug)]
 pub enum Error {
     NetworkError(surf::Error),
-    Unexpected,
+    Unexpected(String),
 }
 
 impl Display for Error {
     fn fmt(&self, f: &mut Formatter) -> FmtResult {
         match *self {
             Error::NetworkError(ref e) => write!(f, "NetworkError:  {}", e),
-            Error::Unexpected => write!(f, "UnexpectedError"),
+            Error::Unexpected(ref status) => write!(f, "UnexpectedError: Error {}", status),
         }
     }
 }
