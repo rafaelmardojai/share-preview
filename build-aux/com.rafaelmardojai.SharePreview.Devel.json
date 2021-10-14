@@ -41,17 +41,6 @@
     ],
     "modules": [
         {
-            "name" : "libadwaita",
-            "buildsystem" : "meson",
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "https://gitlab.gnome.org/GNOME/libadwaita.git",
-                    "commit": "198e5593a08d5ae846802d21e9cca02df5559e1b"
-                }
-            ]
-        },
-        {
             "name": "share-preview",
             "buildsystem": "meson",
             "run-tests": true,
