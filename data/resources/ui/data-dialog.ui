@@ -12,13 +12,14 @@
           <object class="AdwHeaderBar">
             <child type="title">
               <object class="AdwViewSwitcher">
-                <property name="stack">stack</property>
+                <property name="stack">viewstack</property>
+                <property name="policy">wide</property>
               </object>
             </child>
           </object>
         </child>
         <child>
-          <object class="AdwViewStack" id="stack">
+          <object class="AdwViewStack" id="viewstack">
             <child>
               <object class="AdwViewStackPage">
                 <property name="name">metadata</property>
@@ -27,47 +28,95 @@
                 <property name="child">
                   <object class="GtkBox">
                     <property name="orientation">vertical</property>
-                    <property name="spacing">24</property>
-                    <property name="margin-bottom">24</property>
                     <child>
-                      <object class="GtkSearchBar" id="search_bar">
+                      <object class="GtkSearchBar">
                         <property name="search-mode-enabled">true</property>
                         <property name="child">
-                          <object class="GtkSearchEntry" id="search">
+                          <object class="AdwClamp">
                             <property name="hexpand">true</property>
+                            <property name="child">
+                              <object class="GtkSearchEntry" id="search">
+                              </object>
+                            </property>
                           </object>
                         </property>
                       </object>
                     </child>
                     <child>
-                      <object class="AdwClamp">
+                      <object class="GtkScrolledWindow">
+                        <property name="hexpand">true</property>
+                        <property name="vexpand">true</property>
                         <property name="child">
-                          <object class="GtkBox">
-                            <property name="orientation">vertical</property>
-                            <property name="spacing">12</property>
-                            <child>
-                              <object class="GtkLabel" id="title">
-                                <property name="xalign">0</property>
-                                <property name="selectable">true</property>
-                                <property name="wrap">true</property>
-                                <style>
-                                  <class name="heading" />
-                                </style>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkScrolledWindow">
-                                <property name="hexpand">true</property>
-                                <property name="vexpand">true</property>
-                                <property name="child">
-                                  <object class="GtkListView" id="list">
-                                    <style>
-                                      <class name="content" />
-                                    </style>
+                          <object class="AdwClamp">
+                            <property name="margin-top">24</property>
+                            <property name="margin-bottom">24</property>
+                            <property name="child">
+                              <object class="GtkBox">
+                                <property name="orientation">vertical</property>
+                                <property name="spacing">12</property>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkLabel" id="title">
+                                        <property name="xalign">0</property>
+                                        <property name="selectable">true</property>
+                                        <property name="wrap">true</property>
+                                        <style>
+                                          <class name="heading" />
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="url">
+                                        <property name="xalign">0</property>
+                                        <property name="selectable">true</property>
+                                        <property name="wrap">true</property>
+                                        <style>
+                                          <class name="caption" />
+                                        </style>
+                                      </object>
+                                    </child>
                                   </object>
-                                </property>
+                                </child>
+                                <child>
+                                  <object class="GtkStack" id="stack">
+                                    <property name="transition-type">none</property>
+                                    <property name="vhomogeneous">false</property>
+                                    <property name="vexpand">true</property>
+                                    <child>
+                                      <object class="GtkStackPage">
+                                        <property name="name">list</property>
+                                        <property name="child">
+                                          <object class="GtkListBox" id="list">
+                                            <property name="selection-mode">none</property>
+                                            <property name="valign">start</property>
+                                            <style>
+                                              <class name="content" />
+                                            </style>
+                                          </object>
+                                        </property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkStackPage">
+                                        <property name="name">empty</property>
+                                        <property name="child">
+                                          <object class="GtkLabel">
+                                            <property name="wrap">true</property>
+                                            <property name="justify">center</property>
+                                            <property name="label" translatable="yes">Nothing to Show</property>
+                                            <style>
+                                              <class name="large-title"/>
+                                            </style>
+                                          </object>
+                                        </property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
                               </object>
-                            </child>
+                            </property>
                           </object>
                         </property>
                       </object>
@@ -79,22 +128,67 @@
             <child>
               <object class="AdwViewStackPage">
                 <property name="name">images</property>
-                <property name="title" translatable="yes">Images</property>
+                <property name="title" translatable="yes">Body Images</property>
                 <property name="icon-name">image-x-generic-symbolic</property>
                 <property name="child">
                   <object class="GtkBox">
                     <property name="orientation">vertical</property>
                     <child>
+                      <object class="GtkSearchBar">
+                        <property name="search-mode-enabled">true</property>
+                        <property name="child">
+                          <object class="AdwClamp">
+                            <property name="hexpand">true</property>
+                            <property name="child">
+                              <object class="GtkSearchEntry" id="images_search">
+                              </object>
+                            </property>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkScrolledWindow">
                         <property name="hexpand">true</property>
                         <property name="vexpand">true</property>
                         <property name="child">
-                          <object class="AdwClampScrollable">
+                          <object class="AdwClamp">
+                            <property name="margin-top">24</property>
+                            <property name="margin-bottom">24</property>
                             <property name="child">
-                              <object class="GtkListView">
-                                <style>
-                                  <class name="content" />
-                                </style>
+                              <object class="GtkStack" id="images_stack">
+                                <property name="transition-type">none</property>
+                                <property name="vhomogeneous">false</property>
+                                <property name="vexpand">true</property>
+                                <child>
+                                  <object class="GtkStackPage">
+                                    <property name="name">list</property>
+                                    <property name="child">
+                                      <object class="GtkListBox" id="images_list">
+                                        <property name="selection-mode">none</property>
+                                        <property name="valign">start</property>
+                                        <style>
+                                          <class name="content" />
+                                        </style>
+                                      </object>
+                                    </property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkStackPage">
+                                    <property name="name">empty</property>
+                                    <property name="child">
+                                      <object class="GtkLabel">
+                                        <property name="wrap">true</property>
+                                        <property name="justify">center</property>
+                                        <property name="label" translatable="yes">Nothing to Show</property>
+                                        <style>
+                                          <class name="large-title"/>
+                                        </style>
+                                      </object>
+                                    </property>
+                                  </object>
+                                </child>
                               </object>
                             </property>
                           </object>

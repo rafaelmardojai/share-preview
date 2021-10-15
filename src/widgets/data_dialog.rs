@@ -5,6 +5,7 @@ use crate::backend::{Data};
 use super::MetadataItem;
 
 use adw::subclass::prelude::*;
+use glib::clone;
 use gtk::subclass::prelude::*;
 use gtk::{self, prelude::*};
 use gtk::{gio, glib, CompositeTemplate};
@@ -16,14 +17,23 @@ mod imp {
     #[template(resource = "/com/rafaelmardojai/SharePreview/data-dialog.ui")]
     pub struct DataDialog {
         pub model: gio::ListStore,
-        #[template_child]
-        pub search_bar: TemplateChild<gtk::SearchBar>,
+        pub images_model: gtk::StringList,
         #[template_child]
         pub search: TemplateChild<gtk::SearchEntry>,
         #[template_child]
+        pub images_search: TemplateChild<gtk::SearchEntry>,
+        #[template_child]
         pub title: TemplateChild<gtk::Label>,
         #[template_child]
-        pub list: TemplateChild<gtk::ListView>,
+        pub url: TemplateChild<gtk::Label>,
+        #[template_child]
+        pub stack: TemplateChild<gtk::Stack>,
+        #[template_child]
+        pub images_stack: TemplateChild<gtk::Stack>,
+        #[template_child]
+        pub list: TemplateChild<gtk::ListBox>,
+        #[template_child]
+        pub images_list: TemplateChild<gtk::ListBox>,
     }
 
     #[glib::object_subclass]
@@ -35,10 +45,15 @@ mod imp {
         fn new() -> Self {
             Self {
                 model: gio::ListStore::new(MetadataItem::static_type()),
-                search_bar: TemplateChild::default(),
+                images_model: gtk::StringList::new(&[]),
                 search: TemplateChild::default(),
+                images_search: TemplateChild::default(),
                 title: TemplateChild::default(),
+                url: TemplateChild::default(),
+                stack: TemplateChild::default(),
+                images_stack: TemplateChild::default(),
                 list: TemplateChild::default(),
+                images_list: TemplateChild::default(),
             }
         }
 
@@ -67,26 +82,22 @@ impl DataDialog {
     pub fn new(data: &Data) -> Self {
         let dialog: Self = glib::Object::new(&[]).expect("Failed to create DataDialog");
 
-        dialog.setup();
-        dialog.set_data(&data);
+        dialog.set_metadata(&data);
+        dialog.set_images(&data);
 
         dialog
     }
 
-    pub fn setup(&self) {
+    pub fn set_metadata(&self, data: &Data) {
         let imp = imp::DataDialog::from_instance(self);
-
-        imp.search_bar.set_key_capture_widget(Some(self));
-    }
-
-    pub fn set_data(&self, data: &Data) {
-        let imp = imp::DataDialog::from_instance(self);
+        let stack = &*imp.stack;
 
         let site_title = match &data.title {
             Some(title) => title.to_string(),
             None => data.url.to_string()
         };
         imp.title.set_label(&site_title);
+        imp.url.set_label(&data.url);
 
         // imp.model.remove_all(); // Remove previous model items
         // Add new items from HashMap:
@@ -124,14 +135,88 @@ impl DataDialog {
             .flags(glib::BindingFlags::SYNC_CREATE)
             .build();
 
-        // Items factory for ListView from UI resource
-        let factory = gtk::BuilderListItemFactory::from_resource(
-            None::<&gtk::BuilderScope>, "/com/rafaelmardojai/SharePreview/metadata-item.ui"
-        );
-        let selection_model = gtk::NoSelection::new(Some(&filter_model)); // Selection model
+        // Bind model with ListBox
+        imp.list.bind_model(
+            Some(&filter_model),
+            clone!(@weak self as self_ =>  @default-panic, move |item| {
+                let item = item.downcast_ref::<MetadataItem>().expect("Couldn't get MetadataItem");
+            self_.metadata_row(
+                Some(&item.property("key").unwrap().get::<String>().unwrap()),
+                Some(&item.property("value").unwrap().get::<String>().unwrap())
+            )
+        }));
 
-        // Set factory and model to ListView
-        imp.list.set_factory(Some(&factory));
-        imp.list.set_model(Some(&selection_model));
+        // Setup no results view
+        filter_model.connect_items_changed(clone!(@weak stack => move |model,_,_,_| {
+            let model = model.upcast_ref::<gio::ListModel>();
+            if model.n_items() > 0 {
+                stack.set_visible_child_name("list");
+            } else {
+                stack.set_visible_child_name("empty");
+            }
+        }));
+        filter_model.items_changed(0, 0, 0);
+    }
+
+    pub fn set_images(&self, data: &Data) {
+        let imp = imp::DataDialog::from_instance(self);
+        let images_stack = &*imp.images_stack;
+
+        // Set images into the StringsList
+        for image in &data.images {
+            imp.images_model.append(&image.url);
+        }
+
+        // Create filter for the StringsList
+        let filter = gtk::StringFilter::new(Some(
+            &gtk::PropertyExpression::new(
+                gtk::StringObject::static_type(), None::<&gtk::Expression>, "string"
+            )
+        ));
+        let filter_model = gtk::FilterListModel::new(Some(&imp.images_model), Some(&filter));
+        filter_model.set_incremental(true);
+
+        // Bind search entry with filter
+        imp.images_search.bind_property("text", &filter, "search")
+            .flags(glib::BindingFlags::SYNC_CREATE)
+            .build();
+
+        // Bind model with ListBox
+        imp.images_list.bind_model(
+            Some(&filter_model),
+            clone!(@weak self as self_ =>  @default-panic, move |item| {
+            let item = item.downcast_ref::<gtk::StringObject>().expect("Couldn't get MetadataItem");
+
+            self_.metadata_row(None, Some(&item.string().to_string()))
+        }));
+
+        // Setup no results view
+        filter_model.connect_items_changed(clone!(@weak images_stack => move |model,_,_,_| {
+            let model = model.upcast_ref::<gio::ListModel>();
+            if model.n_items() > 0 {
+                images_stack.set_visible_child_name("list");
+            } else {
+                images_stack.set_visible_child_name("empty");
+            }
+        }));
+        filter_model.items_changed(0, 0, 0);
+    }
+
+    pub fn metadata_row(&self, key: Option<&String>, value: Option<&String>) -> gtk::Widget {
+        let builder = gtk::Builder::from_resource("/com/rafaelmardojai/SharePreview/metadata-item.ui");
+        let row: gtk::ListBoxRow = builder.object("row").expect("Couldn't get widget");
+        let key_label: gtk::Label = builder.object("key").expect("Couldn't get widget");
+        let value_label: gtk::Label = builder.object("value").expect("Couldn't get widget");
+
+        match key {
+            Some(s) => key_label.set_label(&s),
+            None => key_label.set_visible(false)
+        };
+        match value {
+            Some(s) => value_label.set_label(&s),
+            None => value_label.set_visible(false)
+        };
+
+        row.upcast::<gtk::Widget>()
     }
 }

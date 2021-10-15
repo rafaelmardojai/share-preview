@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="GtkListItem">
+  <object class="GtkListBoxRow" id="row">
     <property name="child">
       <object class="GtkBox">
         <property name="orientation">vertical</property>
@@ -9,35 +9,25 @@
           <class name="metadata-item"/>
         </style>
         <child>
-          <object class="GtkLabel">
+          <object class="GtkLabel" id="key">
             <property name="xalign">0</property>
             <property name="wrap">true</property>
             <property name="wrap-mode">word-char</property>
             <property name="selectable">true</property>
-            <binding name="label">
-              <lookup name="key" type="MetadataItem">
-                <lookup name="item">GtkListItem</lookup>
-              </lookup>
-            </binding>
             <style>
               <class name="heading"/>
             </style>
           </object>
         </child>
         <child>
-          <object class="GtkLabel">
+          <object class="GtkLabel" id="value">
             <property name="xalign">0</property>
             <property name="wrap">true</property>
             <property name="wrap-mode">word-char</property>
             <property name="selectable">true</property>
-            <binding name="label">
-              <lookup name="value" type="MetadataItem">
-                <lookup name="item">GtkListItem</lookup>
-              </lookup>
-            </binding>
           </object>
         </child>
       </object>
     </property>
-  </template>
+  </object>
 </interface>

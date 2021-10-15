@@ -116,8 +116,8 @@
                         <property name="name">splash</property>
                         <property name="child">
                           <object class="AdwStatusPage" id="start_page">
-                                <property name="title">Set a URL to preview</property>
-                              </object>
+                            <property name="title">Set a URL to preview</property>
+                          </object>
                         </property>
                       </object>
                     </child>
@@ -131,7 +131,7 @@
                             <property name="spacing">6</property>
                             <child>
                               <object class="GtkSpinner" id="spinner">
-                              <property name="height_request">32</property>
+                                <property name="height_request">32</property>
                                 <property name="width_request">32</property>
                               </object>
                             </child>
