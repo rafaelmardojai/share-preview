@@ -13,9 +13,13 @@
     <screenshot type="default">
       <image>https://github.com/rafaelmardojai/share-preview/raw/master/brand/screenshot-1.png</image>
     </screenshot>
+    <screenshot>
+      <image>https://github.com/rafaelmardojai/share-preview/raw/master/brand/screenshot-2.png</image>
+    </screenshot>
   </screenshots>
   <url type="homepage">https://github.com/rafaelmardojai/share-preview</url>
   <url type="bugtracker">https://github.com/rafaelmardojai/share-preview/issues</url>
+  <url type="donation">https://rafaelmardojai.com/donate/</url>
   <content_rating type="oars-1.0" />
   <releases>
     <release version="0.1.2" date="2021-05-25">
