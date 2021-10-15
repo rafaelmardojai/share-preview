@@ -131,15 +131,15 @@ impl SharePreviewWindow {
 
     fn setup_widgets(&self) {
         let imp = imp::SharePreviewWindow::from_instance(self);
-        let gtk_settings = gtk::Settings::default().unwrap();
+        let style_manager = adw::StyleManager::default().unwrap();
 
-        imp.settings.bind(
-            "dark-theme",
-            &gtk_settings,
-            "gtk-application-prefer-dark-theme",
-        ).build();
+        imp.start_page.set_icon_name(Some(APP_ID));
 
-        imp.start_page.set_icon_name(Some(APP_ID))
+        if style_manager.system_supports_color_schemes() {
+            imp.dark_theme.set_visible(true);
+        } else {
+            imp.dark_theme.set_visible(false);
+        }
     }
 
     fn setup_actions(&self) {
@@ -243,9 +243,12 @@ impl SharePreviewWindow {
 
         imp.dark_theme.connect_clicked(
             clone!(@weak self as win => move |_| {
-                let win_ = imp::SharePreviewWindow::from_instance(&win);
-                win_.settings.set_boolean("dark-theme", !win_.settings.boolean("dark-theme"))
-                .expect("Error setting dark theme.");
+                let style_manager = adw::StyleManager::default().unwrap();
+                if style_manager.is_dark() {
+                    style_manager.set_color_scheme(adw::ColorScheme::ForceLight);
+                } else {
+                    style_manager.set_color_scheme(adw::ColorScheme::ForceDark);
+                }
             })
         );
 
