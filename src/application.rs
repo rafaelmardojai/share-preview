@@ -8,7 +8,7 @@ use glib::clone;
 use glib::WeakRef;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gdk, gio, glib};
+use gtk::{gio, glib};
 use gtk_macros::action;
 use log::{debug, info};
 use once_cell::sync::OnceCell;
@@ -43,7 +43,6 @@ mod imp {
             }
 
             app.set_resource_base_path(Some("/com/rafaelmardojai/SharePreview/"));
-            app.setup_css();
 
             let window = SharePreviewWindow::new(app);
             self.window
@@ -117,18 +116,6 @@ impl SharePreviewApplication {
     fn setup_accels(&self) {
         self.set_accels_for_action("app.quit", &["<primary>q"]);
         self.set_accels_for_action("win.show-help-overlay", &["<primary>question"]);
-    }
-
-    fn setup_css(&self) {
-        let provider = gtk::CssProvider::new();
-        provider.load_from_resource("/com/rafaelmardojai/SharePreview/style.css");
-        if let Some(display) = gdk::Display::default() {
-            gtk::StyleContext::add_provider_for_display(
-                &display,
-                &provider,
-                gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
-            );
-        }
     }
 
     fn show_about_dialog(&self) {
