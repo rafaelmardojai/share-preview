@@ -24,7 +24,7 @@ mod imp {
         pub data: RefCell<Data>,
         pub active_url: RefCell<String>,
         #[template_child]
-        pub dark_theme: TemplateChild<gtk::Button>,
+        pub color_scheme: TemplateChild<gtk::Button>,
         #[template_child]
         pub social: TemplateChild<gtk::DropDown>,
         #[template_child]
@@ -59,7 +59,7 @@ mod imp {
                 card: RefCell::new(Option::default()),
                 data: RefCell::new(Data::default()),
                 active_url: RefCell::new(String::default()),
-                dark_theme: TemplateChild::default(),
+                color_scheme: TemplateChild::default(),
                 social: TemplateChild::default(),
                 url_box: TemplateChild::default(),
                 url_entry: TemplateChild::default(),
@@ -131,15 +131,7 @@ impl SharePreviewWindow {
 
     fn setup_widgets(&self) {
         let imp = imp::SharePreviewWindow::from_instance(self);
-        let style_manager = adw::StyleManager::default().unwrap();
-
         imp.start_page.set_icon_name(Some(APP_ID));
-
-        if style_manager.system_supports_color_schemes() {
-            imp.dark_theme.set_visible(true);
-        } else {
-            imp.dark_theme.set_visible(false);
-        }
     }
 
     fn setup_actions(&self) {
@@ -241,7 +233,7 @@ impl SharePreviewWindow {
         let imp = imp::SharePreviewWindow::from_instance(self);
         let url_entry = &*imp.url_entry;
 
-        imp.dark_theme.connect_clicked(
+        imp.color_scheme.connect_clicked(
             clone!(@weak self as win => move |_| {
                 let style_manager = adw::StyleManager::default().unwrap();
                 if style_manager.is_dark() {

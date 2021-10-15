@@ -40,7 +40,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkButton" id="dark_theme">
+                  <object class="GtkButton" id="color_scheme">
                     <property name="icon_name">display-brightness-symbolic</property>
                     <property name="tooltip-text" translatable="yes">Toggle Color Scheme</property>
                   </object>
