@@ -33,16 +33,16 @@
                   </object>
                 </child>
                 <child>
+                  <object class="GtkButton" id="color_scheme">
+                    <property name="icon_name">display-brightness-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Toggle Color Scheme</property>
+                  </object>
+                </child>
+                <child type="end">
                   <object class="GtkMenuButton" id="menu_button">
                     <property name="menu_model">primary_menu</property>
                     <property name="icon_name">open-menu-symbolic</property>
                     <property name="tooltip-text" translatable="yes">Menu</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkButton" id="color_scheme">
-                    <property name="icon_name">display-brightness-symbolic</property>
-                    <property name="tooltip-text" translatable="yes">Toggle Color Scheme</property>
                   </object>
                 </child>
               </object>
