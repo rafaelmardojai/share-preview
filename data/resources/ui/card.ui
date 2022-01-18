@@ -2,7 +2,6 @@
 <interface>
   <template class="CardBox" parent="GtkBox">
     <property name="vexpand">true</property>
-    <property name="width_request">526</property>
     <child>
       <object class="GtkStack" id="stack">
       <child>
@@ -14,6 +13,7 @@
                 <property name="spacing">12</property>
                 <property name="hexpand">true</property>
                 <property name="valign">center</property>
+                <property name="overflow">hidden</property>
                 <style>
                   <class name="card"/>
                 </style>
@@ -26,6 +26,9 @@
                   <object class="GtkBox" id="textbox">
                     <property name="orientation">vertical</property>
                     <property name="spacing">6</property>
+                    <style>
+                      <class name="card-text"/>
+                    </style>
                     <child>
                       <object class="GtkLabel" id="title">
                         <property name="xalign">0</property>

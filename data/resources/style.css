@@ -11,14 +11,6 @@
   padding: 8px;
 }
 
-.card {
-  background-color: @theme_base_color;
-  border: 1px solid @borders;
-  border-radius: 9px;
+.card-text {
   padding: 12px;
-}
-
-button.large {
-  min-width: 48px;
-  min-height: 48px;
 }

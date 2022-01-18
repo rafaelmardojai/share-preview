@@ -14,7 +14,7 @@
   </menu>
   <template class="SharePreviewWindow" parent="AdwApplicationWindow">
     <property name="resizable">false</property>
-    <property name="default_width">550</property>
+    <property name="default_width">524</property>
     <property name="default_height">562</property>
     <property name="focus_widget">url_entry</property>
     <property name="content">
@@ -186,8 +186,7 @@
                                 <property name="valign">end</property>
                                 <property name="tooltip-text" translatable="yes">View Found Data...</property>
                                 <style>
-                                  <class name="circular"/>
-                                  <class name="large"/>
+                                  <class name="pill"/>
                                 </style>
                               </object>
                             </child>
