@@ -235,7 +235,7 @@ impl SharePreviewWindow {
 
         imp.color_scheme.connect_clicked(
             clone!(@weak self as win => move |_| {
-                let style_manager = adw::StyleManager::default().unwrap();
+                let style_manager = adw::StyleManager::default();
                 if style_manager.is_dark() {
                     style_manager.set_color_scheme(adw::ColorScheme::ForceLight);
                 } else {
@@ -285,8 +285,7 @@ impl SharePreviewWindow {
                 }
                 None
             }),
-        )
-        .unwrap();
+        );
     }
 
     pub fn update_card(&self) {

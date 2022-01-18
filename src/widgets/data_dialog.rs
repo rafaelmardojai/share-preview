@@ -140,11 +140,12 @@ impl DataDialog {
             Some(&filter_model),
             clone!(@weak self as self_ =>  @default-panic, move |item| {
                 let item = item.downcast_ref::<MetadataItem>().expect("Couldn't get MetadataItem");
-            self_.metadata_row(
-                Some(&item.property("key").unwrap().get::<String>().unwrap()),
-                Some(&item.property("value").unwrap().get::<String>().unwrap())
-            )
-        }));
+                self_.metadata_row(
+                    Some(&item.property::<String>("key")),
+                    Some(&item.property::<String>("value"))
+                )
+            })
+        );
 
         // Setup no results view
         filter_model.connect_items_changed(clone!(@weak stack => move |model,_,_,_| {

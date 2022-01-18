@@ -7,7 +7,7 @@ use std::cell::RefCell;
 
 mod imp {
     use super::*;
-    use glib::ParamSpec;
+    use glib::{ParamSpec, ParamSpecString};
 
     #[derive(Debug)]
     pub struct MetadataItem {
@@ -34,8 +34,8 @@ mod imp {
             use once_cell::sync::Lazy;
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
-                    ParamSpec::new_string("key", "key", "Key", None, glib::ParamFlags::READWRITE),
-                    ParamSpec::new_string("value", "value", "Value", None, glib::ParamFlags::READWRITE),
+                    ParamSpecString::new("key", "key", "Key", None, glib::ParamFlags::READWRITE),
+                    ParamSpecString::new("value", "value", "Value", None, glib::ParamFlags::READWRITE),
                 ]
             });
             PROPERTIES.as_ref()
