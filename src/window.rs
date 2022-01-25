@@ -246,7 +246,7 @@ impl SharePreviewWindow {
 
         imp.url_entry.connect_activate(
             clone!(@weak self as win => move |_| {
-                WidgetExt::activate_action(&win, "win.run", None);
+                WidgetExt::activate_action(&win, "win.run", None).unwrap();
             })
         );
 
@@ -254,7 +254,7 @@ impl SharePreviewWindow {
             clone!(@weak self as win => move |_, icon| {
                 match icon {
                     EntryIconPosition::Secondary => {
-                        WidgetExt::activate_action(&win, "win.run", None);
+                        WidgetExt::activate_action(&win, "win.run", None).unwrap();
                     },
                     _ => {}
                 }
@@ -281,7 +281,7 @@ impl SharePreviewWindow {
                 if !active_url.is_empty() {
                     win.update_card();
                 } else {
-                    WidgetExt::activate_action(&win, "win.run", None);
+                    WidgetExt::activate_action(&win, "win.run", None).unwrap();
                 }
                 None
             }),
