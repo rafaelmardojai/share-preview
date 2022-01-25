@@ -91,8 +91,8 @@ impl CardImage {
         let img = img.clone();
         spawn!(async move {
             match img.fetch(width, height).await {
-                Ok(pixbuf) => {
-                    image.set_pixbuf(Some(&pixbuf));
+                Ok(texture) => {
+                    image.set_paintable(Some(&texture));
                     stack.set_visible_child_name("image");
                 }
                 Err(err) => {
@@ -103,7 +103,7 @@ impl CardImage {
                         ImageError::InvalidFormat => {
                             gettext("Invalid image format.")
                         },
-                        ImageError::PixbufError | ImageError::Unexpected => {
+                        ImageError::TextureError | ImageError::Unexpected => {
                             gettext("Unexpected image error.")
                         }
                     };

@@ -1,15 +1,14 @@
 // Copyright 2021 Rafael Mardojai CM
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-use std::env::temp_dir;
 use std::error;
 use std::fmt::{Display, Formatter, Result as FmtResult};
 
 use super::CLIENT;
 use image;
-use gtk::gdk_pixbuf;
+use gtk::glib::Bytes;
+use gtk::gdk::Texture;
 use url::{Url, ParseError};
-use uuid::Uuid;
 
 #[derive(Debug, Clone)]
 pub struct Image {
@@ -37,7 +36,7 @@ impl Image {
         self
     }
 
-    pub async fn fetch(&self, width: u32, height: u32) -> Result<gdk_pixbuf::Pixbuf, ImageError> {
+    pub async fn fetch(&self, width: u32, height: u32) -> Result<Texture, ImageError> {
         //! Fetch image and crop it to the given size
         //! return a Pixbuf to use in a GtkPicture
 
@@ -47,23 +46,23 @@ impl Image {
             let bytes = resp.body_bytes().await?;
             let format = image::guess_format(&bytes);
 
-            let mut dir = temp_dir();
-            let file_name = Uuid::new_v4().to_string(); // Generate a random name for the temp file
-            dir.push(file_name); // Push temp file name to the temp folder path
-
             match format {
                 Ok(format) => {
-                    let image = image::load_from_memory(&bytes).unwrap();
+                    let image = image::load_from_memory_with_format(&bytes, format).unwrap();
                     // Resize and crop image to the give size:
                     let thumbnail = image.resize_to_fill(width, height, image::imageops::FilterType::Triangle);
-                    let dir = dir.to_str().unwrap(); // Convert temp file path to String
+                    let mut thumbnail_bytes = Vec::new();
 
-                    // Save image to temp file and create a Pixbuf from it:
-                    match thumbnail.save_with_format(&dir, format) {
+                    match thumbnail.write_to(&mut thumbnail_bytes, format) {
                         Ok(_) => {
-                            match gdk_pixbuf::Pixbuf::from_file(&dir) {
-                                Ok(pixbuf) => Ok(pixbuf),
-                                Err(_) => Err(ImageError::PixbufError)
+                            let bytes = Bytes::from(&thumbnail_bytes);
+                            match Texture::from_bytes(&bytes) {
+                                Ok(texture) => {
+                                    Ok(texture)
+                                },
+                                Err(_) => {
+                                    Err(ImageError::TextureError)
+                                }
                             }
                         },
                         Err(_) => Err(ImageError::Unexpected)
@@ -81,7 +80,7 @@ impl Image {
 pub enum ImageError {
     FetchError(surf::Error),
     InvalidFormat,
-    PixbufError,
+    TextureError,
     Unexpected,
 }
 
@@ -90,7 +89,7 @@ impl Display for ImageError {
         match *self {
             ImageError::FetchError(ref e) => write!(f, "NetworkError: {}", e),
             ImageError::InvalidFormat => write!(f, "InvalidFormat"),
-            ImageError::PixbufError => write!(f, "PixbufError"),
+            ImageError::TextureError => write!(f, "TextureError"),
             ImageError::Unexpected => write!(f, "UnexpectedError"),
         }
     }
