@@ -1,7 +1,7 @@
 # ITALIAN TRALNSLATION FOR SHARE-PREVIEW.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the share-preview package.
-# ALBANO BATTISTELLA <albano_battistella@hotmail.com>, 2021.
+# ALBANO BATTISTELLA <albano_battistella@hotmail.com>, 2021,2022.
 #
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 msgid ""
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-25 12:01-0500\n"
-"PO-Revision-Date: 2021-05-25 19:43+0100\n"
+"PO-Revision-Date: 2022-02-08 20:43+0100\n"
 "Last-Translator: Albano Battistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "Language: it\n"
@@ -47,7 +47,7 @@ msgstr "_Scorciatoie da tastiera"
 
 #: data/resources/ui/window.ui:10
 msgid "_About Share Preview"
-msgstr "_Informazioni sull'anteprima di condivisione"
+msgstr "_Informazioni su Share Preview"
 
 #: data/resources/ui/window.ui:36
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
