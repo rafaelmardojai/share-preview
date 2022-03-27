@@ -105,7 +105,7 @@ impl Card {
 
         // Get first available value from meta-tags to lookup
         let pre_title = Card::get_correct_tag(&title_find, &metadata, false);
-        let title = match &pre_title { // Convert image String to a Image struct:
+        let title = match &pre_title {
             Some(title) => title.to_string(),
             None => {
                 match &data.title {
@@ -115,6 +115,7 @@ impl Card {
             }
         };
         let description = Card::get_correct_tag(&description_find, &metadata, false);
+        // TODO: Get description from HTML for Facebook
         let pre_image = Card::get_correct_tag(&image_find, &metadata, true);
         let mut image = match pre_image { // Convert image String to a Image struct:
             Some(url) => Some(Image::new(url)),
@@ -123,11 +124,8 @@ impl Card {
         let card_type = Card::get_correct_tag(&type_find, &metadata, false);
 
         // Return error if no basic data is found
-        match (&pre_title, &description) {
-            (None, None) => {
-                return Err(CardError::NotEnoughData);
-            },
-            _ => ()
+        if let (Social::Twitter, None, None) = (&social, &pre_title, &description) {
+            return Err(CardError::NotEnoughData);
         }
 
         // Final per social media match with obtained results
