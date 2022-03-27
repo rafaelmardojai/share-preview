@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-25 12:01-0500\n"
+"POT-Creation-Date: 2022-03-27 18:02-0500\n"
 "PO-Revision-Date: 2021-09-26 20:49+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish <gnometurk@gnome.org>\n"
@@ -20,9 +20,21 @@ msgstr ""
 "X-Generator: Poedit 2.4.3\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: data/resources/ui/card.ui:66
+#: data/resources/ui/card.ui:69
 msgid "Card Error"
 msgstr "Kart Hatası"
+
+#: data/resources/ui/data-dialog.ui:26
+msgid "Metadata"
+msgstr ""
+
+#: data/resources/ui/data-dialog.ui:108 data/resources/ui/data-dialog.ui:184
+msgid "Nothing to Show"
+msgstr ""
+
+#: data/resources/ui/data-dialog.ui:131
+msgid "Body Images"
+msgstr ""
 
 #: data/resources/ui/image.ui:68
 msgid "Image Error"
@@ -51,31 +63,32 @@ msgstr "_Klavye Kısayolları"
 msgid "_About Share Preview"
 msgstr "Paylaşım Ön İzle _Hakkında"
 
-#: data/resources/ui/window.ui:36
+#: data/resources/ui/window.ui:32
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
-#: src/application.rs:128 src/main.rs:22
+#: src/application.rs:123 src/main.rs:22
 msgid "Share Preview"
 msgstr "Paylaşım Ön İzle"
 
-#: data/resources/ui/window.ui:48
+#: data/resources/ui/window.ui:38
+msgid "Toggle Color Scheme"
+msgstr ""
+
+#: data/resources/ui/window.ui:45
 msgid "Menu"
 msgstr "Menü"
 
-#: data/resources/ui/window.ui:58
-msgid "Toggle Dark Mode"
-msgstr "Koyu Kipe Geç"
+#: data/resources/ui/window.ui:86
+msgid "Go..."
+msgstr ""
 
-#: data/resources/ui/window.ui:113
+#: data/resources/ui/window.ui:97
 msgid "Invalid URL"
 msgstr "Geçersiz URL"
 
-#: data/resources/ui/window.ui:150
-msgid "Set a URL to preview"
-msgstr "Ön izlenecek URL belirle"
-
-#: data/resources/ui/window.ui:219 data/resources/ui/window.ui:256
-msgid "View Found Metadata"
+#: data/resources/ui/window.ui:187
+#, fuzzy
+msgid "View Found Data..."
 msgstr "Bulunan Üst Veriyi Göster"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
@@ -92,39 +105,44 @@ msgstr ""
 "Sosyal medya paylaşımı için web sitesi üst veri etiketlerini ön izle ve "
 "hatalarını ayıkla."
 
-
-#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:49
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:33
 msgid "Rafael Mardojai CM"
 msgstr "Rafael Mardojai CM"
 
-#: src/window.rs:209
+#: src/window.rs:188
 msgid "Network Error"
 msgstr "Ağ Hatası"
 
-#: src/window.rs:210 src/window.rs:214
+#: src/window.rs:189 src/window.rs:196
 msgid "Couldn't connect to the given URL."
 msgstr "Verilen URL’ye bağlanılamadı."
 
-#: src/window.rs:213
+#: src/window.rs:192
 msgid "Unexpected Error"
 msgstr "Beklenmeyen Hata"
 
-#: src/widgets/card.rs:96
+#: src/widgets/card.rs:91
 msgid "Couldn't find enough data to generate a card for this social media."
 msgstr "Bu sosyal medyaya kart oluşturmak için yeterli veri bulunamadı."
 
-#: src/widgets/card.rs:99
+#: src/widgets/card.rs:94
 msgid "Twitter: No card found."
 msgstr "Twitter: Kart bulunamadı."
 
-#: src/widgets/image.rs:106
+#: src/widgets/image.rs:101
 msgid "Failure when receiving image from the peer."
 msgstr "Eşten resim alırken hata."
 
-#: src/widgets/image.rs:109
+#: src/widgets/image.rs:104
 msgid "Invalid image format."
 msgstr "Geçersiz resim biçimi."
 
-#: src/widgets/image.rs:112
+#: src/widgets/image.rs:107
 msgid "Unexpected image error."
 msgstr "Beklenmeyen resim hatası."
+
+#~ msgid "Toggle Dark Mode"
+#~ msgstr "Koyu Kipe Geç"
+
+#~ msgid "Set a URL to preview"
+#~ msgstr "Ön izlenecek URL belirle"

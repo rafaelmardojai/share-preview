@@ -3,23 +3,36 @@
 # This file is distributed under the same license as the share-preview package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-25 12:01-0500\n"
+"POT-Creation-Date: 2022-03-27 18:02-0500\n"
 "PO-Revision-Date: 2021-09-18 13:32+0200\n"
+"Last-Translator: Quentin PAGÈS\n"
 "Language-Team: \n"
+"Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.0\n"
-"Last-Translator: Quentin PAGÈS\n"
-"Language: oc\n"
 
-#: data/resources/ui/card.ui:66
+#: data/resources/ui/card.ui:69
 msgid "Card Error"
 msgstr "Error de carta"
+
+#: data/resources/ui/data-dialog.ui:26
+msgid "Metadata"
+msgstr ""
+
+#: data/resources/ui/data-dialog.ui:108 data/resources/ui/data-dialog.ui:184
+msgid "Nothing to Show"
+msgstr ""
+
+#: data/resources/ui/data-dialog.ui:131
+msgid "Body Images"
+msgstr ""
 
 #: data/resources/ui/image.ui:68
 msgid "Image Error"
@@ -48,31 +61,32 @@ msgstr "Aco_rchis de clavièr"
 msgid "_About Share Preview"
 msgstr "_A prepaus de Share Preview"
 
-#: data/resources/ui/window.ui:36
+#: data/resources/ui/window.ui:32
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
-#: src/application.rs:128 src/main.rs:22
+#: src/application.rs:123 src/main.rs:22
 msgid "Share Preview"
 msgstr "Share Preview"
 
-#: data/resources/ui/window.ui:48
+#: data/resources/ui/window.ui:38
+msgid "Toggle Color Scheme"
+msgstr ""
+
+#: data/resources/ui/window.ui:45
 msgid "Menu"
 msgstr "Menú"
 
-#: data/resources/ui/window.ui:58
-msgid "Toggle Dark Mode"
-msgstr "Alternar lo mòde escur"
+#: data/resources/ui/window.ui:86
+msgid "Go..."
+msgstr ""
 
-#: data/resources/ui/window.ui:113
+#: data/resources/ui/window.ui:97
 msgid "Invalid URL"
 msgstr "URL invalida"
 
-#: data/resources/ui/window.ui:150
-msgid "Set a URL to preview"
-msgstr "Definir una URL a previsualizar"
-
-#: data/resources/ui/window.ui:219 data/resources/ui/window.ui:256
-msgid "View Found Metadata"
+#: data/resources/ui/window.ui:187
+#, fuzzy
+msgid "View Found Data..."
 msgstr "Veire las metadonadas trobadas"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
@@ -85,40 +99,50 @@ msgstr "Provar las cartas de malhums socials en local"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
-msgstr "Previsualizar e debugar las etiquetas de metadonadas de site web pels partiements de ligam."
+msgstr ""
+"Previsualizar e debugar las etiquetas de metadonadas de site web pels "
+"partiements de ligam."
 
-#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:31
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:33
 msgid "Rafael Mardojai CM"
 msgstr "Rafael Mardojai CM"
 
-#: src/window.rs:209
+#: src/window.rs:188
 msgid "Network Error"
 msgstr "Error ret"
 
-#: src/window.rs:210 src/window.rs:214
+#: src/window.rs:189 src/window.rs:196
 msgid "Couldn't connect to the given URL."
 msgstr "Connexion impossibla a l’URL donada."
 
-#: src/window.rs:213
+#: src/window.rs:192
 msgid "Unexpected Error"
 msgstr "Error inesperada"
 
-#: src/widgets/card.rs:96
+#: src/widgets/card.rs:91
 msgid "Couldn't find enough data to generate a card for this social media."
-msgstr "Èra pas possible de trobar pro de donadas per generar una carta per aqueste malhum social."
+msgstr ""
+"Èra pas possible de trobar pro de donadas per generar una carta per aqueste "
+"malhum social."
 
-#: src/widgets/card.rs:99
+#: src/widgets/card.rs:94
 msgid "Twitter: No card found."
 msgstr "Twitter : cap de carta pas trobada."
 
-#: src/widgets/image.rs:106
+#: src/widgets/image.rs:101
 msgid "Failure when receiving image from the peer."
 msgstr "Error pendent la recepcion de l’imatge del par estant."
 
-#: src/widgets/image.rs:109
+#: src/widgets/image.rs:104
 msgid "Invalid image format."
 msgstr "Format d'imatge invalid."
 
-#: src/widgets/image.rs:112
+#: src/widgets/image.rs:107
 msgid "Unexpected image error."
 msgstr "Error de l’imatge inesperada."
+
+#~ msgid "Toggle Dark Mode"
+#~ msgstr "Alternar lo mòde escur"
+
+#~ msgid "Set a URL to preview"
+#~ msgstr "Definir una URL a previsualizar"
