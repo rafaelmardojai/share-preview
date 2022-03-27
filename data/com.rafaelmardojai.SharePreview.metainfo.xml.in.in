@@ -22,6 +22,16 @@
   <url type="donation">https://rafaelmardojai.com/donate/</url>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="0.2.0" date="2022-03-27">
+      <description>
+        <ul>
+          <li>New page data dialog</li>
+          <li>Bug fixes</li>
+          <li>Code cleanup and improvements</li>
+          <li>Added new translations</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.1.2" date="2021-05-25">
       <description>
         <ul>
