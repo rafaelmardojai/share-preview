@@ -3,21 +3,20 @@
 # This file is distributed under the same license as the share-preview package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-27 18:02-0500\n"
-"PO-Revision-Date: 2021-05-24 14:44+0200\n"
+"PO-Revision-Date: 2022-03-28 17:40+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/resources/ui/card.ui:69
 msgid "Card Error"
@@ -25,15 +24,15 @@ msgstr "Kaartfout"
 
 #: data/resources/ui/data-dialog.ui:26
 msgid "Metadata"
-msgstr ""
+msgstr "Metagegevens"
 
 #: data/resources/ui/data-dialog.ui:108 data/resources/ui/data-dialog.ui:184
 msgid "Nothing to Show"
-msgstr ""
+msgstr "Er is niks om voor te vertonen"
 
 #: data/resources/ui/data-dialog.ui:131
 msgid "Body Images"
-msgstr ""
+msgstr "Inhoudsafbeeldingen"
 
 #: data/resources/ui/image.ui:68
 msgid "Image Error"
@@ -71,7 +70,7 @@ msgstr "Deelvoorvertoning"
 
 #: data/resources/ui/window.ui:38
 msgid "Toggle Color Scheme"
-msgstr ""
+msgstr "Van thema wisselen"
 
 #: data/resources/ui/window.ui:45
 msgid "Menu"
@@ -79,16 +78,15 @@ msgstr "Menu"
 
 #: data/resources/ui/window.ui:86
 msgid "Go..."
-msgstr ""
+msgstr "Gaan…"
 
 #: data/resources/ui/window.ui:97
 msgid "Invalid URL"
 msgstr "Ongeldige url"
 
 #: data/resources/ui/window.ui:187
-#, fuzzy
 msgid "View Found Data..."
-msgstr "Aangetroffen metagegevens bekijken"
+msgstr "Aangetroffen metagegevens bekijken…"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
 msgid "Gnome;GTK;"
@@ -101,7 +99,7 @@ msgstr "Test socialemediakaarten lokaal"
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
 msgstr ""
-"Maak een voorvertoning en bekijk foutopsporingsuitvoer van metagegevens-tags "
+"Maak een voorvertoning en bekijk foutopsporingsuitvoer van metagegevenstags "
 "van socialemedialinks."
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:33
