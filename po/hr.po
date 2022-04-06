@@ -1,15 +1,14 @@
 # Croatian translation for share-preview.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the share-preview package.
-# Milo Ivir <mail@milotype.de>, 2021.
+# Milo Ivir <mail@milotype.de>, 2021., 2022.
 #
-#: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-27 18:02-0500\n"
-"PO-Revision-Date: 2021-09-20 10:17+0100\n"
+"PO-Revision-Date: 2022-04-06 16:29+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
 "Language: hr\n"
@@ -26,15 +25,15 @@ msgstr "Greška karte"
 
 #: data/resources/ui/data-dialog.ui:26
 msgid "Metadata"
-msgstr ""
+msgstr "Metapodaci"
 
 #: data/resources/ui/data-dialog.ui:108 data/resources/ui/data-dialog.ui:184
 msgid "Nothing to Show"
-msgstr ""
+msgstr "Nema se što prikazati"
 
 #: data/resources/ui/data-dialog.ui:131
 msgid "Body Images"
-msgstr ""
+msgstr "Slike sadržaja"
 
 #: data/resources/ui/image.ui:68
 msgid "Image Error"
@@ -61,7 +60,7 @@ msgstr "_Tipkovni prečaci"
 
 #: data/resources/ui/window.ui:10
 msgid "_About Share Preview"
-msgstr "_Pregled dijeljenja – informacije"
+msgstr "_O programu Pregled dijeljenja"
 
 #: data/resources/ui/window.ui:32
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
@@ -72,7 +71,7 @@ msgstr "Pregled dijeljenja"
 
 #: data/resources/ui/window.ui:38
 msgid "Toggle Color Scheme"
-msgstr ""
+msgstr "Uključi/Isključi shemu boja"
 
 #: data/resources/ui/window.ui:45
 msgid "Menu"
@@ -80,16 +79,15 @@ msgstr "Izbornik"
 
 #: data/resources/ui/window.ui:86
 msgid "Go..."
-msgstr ""
+msgstr "Idi …"
 
 #: data/resources/ui/window.ui:97
 msgid "Invalid URL"
 msgstr "Neispravna URL adresa"
 
 #: data/resources/ui/window.ui:187
-#, fuzzy
 msgid "View Found Data..."
-msgstr "Prikaz pronađenih metapodataka"
+msgstr "Prikaz pronađenih podataka …"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
 msgid "Gnome;GTK;"
@@ -97,13 +95,13 @@ msgstr "Gnome;GTK;"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:8
 msgid "Test social media cards locally"
-msgstr "Ispitaj karte za društvene medije lokalno"
+msgstr "Testiraj karte za društvene medije lokalno"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
 msgstr ""
-"Pregledaj web-stranicu i otkloni greške u oznakama metapodataka za društvene "
-"medije."
+"Pregledaj i otkloni greške oznaka metapodataka web-stranice za dijeljenje na "
+"društvenim medijima."
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:33
 msgid "Rafael Mardojai CM"
@@ -131,7 +129,7 @@ msgstr "Twitter: Nema karte."
 
 #: src/widgets/image.rs:101
 msgid "Failure when receiving image from the peer."
-msgstr "Neuspjelo preuzimanje slike."
+msgstr "Greška prilikom dohvaćanja slike."
 
 #: src/widgets/image.rs:104
 msgid "Invalid image format."
@@ -140,9 +138,3 @@ msgstr "Neispravan format slike."
 #: src/widgets/image.rs:107
 msgid "Unexpected image error."
 msgstr "Neočekivana greška slike."
-
-#~ msgid "Toggle Dark Mode"
-#~ msgstr "Uklj./isklj. tamni modus"
-
-#~ msgid "Set a URL to preview"
-#~ msgstr "Zadaj URL adresu za pregled"
