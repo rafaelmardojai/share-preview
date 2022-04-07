@@ -1,23 +1,26 @@
-# Czech translations for share-preview package.
-# Copyright (C) 2021 THE share-preview'S COPYRIGHT HOLDER
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the share-preview package.
-# Vojtěch Perník <translations@pervoj.cz>, 2021.
-#
-#: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Rafael Mardojai CM <mardojai.cardenas@gmail.com>, 2022
+# Vojtěch Perník <develop@pervoj.cz>, 2022
+# 
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-27 18:02-0500\n"
-"PO-Revision-Date: 2021-08-06 20:13+0200\n"
-"Last-Translator: Vojtěch Perník <translations@pervoj.cz>\n"
-"Language-Team: Czech <gnome-cs-list@gnome.org>\n"
-"Language: cs\n"
+"PO-Revision-Date: 2022-04-07 15:11+0000\n"
+"Last-Translator: Vojtěch Perník <develop@pervoj.cz>, 2022\n"
+"Language-Team: Czech (https://www.transifex.com/rafaelmardojai/teams/135057/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
-"X-Generator: Gtranslator 40.0\n"
+"Language: cs\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 #: data/resources/ui/card.ui:69
 msgid "Card Error"
@@ -25,15 +28,15 @@ msgstr "Chyba karty"
 
 #: data/resources/ui/data-dialog.ui:26
 msgid "Metadata"
-msgstr ""
+msgstr "Metadata"
 
 #: data/resources/ui/data-dialog.ui:108 data/resources/ui/data-dialog.ui:184
 msgid "Nothing to Show"
-msgstr ""
+msgstr "Nic k zobrazení"
 
 #: data/resources/ui/data-dialog.ui:131
 msgid "Body Images"
-msgstr ""
+msgstr "Obrázky na stránce"
 
 #: data/resources/ui/image.ui:68
 msgid "Image Error"
@@ -71,7 +74,7 @@ msgstr "Náhled sdílení"
 
 #: data/resources/ui/window.ui:38
 msgid "Toggle Color Scheme"
-msgstr ""
+msgstr "Přepnout barevné schéma"
 
 #: data/resources/ui/window.ui:45
 msgid "Menu"
@@ -79,16 +82,15 @@ msgstr "Menu"
 
 #: data/resources/ui/window.ui:86
 msgid "Go..."
-msgstr ""
+msgstr "Načíst…"
 
 #: data/resources/ui/window.ui:97
 msgid "Invalid URL"
 msgstr "Neplatná URL"
 
 #: data/resources/ui/window.ui:187
-#, fuzzy
 msgid "View Found Data..."
-msgstr "Zobrazit nalezená metadata"
+msgstr "Zobrazit načtená data…"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
 msgid "Gnome;GTK;"
@@ -141,9 +143,3 @@ msgstr "Neplatný formát obrázku."
 #: src/widgets/image.rs:107
 msgid "Unexpected image error."
 msgstr "Neočekávaná chyba obrázku."
-
-#~ msgid "Toggle Dark Mode"
-#~ msgstr "Přepnout tmavý režim"
-
-#~ msgid "Set a URL to preview"
-#~ msgstr "Nastavte URL pro náhled"
