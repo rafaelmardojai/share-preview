@@ -31,12 +31,14 @@
                     <child>
                       <object class="GtkLabel" id="title">
                         <property name="xalign">0</property>
+                        <property name="hexpand">true</property>
                         <property name="ellipsize">end</property>
                       </object>
                     </child>
                     <child>
                       <object class="GtkLabel" id="description">
                         <property name="xalign">0</property>
+                        <property name="hexpand">true</property>
                         <property name="ellipsize">end</property>
                         <property name="visible">false</property>
                       </object>
@@ -44,6 +46,7 @@
                     <child>
                       <object class="GtkLabel" id="site">
                         <property name="xalign">0</property>
+                        <property name="hexpand">true</property>
                         <style>
                           <class name="dim-label"/>
                         </style>
