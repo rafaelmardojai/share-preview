@@ -68,7 +68,7 @@
                   <object class="GtkLabel">
                     <property name="label" translatable="yes">Card Error</property>
                     <style>
-                      <class name="large-title"/>
+                      <class name="title-1"/>
                     </style>
                   </object>
                 </child>

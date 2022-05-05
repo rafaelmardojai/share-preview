@@ -107,7 +107,7 @@
                                             <property name="justify">center</property>
                                             <property name="label" translatable="yes">Nothing to Show</property>
                                             <style>
-                                              <class name="large-title"/>
+                                              <class name="title-1"/>
                                             </style>
                                           </object>
                                         </property>
@@ -183,7 +183,7 @@
                                         <property name="justify">center</property>
                                         <property name="label" translatable="yes">Nothing to Show</property>
                                         <style>
-                                          <class name="large-title"/>
+                                          <class name="title-1"/>
                                         </style>
                                       </object>
                                     </property>
