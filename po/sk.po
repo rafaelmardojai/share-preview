@@ -134,7 +134,7 @@ msgstr "Nebolo možné prijať obrázok od druha."
 
 #: src/widgets/image.rs:104
 msgid "Invalid image format."
-msgstr "Neplatný formát obrázku."
+msgstr "Neplatný formát obrázka."
 
 #: src/widgets/image.rs:107
 msgid "Unexpected image error."
