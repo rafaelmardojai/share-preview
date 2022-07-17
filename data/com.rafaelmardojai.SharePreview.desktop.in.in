@@ -1,11 +1,11 @@
 [Desktop Entry]
 Name=Share Preview
-Comment=
+Comment=Test social media cards locally
 Type=Application
 Exec=share-preview
 Terminal=false
 Categories=Utility;GNOME;GTK;
-Keywords=Gnome;GTK;
+Keywords=Gnome;GTK;link;url;unfurl;
 # Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 Icon=@icon@
 StartupNotify=true
