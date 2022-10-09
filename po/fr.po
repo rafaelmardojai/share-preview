@@ -3,21 +3,20 @@
 # This file is distributed under the same license as the share-preview package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-27 18:02-0500\n"
-"PO-Revision-Date: 2021-10-10 16:01+0200\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2022-09-22 00:13+0200\n"
+"Last-Translator: Irénée Thirion <irenee.thirion@e.email>\n"
 "Language-Team: \n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/resources/ui/card.ui:69
 msgid "Card Error"
@@ -25,15 +24,15 @@ msgstr "Erreur avec la carte"
 
 #: data/resources/ui/data-dialog.ui:26
 msgid "Metadata"
-msgstr ""
+msgstr "Métadonnées"
 
 #: data/resources/ui/data-dialog.ui:108 data/resources/ui/data-dialog.ui:184
 msgid "Nothing to Show"
-msgstr ""
+msgstr "Rien à afficher"
 
 #: data/resources/ui/data-dialog.ui:131
 msgid "Body Images"
-msgstr ""
+msgstr "Images du corpus"
 
 #: data/resources/ui/image.ui:68
 msgid "Image Error"
@@ -71,7 +70,7 @@ msgstr "Aperçu du Partage"
 
 #: data/resources/ui/window.ui:38
 msgid "Toggle Color Scheme"
-msgstr ""
+msgstr "Basculer le schéma de couleurs"
 
 #: data/resources/ui/window.ui:45
 msgid "Menu"
@@ -79,16 +78,15 @@ msgstr "Menu"
 
 #: data/resources/ui/window.ui:86
 msgid "Go..."
-msgstr ""
+msgstr "Aller à..."
 
 #: data/resources/ui/window.ui:97
 msgid "Invalid URL"
 msgstr "URL invalide"
 
 #: data/resources/ui/window.ui:187
-#, fuzzy
 msgid "View Found Data..."
-msgstr "Voir les métadonnées trouvées"
+msgstr "Voir les métadonnées trouvées..."
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
 msgid "Gnome;GTK;"
@@ -132,15 +130,15 @@ msgstr "Twitter : Aucune carte trouvée."
 
 #: src/widgets/image.rs:101
 msgid "Failure when receiving image from the peer."
-msgstr "Erreur lors de la réception de l'image depuis le serveur."
+msgstr "Erreur lors de la réception de l’image depuis le serveur."
 
 #: src/widgets/image.rs:104
 msgid "Invalid image format."
-msgstr "Format de l'image invalide."
+msgstr "Format de l’image invalide."
 
 #: src/widgets/image.rs:107
 msgid "Unexpected image error."
-msgstr "Erreur inconnue avec l'image."
+msgstr "Erreur inconnue avec l’image."
 
 #~ msgid "Toggle Dark Mode"
 #~ msgstr "Basculer en mode sombre"
