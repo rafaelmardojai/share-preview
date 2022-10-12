@@ -116,7 +116,7 @@
                         <property name="name">splash</property>
                         <property name="child">
                           <object class="AdwStatusPage" id="start_page">
-                            <property name="title">Set a URL to preview</property>
+                            <property name="title" translatable="yes">Set a URL to preview</property>
                           </object>
                         </property>
                       </object>
