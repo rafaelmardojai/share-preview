@@ -83,7 +83,7 @@
                             <property name="hexpand">true</property>
                             <property name="secondary-icon-name">go-next-symbolic</property>
                             <property name="secondary-icon-sensitive">false</property>
-                            <property name="secondary-icon-tooltip-text" translatable="yes">Go...</property>
+                            <property name="secondary-icon-tooltip-text" translatable="yes">Go</property>
                           </object>
                         </child>
                       </object>
@@ -184,7 +184,7 @@
                                 <property name="icon-name">system-search-symbolic</property>
                                 <property name="halign">center</property>
                                 <property name="valign">end</property>
-                                <property name="tooltip-text" translatable="yes">View Found Data...</property>
+                                <property name="tooltip-text" translatable="yes">View Found Data</property>
                                 <style>
                                   <class name="pill"/>
                                 </style>
