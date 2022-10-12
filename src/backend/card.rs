@@ -22,7 +22,7 @@ pub enum Social {
 #[derive(Debug, Clone)]
 pub enum CardSize {
     Small, // Mastodon
-    Medium, // Twitter sumary
+    Medium, // Twitter summary
     Large, // Twitter summary with large image || Facebook
 }
 
@@ -60,7 +60,7 @@ impl Card {
 
         let metadata = data.metadata.clone();
         let mut site = data.url.clone();
-        let mut size = CardSize::Large; // Dafault card size
+        let mut size = CardSize::Large; // Default card size
 
         // Default meta-tags to lookup the needed values
         let mut title_find = vec_of_strings!["og:title", "twitter:title", "title"];
@@ -131,7 +131,7 @@ impl Card {
         // Final per social media match with obtained results
         match social {
             Social::Facebook => {
-                // Facebook: If no image found in metada, get first document image
+                // Facebook: If no image found in metadata, get first document image
                 if let None = image {
                     if data.images.len() > 0 {
                         image = Some(data.images[0].clone());

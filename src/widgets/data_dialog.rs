@@ -106,7 +106,7 @@ impl DataDialog {
             imp.model.append(&item);
         }
 
-        // Expresions and filters to get propeties from MetadataItem:
+        // Expressions and filters to get properties from MetadataItem:
         let key_filter = gtk::StringFilter::new(Some(
             &gtk::PropertyExpression::new(
                 MetadataItem::static_type(), None::<&gtk::Expression>, "key"
@@ -127,7 +127,7 @@ impl DataDialog {
         let filter_model = gtk::FilterListModel::new(Some(&imp.model), Some(&filter));
         filter_model.set_incremental(true);
 
-        // Bind search entry text with MetadataItem propeties filters
+        // Bind search entry text with MetadataItem properties filters
         imp.search.bind_property("text", &key_filter, "search")
             .flags(glib::BindingFlags::SYNC_CREATE)
             .build();
