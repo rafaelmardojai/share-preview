@@ -87,11 +87,6 @@ mod imp {
         fn constructed(&self, obj: &Self::Type) {
             self.parent_constructed(obj);
 
-            let builder =
-                gtk::Builder::from_resource("/com/rafaelmardojai/SharePreview/shortcuts.ui");
-            let shortcuts = builder.object("shortcuts").unwrap();
-            obj.set_help_overlay(Some(&shortcuts));
-
             // Devel Profile
             if PROFILE == "Devel" {
                 obj.style_context().add_class("devel");
