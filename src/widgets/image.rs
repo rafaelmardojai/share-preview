@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 use crate::backend::{CardSize, Image, ImageError};
+use image;
 use gettextrs::*;
 use gtk::subclass::prelude::*;
 use gtk::{self, prelude::*};
@@ -98,8 +99,13 @@ impl CardImage {
                         ImageError::FetchError(_) => {
                             gettext("Failure when receiving image from the peer.")
                         },
-                        ImageError::InvalidFormat => {
-                            gettext("Invalid image format.")
+                        ImageError::ImageError(error) => {
+                            match error {
+                                image::error::ImageError::Unsupported(_) => {
+                                    gettext("Invalid image format.")
+                                }
+                                _ => gettext("The image couldn't be loaded.")
+                            }
                         },
                         ImageError::TextureError | ImageError::Unexpected => {
                             gettext("Unexpected image error.")

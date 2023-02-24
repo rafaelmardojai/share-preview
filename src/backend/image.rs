@@ -1,6 +1,7 @@
 // Copyright 2021 Rafael Mardojai CM
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+use std::io::Cursor;
 use std::error;
 use std::fmt::{Display, Formatter, Result as FmtResult};
 
@@ -44,31 +45,22 @@ impl Image {
 
         if resp.status().is_success() {
             let bytes = resp.body_bytes().await?;
-            let format = image::guess_format(&bytes);
+            let format = image::guess_format(&bytes)?;
+            let image = image::load_from_memory_with_format(&bytes, format)?;
+            let thumbnail = image.resize_to_fill(width, height, image::imageops::FilterType::Triangle);
 
-            match format {
-                Ok(format) => {
-                    let image = image::load_from_memory_with_format(&bytes, format).unwrap();
-                    // Resize and crop image to the give size:
-                    let thumbnail = image.resize_to_fill(width, height, image::imageops::FilterType::Triangle);
-                    let mut thumbnail_bytes = Vec::new();
+            // Save to PNG so GTK can handle any format
+            let mut thumbnail_bytes: Vec<u8> = Vec::new();
+            thumbnail.write_to(&mut Cursor::new(&mut thumbnail_bytes), image::ImageFormat::Png)?;
 
-                    match thumbnail.write_to(&mut thumbnail_bytes, format) {
-                        Ok(_) => {
-                            let bytes = Bytes::from(&thumbnail_bytes);
-                            match Texture::from_bytes(&bytes) {
-                                Ok(texture) => {
-                                    Ok(texture)
-                                },
-                                Err(_) => {
-                                    Err(ImageError::TextureError)
-                                }
-                            }
-                        },
-                        Err(_) => Err(ImageError::Unexpected)
-                    }
+            let gbytes = Bytes::from(&thumbnail_bytes);
+            match Texture::from_bytes(&gbytes) {
+                Ok(texture) => {
+                    Ok(texture)
                 },
-                Err(_) => Err(ImageError::InvalidFormat)
+                Err(_) => {
+                    Err(ImageError::TextureError)
+                }
             }
         } else {
             Err(ImageError::Unexpected)
@@ -79,7 +71,7 @@ impl Image {
 #[derive(Debug)]
 pub enum ImageError {
     FetchError(surf::Error),
-    InvalidFormat,
+    ImageError(image::error::ImageError),
     TextureError,
     Unexpected,
 }
@@ -88,7 +80,7 @@ impl Display for ImageError {
     fn fmt(&self, f: &mut Formatter) -> FmtResult {
         match *self {
             ImageError::FetchError(ref e) => write!(f, "NetworkError: {}", e),
-            ImageError::InvalidFormat => write!(f, "InvalidFormat"),
+            ImageError::ImageError(ref e) => write!(f, "ImageError: {}", e),
             ImageError::TextureError => write!(f, "TextureError"),
             ImageError::Unexpected => write!(f, "UnexpectedError"),
         }
@@ -98,6 +90,12 @@ impl Display for ImageError {
 impl From<surf::Error> for ImageError {
     fn from(err: surf::Error) -> ImageError {
         ImageError::FetchError(err)
+    }
+}
+
+impl From<image::error::ImageError> for ImageError {
+    fn from(err: image::error::ImageError) -> ImageError {
+        ImageError::ImageError(err)
     }
 }
 
