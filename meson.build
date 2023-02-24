@@ -1,8 +1,10 @@
-project('share-preview',
-        'rust',
-        version: '0.2.0',
-        license: 'GPL-3.0',
-  meson_version: '>= 0.50')
+project(
+  'share-preview',
+  'rust',
+  version: '0.2.0',
+  license: 'GPL-3.0',
+  meson_version: '>= 0.63.0',
+)
 
 i18n = import('i18n')
 gnome = import('gnome')
@@ -68,4 +70,8 @@ subdir('data')
 subdir('po')
 subdir('src')
 
-meson.add_install_script('build-aux/meson_post_install.py')
+gnome.post_install(
+  glib_compile_schemas: true,
+  gtk_update_icon_cache: true,
+  update_desktop_database: true
+)
