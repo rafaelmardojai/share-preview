@@ -6,7 +6,6 @@ use super::MetadataItem;
 
 use adw::subclass::prelude::*;
 use glib::clone;
-use gtk::subclass::prelude::*;
 use gtk::{self, prelude::*};
 use gtk::{gio, glib, CompositeTemplate};
 
@@ -45,7 +44,7 @@ mod imp {
         fn new() -> Self {
             Self {
                 model: gio::ListStore::new(MetadataItem::static_type()),
-                images_model: gtk::StringList::new(&[]),
+                images_model: gtk::StringList::default(),
                 search: TemplateChild::default(),
                 images_search: TemplateChild::default(),
                 title: TemplateChild::default(),
@@ -80,7 +79,7 @@ glib::wrapper! {
 
 impl DataDialog {
     pub fn new(data: &Data) -> Self {
-        let dialog: Self = glib::Object::new(&[]).expect("Failed to create DataDialog");
+        let dialog: Self = glib::Object::builder().build();
 
         dialog.set_metadata(&data);
         dialog.set_images(&data);
@@ -89,21 +88,20 @@ impl DataDialog {
     }
 
     pub fn set_metadata(&self, data: &Data) {
-        let imp = imp::DataDialog::from_instance(self);
-        let stack = &*imp.stack;
+        let stack = &*self.imp().stack;
 
         let site_title = match &data.title {
             Some(title) => title.to_string(),
             None => data.url.to_string()
         };
-        imp.title.set_label(&site_title);
-        imp.url.set_label(&data.url);
+        self.imp().title.set_label(&site_title);
+        self.imp().url.set_label(&data.url);
 
         // imp.model.remove_all(); // Remove previous model items
         // Add new items from HashMap:
         for (key, val) in data.get_metadata().iter() {
             let item = MetadataItem::new(&key, &val);
-            imp.model.append(&item);
+            self.imp().model.append(&item);
         }
 
         // Expressions and filters to get properties from MetadataItem:
@@ -118,25 +116,28 @@ impl DataDialog {
             )
         ));
 
-        // Group filters in one:
-        let filter = gtk::AnyFilter::new();
-        filter.append(&key_filter);
-        filter.append(&value_filter);
-
-        // Create new filterable model from ListStore and filter:
-        let filter_model = gtk::FilterListModel::new(Some(&imp.model), Some(&filter));
-        filter_model.set_incremental(true);
-
         // Bind search entry text with MetadataItem properties filters
-        imp.search.bind_property("text", &key_filter, "search")
+        self.imp().search.bind_property("text", &key_filter, "search")
             .flags(glib::BindingFlags::SYNC_CREATE)
             .build();
-        imp.search.bind_property("text", &value_filter, "search")
+        self.imp().search.bind_property("text", &value_filter, "search")
             .flags(glib::BindingFlags::SYNC_CREATE)
+            .build();
+
+        // Group filters in one:
+        let filter = gtk::AnyFilter::new();
+        filter.append(key_filter);
+        filter.append(value_filter);
+
+        // Create new filterable model from ListStore and filter:
+        let filter_model = gtk::FilterListModel::builder()
+            .model(&self.imp().model)
+            .filter(&filter)
+            .incremental(true)
             .build();
 
         // Bind model with ListBox
-        imp.list.bind_model(
+        self.imp().list.bind_model(
             Some(&filter_model),
             clone!(@weak self as self_ =>  @default-panic, move |item| {
                 let item = item.downcast_ref::<MetadataItem>().expect("Couldn't get MetadataItem");
@@ -160,12 +161,11 @@ impl DataDialog {
     }
 
     pub fn set_images(&self, data: &Data) {
-        let imp = imp::DataDialog::from_instance(self);
-        let images_stack = &*imp.images_stack;
+        let images_stack = &*self.imp().images_stack;
 
         // Set images into the StringsList
         for image in &data.images {
-            imp.images_model.append(&image.url);
+            self.imp().images_model.append(&image.url);
         }
 
         // Create filter for the StringsList
@@ -174,16 +174,20 @@ impl DataDialog {
                 gtk::StringObject::static_type(), None::<&gtk::Expression>, "string"
             )
         ));
-        let filter_model = gtk::FilterListModel::new(Some(&imp.images_model), Some(&filter));
-        filter_model.set_incremental(true);
+
+        let filter_model = gtk::FilterListModel::builder()
+            .model(&self.imp().images_model)
+            .filter(&filter)
+            .incremental(true)
+            .build();
 
         // Bind search entry with filter
-        imp.images_search.bind_property("text", &filter, "search")
+        self.imp().images_search.bind_property("text", &filter, "search")
             .flags(glib::BindingFlags::SYNC_CREATE)
             .build();
 
         // Bind model with ListBox
-        imp.images_list.bind_model(
+        self.imp().images_list.bind_model(
             Some(&filter_model),
             clone!(@weak self as self_ =>  @default-panic, move |item| {
             let item = item.downcast_ref::<gtk::StringObject>().expect("Couldn't get MetadataItem");

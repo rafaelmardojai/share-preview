@@ -73,7 +73,7 @@ glib::wrapper! {
 
 impl CardBox {
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create CardBox")
+        glib::Object::builder().build()
     }
 
     pub fn new_from_card(card: &Card) -> Self {
@@ -84,7 +84,6 @@ impl CardBox {
 
     pub fn new_from_error(error: &CardError) -> Self {
         let new = CardBox::new();
-        let imp = imp::CardBox::from_instance(&new);
 
         let error_text = match error {
             CardError::NotEnoughData => {
@@ -95,29 +94,27 @@ impl CardBox {
             }
         };
 
-        imp.error_message.set_label(&error_text);
-        imp.stack.set_visible_child_name("error");
+        new.imp().error_message.set_label(&error_text);
+        new.imp().stack.set_visible_child_name("error");
         new
     }
 
     pub fn set_card(&self, card: &Card) {
-        let imp = imp::CardBox::from_instance(self);
-
         // Put the card values on the widgets
-        imp.title.set_label(&card.title);
+        self.imp().title.set_label(&card.title);
         if let Some(text) = &card.description {
-            imp.description.set_label(&text);
+            self.imp().description.set_label(&text);
         }
-        imp.site.set_label(&card.site);
+        self.imp().site.set_label(&card.site);
 
         if let Some(img) = &card.image {
-            imp.image.set_image(&img, &card.size);
-            imp.image.set_visible(true);
+            self.imp().image.set_image(&img, &card.size);
+            self.imp().image.set_visible(true);
         } else {
             match &card.social {
                 Social::Mastodon | Social::Twitter => {
-                    imp.image.set_fallback(&card.size);
-                    imp.image.set_visible(true);
+                    self.imp().image.set_fallback(&card.size);
+                    self.imp().image.set_visible(true);
                 }
                 _ => ()
             }
@@ -126,37 +123,37 @@ impl CardBox {
         // Change widget aparence by social
         match &card.social {
             Social::Facebook => {
-                imp.textbox.reorder_child_after(&*imp.site, None::<&gtk::Widget>);
-                imp.title.set_lines(2);
-                imp.title.set_wrap(true);
-                imp.title.style_context().add_class("title-4");
+                self.imp().textbox.reorder_child_after(&*self.imp().site, None::<&gtk::Widget>);
+                self.imp().title.set_lines(2);
+                self.imp().title.set_wrap(true);
+                self.imp().title.style_context().add_class("title-4");
                 if let Some(_) = &card.description {
                     if &card.title.len() <= &65 {
-                        imp.description.set_visible(true);
+                        self.imp().description.set_visible(true);
                     }
                 }
 
                 if let CardSize::Medium = card.size {
-                    imp.cardbox.set_orientation(gtk::Orientation::Horizontal);
+                    self.imp().cardbox.set_orientation(gtk::Orientation::Horizontal);
                 }
             }
             Social::Mastodon => {
-                imp.cardbox.set_orientation(gtk::Orientation::Horizontal);
-                imp.title.style_context().add_class("heading");
+                self.imp().cardbox.set_orientation(gtk::Orientation::Horizontal);
+                self.imp().title.style_context().add_class("heading");
             }
             Social::Twitter => {
-                imp.title.style_context().add_class("heading");
+                self.imp().title.style_context().add_class("heading");
                 if let Some(_) = &card.description {
-                    imp.description.set_visible(true);
-                    imp.description.set_wrap(true);
+                    self.imp().description.set_visible(true);
+                    self.imp().description.set_wrap(true);
                 }
                 match card.size {
                     CardSize::Medium => {
-                        imp.cardbox.set_orientation(gtk::Orientation::Horizontal);
-                        imp.description.set_lines(3);
+                        self.imp().cardbox.set_orientation(gtk::Orientation::Horizontal);
+                        self.imp().description.set_lines(3);
                     }
                     CardSize::Large => {
-                        imp.description.set_lines(2);
+                        self.imp().description.set_lines(2);
                     }
                     _ => {}
                 }

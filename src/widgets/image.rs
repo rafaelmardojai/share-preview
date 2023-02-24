@@ -67,17 +67,15 @@ glib::wrapper! {
 
 impl CardImage {
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create CardImage")
+        glib::Object::builder().build()
     }
 
     pub fn set_image(&self, img: &Image, size: &CardSize) {
-        let imp = imp::CardImage::from_instance(self);
-
         // Get Widgets
-        let stack = imp.stack.clone();
-        let spinner = imp.spinner.clone();
-        let image = imp.image.clone();
-        let error_message = imp.error_message.clone();
+        let stack = self.imp().stack.clone();
+        let spinner = self.imp().spinner.clone();
+        let image = self.imp().image.clone();
+        let error_message = self.imp().error_message.clone();
 
         let (width, height) = size.image_size(); // Get image size
 
@@ -116,16 +114,14 @@ impl CardImage {
     }
 
     pub fn set_fallback(&self, size: &CardSize) {
-        let imp = imp::CardImage::from_instance(self);
-
         let (width, height) = size.image_size(); // Get image size
 
         // Set box widget size
-        imp.fallback_box.set_width_request(width as i32);
-        imp.fallback_box.set_height_request(height as i32);
+        self.imp().fallback_box.set_width_request(width as i32);
+        self.imp().fallback_box.set_height_request(height as i32);
 
-        imp.fallback_icon.set_pixel_size(size.icon_size());
+        self.imp().fallback_icon.set_pixel_size(size.icon_size());
 
-        imp.stack.set_visible_child_name("fallback");
+        self.imp().stack.set_visible_child_name("fallback");
     }
 }

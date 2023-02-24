@@ -6,7 +6,6 @@ use crate::widgets::{CardBox, DataDialog};
 use adw::subclass::prelude::*;
 use gettextrs::*;
 use glib::clone;
-use gtk::subclass::prelude::*;
 use gtk::{self, prelude::*};
 use gtk::{gio, glib, CompositeTemplate, EntryIconPosition};
 use gtk_macros::{action, spawn};
@@ -84,8 +83,9 @@ mod imp {
     }
 
     impl ObjectImpl for SharePreviewWindow {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
+        fn constructed(&self) {
+            let obj = self.obj();
+            self.parent_constructed();
 
             // Devel Profile
             if PROFILE == "Devel" {
@@ -108,8 +108,7 @@ glib::wrapper! {
 
 impl SharePreviewWindow {
     pub fn new(app: &SharePreviewApplication) -> Self {
-        let window: Self =
-            glib::Object::new(&[]).expect("Failed to create SharePreviewWindow");
+        let window: Self = glib::Object::builder().build();
         window.set_application(Some(app));
 
         // Set icons for shell
@@ -125,21 +124,19 @@ impl SharePreviewWindow {
     }
 
     fn setup_widgets(&self) {
-        let imp = imp::SharePreviewWindow::from_instance(self);
-        imp.start_page.set_icon_name(Some(APP_ID));
+        self.imp().start_page.set_icon_name(Some(APP_ID));
     }
 
     fn setup_actions(&self) {
-        let imp = imp::SharePreviewWindow::from_instance(self);
-        let social = &*imp.social;
-        let url_box = &*imp.url_box;
-        let url_entry = &*imp.url_entry;
-        let url_error = &*imp.url_error;
-        let stack = &*imp.stack;
-        let spinner = &*imp.spinner;
-        let error_title = &*imp.error_title;
-        let error_message = &*imp.error_message;
-        let cardbox = &*imp.cardbox;
+        let social = &*self.imp().social;
+        let url_box = &*self.imp().url_box;
+        let url_entry = &*self.imp().url_entry;
+        let url_error = &*self.imp().url_error;
+        let stack = &*self.imp().stack;
+        let spinner = &*self.imp().spinner;
+        let error_title = &*self.imp().error_title;
+        let error_message = &*self.imp().error_message;
+        let cardbox = &*self.imp().cardbox;
 
         // Run
         action!(
@@ -170,10 +167,8 @@ impl SharePreviewWindow {
                             spawn!(async move {
                                 match scrape(&url).await {
                                     Ok(data) => {
-                                        let win_ = imp::SharePreviewWindow::from_instance(&win);
-
-                                        win_.data.replace(data);
-                                        win_.active_url.replace(url.to_string());
+                                        win.imp().data.replace(data);
+                                        win.imp().active_url.replace(url.to_string());
                                         win.update_card();
                                         stack.set_visible_child_name("card");
                                     }
@@ -214,8 +209,7 @@ impl SharePreviewWindow {
             self,
             "metadata",
             clone!(@weak self as win => move |_, _| {
-                let win_ = imp::SharePreviewWindow::from_instance(&win);
-                let data = win_.data.borrow();
+                let data = win.imp().data.borrow();
 
                 let dialog = DataDialog::new(&data);
                 dialog.set_transient_for(Some(&win));
@@ -225,10 +219,9 @@ impl SharePreviewWindow {
     }
 
     fn setup_signals(&self) {
-        let imp = imp::SharePreviewWindow::from_instance(self);
-        let url_entry = &*imp.url_entry;
+        let url_entry = &*self.imp().url_entry;
 
-        imp.color_scheme.connect_clicked(
+        self.imp().color_scheme.connect_clicked(
             clone!(@weak self as win => move |_| {
                 let style_manager = adw::StyleManager::default();
                 if style_manager.is_dark() {
@@ -239,13 +232,13 @@ impl SharePreviewWindow {
             })
         );
 
-        imp.url_entry.connect_activate(
+        self.imp().url_entry.connect_activate(
             clone!(@weak self as win => move |_| {
                 WidgetExt::activate_action(&win, "win.run", None).unwrap();
             })
         );
 
-        imp.url_entry.connect_icon_press(
+        self.imp().url_entry.connect_icon_press(
             clone!(@weak self as win => move |_, icon| {
                 match icon {
                     EntryIconPosition::Secondary => {
@@ -256,7 +249,7 @@ impl SharePreviewWindow {
             })
         );
 
-        imp.url_entry.connect_changed(
+        self.imp().url_entry.connect_changed(
             clone!(@weak url_entry => move |_| {
                 if url_entry.text().is_empty() {
                     url_entry.set_icon_sensitive(EntryIconPosition::Secondary, false);
@@ -266,12 +259,11 @@ impl SharePreviewWindow {
             })
         );
 
-        imp.social.connect_local(
+        self.imp().social.connect_local(
             "notify::selected",
             false,
             clone!(@weak self as win => @default-return None, move |_| {
-                let win_ = imp::SharePreviewWindow::from_instance(&win);
-                let active_url = win_.active_url.borrow().to_string();
+                let active_url = win.imp().active_url.borrow().to_string();
 
                 if !active_url.is_empty() {
                     win.update_card();
@@ -284,9 +276,8 @@ impl SharePreviewWindow {
     }
 
     pub fn update_card(&self) {
-        let imp = imp::SharePreviewWindow::from_instance(self);
-        let social = Self::get_social(&imp.social.selected());
-        let data = imp.data.borrow();
+        let social = Self::get_social(&self.imp().social.selected());
+        let data = self.imp().data.borrow();
         let card = data.get_card(social);
 
         let card = match card {
@@ -294,12 +285,12 @@ impl SharePreviewWindow {
             Err(error) => CardBox::new_from_error(&error)
         };
 
-        let old_card = imp.card.replace(Some(card));
+        let old_card = self.imp().card.replace(Some(card));
         if let Some(c) = old_card {
-            imp.cardbox.remove(&c);
+            self.imp().cardbox.remove(&c);
         }
 
-        imp.cardbox.prepend(imp.card.borrow().as_ref().unwrap());
+        self.imp().cardbox.prepend(self.imp().card.borrow().as_ref().unwrap());
     }
 
     fn get_social(i: &u32) -> Social {

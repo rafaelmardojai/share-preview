@@ -34,14 +34,18 @@ mod imp {
             use once_cell::sync::Lazy;
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
-                    ParamSpecString::new("key", "key", "Key", None, glib::ParamFlags::READWRITE),
-                    ParamSpecString::new("value", "value", "Value", None, glib::ParamFlags::READWRITE),
+                    ParamSpecString::builder("key")
+                    .default_value(None)
+                    .build(),
+                    ParamSpecString::builder("value")
+                    .default_value(None)
+                    .build()
                 ]
             });
             PROPERTIES.as_ref()
         }
 
-        fn set_property(&self, _obj: &Self::Type, _id: usize, value: &glib::Value, pspec: &ParamSpec) {
+        fn set_property(&self, _id: usize, value: &glib::Value, pspec: &ParamSpec) {
             match pspec.name() {
                 "key" => {
                     let key = value.get().unwrap();
@@ -55,7 +59,7 @@ mod imp {
             }
         }
 
-        fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> glib::Value {
+        fn property(&self, _id: usize, pspec: &ParamSpec) -> glib::Value {
             match pspec.name() {
                 "key" => self.key.borrow().to_value(),
                 "value" => self.value.borrow().to_value(),
@@ -71,9 +75,9 @@ glib::wrapper! {
 
 impl MetadataItem {
     pub fn new(key: &String, value: &String) -> Self {
-        glib::Object::new(&[
-            ("key", &key),
-            ("value", &value)
-        ]).expect("Failed to create MetadataItem")
+        glib::Object::builder()
+            .property("key", &key)
+            .property("value", &value)
+            .build()
     }
 }

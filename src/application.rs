@@ -3,14 +3,12 @@ use crate::window::SharePreviewWindow;
 
 use adw::subclass::prelude::*;
 use gettextrs::*;
-use gio::ApplicationFlags;
 use glib::clone;
 use glib::WeakRef;
 use gtk::prelude::*;
-use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use gtk_macros::action;
-use log::{debug, info};
+use log::{info};
 use once_cell::sync::OnceCell;
 
 mod imp {
@@ -30,34 +28,28 @@ mod imp {
 
     impl ObjectImpl for SharePreviewApplication {}
 
-    impl gio::subclass::prelude::ApplicationImpl for SharePreviewApplication {
-        fn activate(&self, app: &Self::Type) {
-            debug!("AdwApplication<SharePreviewApplication>::activate");
-
-            let priv_ = SharePreviewApplication::from_instance(app);
-            if let Some(window) = priv_.window.get() {
+    impl ApplicationImpl for SharePreviewApplication {
+        fn activate(&self) {
+            let app = self.obj();
+            if let Some(window) = self.window.get() {
                 let window = window.upgrade().unwrap();
                 window.show();
                 window.present();
                 return;
             }
 
-            app.set_resource_base_path(Some("/com/rafaelmardojai/SharePreview/"));
-
-            let window = SharePreviewWindow::new(app);
+            let window = SharePreviewWindow::new(&app.clone());
+            window.present();
             self.window
                 .set(window.downgrade())
                 .expect("Window already set.");
 
             app.setup_gactions();
             app.setup_accels();
-
-            app.get_main_window().present();
         }
 
-        fn startup(&self, app: &Self::Type) {
-            debug!("GtkApplication<SharePreviewApplication>::startup");
-            self.parent_startup(app);
+        fn startup(&self) {
+            self.parent_startup();
         }
     }
 
@@ -73,20 +65,15 @@ glib::wrapper! {
 
 impl SharePreviewApplication {
     pub fn new() -> Self {
-        glib::Object::new(&[
-            ("application-id", &Some(config::APP_ID)),
-            ("flags", &ApplicationFlags::empty()),
-            (
-                "resource-base-path",
-                &Some("/com/rafaelmardojai/SharePreview/"),
-            ),
-        ])
-        .expect("Application initialization failed...")
+        glib::Object::builder()
+            .property("application-id", config::APP_ID)
+            .property("flags", &gio::ApplicationFlags::empty())
+            .property("resource-base-path", Some("/com/rafaelmardojai/SharePreview/"))
+            .build()
     }
 
     fn get_main_window(&self) -> SharePreviewWindow {
-        let priv_ = imp::SharePreviewApplication::from_instance(self);
-        priv_.window.get().unwrap().upgrade().unwrap()
+        self.imp().window.get().unwrap().upgrade().unwrap()
     }
 
     fn setup_gactions(&self) {
@@ -118,7 +105,7 @@ impl SharePreviewApplication {
     }
 
     fn show_about_dialog(&self) {
-        let dialog = gtk::builders::AboutDialogBuilder::new()
+        let dialog = gtk::AboutDialog::builder()
             .program_name(&gettext("Share Preview"))
             .logo_icon_name(config::APP_ID)
             .license_type(gtk::License::Gpl30)
@@ -126,8 +113,8 @@ impl SharePreviewApplication {
             .version(config::VERSION)
             .transient_for(&self.get_main_window())
             .modal(true)
-            .authors(vec!["Rafael Mardojai CM".into()])
-            .artists(vec!["Rafael Mardojai CM".into(), "Tobias Bernard".into()])
+            .authors(vec!["Rafael Mardojai CM".to_string()])
+            .artists(vec!["Rafael Mardojai CM".to_string(), "Tobias Bernard".to_string()])
             .build();
 
         dialog.show();
