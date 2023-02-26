@@ -107,8 +107,8 @@ impl CardBox {
         }
         self.imp().site.set_label(&card.site);
 
-        if let Some(img) = &card.image {
-            self.imp().image.set_image(&img, &card.size);
+        if let Some(img_bytes) = &card.image {
+            self.imp().image.set_image(&img_bytes, &card.size);
             self.imp().image.set_visible(true);
         } else {
             match &card.social {

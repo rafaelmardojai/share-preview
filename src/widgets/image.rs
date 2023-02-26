@@ -1,13 +1,11 @@
 // Copyright 2021 Rafael Mardojai CM
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-use crate::backend::{CardSize, Image, ImageError};
-use image;
-use gettextrs::*;
+use crate::backend::CardSize;
 use gtk::subclass::prelude::*;
 use gtk::{self, prelude::*};
 use gtk::{glib, CompositeTemplate};
-use gtk_macros::spawn;
+use gtk::gdk::Texture;
 
 mod imp {
     use super::*;
@@ -18,15 +16,11 @@ mod imp {
         #[template_child]
         pub stack: TemplateChild<gtk::Stack>,
         #[template_child]
-        pub spinner: TemplateChild<gtk::Spinner>,
-        #[template_child]
         pub fallback_box: TemplateChild<gtk::Box>,
         #[template_child]
         pub fallback_icon: TemplateChild<gtk::Image>,
         #[template_child]
         pub image: TemplateChild<gtk::Picture>,
-        #[template_child]
-        pub error_message: TemplateChild<gtk::Label>,
     }
 
     #[glib::object_subclass]
@@ -38,11 +32,9 @@ mod imp {
         fn new() -> Self {
             Self {
                 stack: TemplateChild::default(),
-                spinner: TemplateChild::default(),
                 fallback_box: TemplateChild::default(),
                 fallback_icon: TemplateChild::default(),
                 image: TemplateChild::default(),
-                error_message: TemplateChild::default(),
             }
         }
 
@@ -71,52 +63,22 @@ impl CardImage {
         glib::Object::builder().build()
     }
 
-    pub fn set_image(&self, img: &Image, size: &CardSize) {
-        // Get Widgets
-        let stack = self.imp().stack.clone();
-        let spinner = self.imp().spinner.clone();
-        let image = self.imp().image.clone();
-        let error_message = self.imp().error_message.clone();
-
+    pub fn set_image(&self, bytes: &Vec<u8>, size: &CardSize) {
         let (width, height) = size.image_size(); // Get image size
 
         // Set image widget size
-        image.set_width_request(width as i32);
-        image.set_height_request(height as i32);
+        self.imp().image.set_width_request(width as i32);
+        self.imp().image.set_height_request(height as i32);
 
-        spinner.start();
-
-        // Fetch image and set it to the widget
-        let img = img.clone();
-        spawn!(async move {
-            match img.fetch(width, height).await {
-                Ok(texture) => {
-                    image.set_paintable(Some(&texture));
-                    stack.set_visible_child_name("image");
-                }
-                Err(err) => {
-                    let error_text = match err {
-                        ImageError::FetchError(_) => {
-                            gettext("Failure when receiving image from the peer.")
-                        },
-                        ImageError::ImageError(error) => {
-                            match error {
-                                image::error::ImageError::Unsupported(_) => {
-                                    gettext("Invalid image format.")
-                                }
-                                _ => gettext("The image couldn't be loaded.")
-                            }
-                        },
-                        ImageError::TextureError | ImageError::Unexpected => {
-                            gettext("Unexpected image error.")
-                        }
-                    };
-                    error_message.set_label(&error_text);
-                    stack.set_visible_child_name("error");
-                    spinner.stop();
-                }
+        match Texture::from_bytes(&glib::Bytes::from(bytes)) {
+            Ok(texture) => {
+                self.imp().image.set_paintable(Some(&texture));
+                self.imp().stack.set_visible_child_name("image");
+            },
+            Err(_) => {
+                self.set_fallback(size);
             }
-        });
+        }
     }
 
     pub fn set_fallback(&self, size: &CardSize) {

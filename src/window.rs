@@ -169,7 +169,7 @@ impl SharePreviewWindow {
                                     Ok(data) => {
                                         win.imp().data.replace(data);
                                         win.imp().active_url.replace(url.to_string());
-                                        win.update_card();
+                                        win.update_card().await;
                                         stack.set_visible_child_name("card");
                                     }
                                     Err(error) => {
@@ -266,7 +266,13 @@ impl SharePreviewWindow {
                 let active_url = win.imp().active_url.borrow().to_string();
 
                 if !active_url.is_empty() {
-                    win.update_card();
+                    win.imp().stack.set_visible_child_name("loading");
+                    win.imp().spinner.start();
+                    spawn!(async move {
+                        win.update_card().await;
+                        win.imp().stack.set_visible_child_name("card");
+                        win.imp().spinner.stop();
+                    });
                 } else {
                     WidgetExt::activate_action(&win, "win.run", None).unwrap();
                 }
@@ -275,10 +281,10 @@ impl SharePreviewWindow {
         );
     }
 
-    pub fn update_card(&self) {
+    pub async fn update_card(&self) {
         let social = Self::get_social(&self.imp().social.selected());
         let data = self.imp().data.borrow();
-        let card = data.get_card(social);
+        let card = data.get_card(social).await;
 
         let card = match card {
             Ok(card) => CardBox::new_from_card(&card),

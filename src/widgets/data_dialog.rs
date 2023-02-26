@@ -99,8 +99,22 @@ impl DataDialog {
 
         // imp.model.remove_all(); // Remove previous model items
         // Add new items from HashMap:
-        for (key, val) in data.get_metadata().iter() {
-            let item = MetadataItem::new(&key, &val);
+        for meta in data.metadata.iter() {
+            let mut names: Vec<String> = Vec::new();
+
+            if let Some(val) = &meta.name {
+                names.push(val.to_string());
+            }
+            names.append(&mut meta.property.clone());
+
+            let name = names.join(" ");
+
+            let content = match &meta.content {
+                Some(val) => val.to_string(),
+                None => String::new()
+            };
+
+            let item = MetadataItem::new(&name, &content);
             self.imp().model.append(&item);
         }
 
@@ -164,7 +178,7 @@ impl DataDialog {
         let images_stack = &*self.imp().images_stack;
 
         // Set images into the StringsList
-        for image in &data.images {
+        for image in &data.body_images {
             self.imp().images_model.append(&image.url);
         }
 
