@@ -125,6 +125,9 @@ impl SharePreviewWindow {
 
     fn setup_widgets(&self) {
         self.imp().start_page.set_icon_name(Some(APP_ID));
+
+        let social = self.imp().settings.string("social");
+        self.imp().social.set_selected(Self::get_social_index(&social));
     }
 
     fn setup_actions(&self) {
@@ -264,6 +267,8 @@ impl SharePreviewWindow {
             false,
             clone!(@weak self as win => @default-return None, move |_| {
                 let active_url = win.imp().active_url.borrow().to_string();
+                let social = SharePreviewWindow::get_social(&win.imp().social.selected());
+                win.imp().settings.set_string("social", &social.to_string()).ok();
 
                 if !active_url.is_empty() {
                     win.imp().stack.set_visible_child_name("loading");
@@ -305,6 +310,15 @@ impl SharePreviewWindow {
             1 => Social::Mastodon,
             2 => Social::Twitter,
             _ => unimplemented!()
+        }
+    }
+
+    fn get_social_index(s: &str) -> u32 {
+        match s {
+            "facebook" => 0,
+            "mastodon" => 1,
+            "twitter" => 2,
+            _ => 0
         }
     }
 }

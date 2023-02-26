@@ -4,5 +4,9 @@
     <key name="dark-theme" type="b">
       <default>false</default>
     </key>
+
+    <key name="social" type="s">
+      <default>''</default>
+    </key>
   </schema>
 </schemalist>
