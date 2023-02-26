@@ -24,6 +24,7 @@ sources = files(
   'backend/image.rs',
   'backend/mod.rs',
   'backend/scraper.rs',
+  'backend/social.rs',
   'widgets/card.rs',
   'widgets/image.rs',
   'widgets/metadata_item.rs',

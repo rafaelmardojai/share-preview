@@ -1,15 +1,16 @@
 // Copyright 2021 Rafael Mardojai CM
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+use super::{Data, Meta, Image, CLIENT};
+
 use std::fmt::{Display, Formatter, Result as FmtResult};
-use std::collections::HashMap;
 use std::error;
 
 use url::Url;
 use scraper::{Html, Selector};
 use scraper::element_ref::ElementRef;
 
-use super::{Data, Image, CLIENT};
+const IMAGE_TAGS: [&str; 3] = ["og:image", "twitter:image", "twitter:image:src"];
 
 pub async fn scrape(url: &Url) -> Result<Data, Error> {
     //! Request URL html body and scrape it to get the needed data
@@ -17,15 +18,15 @@ pub async fn scrape(url: &Url) -> Result<Data, Error> {
     let mut resp = CLIENT.get(&url).await?;
 
     if resp.status().is_success() {
-        let mut data = Data::default(); // Empty Data
-        let mut images = Vec::new(); // Empty Vec<Image> to store images from HTML
+        let mut data = Data::default();
+        let mut body_images: Vec<Image> = Vec::new();
 
         // Call function to get data from html:
-        get_html_data(&resp.body_string().await?, &mut data, &mut images).await; // Write html data to a Vec<>
+        get_html_data(&resp.body_string().await?, &mut data, &mut body_images).await; // Write html data to a Vec<>
 
         data.url = url.host_str().unwrap().to_string(); // Set Data URL
-        // Collect a new Images Vec<> with the relative URLs normalized:
-        data.images = images.iter().map(|i| {
+        // Set Data images body_images with the relative URLs normalized:
+        data.body_images = body_images.iter().map(|i| {
             let mut i = i.clone();
             i.normalize(&url);
             i
@@ -40,11 +41,10 @@ pub async fn scrape(url: &Url) -> Result<Data, Error> {
 async fn get_html_data(
         text: &String,
         data: &mut Data,
-        images: &mut Vec<Image>) {
+        body_images: &mut Vec<Image>) {
     //! Parse html and get data
 
     let document = Html::parse_document(&text); // HTML document from request text
-    let mut metadata = HashMap::new(); // Empty HashMap<String, String> to store metadata
 
     // Get document title
     let selector = Selector::parse("title").unwrap(); // HTML <title> selector
@@ -56,19 +56,25 @@ async fn get_html_data(
     // Get meta tags
     let selector = Selector::parse("meta").unwrap();
     for element in document.select(&selector) {
-        if let Some((key, content)) = get_meta_prop(&element, "property") {
-            let mut content = content.trim().to_string();
-            content = content.replace('\n', " ");
-            metadata.insert(key, content);
-        }
+        let name: Option<String> = get_attr_val(&element, "name");
+        let pre_property: Option<String> = get_attr_val(&element, "property");
+        let property: Vec<String> = match pre_property {
+            Some(value) => value.split(" ").map(|s| s.to_string()).collect(),
+            None => Vec::new()
+        };
+        let content: Option<String> = get_attr_val(&element, "content");
+        let image: Option<Image> = match (check_image(&property), &content) {
+            (true, Some(val)) => {
+                Some(Image::new(val.to_string()))
+            },
+            _ => None
+        };
 
-        if let Some((key, content)) = get_meta_prop(&element, "name") {
-            let mut content = content.trim().to_string();
-            content = content.replace('\n', " ");
-            metadata.insert(key, content);
+        if let (Some(_), _) | (_, Some(_)) = (&name, property.last()) {
+            let meta = Meta {name, property, content, image };
+            data.metadata.push(meta);
         }
     }
-    data.metadata = metadata;
 
     // Get images
     let selector = Selector::parse("img").unwrap();
@@ -76,15 +82,26 @@ async fn get_html_data(
         if let Some(src) = element.value().attr("src") {
             let src = src.trim().to_string();
             if src.contains(".jpg") || src.contains(".jpeg") || src.contains(".png"){
-                images.push(Image::new(src))
+                body_images.push(Image::new(src))
             }
         }
     }
 }
 
-fn get_meta_prop(element: &ElementRef, name: &str) -> Option<(String, String)> {
-    element.value().attr(name).and_then(|key|
-        element.value().attr("content").map(|content| (key.to_string(), content.to_string())))
+fn get_attr_val(element: &ElementRef, attr: &str) -> Option<String> {
+    element.value().attr(attr).and_then(|val| {
+        let value = val.to_string().trim().to_string().replace('\n', " ");
+        Some(value)
+    })
+}
+
+fn check_image(list: &Vec<String>) -> bool {
+    for name in IMAGE_TAGS.iter() {
+        if list.contains(&name.to_string()) {
+            return true;
+        }
+    }
+    false
 }
 
 #[derive(Debug)]

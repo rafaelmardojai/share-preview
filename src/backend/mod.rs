@@ -3,14 +3,21 @@ pub mod card;
 pub mod data;
 pub mod image;
 pub mod scraper;
+pub mod social;
 
 // surf Client for backend requests
 pub static CLIENT: Lazy<surf::Client> =
     Lazy::new(|| surf::Client::new().with(surf::middleware::Redirect::default()));
 
+#[macro_export]
+macro_rules! vec_of_strings {
+    ($($x:expr),*) => (vec![$($x.to_string()),*]);
+}
+
 pub use self::{
-    card::{Card, CardError, CardSize, Social},
-    data::Data,
+    card::{Card, CardError, CardSize},
+    data::{Meta, Data},
     image::{Image, ImageError},
-    scraper::{scrape, Error}
+    scraper::{scrape, Error},
+    social::{Social, SocialConstraints, SocialImageSizeKind},
 };
