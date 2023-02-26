@@ -181,13 +181,19 @@
                             <child>
                               <object class="GtkButton">
                                 <property name="action-name">win.metadata</property>
-                                <property name="icon-name">system-search-symbolic</property>
                                 <property name="halign">center</property>
                                 <property name="valign">end</property>
-                                <property name="tooltip-text" translatable="yes">View Found Data</property>
+
                                 <style>
                                   <class name="pill"/>
                                 </style>
+
+                                <child>
+                                  <object class="AdwButtonContent">
+                                    <property name="icon-name">system-search-symbolic</property>
+                                    <property name="label" translatable="yes">View Metadata</property>
+                                  </object>
+                                </child>
                               </object>
                             </child>
                           </object>
