@@ -2,20 +2,23 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 use std::cell::RefCell;
+use std::convert::TryFrom;
 
+use glib::subclass::prelude::*;
 use gtk::{
-    glib,
-    glib::ToValue,
-    subclass::prelude::*
+    glib::{self, ParamSpec, Properties, Value},
+    prelude::*,
 };
 
 mod imp {
     use super::*;
-    use glib::{ParamSpec, ParamSpecString};
 
-    #[derive(Debug)]
+    #[derive(Debug, Default, Properties)]
+    #[properties(wrapper_type = super::MetadataItem)]
     pub struct MetadataItem {
+        #[property(get, set)]
         pub key: RefCell<String>,
+        #[property(get, set)]
         pub value: RefCell<String>,
     }
 
@@ -24,51 +27,19 @@ mod imp {
         const NAME: &'static str = "MetadataItem";
         type Type = super::MetadataItem;
         type ParentType = glib::Object;
-
-        fn new() -> Self {
-            Self {
-                key: RefCell::new(String::default()),
-                value: RefCell::new(String::default()),
-            }
-        }
     }
 
     impl ObjectImpl for MetadataItem {
         fn properties() -> &'static [ParamSpec] {
-            use once_cell::sync::Lazy;
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![
-                    ParamSpecString::builder("key")
-                    .default_value(None)
-                    .build(),
-                    ParamSpecString::builder("value")
-                    .default_value(None)
-                    .build()
-                ]
-            });
-            PROPERTIES.as_ref()
+            Self::derived_properties()
         }
 
-        fn set_property(&self, _id: usize, value: &glib::Value, pspec: &ParamSpec) {
-            match pspec.name() {
-                "key" => {
-                    let key = value.get().unwrap();
-                    self.key.replace(key);
-                }
-                "value" => {
-                    let val = value.get().unwrap();
-                    self.value.replace(val);
-                }
-                _ => unimplemented!(),
-            }
+        fn set_property(&self, id: usize, value: &Value, pspec: &ParamSpec) {
+            self.derived_set_property(id, value, pspec)
         }
 
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> glib::Value {
-            match pspec.name() {
-                "key" => self.key.borrow().to_value(),
-                "value" => self.value.borrow().to_value(),
-                _ => unimplemented!(),
-            }
+        fn property(&self, id: usize, pspec: &ParamSpec) -> Value {
+            self.derived_property(id, pspec)
         }
     }
 }
