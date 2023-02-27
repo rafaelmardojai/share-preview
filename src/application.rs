@@ -110,16 +110,16 @@ impl SharePreviewApplication {
     }
 
     fn show_about_dialog(&self) {
-        let dialog = gtk::AboutDialog::builder()
-            .program_name(&gettext("Share Preview"))
-            .logo_icon_name(config::APP_ID)
+        let dialog = adw::AboutWindow::builder()
+            .application_name(&gettext("Share Preview"))
+            .application_icon(config::APP_ID)
             .license_type(gtk::License::Gpl30)
             .website("https://github.com/rafaelmardojai/share-preview/")
             .version(config::VERSION)
+            .developers(vec!["Rafael Mardojai CM https://mardojai.com".to_string()])
+            .artists(vec!["Rafael Mardojai CM https://mardojai.com".to_string(), "Tobias Bernard".to_string()])
             .transient_for(&self.get_main_window())
             .modal(true)
-            .authors(vec!["Rafael Mardojai CM".to_string()])
-            .artists(vec!["Rafael Mardojai CM".to_string(), "Tobias Bernard".to_string()])
             .build();
 
         dialog.show();
