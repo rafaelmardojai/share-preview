@@ -2,6 +2,7 @@ use once_cell::sync::Lazy;
 pub mod card;
 pub mod data;
 pub mod image;
+pub mod log;
 pub mod scraper;
 pub mod social;
 
@@ -18,6 +19,7 @@ pub use self::{
     card::{Card, CardError, CardSize},
     data::{Meta, Data},
     image::{Image, ImageError},
+    log::{Log, LogLevel},
     scraper::{scrape, Error},
     social::{Social, SocialConstraints, SocialImageSizeKind},
 };

@@ -1,7 +1,7 @@
 // Copyright 2021 Rafael Mardojai CM
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-use super::{Card, CardError, Image, Social};
+use super::{Card, CardError, Image, Log, Social};
 
 #[derive(Debug, Default, Clone)]
 pub struct Meta {
@@ -20,8 +20,8 @@ pub struct Data {
 }
 
 impl Data {
-    pub async fn get_card(&self, social: Social) -> Result<Card, CardError> {
-       Card::new(&self, social).await
+    pub async fn get_card(&self, social: Social, logger: &impl Log) -> Result<Card, CardError> {
+       Card::new(&self, social, logger).await
     }
 
     pub fn get_meta(&self, name: &str) -> Vec<&Meta> {

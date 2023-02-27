@@ -22,6 +22,7 @@ sources = files(
   'backend/card.rs',
   'backend/data.rs',
   'backend/image.rs',
+  'backend/log.rs',
   'backend/mod.rs',
   'backend/scraper.rs',
   'backend/social.rs',
