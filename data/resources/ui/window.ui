@@ -196,7 +196,7 @@
 
                                 <child>
                                   <object class="AdwButtonContent">
-                                    <property name="icon-name">system-search-symbolic</property>
+                                    <property name="icon-name">code-symbolic</property>
                                     <property name="label" translatable="yes">View Metadata</property>
                                   </object>
                                 </child>

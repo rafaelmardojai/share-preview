@@ -13,6 +13,7 @@
     <file compressed="true" preprocess="xml-stripblanks" alias="metadata-item.ui">ui/metadata-item.ui</file>
 
     <!-- Icons -->
+    <file preprocess="xml-stripblanks" alias="icons/scalable/emblems/code-symbolic.svg">icons/code-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="icons/scalable/emblems/tag-symbolic.svg">icons/tag-symbolic.svg</file>
   </gresource>
 </gresources>
