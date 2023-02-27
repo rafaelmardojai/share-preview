@@ -73,7 +73,8 @@ mod imp {
         }
 
         fn class_init(klass: &mut Self::Class) {
-            Self::bind_template(klass);
+            klass.bind_template();
+            klass.bind_template_instance_callbacks();
         }
 
         // You must call `Widget`'s `init_template()` within `instance_init()`.
@@ -106,6 +107,7 @@ glib::wrapper! {
         @implements gio::ActionMap, gio::ActionGroup;
 }
 
+#[gtk::template_callbacks]
 impl SharePreviewWindow {
     pub fn new(app: &SharePreviewApplication) -> Self {
         let window: Self = glib::Object::builder().build();
@@ -117,8 +119,6 @@ impl SharePreviewWindow {
         window.setup_widgets();
         // Setup window actions
         window.setup_actions();
-        // Setup widgets signals
-        window.setup_signals();
 
         window
     }
@@ -221,69 +221,58 @@ impl SharePreviewWindow {
         );
     }
 
-    fn setup_signals(&self) {
-        let url_entry = &*self.imp().url_entry;
+    #[template_callback]
+    fn on_color_scheme_clicked(&self) {
+        let style_manager = adw::StyleManager::default();
+        if style_manager.is_dark() {
+            style_manager.set_color_scheme(adw::ColorScheme::ForceLight);
+        } else {
+            style_manager.set_color_scheme(adw::ColorScheme::ForceDark);
+        }
+    }
 
-        self.imp().color_scheme.connect_clicked(
-            clone!(@weak self as win => move |_| {
-                let style_manager = adw::StyleManager::default();
-                if style_manager.is_dark() {
-                    style_manager.set_color_scheme(adw::ColorScheme::ForceLight);
-                } else {
-                    style_manager.set_color_scheme(adw::ColorScheme::ForceDark);
-                }
-            })
-        );
+    #[template_callback]
+    fn on_url_entry_changed(&self, entry: &gtk::Entry) {
+        if entry.text().is_empty() {
+            entry.set_icon_sensitive(EntryIconPosition::Secondary, false);
+        } else if !entry.text().is_empty() && !entry.icon_is_sensitive(EntryIconPosition::Secondary) {
+            entry.set_icon_sensitive(EntryIconPosition::Secondary, true);
+        }
+    }
 
-        self.imp().url_entry.connect_activate(
-            clone!(@weak self as win => move |_| {
-                WidgetExt::activate_action(&win, "win.run", None).unwrap();
-            })
-        );
+    #[template_callback]
+    fn on_url_entry_activate(&self, _entry: &gtk::Entry) {
+        WidgetExt::activate_action(self, "win.run", None).unwrap();
+    }
 
-        self.imp().url_entry.connect_icon_press(
-            clone!(@weak self as win => move |_, icon| {
-                match icon {
-                    EntryIconPosition::Secondary => {
-                        WidgetExt::activate_action(&win, "win.run", None).unwrap();
-                    },
-                    _ => {}
-                }
-            })
-        );
+    #[template_callback]
+    fn on_url_entry_icon_activate(&self, icon: EntryIconPosition) {
+        match icon {
+            EntryIconPosition::Secondary => {
+                WidgetExt::activate_action(self, "win.run", None).unwrap();
+            },
+            _ => {}
+        }
+    }
 
-        self.imp().url_entry.connect_changed(
-            clone!(@weak url_entry => move |_| {
-                if url_entry.text().is_empty() {
-                    url_entry.set_icon_sensitive(EntryIconPosition::Secondary, false);
-                } else if !url_entry.text().is_empty() && !url_entry.icon_is_sensitive(EntryIconPosition::Secondary) {
-                    url_entry.set_icon_sensitive(EntryIconPosition::Secondary, true);
-                }
-            })
-        );
+    #[template_callback]
+    fn on_social_selected(&self, _pspec: glib::ParamSpec, drop_down: &gtk::DropDown) {
+        let active_url = self.imp().active_url.borrow().to_string();
+        let social = Self::get_social(&drop_down.selected());
+        self.imp().settings.set_string("social", &social.to_string()).ok();
 
-        self.imp().social.connect_local(
-            "notify::selected",
-            false,
-            clone!(@weak self as win => @default-return None, move |_| {
-                let active_url = win.imp().active_url.borrow().to_string();
-                let social = SharePreviewWindow::get_social(&win.imp().social.selected());
-                win.imp().settings.set_string("social", &social.to_string()).ok();
-
-                if !active_url.is_empty() {
-                    win.imp().stack.set_visible_child_name("loading");
-                    win.imp().spinner.start();
-                    spawn!(async move {
-                        win.update_card().await;
-                        win.imp().stack.set_visible_child_name("card");
-                        win.imp().spinner.stop();
-                    });
-                } else {
-                    WidgetExt::activate_action(&win, "win.run", None).unwrap();
-                }
-                None
-            }),
-        );
+        if !active_url.is_empty() {
+            self.imp().stack.set_visible_child_name("loading");
+            self.imp().spinner.start();
+            let spawn = clone!(@weak self as win => move || {
+                spawn!(async move {
+                    win.update_card().await;
+                    win.imp().stack.set_visible_child_name("card");
+                    win.imp().spinner.stop();
+                });
+            });
+            spawn();
+        }
     }
 
     pub async fn update_card(&self) {

@@ -36,6 +36,7 @@
                   <object class="GtkButton" id="color_scheme">
                     <property name="icon_name">display-brightness-symbolic</property>
                     <property name="tooltip-text" translatable="yes">Toggle Color Scheme</property>
+                    <signal name="clicked" handler="on_color_scheme_clicked" swapped="true" />
                   </object>
                 </child>
                 <child type="end">
@@ -76,6 +77,8 @@
                                 </items>
                               </object>
                             </property>
+
+                            <signal name="notify::selected" handler="on_social_selected" swapped="true"/>
                           </object>
                         </child>
                         <child>
@@ -84,6 +87,9 @@
                             <property name="secondary-icon-name">go-next-symbolic</property>
                             <property name="secondary-icon-sensitive">false</property>
                             <property name="secondary-icon-tooltip-text" translatable="yes">Go</property>
+                            <signal name="changed" handler="on_url_entry_changed" swapped="true" />
+                            <signal name="activate" handler="on_url_entry_activate" swapped="true" />
+                            <signal name="icon-press" handler="on_url_entry_icon_activate" swapped="true"/>
                           </object>
                         </child>
                       </object>
