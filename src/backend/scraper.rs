@@ -64,7 +64,7 @@ async fn get_html_data(
             None => Vec::new()
         };
         let content: Option<String> = get_attr_val(&element, "content");
-        let image: Option<Image> = match (check_image(&property), &content) {
+        let image: Option<Image> = match (is_image(&name, &property), &content) {
             (true, Some(val)) => {
                 Some(Image::new(val.to_string()))
             },
@@ -96,10 +96,14 @@ fn get_attr_val(element: &ElementRef, attr: &str) -> Option<String> {
     })
 }
 
-fn check_image(list: &Vec<String>) -> bool {
-    for name in IMAGE_TAGS.iter() {
-        if list.contains(&name.to_string()) {
+fn is_image(name: &Option<String>, property: &Vec<String>) -> bool {
+    for term in IMAGE_TAGS.iter() {
+        if property.contains(&term.to_string()) {
             return true;
+        } else if let Some(s) = name {
+            if &term.to_string() == s {
+                return true;
+            }
         }
     }
     false
