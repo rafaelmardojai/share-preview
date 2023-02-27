@@ -1,7 +1,13 @@
 // Copyright 2023 Rafael Mardojai CM
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+use std::{
+    fmt::{Display, Formatter, Result as FmtResult},
+    str::FromStr
+};
+
 use image::ImageFormat;
+
 use crate::vec_of_strings;
 
 const NAMES: [&str; 3] =  [
@@ -30,15 +36,29 @@ pub enum Social {
     Twitter,
 }
 
-// Get a string to identify the platform
-impl ToString for Social {
-    fn to_string(&self) -> String {
-        let text = match self {
-            Self::Facebook => "facebook",
-            Self::Mastodon => "mastodon",
-            Self::Twitter => "twitter"
-        };
-        text.to_string()
+impl Display for Social {
+    fn fmt(&self, f: &mut Formatter) -> FmtResult {
+        match *self {
+            Social::Facebook => write!(f, "Facebook"),
+            Social::Mastodon => write!(f, "Mastodon"),
+            Social::Twitter => write!(f, "Twitter"),
+        }
+    }
+}
+
+#[derive(Debug, PartialEq, Eq)]
+pub struct SocialParseError;
+
+impl FromStr for Social {
+    type Err = SocialParseError;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match s {
+            "Facebook" => Ok(Self::Facebook),
+            "Mastodon" => Ok(Self::Mastodon),
+            "Twitter" => Ok(Self::Twitter),
+            _ => Ok(Self::Facebook)
+        }
     }
 }
 

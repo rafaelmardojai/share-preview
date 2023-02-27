@@ -1,4 +1,7 @@
-use std::cell::RefCell;
+use std::{
+    cell::RefCell,
+    str::FromStr
+};
 
 use adw::subclass::prelude::*;
 use gettextrs::*;
@@ -135,7 +138,7 @@ impl SharePreviewWindow {
         self.imp().start_page.set_icon_name(Some(APP_ID));
 
         let social = self.imp().settings.string("social");
-        self.imp().social.set_selected(Self::get_social_index(&social));
+        self.imp().social.set_selected(Social::from_str(&social).unwrap() as u32);
     }
 
     fn setup_actions(&self) {
@@ -292,15 +295,6 @@ impl SharePreviewWindow {
             1 => Social::Mastodon,
             2 => Social::Twitter,
             _ => unimplemented!()
-        }
-    }
-
-    fn get_social_index(s: &str) -> u32 {
-        match s {
-            "facebook" => 0,
-            "mastodon" => 1,
-            "twitter" => 2,
-            _ => 0
         }
     }
 }
