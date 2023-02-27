@@ -57,7 +57,7 @@ mod imp {
         }
 
         fn class_init(klass: &mut Self::Class) {
-            Self::bind_template(klass);
+            klass.bind_template();
         }
 
         // You must call `Widget`'s `init_template()` within `instance_init()`.

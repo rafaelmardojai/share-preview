@@ -131,49 +131,34 @@ impl SharePreviewWindow {
     }
 
     fn setup_actions(&self) {
-        let social = &*self.imp().social;
-        let url_box = &*self.imp().url_box;
-        let url_entry = &*self.imp().url_entry;
-        let url_error = &*self.imp().url_error;
-        let stack = &*self.imp().stack;
-        let spinner = &*self.imp().spinner;
-        let error_title = &*self.imp().error_title;
-        let error_message = &*self.imp().error_message;
-        let cardbox = &*self.imp().cardbox;
-
         // Run
         action!(
             self,
             "run",
-            clone!(
-                    @weak self as win, @weak social, @weak url_entry,
-                    @weak url_error, @weak url_box, @weak stack, @weak spinner,
-                    @weak error_title, @weak error_message,
-                    @weak cardbox => move |_, _| {
-
-                if !url_entry.text().is_empty() {
-                    let mut url = url_entry.text().trim().to_string();
+            clone!(@weak self as win => move |_, _| {
+                if !win.imp().url_entry.text().is_empty() {
+                    let mut url = win.imp().url_entry.text().trim().to_string();
                     match (url.starts_with("http://"), url.starts_with("https://")) {
                         (false, false) => {
                             url.insert_str(0, "http://");
                         },
                         _ => ()
                     }
-                    url_entry.set_text(&url);
+                    win.imp().url_entry.set_text(&url);
 
                     match Url::parse(&url) {
                         Ok(url) => {
-                            url_error.set_reveal_child(false);
-                            url_box.set_sensitive(false);
-                            stack.set_visible_child_name("loading");
-                            spinner.start();
+                            win.imp().url_error.set_reveal_child(false);
+                            win.imp().url_box.set_sensitive(false);
+                            win.imp().stack.set_visible_child_name("loading");
+                            win.imp().spinner.start();
                             spawn!(async move {
                                 match scrape(&url).await {
                                     Ok(data) => {
                                         win.imp().data.replace(data);
                                         win.imp().active_url.replace(url.to_string());
                                         win.update_card().await;
-                                        stack.set_visible_child_name("card");
+                                        win.imp().stack.set_visible_child_name("card");
                                     }
                                     Err(error) => {
                                         let error_texts = match error {
@@ -190,17 +175,17 @@ impl SharePreviewWindow {
                                                 }
                                             )
                                         };
-                                        error_title.set_label(&error_texts.0);
-                                        error_message.set_label(&error_texts.1);
-                                        stack.set_visible_child_name("error");
+                                        win.imp().error_title.set_label(&error_texts.0);
+                                        win.imp().error_message.set_label(&error_texts.1);
+                                        win.imp().stack.set_visible_child_name("error");
                                     }
                                 }
-                                spinner.stop();
-                                url_box.set_sensitive(true);
+                                win.imp().spinner.stop();
+                                win.imp().url_box.set_sensitive(true);
                             });
                         }
                         Err(_) => {
-                            url_error.set_reveal_child(true);
+                            win.imp().url_error.set_reveal_child(true);
                         }
                     }
                 }

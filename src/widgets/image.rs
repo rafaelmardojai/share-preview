@@ -10,7 +10,7 @@ use gtk::gdk::Texture;
 mod imp {
     use super::*;
 
-    #[derive(Debug, CompositeTemplate)]
+    #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/com/rafaelmardojai/SharePreview/image.ui")]
     pub struct CardImage {
         #[template_child]
@@ -30,16 +30,11 @@ mod imp {
         type ParentType = gtk::Box;
 
         fn new() -> Self {
-            Self {
-                stack: TemplateChild::default(),
-                fallback_box: TemplateChild::default(),
-                fallback_icon: TemplateChild::default(),
-                image: TemplateChild::default(),
-            }
+            Self::default()
         }
 
         fn class_init(klass: &mut Self::Class) {
-            Self::bind_template(klass);
+            klass.bind_template();
         }
 
         // You must call `Widget`'s `init_template()` within `instance_init()`.

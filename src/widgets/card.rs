@@ -11,7 +11,7 @@ use gtk::{glib, CompositeTemplate};
 mod imp {
     use super::*;
 
-    #[derive(Debug, CompositeTemplate)]
+    #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/com/rafaelmardojai/SharePreview/card.ui")]
     pub struct CardBox {
         #[template_child]
@@ -39,20 +39,11 @@ mod imp {
         type ParentType = gtk::Box;
 
         fn new() -> Self {
-            Self {
-                stack: TemplateChild::default(),
-                cardbox: TemplateChild::default(),
-                image: TemplateChild::default(),
-                textbox: TemplateChild::default(),
-                title: TemplateChild::default(),
-                description: TemplateChild::default(),
-                site: TemplateChild::default(),
-                error_message: TemplateChild::default(),
-            }
+            Self::default()
         }
 
         fn class_init(klass: &mut Self::Class) {
-            Self::bind_template(klass);
+            klass.bind_template();
         }
 
         // You must call `Widget`'s `init_template()` within `instance_init()`.
