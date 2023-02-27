@@ -1,13 +1,17 @@
 // Copyright 2021 Rafael Mardojai CM
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+use adw::subclass::prelude::*;
+use gtk::{
+    CompositeTemplate,
+    gio,
+    glib,
+    glib::clone,
+    prelude::*,
+};
+
 use crate::backend::{Data};
 use super::MetadataItem;
-
-use adw::subclass::prelude::*;
-use glib::clone;
-use gtk::{self, prelude::*};
-use gtk::{gio, glib, CompositeTemplate};
 
 mod imp {
     use super::*;

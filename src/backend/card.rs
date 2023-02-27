@@ -1,6 +1,11 @@
 // Copyright 2021 Rafael Mardojai CM
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+use std::{
+    error,
+    fmt::{Display, Formatter, Result as FmtResult}
+};
+
 use crate::vec_of_strings;
 use super::{
     Data,
@@ -13,9 +18,6 @@ use super::{
         SocialImageSizeKind
     }
 };
-
-use std::error;
-use std::fmt::{Display, Formatter, Result as FmtResult};
 
 #[derive(Debug, Default, Clone)]
 pub enum CardSize {

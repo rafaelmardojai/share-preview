@@ -1,11 +1,15 @@
 // Copyright 2021 Rafael Mardojai CM
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+use gtk::{
+    CompositeTemplate,
+    gdk::Texture,
+    glib,
+    prelude::*,
+    subclass::prelude::*
+};
+
 use crate::backend::CardSize;
-use gtk::subclass::prelude::*;
-use gtk::{self, prelude::*};
-use gtk::{glib, CompositeTemplate};
-use gtk::gdk::Texture;
 
 mod imp {
     use super::*;

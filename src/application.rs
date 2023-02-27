@@ -1,15 +1,20 @@
-use crate::config;
-use crate::window::SharePreviewWindow;
-
 use adw::subclass::prelude::*;
 use gettextrs::*;
-use glib::clone;
-use glib::WeakRef;
-use gtk::prelude::*;
-use gtk::{gio, glib};
+use gtk::{
+    gio,
+    glib,
+    glib::clone,
+    glib::WeakRef,
+    prelude::*,
+};
 use gtk_macros::action;
 use log::{info};
 use once_cell::sync::OnceCell;
+
+use crate::{
+    config,
+    window::SharePreviewWindow
+};
 
 mod imp {
     use super::*;

@@ -1,12 +1,16 @@
 // Copyright 2021 Rafael Mardojai CM
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-use super::{CardImage};
-use crate::backend::{Card, CardError, CardSize, Social};
 use gettextrs::*;
-use gtk::subclass::prelude::*;
-use gtk::{self, prelude::*};
-use gtk::{glib, CompositeTemplate};
+use gtk::{
+    CompositeTemplate,
+    glib,
+    prelude::*,
+    subclass::prelude::*,
+};
+
+use crate::backend::{Card, CardError, CardSize, Social};
+use super::{CardImage};
 
 mod imp {
     use super::*;

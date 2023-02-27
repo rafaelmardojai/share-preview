@@ -1,16 +1,24 @@
-use crate::application::SharePreviewApplication;
-use crate::backend::{scrape, Data, Error, Social};
-use crate::config::{APP_ID, PROFILE};
-use crate::widgets::{CardBox, DataDialog};
+use std::cell::RefCell;
 
 use adw::subclass::prelude::*;
 use gettextrs::*;
-use glib::clone;
-use gtk::{self, prelude::*};
-use gtk::{gio, glib, CompositeTemplate, EntryIconPosition};
+use gtk::{
+    CompositeTemplate,
+    EntryIconPosition,
+    gio,
+    glib,
+    glib::clone,
+    prelude::*
+};
 use gtk_macros::{action, spawn};
 use url::Url;
-use std::cell::RefCell;
+
+use crate::{
+    application::SharePreviewApplication,
+    backend::{scrape, Data, Error, Social},
+    config::{APP_ID, PROFILE},
+    widgets::{CardBox, DataDialog}
+};
 
 mod imp {
     use super::*;

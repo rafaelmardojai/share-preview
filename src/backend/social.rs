@@ -1,9 +1,8 @@
 // Copyright 2023 Rafael Mardojai CM
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-use crate::vec_of_strings;
-
 use image::ImageFormat;
+use crate::vec_of_strings;
 
 const NAMES: [&str; 3] =  [
     "og:title", "twitter:title", "title"

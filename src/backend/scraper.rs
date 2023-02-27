@@ -1,14 +1,15 @@
 // Copyright 2021 Rafael Mardojai CM
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-use super::{Data, Meta, Image, CLIENT};
-
-use std::fmt::{Display, Formatter, Result as FmtResult};
-use std::error;
+use std::{
+    error,
+    fmt::{Display, Formatter, Result as FmtResult}
+};
 
 use url::Url;
-use scraper::{Html, Selector};
-use scraper::element_ref::ElementRef;
+use scraper::{Html, Selector, element_ref::ElementRef};
+
+use super::{Data, Meta, Image, CLIENT};
 
 const IMAGE_TAGS: [&str; 3] = ["og:image", "twitter:image", "twitter:image:src"];
 

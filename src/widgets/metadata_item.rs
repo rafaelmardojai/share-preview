@@ -1,9 +1,13 @@
 // Copyright 2021 Rafael Mardojai CM
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-use glib::ToValue;
-use gtk::{glib, subclass::prelude::*};
 use std::cell::RefCell;
+
+use gtk::{
+    glib,
+    glib::ToValue,
+    subclass::prelude::*
+};
 
 mod imp {
     use super::*;

@@ -1,6 +1,16 @@
 // Copyright 2021 Rafael Mardojai CM
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+use std::{
+    cell::{RefCell, Cell},
+    error::Error,
+    fmt::{Display, Formatter, Result as FmtResult},
+    io::Cursor,
+};
+
+use image;
+use url::{Url, ParseError};
+
 use super::{
     CLIENT,
     CardSize,
@@ -8,13 +18,6 @@ use super::{
     SocialImageSizeKind
 };
 
-use std::error::Error;
-use std::io::Cursor;
-use std::cell::{RefCell, Cell};
-use std::fmt::{Display, Formatter, Result as FmtResult};
-
-use image;
-use url::{Url, ParseError};
 
 #[derive(Debug, Default, Clone)]
 pub struct Image {
