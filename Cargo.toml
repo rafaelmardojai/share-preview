@@ -8,6 +8,7 @@ edition = "2018"
 adw = { package = "libadwaita", version = "0.3", features = ["v1_2"] }
 image = "0.24"
 log = "0.4"
+im-rc = "15.1.0"
 pretty_env_logger = "0.4"
 gettext-rs = { version = "0.6", features = ["gettext-system"] }
 gtk = { package = "gtk4", version = "0.6", features = ["v4_8"] }
