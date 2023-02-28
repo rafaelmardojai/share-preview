@@ -18,9 +18,10 @@ use url::Url;
 
 use crate::{
     application::SharePreviewApplication,
-    backend::{scrape, Data, Error, Social},
+    backend::{scrape, Data, Error, Social, Log},
     config::{APP_ID, PROFILE},
-    widgets::{CardBox, DataDialog}
+    models::LogListModel,
+    widgets::{CardBox, DataDialog, LogDialog}
 };
 
 mod imp {
@@ -30,6 +31,7 @@ mod imp {
     #[template(resource = "/com/rafaelmardojai/SharePreview/window.ui")]
     pub struct SharePreviewWindow {
         pub settings: gio::Settings,
+        pub logger: LogListModel,
         pub card: RefCell<Option<CardBox>>,
         pub data: RefCell<Data>,
         pub active_url: RefCell<String>,
@@ -66,6 +68,7 @@ mod imp {
         fn new() -> Self {
             Self {
                 settings: gio::Settings::new(APP_ID),
+                logger: LogListModel::new(),
                 card: RefCell::new(Option::default()),
                 data: RefCell::new(Data::default()),
                 active_url: RefCell::new(String::default()),
@@ -215,6 +218,18 @@ impl SharePreviewWindow {
                 dialog.show();
             })
         );
+
+        // Metadata
+        action!(
+            self,
+            "log",
+            clone!(@weak self as win => move |_, _| {
+                let dialog = LogDialog::new(&win.imp().logger);
+                dialog.set_transient_for(Some(&win));
+                dialog.present();
+            })
+        );
+
     }
 
     #[template_callback]
@@ -272,9 +287,11 @@ impl SharePreviewWindow {
     }
 
     pub async fn update_card(&self) {
+        self.imp().logger.flush();
+
         let social = Self::get_social(&self.imp().social.selected());
         let data = self.imp().data.borrow();
-        let card = data.get_card(social).await;
+        let card = data.get_card(social, &self.imp().logger).await;
 
         let card = match card {
             Ok(card) => CardBox::new_from_card(&card),

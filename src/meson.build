@@ -31,6 +31,7 @@ sources = files(
   'models/mod.rs',
   'widgets/card.rs',
   'widgets/image.rs',
+  'widgets/log_dialog.rs',
   'widgets/metadata_item.rs',
   'widgets/data_dialog.rs',
   'application.rs',

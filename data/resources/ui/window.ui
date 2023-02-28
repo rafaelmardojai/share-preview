@@ -185,19 +185,33 @@
                               <class name="card-container"/>
                             </style>
                             <child>
-                              <object class="GtkButton">
-                                <property name="action-name">win.metadata</property>
-                                <property name="halign">center</property>
-                                <property name="valign">end</property>
+                              <object class="GtkCenterBox">
+                                <child type="center">
+                                  <object class="GtkButton">
+                                    <property name="action-name">win.metadata</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">end</property>
 
-                                <style>
-                                  <class name="pill"/>
-                                </style>
+                                    <style>
+                                      <class name="pill"/>
+                                    </style>
 
-                                <child>
-                                  <object class="AdwButtonContent">
-                                    <property name="icon-name">code-symbolic</property>
-                                    <property name="label" translatable="yes">View Metadata</property>
+                                    <child>
+                                      <object class="AdwButtonContent">
+                                        <property name="icon-name">code-symbolic</property>
+                                        <property name="label" translatable="yes">View Metadata</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child type="end">
+                                  <object class="GtkButton">
+                                    <property name="action-name">win.log</property>
+                                    <property name="halign">start</property>
+                                    <property name="hexpand">true</property>
+                                    <property name="valign">center</property>
+                                    <property name="margin-start">12</property>
+                                    <property name="label">Log</property>
                                   </object>
                                 </child>
                               </object>

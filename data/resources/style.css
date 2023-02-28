@@ -7,10 +7,19 @@
   padding: 0 12px 12px;
 }
 
+.card-text {
+  padding: 12px;
+}
+
 .metadata-item {
   padding: 8px;
 }
 
-.card-text {
-  padding: 12px;
+.logs {
+  padding: 24px 12px;
+}
+
+.log-item {
+  font-family: monospace;
+  padding: 6px 0;
 }

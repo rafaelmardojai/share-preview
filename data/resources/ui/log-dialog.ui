@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="LogDialog" parent="AdwWindow">
+    <property name="default_width">600</property>
+    <property name="default_height">400</property>
+    <property name="modal">True</property>
+    <property name="destroy_with_parent">True</property>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="AdwHeaderBar" id="headerbar">
+            <style>
+              <class name="flat"/>
+            </style>
+
+            <child type="title">
+              <object class="AdwWindowTitle">
+                <property name="title" translatable="yes">Scraping Log</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow" id="scroll">
+            <property name="vexpand">true</property>
+            <property name="vadjustment">adjustment</property>
+            <child>
+              <object class="GtkListBox" id="list">
+                <property name="selection-mode">none</property>
+                <style>
+                  <class name="logs" />
+                  <class name="background" />
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+
+  <object class="GtkAdjustment" id="adjustment">
+    <signal name="value-changed" handler="on_sroll_changed" swapped="true" />
+  </object>
+</interface>
