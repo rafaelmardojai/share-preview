@@ -11,7 +11,7 @@ use gtk::{
 };
 
 use crate::backend::{Data};
-use super::MetadataItem;
+use crate::models::MetadataItem;
 
 mod imp {
     use super::*;
