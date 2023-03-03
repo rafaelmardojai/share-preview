@@ -13,7 +13,7 @@ use gtk::{
     glib::clone,
     prelude::*
 };
-use gtk_macros::{action, spawn};
+use gtk_macros::spawn;
 use url::Url;
 
 use crate::{
@@ -89,6 +89,18 @@ mod imp {
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
             klass.bind_template_instance_callbacks();
+
+            klass.install_action("win.run", None, move |win, _, _| {
+                win.run();
+            });
+
+            klass.install_action("win.metadata", None, move |win, _, _| {
+                win.show_metadata();
+            });
+
+            klass.install_action("win.log", None, move |win, _, _| {
+                win.show_log();
+            });
         }
 
         // You must call `Widget`'s `init_template()` within `instance_init()`.
@@ -131,8 +143,6 @@ impl SharePreviewWindow {
         gtk::Window::set_default_icon_name(APP_ID);
         // Setup widgets
         window.setup_widgets();
-        // Setup window actions
-        window.setup_actions();
 
         window
     }
@@ -144,35 +154,34 @@ impl SharePreviewWindow {
         self.imp().social.set_selected(Social::from_str(&social).unwrap() as u32);
     }
 
-    fn setup_actions(&self) {
-        // Run
-        action!(
-            self,
-            "run",
-            clone!(@weak self as win => move |_, _| {
-                if !win.imp().url_entry.text().is_empty() {
-                    let mut url = win.imp().url_entry.text().trim().to_string();
+    fn run(&self) {
+        let imp = self.imp();
+
+        if !imp.url_entry.text().is_empty() {
+            let mut url = imp.url_entry.text().trim().to_string();
                     match (url.starts_with("http://"), url.starts_with("https://")) {
                         (false, false) => {
                             url.insert_str(0, "http://");
                         },
                         _ => ()
                     }
-                    win.imp().url_entry.set_text(&url);
+            imp.url_entry.set_text(&url);
 
                     match Url::parse(&url) {
                         Ok(url) => {
-                            win.imp().url_error.set_reveal_child(false);
-                            win.imp().url_box.set_sensitive(false);
-                            win.imp().stack.set_visible_child_name("loading");
-                            win.imp().spinner.start();
+                    imp.url_error.set_reveal_child(false);
+                    imp.url_box.set_sensitive(false);
+                    imp.stack.set_visible_child_name("loading");
+                    imp.spinner.start();
+                    let spawn = clone!(@weak self as win => move || {
                             spawn!(async move {
+                            let imp = win.imp();
                                 match scrape(&url).await {
                                     Ok(data) => {
-                                        win.imp().data.replace(data);
-                                        win.imp().active_url.replace(url.to_string());
+                                    imp.data.replace(data);
+                                    imp.active_url.replace(url.to_string());
                                         win.update_card().await;
-                                        win.imp().stack.set_visible_child_name("card");
+                                    imp.stack.set_visible_child_name("card");
                                     }
                                     Err(error) => {
                                         let error_texts = match error {
@@ -189,47 +198,35 @@ impl SharePreviewWindow {
                                                 }
                                             )
                                         };
-                                        win.imp().error_title.set_label(&error_texts.0);
-                                        win.imp().error_message.set_label(&error_texts.1);
-                                        win.imp().stack.set_visible_child_name("error");
+                                    imp.error_title.set_label(&error_texts.0);
+                                    imp.error_message.set_label(&error_texts.1);
+                                    imp.stack.set_visible_child_name("error");
                                     }
                                 }
-                                win.imp().spinner.stop();
-                                win.imp().url_box.set_sensitive(true);
+                            imp.spinner.stop();
+                            imp.url_box.set_sensitive(true);
                             });
+                    });
+                    spawn();
                         }
                         Err(_) => {
-                            win.imp().url_error.set_reveal_child(true);
+                    imp.url_error.set_reveal_child(true);
                         }
                     }
                 }
-            })
-        );
+    }
 
-        // Metadata
-        action!(
-            self,
-            "metadata",
-            clone!(@weak self as win => move |_, _| {
-                let data = win.imp().data.borrow();
-
+    fn show_metadata(&self) {
+        let data = self.imp().data.borrow();
                 let dialog = DataDialog::new(&data);
-                dialog.set_transient_for(Some(&win));
-                dialog.show();
-            })
-        );
+        dialog.set_transient_for(Some(self));
+        dialog.present();
+    }
 
-        // Metadata
-        action!(
-            self,
-            "log",
-            clone!(@weak self as win => move |_, _| {
-                let dialog = LogDialog::new(&win.imp().logger);
-                dialog.set_transient_for(Some(&win));
+    fn show_log(&self) {
+        let dialog = LogDialog::new(&self.imp().logger);
+        dialog.set_transient_for(Some(self));
                 dialog.present();
-            })
-        );
-
     }
 
     #[template_callback]
