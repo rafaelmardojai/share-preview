@@ -204,14 +204,42 @@
                                     </child>
                                   </object>
                                 </child>
+
                                 <child type="end">
                                   <object class="GtkButton">
                                     <property name="action-name">win.log</property>
-                                    <property name="halign">start</property>
+                                    <property name="halign">end</property>
                                     <property name="hexpand">true</property>
                                     <property name="valign">center</property>
                                     <property name="margin-start">12</property>
-                                    <property name="label">Log</property>
+
+                                    <style>
+                                      <class name="flat"/>
+                                    </style>
+
+                                    <child>
+                                      <object class="GtkBox">
+                                        <property name="spacing">3</property>
+
+                                        <child>
+                                          <object class="AdwButtonContent" id="inf_count">
+                                            <property name="icon-name">info-symbolic</property>
+                                          </object>
+                                        </child>
+
+                                        <child>
+                                          <object class="AdwButtonContent" id="war_count">
+                                            <property name="icon-name">dialog-warning-symbolic</property>
+                                          </object>
+                                        </child>
+
+                                        <child>
+                                          <object class="AdwButtonContent" id="err_count">
+                                            <property name="icon-name">dialog-error-symbolic</property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
                                   </object>
                                 </child>
                               </object>

@@ -72,6 +72,31 @@ impl LogListModel {
         // Emit change signal
         self.items_changed(0, length, 0);
     }
+
+    /// Get the count of the worrying levels in the model
+    pub fn worrying_count(&self) -> (u32, u32, u32) {
+        let mut inf_count: u32 = 0;
+        let mut war_count: u32 = 0;
+        let mut err_count: u32 = 0;
+
+        for item in self.imp().0.borrow().iter() {
+
+            match item.level() {
+                LogLevel::Info => {
+                    inf_count += 1;
+                },
+                LogLevel::Warning => {
+                    war_count += 1;
+                },
+                LogLevel::Error => {
+                    err_count += 1;
+                },
+                _ => ()
+            }
+        }
+
+        (inf_count, war_count, err_count)
+    }
 }
 
 impl Log for LogListModel {

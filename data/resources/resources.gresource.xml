@@ -15,6 +15,7 @@
 
     <!-- Icons -->
     <file preprocess="xml-stripblanks" alias="icons/scalable/emblems/code-symbolic.svg">icons/code-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="icons/scalable/emblems/info-symbolic.svg">icons/info-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="icons/scalable/emblems/tag-symbolic.svg">icons/tag-symbolic.svg</file>
   </gresource>
 </gresources>

@@ -57,6 +57,12 @@ mod imp {
         pub error_message: TemplateChild<gtk::Label>,
         #[template_child]
         pub cardbox: TemplateChild<gtk::Box>,
+        #[template_child]
+        pub war_count: TemplateChild<adw::ButtonContent>,
+        #[template_child]
+        pub err_count: TemplateChild<adw::ButtonContent>,
+        #[template_child]
+        pub inf_count: TemplateChild<adw::ButtonContent>,
     }
 
     #[glib::object_subclass]
@@ -83,6 +89,9 @@ mod imp {
                 error_title: TemplateChild::default(),
                 error_message: TemplateChild::default(),
                 cardbox: TemplateChild::default(),
+                war_count: TemplateChild::default(),
+                err_count: TemplateChild::default(),
+                inf_count: TemplateChild::default(),
             }
         }
 
@@ -152,6 +161,36 @@ impl SharePreviewWindow {
 
         let social = self.imp().settings.string("social");
         self.imp().social.set_selected(Social::from_str(&social).unwrap() as u32);
+
+        self.imp().logger.connect_items_changed(clone!(@weak self as win => move |logger,_,_,_| {
+            let (inf_count, war_count, err_count) = logger.worrying_count();
+
+            if inf_count > 0 {
+                win.imp().inf_count.add_css_class("accent");
+                win.imp().inf_count.remove_css_class("dim-label");
+            } else {
+                win.imp().inf_count.add_css_class("dim-label");
+                win.imp().inf_count.remove_css_class("accent");
+            }
+            if war_count > 0 {
+                win.imp().war_count.add_css_class("warning");
+                win.imp().war_count.remove_css_class("dim-label");
+            } else {
+                win.imp().war_count.add_css_class("dim-label");
+                win.imp().war_count.remove_css_class("warning");
+            }
+            if err_count > 0 {
+                win.imp().err_count.add_css_class("error");
+                win.imp().err_count.remove_css_class("dim-label");
+            } else {
+                win.imp().err_count.add_css_class("dim-label");
+                win.imp().err_count.remove_css_class("error");
+            }
+
+            win.imp().inf_count.set_label(&inf_count.to_string());
+            win.imp().war_count.set_label(&war_count.to_string());
+            win.imp().err_count.set_label(&err_count.to_string());
+        }));
     }
 
     fn run(&self) {
@@ -159,66 +198,66 @@ impl SharePreviewWindow {
 
         if !imp.url_entry.text().is_empty() {
             let mut url = imp.url_entry.text().trim().to_string();
-                    match (url.starts_with("http://"), url.starts_with("https://")) {
-                        (false, false) => {
-                            url.insert_str(0, "http://");
-                        },
-                        _ => ()
-                    }
+            match (url.starts_with("http://"), url.starts_with("https://")) {
+                (false, false) => {
+                    url.insert_str(0, "http://");
+                },
+                _ => ()
+            }
             imp.url_entry.set_text(&url);
 
-                    match Url::parse(&url) {
-                        Ok(url) => {
+            match Url::parse(&url) {
+                Ok(url) => {
                     imp.url_error.set_reveal_child(false);
                     imp.url_box.set_sensitive(false);
                     imp.stack.set_visible_child_name("loading");
                     imp.spinner.start();
                     let spawn = clone!(@weak self as win => move || {
-                            spawn!(async move {
+                        spawn!(async move {
                             let imp = win.imp();
-                                match scrape(&url).await {
-                                    Ok(data) => {
+                            match scrape(&url).await {
+                                Ok(data) => {
                                     imp.data.replace(data);
                                     imp.active_url.replace(url.to_string());
-                                        win.update_card().await;
+                                    win.update_card().await;
                                     imp.stack.set_visible_child_name("card");
-                                    }
-                                    Err(error) => {
-                                        let error_texts = match error {
-                                            Error::NetworkError(_) => (
-                                                gettext("Network Error"),
+                                }
+                                Err(error) => {
+                                    let error_texts = match error {
+                                        Error::NetworkError(_) => (
+                                            gettext("Network Error"),
+                                            gettext("Couldn't connect to the given URL.")
+                                        ),
+                                        Error::Unexpected(status) => (
+                                            gettext("Unexpected Error"),
+                                            if !status.is_empty() {
+                                                gettext!("Server Error {}", status)
+                                            } else {
                                                 gettext("Couldn't connect to the given URL.")
-                                            ),
-                                            Error::Unexpected(status) => (
-                                                gettext("Unexpected Error"),
-                                                if !status.is_empty() {
-                                                    gettext!("Server Error {}", status)
-                                                } else {
-                                                    gettext("Couldn't connect to the given URL.")
-                                                }
-                                            )
-                                        };
+                                            }
+                                        )
+                                    };
                                     imp.error_title.set_label(&error_texts.0);
                                     imp.error_message.set_label(&error_texts.1);
                                     imp.stack.set_visible_child_name("error");
-                                    }
                                 }
+                            }
                             imp.spinner.stop();
                             imp.url_box.set_sensitive(true);
-                            });
+                        });
                     });
                     spawn();
-                        }
-                        Err(_) => {
-                    imp.url_error.set_reveal_child(true);
-                        }
-                    }
                 }
+                Err(_) => {
+                    imp.url_error.set_reveal_child(true);
+                }
+            }
+        }
     }
 
     fn show_metadata(&self) {
         let data = self.imp().data.borrow();
-                let dialog = DataDialog::new(&data);
+        let dialog = DataDialog::new(&data);
         dialog.set_transient_for(Some(self));
         dialog.present();
     }
@@ -226,7 +265,7 @@ impl SharePreviewWindow {
     fn show_log(&self) {
         let dialog = LogDialog::new(&self.imp().logger);
         dialog.set_transient_for(Some(self));
-                dialog.present();
+        dialog.present();
     }
 
     #[template_callback]
