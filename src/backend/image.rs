@@ -76,7 +76,7 @@ impl Image {
                         self.format.set(Some(format));
                     }
                     if let None = self.size.get() {
-                        self.size.set(resp.len());
+                        self.size.set(Some(bytes.len()));
                     }
 
                     self.bytes.replace(Some(bytes));
