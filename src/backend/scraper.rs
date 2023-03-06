@@ -20,18 +20,11 @@ pub async fn scrape(url: &Url) -> Result<Data, Error> {
 
     if resp.status().is_success() {
         let mut data = Data::default();
-        let mut body_images: Vec<Image> = Vec::new();
 
         // Call function to get data from html:
-        get_html_data(&resp.body_string().await?, &mut data, &mut body_images).await; // Write html data to a Vec<>
+        get_html_data(&resp.body_string().await?, &mut data, &url).await; // Write html data to a Vec<>
 
         data.url = url.host_str().unwrap().to_string(); // Set Data URL
-        // Set Data images body_images with the relative URLs normalized:
-        data.body_images = body_images.iter().map(|i| {
-            let mut i = i.clone();
-            i.normalize(&url);
-            i
-        }).collect::<Vec<Image>>();
 
         Ok(data)
     } else {
@@ -42,7 +35,7 @@ pub async fn scrape(url: &Url) -> Result<Data, Error> {
 async fn get_html_data(
         text: &String,
         data: &mut Data,
-        body_images: &mut Vec<Image>) {
+        url: &Url) {
     //! Parse html and get data
 
     let document = Html::parse_document(&text); // HTML document from request text
@@ -66,7 +59,9 @@ async fn get_html_data(
         let content: Option<String> = get_attr_val(&element, "content");
         let image: Option<Image> = match (is_image(&name, &property), &content) {
             (true, Some(val)) => {
-                Some(Image::new(val.to_string()))
+                let mut image = Image::new(val.to_string());
+                image.normalize(url);
+                Some(image)
             },
             _ => None
         };
@@ -83,7 +78,9 @@ async fn get_html_data(
         if let Some(src) = element.value().attr("src") {
             let src = src.trim().to_string();
             if src.contains(".jpg") || src.contains(".jpeg") || src.contains(".png"){
-                body_images.push(Image::new(src))
+                let mut image = Image::new(src);
+                image.normalize(url);
+                data.body_images.push(image)
             }
         }
     }
