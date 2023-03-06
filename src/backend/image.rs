@@ -95,11 +95,17 @@ impl Image {
         _constraints: &SocialConstraints
     ) -> Result<SocialImageSizeKind, ImageError> {
         if let (None, None) = (self.width.get(), self.height.get()) {
-            let bytes = self.fetch().await?;
-            let image = image::load_from_memory(&bytes)?;
 
-            self.width.set(Some(image.width()));
-            self.height.set(Some(image.height()));
+            let bytes = self.fetch().await?;
+
+            let (width, height) = async_std::task::spawn_blocking( move || -> Result<(u32, u32), ImageError> {
+                let image = image::load_from_memory(&bytes)?;
+                Ok((image.width(), image.height()))
+            })
+            .await?;
+
+            self.width.set(Some(width));
+            self.height.set(Some(height));
         }
 
         if let (Some(width), Some(height)) = (self.width.get(), self.height.get()) {
@@ -127,17 +133,23 @@ impl Image {
         height: u32
     ) -> Result<Vec<u8>, ImageError> {
         let bytes = self.fetch().await?;
-        let image = image::load_from_memory(&bytes)?;
 
-        let thumbnail = image.resize_to_fill(
-            width,
-            height,
-            image::imageops::FilterType::Triangle
-        );
-        let mut thumbnail_bytes: Vec<u8> = Vec::new();
+        let thumbnail_bytes = async_std::task::spawn_blocking( move || -> Result<Vec<u8>, ImageError> {
+            let mut thumbnail_bytes: Vec<u8> = Vec::new();
+            let image = image::load_from_memory(&bytes)?;
 
-        // Save to PNG so GTK can handle any format
-        thumbnail.write_to(&mut Cursor::new(&mut thumbnail_bytes), image::ImageFormat::Png)?;
+            // Create thumbnail
+            let thumbnail = image.resize_to_fill(
+                width,
+                height,
+                image::imageops::FilterType::Triangle
+            );
+
+            // Save to PNG so GTK can handle any format
+            thumbnail.write_to(&mut Cursor::new(&mut thumbnail_bytes), image::ImageFormat::Png)?;
+            Ok(thumbnail_bytes)
+        })
+        .await?;
 
         Ok(thumbnail_bytes)
     }
