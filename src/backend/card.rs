@@ -89,7 +89,7 @@ impl Card {
                 image_sizes.push(SocialImageSizeKind::Small);
                 // Mastodon uses og:site_name
                 let look = vec_of_strings!["og:site_name"];
-                if let Some(val) = Card::lookup_meta(&look, &data, logger) {
+                if let Some(val) = Card::lookup_meta(&look, &data, None::<&dyn Log>) {
                     if !val.is_empty() {
                         site = val.to_string();
                         logger.log(LogLevel::Info, gettext!("{}: Found {}.", &social, "og:site_name"));
@@ -98,29 +98,16 @@ impl Card {
                     }
                 } else {
                     logger.log(LogLevel::Warning, gettext!(
-                        "{}: Unable to find {}. Consider providing a {} meta property.", &social, "og:site_name", "og:site_name"
+                        "{}: Unable to find {}. Consider providing a {} meta property.",
+                        &social, "og:site_name", "og:site_name"
                     ));
                 }
             },
-            Social::Twitter => {
-                // Change card size by the value of "twitter:card" meta-tag
-                let look = vec_of_strings!["twitter:card"];
-                if let Some(val) = Card::lookup_meta(&look, &data, logger) {
-                    if val == "summary_large_image" {
-                        image_sizes.push(SocialImageSizeKind::Large);
-                    }
-                    logger.log(LogLevel::Info, gettext!("{}: Found card of type {}.", &social, val));
-                } else {
-                    logger.log(LogLevel::Warning, gettext!(
-                        "{}: Unable to find {}. Consider providing a {} meta property.", &social, "twitter:card", "twitter:card"
-                    ));
-                }
-                image_sizes.push(SocialImageSizeKind::Medium);
-            }
+            Social::Twitter => {}
         }
 
         // Get first available value from meta-tags to lookup
-        let pre_title = Card::lookup_meta(&lookups.title, &data, logger);
+        let pre_title = Card::lookup_meta(&lookups.title, &data, Some(logger));
         let title = match &pre_title {
             Some(title) => title.to_string(),
             None => {
@@ -144,19 +131,44 @@ impl Card {
         };
 
         // TODO: Get description from HTML for Facebook
-        let description = Card::lookup_meta(&lookups.description, &data, logger);
+        let description = Card::lookup_meta(&lookups.description, &data, Some(logger));
 
-        let card_type = Card::lookup_meta(&lookups.kind, &data, logger);
+        let card_type = Card::lookup_meta(&lookups.kind, &data, Some(logger));
+        if let Social::Twitter = &social {
+            match card_type {
+                Some(_) => {
+                    // Check if it was a "twitter:card" and warn if not
+                    // Change card size by the value of "twitter:card" meta-tag
+                    let look = vec_of_strings!["twitter:card"];
+                    if let Some(val) = Card::lookup_meta(&look, &data, None::<&dyn Log>) {
+                        if val == "summary_large_image" {
+                            image_sizes.push(SocialImageSizeKind::Large);
+                        }
+                        logger.log(LogLevel::Info, gettext!("{}: Found card of type {}.", &social, val));
+                    } else {
+                        logger.log(LogLevel::Warning, gettext!(
+                            "{}: Unable to find {}. Consider providing a {} meta property.",
+                            &social, "twitter:card", "twitter:card"
+                        ));
+                    }
+                    image_sizes.push(SocialImageSizeKind::Medium);
+                },
+                None => {
+                    // Return error if no card type is found for Twitter
+                    logger.log(LogLevel::Error, gettext!(
+                        "{}: Unable to find any valid card type.", &social
+                    ));
+                    return Err(CardError::TwitterNoCardFound);
+                }
+            }
+        }
 
         // Return error if no basic data is found for Twitter
         if let (Social::Twitter, Option::None, Option::None) = (&social, &pre_title, &description) {
-            logger.log(LogLevel::Error, gettext!("{}: Unable to find any valid title or description.", &social));
+            logger.log(LogLevel::Error, gettext!(
+                "{}: Unable to find any valid title or description.", &social
+            ));
             return Err(CardError::NotEnoughData);
-        }
-        // Return error if no card type is found for Twitter
-        if let (Social::Twitter, Option::None) = (&social, &card_type) {
-            logger.log(LogLevel::Error, gettext!("{}: Unable to find any valid card type.", &social));
-            return Err(CardError::TwitterNoCardFound);
         }
 
         match Card::lookup_meta_image(
@@ -175,7 +187,8 @@ impl Card {
                 match &social {
                     Social::Facebook => {
                         logger.log(LogLevel::Warning, gettext!(
-                            "{}: No valid image found, will look for images in the HTML.", &social
+                            "{}:  Unable to find a valid image in the metadata, will look for images in the HTML.",
+                            &social
                         ));
                         if data.body_images.len() > 0 {
                             match Card::lookup_fb_body_images(&social, &data.body_images, &constraints).await {
@@ -183,8 +196,16 @@ impl Card {
                                     image = Some(i);
                                     size = CardSize::Medium;
                                 },
-                                _ => ()
+                                None => {
+                                    logger.log(LogLevel::Warning, gettext!(
+                                        "{}: No valid images found in the HTML.", &social
+                                    ));
+                                }
                             }
+                        } else {
+                            logger.log(LogLevel::Warning, gettext!(
+                                "{}: No valid images found in the HTML.", &social
+                            ));
                         }
                     },
                     Social::Mastodon => {
@@ -194,7 +215,8 @@ impl Card {
                     },
                     Social::Twitter => {
                         logger.log(LogLevel::Warning, gettext!(
-                            "{}: Unable to find a valid image in the metadata, will render a \"{}\" card with icon.", &social, "summary"
+                            "{}: Unable to find a valid image in the metadata, will render a \"{}\" card with icon.",
+                            &social, "summary"
                         ));
                         size = CardSize::Medium;
                     }
@@ -205,30 +227,32 @@ impl Card {
         Ok(Card {title, site, description, image, size, social})
     }
 
-    pub fn log_message() {
-
-    }
-
-    pub fn lookup_meta(lookup: &Vec<String>, data: &Data, logger: &impl Log) -> Option<String> {
+    pub fn lookup_meta(lookup: &Vec<String>, data: &Data, logger: Option<&(impl Log + ?Sized)>) -> Option<String> {
         for name in lookup.iter() {
             let occurrences = data.get_meta(name);
 
             if let Some(meta) = occurrences.first() {
                 if let Some(val) = &meta.content {
                     if !val.is_empty() {
-                        logger.log(LogLevel::Debug, gettext!(
-                            "Found a valid occurrence for \"{}\" with value \"{}\".",
-                            name, val
-                        ));
+                        if let Some(log) = logger {
+                            log.log(LogLevel::Debug, gettext!(
+                                "Found a valid occurrence for \"{}\" with value \"{}\".",
+                                name, val
+                            ));
+                        }
                         return Some(val.to_string());
                     } {
-                        logger.log(LogLevel::Warning, gettext!("\"{}\" it's empty!", name));
+                        if let Some(log) = logger {
+                            log.log(LogLevel::Warning, gettext!("\"{}\" it's empty!", name));
+                        }
                         continue;
                     }
                 }
             };
 
-            logger.log(LogLevel::Debug, gettext!("No occurrences found for \"{}\"!", name));
+            if let Some(log) = logger {
+                log.log(LogLevel::Debug, gettext!("No occurrences found for \"{}\"!", name));
+            }
         }
         None
     }
