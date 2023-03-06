@@ -69,7 +69,7 @@ impl LogDialog {
                 let item = item.downcast_ref::<LogItem>().expect("Couldn't get LogItem");
 
                 let container = gtk::Box::builder()
-                    .spacing(6)
+                    .spacing(12)
                     .css_classes(["log-item"])
                     .build();
 
@@ -83,6 +83,8 @@ impl LogDialog {
                 let label = gtk::Label::builder()
                     .label(item.property::<String>("text"))
                     .wrap(true)
+                    .hexpand(true)
+                    .xalign(0.0)
                     .selectable(true)
                     .build();
                 container.append(&label);
@@ -92,6 +94,7 @@ impl LogDialog {
                         container.add_css_class("debug");
                         container.add_css_class("dim-label");
                         level.set_label(&gettext("DEBUG"));
+                        level.add_css_class("caption");
                         label.add_css_class("caption");
                     },
                     LogLevel::Info => {
