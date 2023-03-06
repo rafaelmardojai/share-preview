@@ -132,7 +132,7 @@ pub struct SocialConstraints {
     pub image_formats: Vec<ImageFormat>,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum SocialImageSizeKind {
     Small,
     Medium,

@@ -13,9 +13,9 @@ use url::{Url, ParseError};
 
 use super::{
     CLIENT,
-    CardSize,
     Social,
-    SocialImageSizeKind
+    SocialImageSizeKind,
+    SocialConstraints
 };
 
 
@@ -24,6 +24,8 @@ pub struct Image {
     pub url: String,
     pub bytes: RefCell<Option<Vec<u8>>>,
     pub format: Cell<Option<image::ImageFormat>>,
+    pub width: Cell<Option<u32>>,
+    pub height: Cell<Option<u32>>,
     pub size: Cell<Option<usize>>
 }
 
@@ -33,6 +35,8 @@ impl Image {
             url,
             bytes: RefCell::new(Option::default()),
             format: Cell::new(Option::default()),
+            width: Cell::new(Option::default()),
+            height: Cell::new(Option::default()),
             size: Cell::new(Option::default())
         }
     }
@@ -84,31 +88,58 @@ impl Image {
         }
     }
 
-    pub async fn thumbnail(
+    pub async fn check(
         &self,
         social: &Social,
-        kinds: &Vec<SocialImageSizeKind>
-    ) -> Result<(Vec<u8>, CardSize), ImageError> {
+        kinds: &Vec<SocialImageSizeKind>,
+        _constraints: &SocialConstraints
+    ) -> Result<SocialImageSizeKind, ImageError> {
+        if let (None, None) = (self.width.get(), self.height.get()) {
+            let bytes = self.fetch().await?;
+            let image = image::load_from_memory(&bytes)?;
 
+            self.width.set(Some(image.width()));
+            self.height.set(Some(image.height()));
+        }
+
+        if let (Some(width), Some(height)) = (self.width.get(), self.height.get()) {
+            for kind in kinds.iter() {
+                let (min_width, min_height) = social.image_size(kind);
+                if width >= min_width && height >= min_height {
+                    return Ok(kind.to_owned());
+                }
+            }
+
+            let sizes: (u32, u32) = match kinds.last() {
+                Some(kind) => social.image_size(kind),
+                None => (0, 0)
+            };
+
+            Err(ImageError::TooTiny(format!("{}x{}", sizes.0, sizes.1)))
+        } else {
+            Err(ImageError::Unexpected)
+        }
+    }
+
+    pub async fn thumbnail(
+        &self,
+        width: u32,
+        height: u32
+    ) -> Result<Vec<u8>, ImageError> {
         let bytes = self.fetch().await?;
         let image = image::load_from_memory(&bytes)?;
 
-        for kind in kinds.iter() {
-            let (min_width, min_height) = social.image_size(kind);
-            if image.width() >= min_width && image.height() >= min_height {
-                let size = CardSize::from_social(kind);
-                let (width, height) = size.image_size();
-                let thumbnail = image.resize_to_fill(width, height, image::imageops::FilterType::Triangle);
+        let thumbnail = image.resize_to_fill(
+            width,
+            height,
+            image::imageops::FilterType::Triangle
+        );
+        let mut thumbnail_bytes: Vec<u8> = Vec::new();
 
-                // Save to PNG so GTK can handle any format
-                let mut thumbnail_bytes: Vec<u8> = Vec::new();
-                thumbnail.write_to(&mut Cursor::new(&mut thumbnail_bytes), image::ImageFormat::Png)?;
+        // Save to PNG so GTK can handle any format
+        thumbnail.write_to(&mut Cursor::new(&mut thumbnail_bytes), image::ImageFormat::Png)?;
 
-                return Ok((thumbnail_bytes, size));
-            }
-        }
-
-        Err(ImageError::TooTiny)
+        Ok(thumbnail_bytes)
     }
 }
 
@@ -116,7 +147,7 @@ impl Image {
 pub enum ImageError {
     FetchError(surf::Error),
     ImageError(image::error::ImageError),
-    TooTiny,
+    TooTiny(String),
     TooHeavy,
     Unsupported,
     Unexpected,
@@ -127,7 +158,7 @@ impl Display for ImageError {
         match *self {
             ImageError::FetchError(ref e) => write!(f, "NetworkError: {}", e),
             ImageError::ImageError(ref e) => write!(f, "ImageError: {}", e),
-            ImageError::TooTiny => write!(f, "TooTiny"),
+            ImageError::TooTiny(ref s) => write!(f, "Image is too tiny, minimum size is {}", s),
             ImageError::TooHeavy => write!(f, "TooHeavy"),
             ImageError::Unsupported => write!(f, "Unsupported"),
             ImageError::Unexpected => write!(f, "UnexpectedError"),

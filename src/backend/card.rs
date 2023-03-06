@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 use std::{
+    collections::HashMap,
     error,
     fmt::{Display, Formatter, Result as FmtResult}
 };
@@ -12,7 +13,6 @@ use crate::vec_of_strings;
 use super::{
     Data,
     Image,
-    ImageError,
     Log,
     LogLevel,
     Social,
@@ -217,7 +217,7 @@ impl Card {
                 if let Some(val) = &meta.content {
                     if !val.is_empty() {
                         logger.log(LogLevel::Debug, gettext!(
-                            "Found a valid occurrence for: \"{}\" with value: \"{}\".",
+                            "Found a valid occurrence for \"{}\" with value \"{}\".",
                             name, val
                         ));
                         return Some(val.to_string());
@@ -243,26 +243,72 @@ impl Card {
     ) -> Option<(Vec<u8>, CardSize)> {
         for name in lookup.iter() {
             let occurrences = data.get_meta(name);
+            let mut valid: HashMap<SocialImageSizeKind, &Image> = HashMap::new();
+
+            if occurrences.len() > 0 {
+                logger.log(LogLevel::Debug, gettext!(
+                    "Looking for valid occurrence for \"{}\"", name
+                ));
+            }
 
             for meta in occurrences.iter() {
                 if let Some(image) = &meta.image {
-                    logger.log(LogLevel::Debug, gettext!(
-                        "Found a valid occurrence for: \"{}\" with value \"{}\".",
-                        name, image.url
-                    ));
+                    match image.check(social, kinds, constraints).await {
+                        Ok(king) => {
+                            if !valid.contains_key(&king) {
+                                logger.log(LogLevel::Debug, gettext!(
+                                    "Image \"{}\" met the requirements.",
+                                    image.url
+                                ));
 
-                    match Card::try_get_image(social, image, kinds, constraints).await {
-                        Ok((bytes, size)) => {
-                            logger.log(LogLevel::Debug, gettext!("Processed image successfully: \"{}\".", image.url));
-                            return Some((bytes, size));
+                                let first_kind: bool = match kinds.first() {
+                                    Some(k) => k == &king,
+                                    None => false
+                                };
+
+                                valid.insert(king, image);
+
+                                if first_kind {
+                                    break;
+                                }
+                            }
                         }
                         Err(err) => {
-                            logger.log(LogLevel::Error, gettext!("Failed to process image: \"{}\": {}.", image.url, err));
-                            continue;
+                            logger.log(LogLevel::Debug, gettext!(
+                                "Image \"{}\" did not meet the requirements: {}.",
+                                image.url, err
+                            ));
                         }
                     }
                 }
             }
+
+            for kind in kinds {
+                match valid.get(kind) {
+                    Some(image) => {
+                        let size = CardSize::from_social(kind);
+                        let (width, height) = size.image_size();
+                        match image.thumbnail(width, height).await {
+                            Ok(bytes) => {
+                                logger.log(LogLevel::Debug, gettext!(
+                                    "Image \"{}\" processed successfully.",
+                                    image.url
+                                ));
+                                return Some((bytes, size));
+                            },
+                            Err(err) => {
+                                logger.log(LogLevel::Debug, gettext!(
+                                    "Failed to thumbnail \"{}\": {}.",
+                                    image.url, err
+                                ));
+                                continue;
+                            }
+                        };
+                    }
+                    None => ()
+                }
+            }
+
             logger.log(LogLevel::Debug, gettext!("No valid occurrences found for \"{}\"!", name));
         }
         None
@@ -276,23 +322,19 @@ impl Card {
         let kinds = [SocialImageSizeKind::Medium].to_vec();
 
         for image in images.iter() {
-            match Card::try_get_image(social, &image, &kinds, constraints).await {
-                Ok((bytes, _)) => {
-                    return Some(bytes)
+            match image.check(social, &kinds, constraints).await {
+                Ok(kind) => {
+                    let size = CardSize::from_social(&kind);
+                    let (width, height) = size.image_size();
+                    match image.thumbnail(width, height).await {
+                        Ok(bytes) => Some(bytes),
+                        Err(_) => continue
+                    };
                 }
                 Err(_) => continue
             }
         }
         None
-    }
-
-    pub async fn try_get_image(
-        social: &Social,
-        image: &Image,
-        kinds: &Vec<SocialImageSizeKind>,
-        _constraints: &SocialConstraints
-    ) -> Result<(Vec<u8>, CardSize), ImageError> {
-        image.thumbnail(social, kinds).await
     }
 }
 
