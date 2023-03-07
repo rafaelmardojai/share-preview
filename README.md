@@ -42,6 +42,10 @@ TODO
 meson builddir --prefix=/usr/local
 sudo ninja -C builddir install
 ```
+
+## Translations
+Share Preview is translated into several languages. If your language is missing or incomplete, please help to [translate Share Preview in Weblate](https://hosted.weblate.org/engage/share-preview/).
+
 ## Credits
 Developed by **[Rafael Mardojai CM](https://github.com/rafaelmardojai)** and [contributors](https://github.com/rafaelmardojai/share-preview/graphs/contributors).
 
