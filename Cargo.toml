@@ -18,3 +18,4 @@ url = "2.2"
 scraper = "0.12"
 surf = "2.2"
 async-std = "1.12"
+human_bytes = { version = "0.4", default-features = false }

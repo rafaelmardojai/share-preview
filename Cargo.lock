@@ -1334,6 +1334,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "human_bytes"
+version = "0.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "39b528196c838e8b3da8b665e08c30958a6f2ede91d79f2ffcd0d4664b9c64eb"
+
+[[package]]
 name = "humantime"
 version = "1.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2440,6 +2446,7 @@ dependencies = [
  "gettext-rs",
  "gtk-macros",
  "gtk4",
+ "human_bytes",
  "im-rc",
  "image",
  "libadwaita",

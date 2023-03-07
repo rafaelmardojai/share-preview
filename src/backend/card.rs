@@ -13,6 +13,7 @@ use crate::vec_of_strings;
 use super::{
     Data,
     Image,
+    ImageError,
     Log,
     LogLevel,
     Social,
@@ -271,7 +272,7 @@ impl Card {
 
             if occurrences.len() > 0 {
                 logger.log(LogLevel::Debug, gettext!(
-                    "Looking for valid occurrence for \"{}\"", name
+                    "Looking for valid occurrences for \"{}\"", name
                 ));
             }
 
@@ -298,10 +299,25 @@ impl Card {
                             }
                         }
                         Err(err) => {
-                            logger.log(LogLevel::Debug, gettext!(
-                                "Image \"{}\" did not meet the requirements: {}.",
-                                image.url, err
-                            ));
+                            match err {
+                                ImageError::RequestError(_) => {
+                                    logger.log(LogLevel::Error, format!(
+                                        "{}: \"{}\".", err, image.url
+                                    ));
+                                },
+                                ImageError::TooHeavy{..} | ImageError::Unsupported(_) => {
+                                    logger.log(LogLevel::Warning, gettext!(
+                                        "{}: Image \"{}\" did not meet the requirements: {}.",
+                                        social, image.url, err
+                                    ));
+                                },
+                                _ => {
+                                    logger.log(LogLevel::Debug, gettext!(
+                                        "{}: Image \"{}\" did not meet the requirements: {}.",
+                                        social, image.url, err
+                                    ));
+                                }
+                            }
                         }
                     }
                 }

@@ -8,6 +8,7 @@ use std::{
     io::Cursor,
 };
 
+use human_bytes::human_bytes;
 use image;
 use url::{Url, ParseError};
 
@@ -82,7 +83,7 @@ impl Image {
                     self.bytes.replace(Some(bytes));
                     Ok(self.bytes.borrow().clone().unwrap())
                 } else {
-                    Err(ImageError::Unexpected)
+                    Err(ImageError::RequestError(resp.status().canonical_reason()))
                 }
             }
         }
@@ -92,12 +93,11 @@ impl Image {
         &self,
         social: &Social,
         kinds: &Vec<SocialImageSizeKind>,
-        _constraints: &SocialConstraints
+        constraints: &SocialConstraints
     ) -> Result<SocialImageSizeKind, ImageError> {
-        if let (None, None) = (self.width.get(), self.height.get()) {
-
             let bytes = self.fetch().await?;
 
+        if let (None, None) = (self.width.get(), self.height.get()) {
             let (width, height) = async_std::task::spawn_blocking( move || -> Result<(u32, u32), ImageError> {
                 let image = image::load_from_memory(&bytes)?;
                 Ok((image.width(), image.height()))
@@ -106,6 +106,21 @@ impl Image {
 
             self.width.set(Some(width));
             self.height.set(Some(height));
+        }
+
+        if let Some(size) = self.size.get() {
+            if size > constraints.image_size {
+                return Err(ImageError::TooHeavy{
+                    actual: human_bytes(size as f64),
+                    max: human_bytes(constraints.image_size as f64)
+                });
+            }
+        }
+
+        if let Some(format) = self.format.get() {
+            if !constraints.image_formats.contains(&format) {
+                return Err(ImageError::Unsupported("Format is unsupported".to_string()));
+            }
         }
 
         if let (Some(width), Some(height)) = (self.width.get(), self.height.get()) {
@@ -121,7 +136,10 @@ impl Image {
                 None => (0, 0)
             };
 
-            Err(ImageError::TooTiny(format!("{}x{}", sizes.0, sizes.1)))
+            Err(ImageError::TooTiny{
+                actual: format!("{}×{}px", width, height),
+                min: format!("{}×{}px", sizes.0, sizes.1)
+            })
         } else {
             Err(ImageError::Unexpected)
         }
@@ -158,22 +176,37 @@ impl Image {
 #[derive(Debug)]
 pub enum ImageError {
     FetchError(surf::Error),
+    RequestError(&'static str),
     ImageError(image::error::ImageError),
-    TooTiny(String),
-    TooHeavy,
-    Unsupported,
+    TooTiny{
+        actual: String,
+        min: String
+    },
+    TooHeavy{
+        actual: String,
+        max: String
+    },
+    Unsupported(String),
     Unexpected,
 }
 
 impl Display for ImageError {
     fn fmt(&self, f: &mut Formatter) -> FmtResult {
         match *self {
-            ImageError::FetchError(ref e) => write!(f, "NetworkError: {}", e),
-            ImageError::ImageError(ref e) => write!(f, "ImageError: {}", e),
-            ImageError::TooTiny(ref s) => write!(f, "Image is too tiny, minimum size is {}", s),
-            ImageError::TooHeavy => write!(f, "TooHeavy"),
-            ImageError::Unsupported => write!(f, "Unsupported"),
-            ImageError::Unexpected => write!(f, "UnexpectedError"),
+            ImageError::FetchError(ref e) =>
+                write!(f, "Network Error: {}", e),
+            ImageError::RequestError(ref s) =>
+                write!(f, "Request Error: {}", s),
+            ImageError::ImageError(ref e) =>
+                write!(f, "Image Error: {}", e),
+            ImageError::TooTiny{ref actual, ref min} =>
+                write!(f, "Image is too tiny ({}), minimum dimensions are {}", actual, min),
+            ImageError::TooHeavy{ref actual, ref max} =>
+                write!(f, "Images is too heavy ({}), max size is {}", actual, max),
+            ImageError::Unsupported(ref s) =>
+                write!(f, "Images is unsupported: {}", s),
+            ImageError::Unexpected =>
+                write!(f, "Unexpected Error"),
         }
     }
 }
