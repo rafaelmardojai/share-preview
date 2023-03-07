@@ -226,14 +226,14 @@ impl SharePreviewWindow {
                                     let error_texts = match error {
                                         Error::NetworkError(_) => (
                                             gettext("Network Error"),
-                                            gettext("Couldn't connect to the given URL.")
+                                            gettext("Couldn’t connect to the given URL.")
                                         ),
                                         Error::Unexpected(status) => (
                                             gettext("Unexpected Error"),
                                             if !status.is_empty() {
                                                 gettext!("Server Error {}", status)
                                             } else {
-                                                gettext("Couldn't connect to the given URL.")
+                                                gettext("Couldn’t connect to the given URL.")
                                             }
                                         )
                                     };

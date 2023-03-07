@@ -188,7 +188,7 @@ impl Card {
                 match &social {
                     Social::Facebook => {
                         logger.log(LogLevel::Warning, gettext!(
-                            "{}:  Unable to find a valid image in the metadata, will look for images in the HTML.",
+                            "{}: Unable to find a valid image in the metadata, will look for images in the document body.",
                             &social
                         ));
                         if data.body_images.len() > 0 {
@@ -199,13 +199,13 @@ impl Card {
                                 },
                                 None => {
                                     logger.log(LogLevel::Warning, gettext!(
-                                        "{}: No valid images found in the HTML.", &social
+                                        "{}: No valid images found in the document body.", &social
                                     ));
                                 }
                             }
                         } else {
                             logger.log(LogLevel::Warning, gettext!(
-                                "{}: No valid images found in the HTML.", &social
+                                "{}: No valid images found in the document body.", &social
                             ));
                         }
                     },
