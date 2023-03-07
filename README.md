@@ -49,8 +49,5 @@ Share Preview is translated into several languages. If your language is missing 
 ## Credits
 Developed by **[Rafael Mardojai CM](https://github.com/rafaelmardojai)** and [contributors](https://github.com/rafaelmardojai/share-preview/graphs/contributors).
 
-## Translations
-If your language is missing or incomplete, please help to [translate Share Preview](https://github.com/rafaelmardojai/share-preview/tree/master/po).
-
 ## Donate
 If you want to support development, consider donating via [PayPal](https://paypal.me/RafaelMardojaiCM).
