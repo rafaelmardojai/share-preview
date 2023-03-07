@@ -9,6 +9,8 @@
   <homepage rdf:resource="https://github.com/rafaelmardojai/share-preview" />
   <bug-database rdf:resource="https://github.com/rafaelmardojai/share-preview/issues"/>
   <programming-language>Rust</programming-language>
+  <platform>GTK 4</platform>
+  <platform>Libadwaita</platform>
 
   <maintainer>
     <foaf:Person>

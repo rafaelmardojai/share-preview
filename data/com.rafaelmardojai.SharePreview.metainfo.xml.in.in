@@ -19,7 +19,7 @@
   </screenshots>
   <url type="homepage">https://apps.gnome.org/app/com.rafaelmardojai.SharePreview/</url>
   <url type="bugtracker">https://github.com/rafaelmardojai/share-preview/issues</url>
-  <url type="donation">https://rafaelmardojai.com/donate/</url>
+  <url type="donation">https://mardojai.com/donate/</url>
   <content_rating type="oars-1.0" />
   <releases>
     <release version="0.2.0" date="2022-03-27">
@@ -61,6 +61,14 @@
      <kudo>ModernToolkit</kudo>
      <kudo>HiDpiIcon</kudo>
   </kudos>
+  <requires>
+    <display_length compare="ge">medium</display_length>
+  </requires>
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+    <control>touch</control>
+  </recommends>
   <developer_name>Rafael Mardojai CM</developer_name>
   <update_contact>email@rafaelmardojai.com</update_contact>
   <translation type="gettext">@gettext-package@</translation>
