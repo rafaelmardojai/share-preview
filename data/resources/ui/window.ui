@@ -212,6 +212,7 @@
                                     <property name="hexpand">true</property>
                                     <property name="valign">center</property>
                                     <property name="margin-start">12</property>
+                                    <property name="tooltip-text" translatable="yes">Show Logs</property>
 
                                     <style>
                                       <class name="flat"/>
