@@ -6,21 +6,21 @@
 # Translators:
 # Rafael Mardojai CM <mardojai.cardenas@gmail.com>, 2022
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 12:46-0500\n"
-"PO-Revision-Date: 2022-06-12 17:10+0000\n"
-"Last-Translator: Rafael Mardojai CM <mardojai.cardenas@gmail.com>, 2022\n"
-"Language-Team: Dutch (https://www.transifex.com/rafaelmardojai/teams/135057/"
-"nl/)\n"
+"PO-Revision-Date: 2023-03-09 22:01+0000\n"
+"Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/share-preview/"
+"share-preview/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.16.2-dev\n"
 
 #: data/resources/ui/card.ui:72
 msgid "Card Error"
@@ -32,7 +32,7 @@ msgstr "Metagegevens"
 
 #: data/resources/ui/data-dialog.ui:108 data/resources/ui/data-dialog.ui:184
 msgid "Nothing to Show"
-msgstr "Er is niks om voor te vertonen"
+msgstr "Niets om te tonen"
 
 #: data/resources/ui/data-dialog.ui:131
 msgid "Body Images"
@@ -40,7 +40,7 @@ msgstr "Inhoudsafbeeldingen"
 
 #: data/resources/ui/log-dialog.ui:19
 msgid "Scraping Log"
-msgstr ""
+msgstr "Scraping-logboek"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -63,14 +63,14 @@ msgstr "_Sneltoetsen"
 
 #: data/resources/ui/window.ui:10
 msgid "_About Share Preview"
-msgstr "_Over Deelvoorvertoning"
+msgstr "_Over Share Preview"
 
 #: data/resources/ui/window.ui:32
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
 #: src/application.rs:114 src/main.rs:24
 msgid "Share Preview"
-msgstr "Deelvoorvertoning"
+msgstr "Share Preview"
 
 #: data/resources/ui/window.ui:38
 msgid "Toggle Color Scheme"
@@ -82,40 +82,40 @@ msgstr "Menu"
 
 #: data/resources/ui/window.ui:89
 msgid "Go"
-msgstr ""
+msgstr "Gaan"
 
 #: data/resources/ui/window.ui:103
 msgid "Invalid URL"
-msgstr "Ongeldige url"
+msgstr "Ongeldige URL"
 
 #: data/resources/ui/window.ui:125
 msgid "Set a URL to preview"
-msgstr ""
+msgstr "Stel een URL in om voor te vertonen"
 
 #: data/resources/ui/window.ui:202
-#, fuzzy
 msgid "View Metadata"
-msgstr "Metagegevens"
+msgstr "Metagegevens bekijken"
 
 #: data/resources/ui/window.ui:215
-#, fuzzy
 msgid "Show Logs"
-msgstr "Sneltoetsen tonen"
+msgstr "Logboek tonen"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:8
 msgid "Test social media cards locally"
-msgstr "Test socialemediakaarten lokaal"
+msgstr "Test voorbeeldkaarten van sociale media lokaal"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
 msgid "Gnome;GTK;link;url;unfurl;"
 msgstr ""
+"Gnome;GTK;link;url;unfurl;koppeling;verwijzing;kaart;deel;delen;voorvertoning"
+";"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
 msgstr ""
-"Maak een voorvertoning en bekijk foutopsporingsuitvoer van metagegevenstags "
-"van socialemedialinks."
+"Maak een voorvertoning van sociale-media-links en spoor fouten van "
+"metagegevens-tags hiervan op."
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:72
 msgid "Rafael Mardojai CM"
@@ -141,31 +141,31 @@ msgstr "Er zijn niet genoeg gegevens beschikbaar om een kaart te kunnen maken."
 
 #: src/widgets/card.rs:88
 msgid "Twitter: No card found."
-msgstr "Twitter: geen kaart aangetroffen."
+msgstr "Twitter: Geen kaart gevonden"
 
 #: src/widgets/log_dialog.rs:96
 msgid "DEBUG"
-msgstr ""
+msgstr "FOUTOPSPORING"
 
 #: src/widgets/log_dialog.rs:102
 msgid "INFO"
-msgstr ""
+msgstr "INFO"
 
 #: src/widgets/log_dialog.rs:106
 msgid "WARNING"
-msgstr ""
+msgstr "WAARSCHUWING"
 
 #: src/widgets/log_dialog.rs:110
 msgid "ERROR"
-msgstr ""
+msgstr "FOUT"
 
 #: src/backend/card.rs:99
 msgid "Found \"{name}\"."
-msgstr ""
+msgstr "‘{name}’ gevonden"
 
 #: src/backend/card.rs:104 src/backend/card.rs:275
 msgid "\"{name}\" is empty!"
-msgstr ""
+msgstr "‘{name}’ is leeg"
 
 #: src/backend/card.rs:111 src/backend/card.rs:169
 msgid ""
@@ -182,7 +182,7 @@ msgstr ""
 
 #: src/backend/card.rs:163
 msgid "Found card of type \"{name}\"."
-msgstr ""
+msgstr "Kaart gevonden van type ‘{name}’"
 
 #: src/backend/card.rs:180
 msgid "Unable to find any valid card type."
@@ -234,7 +234,7 @@ msgstr ""
 
 #: src/backend/card.rs:375
 msgid "Image \"{url}\" processed successfully."
-msgstr ""
+msgstr "Afbeelding ‘{url}’ succesvol verwerkt"
 
 #: src/backend/card.rs:381
 msgid "Failed to thumbnail \"{url}\": {info}."
@@ -246,21 +246,19 @@ msgstr ""
 
 #: src/backend/image.rs:124
 msgid "Format is unsupported"
-msgstr ""
+msgstr "Formaat wordt niet ondersteund"
 
 #: src/backend/image.rs:199
-#, fuzzy
 msgid "Network Error: {info}"
-msgstr "Netwerkfout"
+msgstr "Netwerkfout: {info}"
 
 #: src/backend/image.rs:201
 msgid "Request Error: {info}"
-msgstr ""
+msgstr "Verzoekfout: {info}"
 
 #: src/backend/image.rs:203
-#, fuzzy
 msgid "Image Error: {info}"
-msgstr "Afbeeldingsfout"
+msgstr "Afbeeldingsfout: {info}"
 
 #: src/backend/image.rs:206
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
@@ -272,7 +270,7 @@ msgstr ""
 
 #: src/backend/image.rs:215
 msgid "Images is unsupported: {info}"
-msgstr ""
+msgstr "Afbeelding wordt niet ondersteund: {info}"
 
 #~ msgid "Go..."
 #~ msgstr "Gaan…"
