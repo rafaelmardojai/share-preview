@@ -300,6 +300,11 @@ impl Card {
                         }
                         Err(err) => {
                             match err {
+                                ImageError::FetchError(_) => {
+                                    logger.log(LogLevel::Debug, format!(
+                                        "{}: \"{}\".", err, image.url
+                                    ));
+                                },
                                 ImageError::RequestError(_) => {
                                     logger.log(LogLevel::Error, format!(
                                         "{}: \"{}\".", err, image.url

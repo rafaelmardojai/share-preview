@@ -8,6 +8,7 @@ use std::{
     io::Cursor,
 };
 
+use gettextrs::*;
 use human_bytes::human_bytes;
 use image;
 use url::{Url, ParseError};
@@ -119,7 +120,7 @@ impl Image {
 
         if let Some(format) = self.format.get() {
             if !constraints.image_formats.contains(&format) {
-                return Err(ImageError::Unsupported("Format is unsupported".to_string()));
+                return Err(ImageError::Unsupported(gettext("Format is unsupported")));
             }
         }
 
@@ -194,19 +195,19 @@ impl Display for ImageError {
     fn fmt(&self, f: &mut Formatter) -> FmtResult {
         match *self {
             ImageError::FetchError(ref e) =>
-                write!(f, "Network Error: {}", e),
+                write!(f, "{}", gettext!("Network Error: {}", e)),
             ImageError::RequestError(ref s) =>
-                write!(f, "Request Error: {}", s),
+                write!(f, "{}", gettext!("Request Error: {}", s)),
             ImageError::ImageError(ref e) =>
-                write!(f, "Image Error: {}", e),
+                write!(f, "{}", gettext!("Image Error: {}", e)),
             ImageError::TooTiny{ref actual, ref min} =>
-                write!(f, "Image is too tiny ({}), minimum dimensions are {}", actual, min),
+                write!(f, "{}", gettext!("Image is too tiny ({}), minimum dimensions are {}", actual, min)),
             ImageError::TooHeavy{ref actual, ref max} =>
-                write!(f, "Images is too heavy ({}), max size is {}", actual, max),
+                write!(f, "{}", gettext!("Images is too heavy ({}), max size is {}", actual, max)),
             ImageError::Unsupported(ref s) =>
-                write!(f, "Images is unsupported: {}", s),
+                write!(f, "{}", gettext!("Images is unsupported: {}", s)),
             ImageError::Unexpected =>
-                write!(f, "Unexpected Error"),
+                write!(f, "{}", gettext("Unexpected Error")),
         }
     }
 }
