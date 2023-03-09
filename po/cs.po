@@ -2,27 +2,29 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the share-preview package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 # Translators:
 # Rafael Mardojai CM <mardojai.cardenas@gmail.com>, 2022
 # Vojtěch Perník <develop@pervoj.cz>, 2022
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-27 18:02-0500\n"
+"POT-Creation-Date: 2023-03-09 12:46-0500\n"
 "PO-Revision-Date: 2022-04-07 15:11+0000\n"
 "Last-Translator: Vojtěch Perník <develop@pervoj.cz>, 2022\n"
-"Language-Team: Czech (https://www.transifex.com/rafaelmardojai/teams/135057/cs/)\n"
+"Language-Team: Czech (https://www.transifex.com/rafaelmardojai/teams/135057/"
+"cs/)\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: cs\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
+"<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
-#: data/resources/ui/card.ui:69
+#: data/resources/ui/card.ui:72
 msgid "Card Error"
 msgstr "Chyba karty"
 
@@ -38,9 +40,9 @@ msgstr "Nic k zobrazení"
 msgid "Body Images"
 msgstr "Obrázky na stránce"
 
-#: data/resources/ui/image.ui:68
-msgid "Image Error"
-msgstr "Chyba obrázku"
+#: data/resources/ui/log-dialog.ui:19
+msgid "Scraping Log"
+msgstr ""
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -68,7 +70,7 @@ msgstr "_O aplikaci Náhled sdílení"
 #: data/resources/ui/window.ui:32
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
-#: src/application.rs:123 src/main.rs:22
+#: src/application.rs:114 src/main.rs:24
 msgid "Share Preview"
 msgstr "Náhled sdílení"
 
@@ -76,29 +78,40 @@ msgstr "Náhled sdílení"
 msgid "Toggle Color Scheme"
 msgstr "Přepnout barevné schéma"
 
-#: data/resources/ui/window.ui:45
+#: data/resources/ui/window.ui:46
 msgid "Menu"
 msgstr "Menu"
 
-#: data/resources/ui/window.ui:86
-msgid "Go..."
-msgstr "Načíst…"
+#: data/resources/ui/window.ui:89
+msgid "Go"
+msgstr ""
 
-#: data/resources/ui/window.ui:97
+#: data/resources/ui/window.ui:103
 msgid "Invalid URL"
 msgstr "Neplatná URL"
 
-#: data/resources/ui/window.ui:187
-msgid "View Found Data..."
-msgstr "Zobrazit načtená data…"
+#: data/resources/ui/window.ui:125
+msgid "Set a URL to preview"
+msgstr ""
 
-#: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
-msgid "Gnome;GTK;"
-msgstr "Gnome;GTK;"
+#: data/resources/ui/window.ui:202
+#, fuzzy
+msgid "View Metadata"
+msgstr "Metadata"
 
+#: data/resources/ui/window.ui:215
+#, fuzzy
+msgid "Show Logs"
+msgstr "Zobrazit zkratky"
+
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:8
 msgid "Test social media cards locally"
 msgstr "Otestujte karty sociálních sítí lokálně"
+
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
+msgid "Gnome;GTK;link;url;unfurl;"
+msgstr ""
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
@@ -106,40 +119,179 @@ msgstr ""
 "Zobrazte a laďte tagy metadat webových stránek pro sdílení na sociálních "
 "sítích."
 
-#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:33
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:72
 msgid "Rafael Mardojai CM"
 msgstr "Rafael Mardojai CM"
 
-#: src/window.rs:188
+#: src/window.rs:228
 msgid "Network Error"
 msgstr "Chyba sítě"
 
-#: src/window.rs:189 src/window.rs:196
-msgid "Couldn't connect to the given URL."
+#: src/window.rs:229 src/window.rs:236
+#, fuzzy
+msgid "Couldn’t connect to the given URL."
 msgstr "Nepodařilo se připojit na zadanou URL."
 
-#: src/window.rs:192
+#: src/window.rs:232 src/backend/image.rs:217
 msgid "Unexpected Error"
 msgstr "Neočekávaná chyba"
 
-#: src/widgets/card.rs:91
-msgid "Couldn't find enough data to generate a card for this social media."
+#: src/widgets/card.rs:85
+#, fuzzy
+msgid "Couldn’t find enough data to generate a card for this social media."
 msgstr ""
 "Nepodařilo se najít dostatek údajů pro vygenerování karty pro tuto sociální "
 "síť."
 
-#: src/widgets/card.rs:94
+#: src/widgets/card.rs:88
 msgid "Twitter: No card found."
 msgstr "Twitter: Nebyla nalezena žádná karta."
 
-#: src/widgets/image.rs:101
-msgid "Failure when receiving image from the peer."
-msgstr "Selhání při přijímání obrázku od partnera."
+#: src/widgets/log_dialog.rs:96
+msgid "DEBUG"
+msgstr ""
 
-#: src/widgets/image.rs:104
-msgid "Invalid image format."
-msgstr "Neplatný formát obrázku."
+#: src/widgets/log_dialog.rs:102
+msgid "INFO"
+msgstr ""
 
-#: src/widgets/image.rs:107
-msgid "Unexpected image error."
-msgstr "Neočekávaná chyba obrázku."
+#: src/widgets/log_dialog.rs:106
+msgid "WARNING"
+msgstr ""
+
+#: src/widgets/log_dialog.rs:110
+msgid "ERROR"
+msgstr ""
+
+#: src/backend/card.rs:99
+msgid "Found \"{name}\"."
+msgstr ""
+
+#: src/backend/card.rs:104 src/backend/card.rs:275
+msgid "\"{name}\" is empty!"
+msgstr ""
+
+#: src/backend/card.rs:111 src/backend/card.rs:169
+msgid ""
+"Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
+msgstr ""
+
+#: src/backend/card.rs:127
+msgid "Unable to find a metadata for title!. Falling back to document title."
+msgstr ""
+
+#: src/backend/card.rs:137
+msgid "Unable to find the document title!. Falling back to site url."
+msgstr ""
+
+#: src/backend/card.rs:163
+msgid "Found card of type \"{name}\"."
+msgstr ""
+
+#: src/backend/card.rs:180
+msgid "Unable to find any valid card type."
+msgstr ""
+
+#: src/backend/card.rs:191
+msgid "Unable to find any valid title or description."
+msgstr ""
+
+#: src/backend/card.rs:213
+msgid ""
+"Unable to find a valid image in the metadata, will look for images in the "
+"document body."
+msgstr ""
+
+#: src/backend/card.rs:224 src/backend/card.rs:231
+msgid "No valid images found in the document body."
+msgstr ""
+
+#: src/backend/card.rs:238
+msgid "Unable to find a valid image in the metadata, will render an icon."
+msgstr ""
+
+#: src/backend/card.rs:245
+msgid ""
+"Unable to find a valid image in the metadata, will render a \"{name}\" card "
+"with icon."
+msgstr ""
+
+#: src/backend/card.rs:267
+msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
+msgstr ""
+
+#: src/backend/card.rs:285
+msgid "No occurrences found for \"{name}\"!"
+msgstr ""
+
+#: src/backend/card.rs:306
+msgid "Looking for valid occurrences for \"{name}\""
+msgstr ""
+
+#: src/backend/card.rs:316
+msgid "Image \"{url}\" met the requirements."
+msgstr ""
+
+#: src/backend/card.rs:347 src/backend/card.rs:356
+msgid "Image \"{url}\" did not meet the requirements: {info}."
+msgstr ""
+
+#: src/backend/card.rs:375
+msgid "Image \"{url}\" processed successfully."
+msgstr ""
+
+#: src/backend/card.rs:381
+msgid "Failed to thumbnail \"{url}\": {info}."
+msgstr ""
+
+#: src/backend/card.rs:393
+msgid "No valid occurrences found for \"{name}\"!"
+msgstr ""
+
+#: src/backend/image.rs:124
+msgid "Format is unsupported"
+msgstr ""
+
+#: src/backend/image.rs:199
+#, fuzzy
+msgid "Network Error: {info}"
+msgstr "Chyba sítě"
+
+#: src/backend/image.rs:201
+msgid "Request Error: {info}"
+msgstr ""
+
+#: src/backend/image.rs:203
+#, fuzzy
+msgid "Image Error: {info}"
+msgstr "Chyba obrázku"
+
+#: src/backend/image.rs:206
+msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
+msgstr ""
+
+#: src/backend/image.rs:211
+msgid "Images is too heavy ({actual}), max size is {max}"
+msgstr ""
+
+#: src/backend/image.rs:215
+msgid "Images is unsupported: {info}"
+msgstr ""
+
+#~ msgid "Go..."
+#~ msgstr "Načíst…"
+
+#~ msgid "View Found Data..."
+#~ msgstr "Zobrazit načtená data…"
+
+#~ msgid "Gnome;GTK;"
+#~ msgstr "Gnome;GTK;"
+
+#~ msgid "Failure when receiving image from the peer."
+#~ msgstr "Selhání při přijímání obrázku od partnera."
+
+#~ msgid "Invalid image format."
+#~ msgstr "Neplatný formát obrázku."
+
+#~ msgid "Unexpected image error."
+#~ msgstr "Neočekávaná chyba obrázku."
