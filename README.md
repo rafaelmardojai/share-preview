@@ -46,6 +46,10 @@ sudo ninja -C builddir install
 ## Translations
 Share Preview is translated into several languages. If your language is missing or incomplete, please help to [translate Share Preview in Weblate](https://hosted.weblate.org/engage/share-preview/).
 
+<a href="https://hosted.weblate.org/engage/share-preview/">
+<img src="https://hosted.weblate.org/widgets/share-preview/-/share-preview/horizontal-auto.svg" alt="Translation status" />
+</a>
+
 ## Credits
 Developed by **[Rafael Mardojai CM](https://github.com/rafaelmardojai)** and [contributors](https://github.com/rafaelmardojai/share-preview/graphs/contributors).
 
