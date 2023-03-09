@@ -8,11 +8,12 @@ use std::{
     io::Cursor,
 };
 
-use gettextrs::*;
+use gettextrs::gettext;
 use human_bytes::human_bytes;
 use image;
 use url::{Url, ParseError};
 
+use crate::i18n::gettext_f;
 use super::{
     CLIENT,
     Social,
@@ -195,17 +196,23 @@ impl Display for ImageError {
     fn fmt(&self, f: &mut Formatter) -> FmtResult {
         match *self {
             ImageError::FetchError(ref e) =>
-                write!(f, "{}", gettext!("Network Error: {}", e)),
+                write!(f, "{}", gettext_f("Network Error: {info}", &[("info", &e.to_string())])),
             ImageError::RequestError(ref s) =>
-                write!(f, "{}", gettext!("Request Error: {}", s)),
+                write!(f, "{}", gettext_f("Request Error: {info}", &[("info", s)])),
             ImageError::ImageError(ref e) =>
-                write!(f, "{}", gettext!("Image Error: {}", e)),
+                write!(f, "{}", gettext_f("Image Error: {info}", &[("info", &e.to_string())])),
             ImageError::TooTiny{ref actual, ref min} =>
-                write!(f, "{}", gettext!("Image is too tiny ({}), minimum dimensions are {}", actual, min)),
+                write!(f, "{}", gettext_f(
+                    "Image is too tiny ({actual}), minimum dimensions are {min}",
+                    &[("actual", actual), ("min", min)]
+                )),
             ImageError::TooHeavy{ref actual, ref max} =>
-                write!(f, "{}", gettext!("Images is too heavy ({}), max size is {}", actual, max)),
+                write!(f, "{}", gettext_f(
+                    "Images is too heavy ({actual}), max size is {max}",
+                    &[("actual", actual), ("max", max)]
+                )),
             ImageError::Unsupported(ref s) =>
-                write!(f, "{}", gettext!("Images is unsupported: {}", s)),
+                write!(f, "{}", gettext_f("Images is unsupported: {info}", &[("info", s)])),
             ImageError::Unexpected =>
                 write!(f, "{}", gettext("Unexpected Error")),
         }

@@ -1,6 +1,8 @@
 data/resources/ui/card.ui
 data/resources/ui/data-dialog.ui
 data/resources/ui/image.ui
+data/resources/ui/log-dialog.ui
+data/resources/ui/metadata-item.ui
 data/resources/ui/shortcuts.ui
 data/resources/ui/window.ui
 data/com.rafaelmardojai.SharePreview.desktop.in.in
@@ -10,4 +12,8 @@ src/application.rs
 src/main.rs
 src/window.rs
 src/widgets/card.rs
+src/widgets/data_dialog.rs
 src/widgets/image.rs
+src/widgets/log_dialog.rs
+src/backend/card.rs
+src/backend/image.rs

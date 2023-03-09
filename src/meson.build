@@ -36,6 +36,7 @@ sources = files(
   'widgets/data_dialog.rs',
   'application.rs',
   'config.rs',
+  'i18n.rs',
   'main.rs',
   'window.rs',
 )

@@ -2,6 +2,7 @@ mod application;
 mod backend;
 #[rustfmt::skip]
 mod config;
+mod i18n;
 mod models;
 mod widgets;
 mod window;

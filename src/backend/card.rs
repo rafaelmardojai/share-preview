@@ -7,9 +7,10 @@ use std::{
     fmt::{Display, Formatter, Result as FmtResult}
 };
 
-use gettextrs::*;
+use gettextrs::gettext;
 
 use crate::vec_of_strings;
+use crate::i18n::gettext_f;
 use super::{
     Data,
     Image,
@@ -93,14 +94,23 @@ impl Card {
                 if let Some(val) = Card::lookup_meta(&look, &data, None::<&dyn Log>) {
                     if !val.is_empty() {
                         site = val.to_string();
-                        logger.log(LogLevel::Info, gettext!("{}: Found {}.", &social, "og:site_name"));
+                        logger.log(LogLevel::Info, format!("{}: {}",
+                            &social,
+                            gettext_f("Found \"{name}\".", &[("name", "og:site_name")]))
+                        );
                     } else {
-                        logger.log(LogLevel::Warning, gettext!("{}: {} is empty!", &social, "og:site_name"));
+                        logger.log(LogLevel::Warning, format!("{}: {}",
+                            &social,
+                            gettext_f("\"{name}\" is empty!", &[("name", "og:site_name")])
+                        ));
                     }
                 } else {
-                    logger.log(LogLevel::Warning, gettext!(
-                        "{}: Unable to find {}. Consider providing a {} meta property.",
-                        &social, "og:site_name", "og:site_name"
+                    logger.log(LogLevel::Warning, format!("{}: {}",
+                        &social,
+                        gettext_f(
+                            "Unable to find \"{name}\". Consider providing a \"{name}\" meta property.",
+                            &[("name", "og:site_name")]
+                        )
                     ));
                 }
             },
@@ -112,19 +122,21 @@ impl Card {
         let title = match &pre_title {
             Some(title) => title.to_string(),
             None => {
-                logger.log(LogLevel::Warning, gettext!(
-                    "{}: Unable to find a metadata for title!. Falling back to document title.",
-                    &social
+                logger.log(LogLevel::Warning, format!("{}: {}",
+                    &social,
+                    gettext("Unable to find a metadata for title!. Falling back to document title.")
                 ));
+
                 match &data.title {
                     Some(title) => {
                         title.to_string()
                     },
                     None => {
-                        logger.log(LogLevel::Warning, gettext!(
-                            "{}: Unable to find the document title!. Falling back to site url.",
-                            &social
+                        logger.log(LogLevel::Warning, format!("{}: {}",
+                            &social,
+                            gettext("Unable to find the document title!. Falling back to site url.")
                         ));
+
                         site.to_string()
                     },
                 }
@@ -145,19 +157,27 @@ impl Card {
                         if val == "summary_large_image" {
                             image_sizes.push(SocialImageSizeKind::Large);
                         }
-                        logger.log(LogLevel::Info, gettext!("{}: Found card of type {}.", &social, val));
+
+                        logger.log(LogLevel::Info, format!("{}: {}",
+                            &social,
+                            gettext_f("Found card of type \"{name}\".", &[("name", &val)])
+                        ));
                     } else {
-                        logger.log(LogLevel::Warning, gettext!(
-                            "{}: Unable to find {}. Consider providing a {} meta property.",
-                            &social, "twitter:card", "twitter:card"
+                        logger.log(LogLevel::Warning, format!("{}: {}",
+                            &social,
+                            gettext_f(
+                                "Unable to find \"{name}\". Consider providing a \"{name}\" meta property.",
+                                &[("name", "twitter:card")]
+                            )
                         ));
                     }
                     image_sizes.push(SocialImageSizeKind::Medium);
                 },
                 None => {
                     // Return error if no card type is found for Twitter
-                    logger.log(LogLevel::Error, gettext!(
-                        "{}: Unable to find any valid card type.", &social
+                    logger.log(LogLevel::Error, format!("{}: {}",
+                        &social,
+                        gettext("Unable to find any valid card type.")
                     ));
                     return Err(CardError::TwitterNoCardFound);
                 }
@@ -166,8 +186,9 @@ impl Card {
 
         // Return error if no basic data is found for Twitter
         if let (Social::Twitter, Option::None, Option::None) = (&social, &pre_title, &description) {
-            logger.log(LogLevel::Error, gettext!(
-                "{}: Unable to find any valid title or description.", &social
+            logger.log(LogLevel::Error, format!("{}: {}",
+                &social,
+                gettext("Unable to find any valid title or description.")
             ));
             return Err(CardError::NotEnoughData);
         }
@@ -187,9 +208,9 @@ impl Card {
             None => {
                 match &social {
                     Social::Facebook => {
-                        logger.log(LogLevel::Warning, gettext!(
-                            "{}: Unable to find a valid image in the metadata, will look for images in the document body.",
-                            &social
+                        logger.log(LogLevel::Warning, format!("{}: {}",
+                            &social,
+                            gettext("Unable to find a valid image in the metadata, will look for images in the document body.")
                         ));
                         if data.body_images.len() > 0 {
                             match Card::lookup_fb_body_images(&social, &data.body_images, &constraints).await {
@@ -198,26 +219,32 @@ impl Card {
                                     size = CardSize::Medium;
                                 },
                                 None => {
-                                    logger.log(LogLevel::Warning, gettext!(
-                                        "{}: No valid images found in the document body.", &social
+                                    logger.log(LogLevel::Warning, format!("{}: {}",
+                                        &social,
+                                        gettext("No valid images found in the document body.")
                                     ));
                                 }
                             }
                         } else {
-                            logger.log(LogLevel::Warning, gettext!(
-                                "{}: No valid images found in the document body.", &social
+                            logger.log(LogLevel::Warning, format!("{}: {}",
+                                &social,
+                                gettext("No valid images found in the document body.")
                             ));
                         }
                     },
                     Social::Mastodon => {
-                        logger.log(LogLevel::Warning, gettext!(
-                            "{}: Unable to find a valid image in the metadata, will render an icon.", &social
+                        logger.log(LogLevel::Warning, format!("{}: {}",
+                            &social,
+                            gettext("Unable to find a valid image in the metadata, will render an icon.")
                         ));
                     },
                     Social::Twitter => {
-                        logger.log(LogLevel::Warning, gettext!(
-                            "{}: Unable to find a valid image in the metadata, will render a \"{}\" card with icon.",
-                            &social, "summary"
+                        logger.log(LogLevel::Warning, format!("{}: {}",
+                            &social,
+                            gettext_f(
+                                "Unable to find a valid image in the metadata, will render a \"{name}\" card with icon.",
+                                &[("name", "summary")]
+                            )
                         ));
                         size = CardSize::Medium;
                     }
@@ -236,15 +263,17 @@ impl Card {
                 if let Some(val) = &meta.content {
                     if !val.is_empty() {
                         if let Some(log) = logger {
-                            log.log(LogLevel::Debug, gettext!(
-                                "Found a valid occurrence for \"{}\" with value \"{}\".",
-                                name, val
+                            log.log(LogLevel::Debug, gettext_f(
+                                "Found a valid occurrence for \"{name}\" with value \"{value}\".",
+                                &[("name", name), ("value", val)]
                             ));
                         }
                         return Some(val.to_string());
                     } {
                         if let Some(log) = logger {
-                            log.log(LogLevel::Warning, gettext!("\"{}\" it's empty!", name));
+                            log.log(LogLevel::Warning, gettext_f(
+                                "\"{name}\" is empty!", &[("name", name)]
+                            ));
                         }
                         continue;
                     }
@@ -252,7 +281,9 @@ impl Card {
             };
 
             if let Some(log) = logger {
-                log.log(LogLevel::Debug, gettext!("No occurrences found for \"{}\"!", name));
+                log.log(LogLevel::Debug, gettext_f(
+                    "No occurrences found for \"{name}\"!", &[("name", name)]
+                ));
             }
         }
         None
@@ -271,8 +302,8 @@ impl Card {
             let mut valid: HashMap<SocialImageSizeKind, &Image> = HashMap::new();
 
             if occurrences.len() > 0 {
-                logger.log(LogLevel::Debug, gettext!(
-                    "Looking for valid occurrences for \"{}\"", name
+                logger.log(LogLevel::Debug, gettext_f(
+                    "Looking for valid occurrences for \"{name}\"", &[("name", name)]
                 ));
             }
 
@@ -281,9 +312,8 @@ impl Card {
                     match image.check(social, kinds, constraints).await {
                         Ok(king) => {
                             if !valid.contains_key(&king) {
-                                logger.log(LogLevel::Debug, gettext!(
-                                    "Image \"{}\" met the requirements.",
-                                    image.url
+                                logger.log(LogLevel::Debug, gettext_f(
+                                    "Image \"{url}\" met the requirements.", &[("url", &image.url)]
                                 ));
 
                                 let first_kind: bool = match kinds.first() {
@@ -311,15 +341,21 @@ impl Card {
                                     ));
                                 },
                                 ImageError::TooHeavy{..} | ImageError::Unsupported(_) => {
-                                    logger.log(LogLevel::Warning, gettext!(
-                                        "{}: Image \"{}\" did not meet the requirements: {}.",
-                                        social, image.url, err
+                                    logger.log(LogLevel::Warning, format!("{}: {}",
+                                        social,
+                                        gettext_f(
+                                            "Image \"{url}\" did not meet the requirements: {info}.",
+                                            &[("url", &image.url), ("info", &err.to_string())]
+                                        )
                                     ));
                                 },
                                 _ => {
-                                    logger.log(LogLevel::Debug, gettext!(
-                                        "{}: Image \"{}\" did not meet the requirements: {}.",
-                                        social, image.url, err
+                                    logger.log(LogLevel::Debug, format!("{}: {}",
+                                        social,
+                                        gettext_f(
+                                            "Image \"{url}\" did not meet the requirements: {info}.",
+                                            &[("url", &image.url), ("info", &err.to_string())]
+                                        )
                                     ));
                                 }
                             }
@@ -335,16 +371,15 @@ impl Card {
                         let (width, height) = size.image_size();
                         match image.thumbnail(width, height).await {
                             Ok(bytes) => {
-                                logger.log(LogLevel::Debug, gettext!(
-                                    "Image \"{}\" processed successfully.",
-                                    image.url
+                                logger.log(LogLevel::Debug, gettext_f(
+                                    "Image \"{url}\" processed successfully.", &[("url", &image.url)]
                                 ));
                                 return Some((bytes, size));
                             },
                             Err(err) => {
-                                logger.log(LogLevel::Debug, gettext!(
-                                    "Failed to thumbnail \"{}\": {}.",
-                                    image.url, err
+                                logger.log(LogLevel::Debug, gettext_f(
+                                    "Failed to thumbnail \"{url}\": {info}.",
+                                    &[("url", &image.url), ("info", &err.to_string())]
                                 ));
                                 continue;
                             }
@@ -354,7 +389,9 @@ impl Card {
                 }
             }
 
-            logger.log(LogLevel::Debug, gettext!("No valid occurrences found for \"{}\"!", name));
+            logger.log(LogLevel::Debug, gettext_f(
+                "No valid occurrences found for \"{name}\"!", &[("name", name)]
+            ));
         }
         None
     }
