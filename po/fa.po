@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-09 12:46-0500\n"
+"POT-Creation-Date: 2023-03-09 19:14-0500\n"
 "PO-Revision-Date: 2021-11-20 18:16+0330\n"
 "Last-Translator: MohammadSaleh Kamyab <mskf1383@protonmail.com>\n"
 "Language-Team: \n"
@@ -262,12 +262,13 @@ msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
 msgstr ""
 
 #: src/backend/image.rs:211
-msgid "Images is too heavy ({actual}), max size is {max}"
+msgid "Image is too heavy ({actual}), max size is {max}"
 msgstr ""
 
 #: src/backend/image.rs:215
-msgid "Images is unsupported: {info}"
-msgstr ""
+#, fuzzy
+msgid "Image is unsupported: {info}"
+msgstr "خطای عکس"
 
 #, fuzzy
 #~ msgid "View Found Data..."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-09 12:46-0500\n"
+"POT-Creation-Date: 2023-03-09 19:14-0500\n"
 "PO-Revision-Date: 2023-03-10 00:13+0000\n"
 "Last-Translator: Rafael Mardojai CM <mardojai.cardenas@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/share-preview/"
@@ -167,8 +167,8 @@ msgstr "\"{name}\" esta vació!"
 msgid ""
 "Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
 msgstr ""
-"No se puede encontrar \"{name}\". Considere proporcionar la meta-propiedad \""
-"{name}\"."
+"No se puede encontrar \"{name}\". Considere proporcionar la meta-propiedad "
+"\"{name}\"."
 
 #: src/backend/card.rs:127
 msgid "Unable to find a metadata for title!. Falling back to document title."
@@ -273,11 +273,13 @@ msgstr ""
 "La imagen es demasiado pequeña ({actual}), las dimensiones mínimas son {min}"
 
 #: src/backend/image.rs:211
-msgid "Images is too heavy ({actual}), max size is {max}"
+#, fuzzy
+msgid "Image is too heavy ({actual}), max size is {max}"
 msgstr "Las imagen es demasiado pesada ({actual}), el tamaño máximo es {max}"
 
 #: src/backend/image.rs:215
-msgid "Images is unsupported: {info}"
+#, fuzzy
+msgid "Image is unsupported: {info}"
 msgstr "La imagen no es compatible: {info}"
 
 #, fuzzy

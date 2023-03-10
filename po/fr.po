@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-09 12:46-0500\n"
+"POT-Creation-Date: 2023-03-09 19:14-0500\n"
 "PO-Revision-Date: 2023-03-10 00:13+0000\n"
 "Last-Translator: rene-coty <irenee.thirion@e.email>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/share-preview/"
@@ -166,8 +166,8 @@ msgstr "« {name} » est vide !"
 msgid ""
 "Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
 msgstr ""
-"Impossible de trouver « {name} ». Veuillez fournir une propriété méta « "
-"{name} »."
+"Impossible de trouver « {name} ». Veuillez fournir une propriété méta "
+"« {name} »."
 
 #: src/backend/card.rs:127
 msgid "Unable to find a metadata for title!. Falling back to document title."
@@ -177,7 +177,8 @@ msgstr ""
 
 #: src/backend/card.rs:137
 msgid "Unable to find the document title!. Falling back to site url."
-msgstr "Impossible de trouver le titre du document ! Bascule sur l’url du site."
+msgstr ""
+"Impossible de trouver le titre du document ! Bascule sur l’url du site."
 
 #: src/backend/card.rs:163
 msgid "Found card of type \"{name}\"."
@@ -196,8 +197,8 @@ msgid ""
 "Unable to find a valid image in the metadata, will look for images in the "
 "document body."
 msgstr ""
-"Impossible de trouver une image valide dans les métadonnées, recherche d’"
-"images dans le corps du document."
+"Impossible de trouver une image valide dans les métadonnées, recherche "
+"d’images dans le corps du document."
 
 #: src/backend/card.rs:224 src/backend/card.rs:231
 msgid "No valid images found in the document body."
@@ -267,14 +268,17 @@ msgstr "Erreur image : {info}"
 
 #: src/backend/image.rs:206
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
-msgstr "L’image est trop petite ({actual}), les dimensions minimales sont {min}"
+msgstr ""
+"L’image est trop petite ({actual}), les dimensions minimales sont {min}"
 
 #: src/backend/image.rs:211
-msgid "Images is too heavy ({actual}), max size is {max}"
+#, fuzzy
+msgid "Image is too heavy ({actual}), max size is {max}"
 msgstr "L’image est trop lourde ({actual}), la taille maximale est {max}"
 
 #: src/backend/image.rs:215
-msgid "Images is unsupported: {info}"
+#, fuzzy
+msgid "Image is unsupported: {info}"
 msgstr "L’image n’est pas prise en charge : {info}"
 
 #~ msgid "Go..."

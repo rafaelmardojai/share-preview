@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-09 12:46-0500\n"
+"POT-Creation-Date: 2023-03-09 19:14-0500\n"
 "PO-Revision-Date: 2022-04-07 15:11+0000\n"
 "Last-Translator: Vojtěch Perník <develop@pervoj.cz>, 2022\n"
 "Language-Team: Czech (https://www.transifex.com/rafaelmardojai/teams/135057/"
@@ -271,12 +271,13 @@ msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
 msgstr ""
 
 #: src/backend/image.rs:211
-msgid "Images is too heavy ({actual}), max size is {max}"
+msgid "Image is too heavy ({actual}), max size is {max}"
 msgstr ""
 
 #: src/backend/image.rs:215
-msgid "Images is unsupported: {info}"
-msgstr ""
+#, fuzzy
+msgid "Image is unsupported: {info}"
+msgstr "Chyba obrázku"
 
 #~ msgid "Go..."
 #~ msgstr "Načíst…"
