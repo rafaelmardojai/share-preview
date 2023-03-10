@@ -208,11 +208,11 @@ impl Display for ImageError {
                 )),
             ImageError::TooHeavy{ref actual, ref max} =>
                 write!(f, "{}", gettext_f(
-                    "Images is too heavy ({actual}), max size is {max}",
+                    "Image is too heavy ({actual}), max size is {max}",
                     &[("actual", actual), ("max", max)]
                 )),
             ImageError::Unsupported(ref s) =>
-                write!(f, "{}", gettext_f("Images is unsupported: {info}", &[("info", s)])),
+                write!(f, "{}", gettext_f("Image is unsupported: {info}", &[("info", s)])),
             ImageError::Unexpected =>
                 write!(f, "{}", gettext("Unexpected Error")),
         }
