@@ -9,9 +9,10 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 12:46-0500\n"
-"PO-Revision-Date: 2021-05-20 20:35-0500\n"
+"PO-Revision-Date: 2023-03-10 00:13+0000\n"
 "Last-Translator: Rafael Mardojai CM <mardojai.cardenas@gmail.com>\n"
-"Language-Team: Spanish; Castilian <mardojai.cardenas@gmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/share-preview/"
+"share-preview/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,7 +38,7 @@ msgstr "Imágenes del cuerpo"
 
 #: data/resources/ui/log-dialog.ui:19
 msgid "Scraping Log"
-msgstr ""
+msgstr "Registro de Raspado"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -79,7 +80,7 @@ msgstr "Menu"
 
 #: data/resources/ui/window.ui:89
 msgid "Go"
-msgstr ""
+msgstr "Ir"
 
 #: data/resources/ui/window.ui:103
 msgid "Invalid URL"
@@ -91,12 +92,11 @@ msgstr "Establecer una URL para obtener una vista previa"
 
 #: data/resources/ui/window.ui:202
 msgid "View Metadata"
-msgstr ""
+msgstr "Ver Metadatos"
 
 #: data/resources/ui/window.ui:215
-#, fuzzy
 msgid "Show Logs"
-msgstr "Atajos de teclado"
+msgstr "Ver Registros"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:8
@@ -105,7 +105,7 @@ msgstr "Pruebe las tarjetas de redes sociales a nivel local"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
 msgid "Gnome;GTK;link;url;unfurl;"
-msgstr ""
+msgstr "Gnome;GTK;"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
@@ -122,7 +122,6 @@ msgid "Network Error"
 msgstr "Error de red"
 
 #: src/window.rs:229 src/window.rs:236
-#, fuzzy
 msgid "Couldn’t connect to the given URL."
 msgstr "No se pudo conectar a la URL proporcionada."
 
@@ -131,7 +130,6 @@ msgid "Unexpected Error"
 msgstr "Error inesperado"
 
 #: src/widgets/card.rs:85
-#, fuzzy
 msgid "Couldn’t find enough data to generate a card for this social media."
 msgstr ""
 "No se pudieron encontrar datos suficientes para generar una tarjeta para "
@@ -143,134 +141,144 @@ msgstr "Twitter: No se encontró ninguna tarjeta."
 
 #: src/widgets/log_dialog.rs:96
 msgid "DEBUG"
-msgstr ""
+msgstr "DEPURACIÓN"
 
 #: src/widgets/log_dialog.rs:102
 msgid "INFO"
-msgstr ""
+msgstr "INFO"
 
 #: src/widgets/log_dialog.rs:106
 msgid "WARNING"
-msgstr ""
+msgstr "ADVERTENCIA"
 
 #: src/widgets/log_dialog.rs:110
 msgid "ERROR"
-msgstr ""
+msgstr "ERROR"
 
 #: src/backend/card.rs:99
 msgid "Found \"{name}\"."
-msgstr ""
+msgstr "Encontrado \"{name}\"."
 
 #: src/backend/card.rs:104 src/backend/card.rs:275
 msgid "\"{name}\" is empty!"
-msgstr ""
+msgstr "\"{name}\" esta vació!"
 
 #: src/backend/card.rs:111 src/backend/card.rs:169
 msgid ""
 "Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
 msgstr ""
+"No se puede encontrar \"{name}\". Considere proporcionar la meta-propiedad \""
+"{name}\"."
 
 #: src/backend/card.rs:127
 msgid "Unable to find a metadata for title!. Falling back to document title."
-msgstr ""
+msgstr "No se pudo metadatos para el título. Se usará el título del documento."
 
 #: src/backend/card.rs:137
 msgid "Unable to find the document title!. Falling back to site url."
 msgstr ""
+"No se pudo encontrar el título del documento! Se usará la dirección del "
+"sitio."
 
 #: src/backend/card.rs:163
 msgid "Found card of type \"{name}\"."
-msgstr ""
+msgstr "Se encontró la tarjeta de tipo \"{name}\"."
 
 #: src/backend/card.rs:180
 msgid "Unable to find any valid card type."
-msgstr ""
+msgstr "No se ha podido encontrar ningún tipo de tarjeta válido."
 
 #: src/backend/card.rs:191
 msgid "Unable to find any valid title or description."
-msgstr ""
+msgstr "No se pudo encontrar ningún título o descripción válidos."
 
 #: src/backend/card.rs:213
 msgid ""
 "Unable to find a valid image in the metadata, will look for images in the "
 "document body."
 msgstr ""
+"Al no encontrar una imagen válida en los metadatos, se buscará imágenes en "
+"el cuerpo del documento."
 
 #: src/backend/card.rs:224 src/backend/card.rs:231
 msgid "No valid images found in the document body."
-msgstr ""
+msgstr "No se han encontrado imágenes válidas en el cuerpo del documento."
 
 #: src/backend/card.rs:238
 msgid "Unable to find a valid image in the metadata, will render an icon."
 msgstr ""
+"No se pudo encontrar una imagen válida en los metadatos, se mostrará un "
+"icono."
 
 #: src/backend/card.rs:245
 msgid ""
 "Unable to find a valid image in the metadata, will render a \"{name}\" card "
 "with icon."
 msgstr ""
+"Al no encontrar una imagen válida en los metadatos, se mostrará una tarjeta "
+"\"{name}\" con un icono."
 
 #: src/backend/card.rs:267
 msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
 msgstr ""
+"Se ha encontrado una ocurrencia válida para \"{name}\" con valor \"{value}\"."
 
 #: src/backend/card.rs:285
 msgid "No occurrences found for \"{name}\"!"
-msgstr ""
+msgstr "No se encontró ninguna ocurrencia para \"{name}\"!"
 
 #: src/backend/card.rs:306
 msgid "Looking for valid occurrences for \"{name}\""
-msgstr ""
+msgstr "Buscando ocurrencias válidas para \"{name}\""
 
 #: src/backend/card.rs:316
 msgid "Image \"{url}\" met the requirements."
-msgstr ""
+msgstr "La imagen \"{url}\" cumple los requisitos."
 
 #: src/backend/card.rs:347 src/backend/card.rs:356
 msgid "Image \"{url}\" did not meet the requirements: {info}."
-msgstr ""
+msgstr "La imagen \"{url}\" no cumple los requisitos: {info}."
 
 #: src/backend/card.rs:375
 msgid "Image \"{url}\" processed successfully."
-msgstr ""
+msgstr "Imagen \"{url}\" procesada con éxito."
 
 #: src/backend/card.rs:381
 msgid "Failed to thumbnail \"{url}\": {info}."
-msgstr ""
+msgstr "Error al hacer la miniatura para \"{url}\": {info}."
 
 #: src/backend/card.rs:393
 msgid "No valid occurrences found for \"{name}\"!"
-msgstr ""
+msgstr "No se han encontrado ocurrencias válidas para \"{name}\"!"
 
 #: src/backend/image.rs:124
 msgid "Format is unsupported"
-msgstr ""
+msgstr "El formato no compatible"
 
 #: src/backend/image.rs:199
-#, fuzzy
 msgid "Network Error: {info}"
-msgstr "Error de red"
+msgstr "Error de red: {info}"
 
 #: src/backend/image.rs:201
 msgid "Request Error: {info}"
-msgstr ""
+msgstr "Error de solicitud: {info}"
 
 #: src/backend/image.rs:203
-#, fuzzy
 msgid "Image Error: {info}"
-msgstr "Error de Imagen"
+msgstr "Error de imagen: {info}"
 
 #: src/backend/image.rs:206
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
 msgstr ""
+"La imagen es demasiado pequeña ({actual}), las dimensiones mínimas son {min}"
 
 #: src/backend/image.rs:211
 msgid "Images is too heavy ({actual}), max size is {max}"
-msgstr ""
+msgstr "Las imagen es demasiado pesada ({actual}), el tamaño máximo es {max}"
 
 #: src/backend/image.rs:215
 msgid "Images is unsupported: {info}"
-msgstr ""
+msgstr "La imagen no es compatible: {info}"
 
 #, fuzzy
 #~ msgid "View Found Data..."

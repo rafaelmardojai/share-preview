@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 12:46-0500\n"
-"PO-Revision-Date: 2023-03-09 22:01+0000\n"
-"Last-Translator: ascpial <mail@ascpial.fr>\n"
+"PO-Revision-Date: 2023-03-10 00:13+0000\n"
+"Last-Translator: rene-coty <irenee.thirion@e.email>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/fr/>\n"
 "Language: fr\n"
@@ -37,7 +37,7 @@ msgstr "Images du corpus"
 
 #: data/resources/ui/log-dialog.ui:19
 msgid "Scraping Log"
-msgstr ""
+msgstr "Récupération du journal"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -255,27 +255,27 @@ msgstr "Format non pris en charge"
 
 #: src/backend/image.rs:199
 msgid "Network Error: {info}"
-msgstr "Erreur de réseau : {info}"
+msgstr "Erreur réseau : {info}"
 
 #: src/backend/image.rs:201
 msgid "Request Error: {info}"
-msgstr "Erreur de requête : {info}"
+msgstr "Erreur de requête : {info}"
 
 #: src/backend/image.rs:203
 msgid "Image Error: {info}"
-msgstr "Erreur avec l'image : {info}"
+msgstr "Erreur image : {info}"
 
 #: src/backend/image.rs:206
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
-msgstr ""
+msgstr "L’image est trop petite ({actual}), les dimensions minimales sont {min}"
 
 #: src/backend/image.rs:211
 msgid "Images is too heavy ({actual}), max size is {max}"
-msgstr ""
+msgstr "L’image est trop lourde ({actual}), la taille maximale est {max}"
 
 #: src/backend/image.rs:215
 msgid "Images is unsupported: {info}"
-msgstr ""
+msgstr "L’image n’est pas prise en charge : {info}"
 
 #~ msgid "Go..."
 #~ msgstr "Aller à..."

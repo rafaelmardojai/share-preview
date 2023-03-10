@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 12:46-0500\n"
-"PO-Revision-Date: 2023-03-09 22:01+0000\n"
+"PO-Revision-Date: 2023-03-10 00:13+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/nl/>\n"
@@ -126,18 +126,18 @@ msgid "Network Error"
 msgstr "Netwerkfout"
 
 #: src/window.rs:229 src/window.rs:236
-#, fuzzy
 msgid "Couldn’t connect to the given URL."
-msgstr "Er kan geen verbinding worden gemaakt met de opgegeven url."
+msgstr "Kon geen verbinding maken met de opgegeven URL."
 
 #: src/window.rs:232 src/backend/image.rs:217
 msgid "Unexpected Error"
 msgstr "Onverwachte fout"
 
 #: src/widgets/card.rs:85
-#, fuzzy
 msgid "Couldn’t find enough data to generate a card for this social media."
-msgstr "Er zijn niet genoeg gegevens beschikbaar om een kaart te kunnen maken."
+msgstr ""
+"Kon niet genoeg gegevens vinden om een kaart te genereren voor deze sociale "
+"media."
 
 #: src/widgets/card.rs:88
 msgid "Twitter: No card found."
