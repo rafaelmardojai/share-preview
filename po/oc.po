@@ -8,14 +8,16 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 19:14-0500\n"
-"PO-Revision-Date: 2023-02-21 18:36+0100\n"
-"Last-Translator: Quentin PAGÈS\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2023-03-12 21:41+0000\n"
+"Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
+"Language-Team: Occitan <https://hosted.weblate.org/projects/share-preview/"
+"share-preview/oc/>\n"
 "Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.2.2\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.16.2-dev\n"
 
 #: data/resources/ui/card.ui:72
 msgid "Card Error"
@@ -35,7 +37,7 @@ msgstr "Imatge del Body"
 
 #: data/resources/ui/log-dialog.ui:19
 msgid "Scraping Log"
-msgstr ""
+msgstr "Recuperacion dels logs"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -58,14 +60,14 @@ msgstr "Aco_rchis de clavièr"
 
 #: data/resources/ui/window.ui:10
 msgid "_About Share Preview"
-msgstr "_A prepaus de Share Preview"
+msgstr "_A prepaus d’Apercebut de partiment"
 
 #: data/resources/ui/window.ui:32
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
 #: src/application.rs:114 src/main.rs:24
 msgid "Share Preview"
-msgstr "Share Preview"
+msgstr "Apercebut de partiment"
 
 #: data/resources/ui/window.ui:38
 msgid "Toggle Color Scheme"
@@ -77,7 +79,7 @@ msgstr "Menú"
 
 #: data/resources/ui/window.ui:89
 msgid "Go"
-msgstr ""
+msgstr "Aviar"
 
 #: data/resources/ui/window.ui:103
 msgid "Invalid URL"
@@ -88,14 +90,12 @@ msgid "Set a URL to preview"
 msgstr "Definir una URL a previsualizar"
 
 #: data/resources/ui/window.ui:202
-#, fuzzy
 msgid "View Metadata"
-msgstr "Metadonadas"
+msgstr "Veire las metadonadas"
 
 #: data/resources/ui/window.ui:215
-#, fuzzy
 msgid "Show Logs"
-msgstr "Afichar los acorchis"
+msgstr "Afichar los jornals"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:8
@@ -104,7 +104,7 @@ msgstr "Provar las cartas de malhums socials en local"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
 msgid "Gnome;GTK;link;url;unfurl;"
-msgstr ""
+msgstr "Gnome;GTK;ligam;url;unfurl;"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
@@ -121,7 +121,6 @@ msgid "Network Error"
 msgstr "Error ret"
 
 #: src/window.rs:229 src/window.rs:236
-#, fuzzy
 msgid "Couldn’t connect to the given URL."
 msgstr "Connexion impossibla a l’URL donada."
 
@@ -130,7 +129,6 @@ msgid "Unexpected Error"
 msgstr "Error inesperada"
 
 #: src/widgets/card.rs:85
-#, fuzzy
 msgid "Couldn’t find enough data to generate a card for this social media."
 msgstr ""
 "Èra pas possible de trobar pro de donadas per generar una carta per aqueste "
@@ -142,27 +140,27 @@ msgstr "Twitter : cap de carta pas trobada."
 
 #: src/widgets/log_dialog.rs:96
 msgid "DEBUG"
-msgstr ""
+msgstr "DESBUGATGE"
 
 #: src/widgets/log_dialog.rs:102
 msgid "INFO"
-msgstr ""
+msgstr "INFORMACION"
 
 #: src/widgets/log_dialog.rs:106
 msgid "WARNING"
-msgstr ""
+msgstr "AVERTIMENT"
 
 #: src/widgets/log_dialog.rs:110
 msgid "ERROR"
-msgstr ""
+msgstr "ERROR"
 
 #: src/backend/card.rs:99
 msgid "Found \"{name}\"."
-msgstr ""
+msgstr "« {name} } » trobat."
 
 #: src/backend/card.rs:104 src/backend/card.rs:275
 msgid "\"{name}\" is empty!"
-msgstr ""
+msgstr "« {name} » es void !"
 
 #: src/backend/card.rs:111 src/backend/card.rs:169
 msgid ""
@@ -243,21 +241,19 @@ msgstr ""
 
 #: src/backend/image.rs:124
 msgid "Format is unsupported"
-msgstr ""
+msgstr "Lo format es pas pres en carga"
 
 #: src/backend/image.rs:199
-#, fuzzy
 msgid "Network Error: {info}"
-msgstr "Error ret"
+msgstr "Error ret : {info}"
 
 #: src/backend/image.rs:201
 msgid "Request Error: {info}"
 msgstr ""
 
 #: src/backend/image.rs:203
-#, fuzzy
 msgid "Image Error: {info}"
-msgstr "Error de l’imatge"
+msgstr "Error de l’imatge : {info}"
 
 #: src/backend/image.rs:206
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
@@ -268,9 +264,8 @@ msgid "Image is too heavy ({actual}), max size is {max}"
 msgstr ""
 
 #: src/backend/image.rs:215
-#, fuzzy
 msgid "Image is unsupported: {info}"
-msgstr "Error de l’imatge"
+msgstr "L’imatge es pas pres en carga : {info}"
 
 #~ msgid "Go..."
 #~ msgstr "I anar..."

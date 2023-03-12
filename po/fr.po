@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 19:14-0500\n"
-"PO-Revision-Date: 2023-03-10 00:13+0000\n"
-"Last-Translator: rene-coty <irenee.thirion@e.email>\n"
+"PO-Revision-Date: 2023-03-12 21:41+0000\n"
+"Last-Translator: Rafael Mardojai CM <mardojai.cardenas@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/fr/>\n"
 "Language: fr\n"
@@ -272,12 +272,10 @@ msgstr ""
 "L’image est trop petite ({actual}), les dimensions minimales sont {min}"
 
 #: src/backend/image.rs:211
-#, fuzzy
 msgid "Image is too heavy ({actual}), max size is {max}"
 msgstr "L’image est trop lourde ({actual}), la taille maximale est {max}"
 
 #: src/backend/image.rs:215
-#, fuzzy
 msgid "Image is unsupported: {info}"
 msgstr "L’image n’est pas prise en charge : {info}"
 

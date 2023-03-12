@@ -7,22 +7,22 @@
 # Rafael Mardojai CM <mardojai.cardenas@gmail.com>, 2022
 # Vojtěch Perník <develop@pervoj.cz>, 2022
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 19:14-0500\n"
-"PO-Revision-Date: 2022-04-07 15:11+0000\n"
-"Last-Translator: Vojtěch Perník <develop@pervoj.cz>, 2022\n"
-"Language-Team: Czech (https://www.transifex.com/rafaelmardojai/teams/135057/"
-"cs/)\n"
+"PO-Revision-Date: 2023-03-12 21:41+0000\n"
+"Last-Translator: Vojtěch Perník <translations@pervoj.cz>\n"
+"Language-Team: Czech <https://hosted.weblate.org/projects/share-preview/"
+"share-preview/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
 "<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+"X-Generator: Weblate 4.16.2-dev\n"
 
 #: data/resources/ui/card.ui:72
 msgid "Card Error"
@@ -42,7 +42,7 @@ msgstr "Obrázky na stránce"
 
 #: data/resources/ui/log-dialog.ui:19
 msgid "Scraping Log"
-msgstr ""
+msgstr "Log získávání dat"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -84,7 +84,7 @@ msgstr "Menu"
 
 #: data/resources/ui/window.ui:89
 msgid "Go"
-msgstr ""
+msgstr "Přejít"
 
 #: data/resources/ui/window.ui:103
 msgid "Invalid URL"
@@ -92,17 +92,15 @@ msgstr "Neplatná URL"
 
 #: data/resources/ui/window.ui:125
 msgid "Set a URL to preview"
-msgstr ""
+msgstr "Nastavit adresu URL pro náhled"
 
 #: data/resources/ui/window.ui:202
-#, fuzzy
 msgid "View Metadata"
-msgstr "Metadata"
+msgstr "Zobrazit metadata"
 
 #: data/resources/ui/window.ui:215
-#, fuzzy
 msgid "Show Logs"
-msgstr "Zobrazit zkratky"
+msgstr "Zobrazit logy"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:8
@@ -111,7 +109,7 @@ msgstr "Otestujte karty sociálních sítí lokálně"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
 msgid "Gnome;GTK;link;url;unfurl;"
-msgstr ""
+msgstr "Gnome;GTK;link;url;unfurl;"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
@@ -128,7 +126,6 @@ msgid "Network Error"
 msgstr "Chyba sítě"
 
 #: src/window.rs:229 src/window.rs:236
-#, fuzzy
 msgid "Couldn’t connect to the given URL."
 msgstr "Nepodařilo se připojit na zadanou URL."
 
@@ -137,7 +134,6 @@ msgid "Unexpected Error"
 msgstr "Neočekávaná chyba"
 
 #: src/widgets/card.rs:85
-#, fuzzy
 msgid "Couldn’t find enough data to generate a card for this social media."
 msgstr ""
 "Nepodařilo se najít dostatek údajů pro vygenerování karty pro tuto sociální "
@@ -149,135 +145,137 @@ msgstr "Twitter: Nebyla nalezena žádná karta."
 
 #: src/widgets/log_dialog.rs:96
 msgid "DEBUG"
-msgstr ""
+msgstr "LADĚNÍ"
 
 #: src/widgets/log_dialog.rs:102
 msgid "INFO"
-msgstr ""
+msgstr "INFO"
 
 #: src/widgets/log_dialog.rs:106
 msgid "WARNING"
-msgstr ""
+msgstr "VAROVÁNÍ"
 
 #: src/widgets/log_dialog.rs:110
 msgid "ERROR"
-msgstr ""
+msgstr "CHYBA"
 
 #: src/backend/card.rs:99
 msgid "Found \"{name}\"."
-msgstr ""
+msgstr "Nalezeno „{name}“."
 
 #: src/backend/card.rs:104 src/backend/card.rs:275
 msgid "\"{name}\" is empty!"
-msgstr ""
+msgstr "„{name}“ je prázdné!"
 
 #: src/backend/card.rs:111 src/backend/card.rs:169
 msgid ""
 "Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
 msgstr ""
+"Nepodařilo se najít „{name}“. Zvažte poskytnutí vlastnosti meta „{name}“."
 
 #: src/backend/card.rs:127
 msgid "Unable to find a metadata for title!. Falling back to document title."
-msgstr ""
+msgstr "Nepodařilo se najít metadata pro název!. Návrat k názvu dokumentu."
 
 #: src/backend/card.rs:137
 msgid "Unable to find the document title!. Falling back to site url."
-msgstr ""
+msgstr "Nepodařilo se najít název dokumentu!. Návrat k adrese URL webu."
 
 #: src/backend/card.rs:163
 msgid "Found card of type \"{name}\"."
-msgstr ""
+msgstr "Nalezena karta typu „{name}“."
 
 #: src/backend/card.rs:180
 msgid "Unable to find any valid card type."
-msgstr ""
+msgstr "Nepodařilo se najít žádný platný typ karty."
 
 #: src/backend/card.rs:191
 msgid "Unable to find any valid title or description."
-msgstr ""
+msgstr "Nepodařilo se najít žádný platný název ani popis."
 
 #: src/backend/card.rs:213
 msgid ""
 "Unable to find a valid image in the metadata, will look for images in the "
 "document body."
 msgstr ""
+"Nepodařilo se najít platný obrázek v metadatech, hledají se obrázky v těle "
+"dokumentu."
 
 #: src/backend/card.rs:224 src/backend/card.rs:231
 msgid "No valid images found in the document body."
-msgstr ""
+msgstr "V těle dokumentu nebyly nalezeny žádné platné obrázky."
 
 #: src/backend/card.rs:238
 msgid "Unable to find a valid image in the metadata, will render an icon."
-msgstr ""
+msgstr "Nepodařilo se najít platný obrázek v metadatech, vykreslí se ikona."
 
 #: src/backend/card.rs:245
 msgid ""
 "Unable to find a valid image in the metadata, will render a \"{name}\" card "
 "with icon."
 msgstr ""
+"Nepodařilo se najít platný obrázek v metadatech, vykreslí se karta „{name}“ "
+"s ikonou."
 
 #: src/backend/card.rs:267
 msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
-msgstr ""
+msgstr "Nalezen platný výskyt pro „{name}“ s hodnotou „{value}“."
 
 #: src/backend/card.rs:285
 msgid "No occurrences found for \"{name}\"!"
-msgstr ""
+msgstr "Pro „{name}“ nebyly nalezeny žádné výskyty!"
 
 #: src/backend/card.rs:306
 msgid "Looking for valid occurrences for \"{name}\""
-msgstr ""
+msgstr "Hledají se platné výskyty pro „{name}“"
 
 #: src/backend/card.rs:316
 msgid "Image \"{url}\" met the requirements."
-msgstr ""
+msgstr "Obrázek „{url}“ splňuje požadavky."
 
 #: src/backend/card.rs:347 src/backend/card.rs:356
 msgid "Image \"{url}\" did not meet the requirements: {info}."
-msgstr ""
+msgstr "Obrázek „{url}“ nesplňuje požadavky: {info}."
 
 #: src/backend/card.rs:375
 msgid "Image \"{url}\" processed successfully."
-msgstr ""
+msgstr "Obrázek „{url}“ byl úspěšně zpracován."
 
 #: src/backend/card.rs:381
 msgid "Failed to thumbnail \"{url}\": {info}."
-msgstr ""
+msgstr "Nezdařilo se vytvořit miniaturu pro „{url}“: {info}."
 
 #: src/backend/card.rs:393
 msgid "No valid occurrences found for \"{name}\"!"
-msgstr ""
+msgstr "Pro „{name}“ nebyly nalezeny žádné platné výskyty!"
 
 #: src/backend/image.rs:124
 msgid "Format is unsupported"
-msgstr ""
+msgstr "Formát není podporovaný"
 
 #: src/backend/image.rs:199
-#, fuzzy
 msgid "Network Error: {info}"
-msgstr "Chyba sítě"
+msgstr "Chyba sítě: {info}"
 
 #: src/backend/image.rs:201
 msgid "Request Error: {info}"
-msgstr ""
+msgstr "Chyba požadavku: {info}"
 
 #: src/backend/image.rs:203
-#, fuzzy
 msgid "Image Error: {info}"
-msgstr "Chyba obrázku"
+msgstr "Chyba obrázku: {info}"
 
 #: src/backend/image.rs:206
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
-msgstr ""
+msgstr "Obrázek je příliš malý ({actual}), minimální rozměry jsou {min}"
 
 #: src/backend/image.rs:211
 msgid "Image is too heavy ({actual}), max size is {max}"
-msgstr ""
+msgstr "Obrázek je příliš velký ({actual}), maximální velikost je {max}"
 
 #: src/backend/image.rs:215
-#, fuzzy
 msgid "Image is unsupported: {info}"
-msgstr "Chyba obrázku"
+msgstr "Obrázek není podporovaný: {info}"
 
 #~ msgid "Go..."
 #~ msgstr "Načíst…"

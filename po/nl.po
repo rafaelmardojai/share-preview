@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 19:14-0500\n"
-"PO-Revision-Date: 2023-03-10 00:13+0000\n"
+"PO-Revision-Date: 2023-03-12 21:41+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/nl/>\n"
@@ -171,66 +171,73 @@ msgstr "‘{name}’ is leeg"
 msgid ""
 "Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
 msgstr ""
+"Kon ‘{name}’ niet vinden. Overweeg de meta-eigenschap ‘{name}’ toe te voegen."
 
 #: src/backend/card.rs:127
 msgid "Unable to find a metadata for title!. Falling back to document title."
-msgstr ""
+msgstr "Kon geen metagegevens voor titel vinden. Documenttitel wordt gebruikt."
 
 #: src/backend/card.rs:137
 msgid "Unable to find the document title!. Falling back to site url."
-msgstr ""
+msgstr "Kon de documenttitel niet vinden. Website-URL wordt gebruikt."
 
 #: src/backend/card.rs:163
 msgid "Found card of type \"{name}\"."
-msgstr "Kaart gevonden van type ‘{name}’"
+msgstr "Kaart gevonden van type ‘{name}’."
 
 #: src/backend/card.rs:180
 msgid "Unable to find any valid card type."
-msgstr ""
+msgstr "Kon geen geldig kaarttype vinden."
 
 #: src/backend/card.rs:191
 msgid "Unable to find any valid title or description."
-msgstr ""
+msgstr "Kon geen geldige titel of beschrijving vinden."
 
 #: src/backend/card.rs:213
 msgid ""
 "Unable to find a valid image in the metadata, will look for images in the "
 "document body."
 msgstr ""
+"Kon geen geldige afbeelding vinden in de metagegevens, afbeeldingen worden "
+"gezocht in de document-body."
 
 #: src/backend/card.rs:224 src/backend/card.rs:231
 msgid "No valid images found in the document body."
-msgstr ""
+msgstr "Geen geldige afbeeldingen gevonden in de document-body."
 
 #: src/backend/card.rs:238
 msgid "Unable to find a valid image in the metadata, will render an icon."
 msgstr ""
+"Kon geen geldige afbeelding vinden in de metagegevens, een pictogram wordt "
+"gebruikt."
 
 #: src/backend/card.rs:245
 msgid ""
 "Unable to find a valid image in the metadata, will render a \"{name}\" card "
 "with icon."
 msgstr ""
+"Kon geen geldige afbeelding vinden in de metagegevens, een ‘{name}’-kaart "
+"met pictogram wordt gebruikt."
 
 #: src/backend/card.rs:267
 msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
-msgstr ""
+msgstr "Geldig voorval gevonden voor ‘{name}’ met waarde ‘{value}’."
 
 #: src/backend/card.rs:285
 msgid "No occurrences found for \"{name}\"!"
-msgstr ""
+msgstr "Geen voorval gevonden voor ‘{name}’"
 
 #: src/backend/card.rs:306
 msgid "Looking for valid occurrences for \"{name}\""
-msgstr ""
+msgstr "Zoeken naar geldige voorvallen voor ‘{name}’"
 
 #: src/backend/card.rs:316
 msgid "Image \"{url}\" met the requirements."
-msgstr ""
+msgstr "Afbeelding ‘{url}’ voldoet aan de vereisten"
 
 #: src/backend/card.rs:347 src/backend/card.rs:356
 msgid "Image \"{url}\" did not meet the requirements: {info}."
-msgstr ""
+msgstr "Afbeelding ‘{url}’ voldoet niet aan de vereisten: {info}"
 
 #: src/backend/card.rs:375
 msgid "Image \"{url}\" processed successfully."
@@ -238,11 +245,11 @@ msgstr "Afbeelding ‘{url}’ succesvol verwerkt"
 
 #: src/backend/card.rs:381
 msgid "Failed to thumbnail \"{url}\": {info}."
-msgstr ""
+msgstr "Miniatuur maken van ‘{url}’ mislukt: {info}"
 
 #: src/backend/card.rs:393
 msgid "No valid occurrences found for \"{name}\"!"
-msgstr ""
+msgstr "Geen geldige voorvallen van ‘{name}’ gevonden"
 
 #: src/backend/image.rs:124
 msgid "Format is unsupported"
@@ -262,14 +269,13 @@ msgstr "Afbeeldingsfout: {info}"
 
 #: src/backend/image.rs:206
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
-msgstr ""
+msgstr "Afbeelding is te klein ({actual}), minimale afmetingen zijn {min}"
 
 #: src/backend/image.rs:211
 msgid "Image is too heavy ({actual}), max size is {max}"
-msgstr ""
+msgstr "Afbeelding is te groot ({actual}), maximale grootte is {max}"
 
 #: src/backend/image.rs:215
-#, fuzzy
 msgid "Image is unsupported: {info}"
 msgstr "Afbeelding wordt niet ondersteund: {info}"
 

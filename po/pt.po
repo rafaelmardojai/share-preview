@@ -6,22 +6,22 @@
 # Translators:
 # Hugo Carvalho <hugokarvalho@hotmail.com>, 2022
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 19:14-0500\n"
-"PO-Revision-Date: 2022-06-12 17:10+0000\n"
-"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>, 2022\n"
-"Language-Team: Portuguese (https://www.transifex.com/rafaelmardojai/"
-"teams/135057/pt/)\n"
+"PO-Revision-Date: 2023-03-12 21:41+0000\n"
+"Last-Translator: Felipe Nogueira <contato.fnog@gmail.com>\n"
+"Language-Team: Portuguese <https://hosted.weblate.org/projects/share-preview/"
+"share-preview/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % "
-"1000000 == 0 ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : ((n != 0 && n % "
+"1000000 == 0) ? 1 : 2);\n"
+"X-Generator: Weblate 4.16.2-dev\n"
 
 #: data/resources/ui/card.ui:72
 msgid "Card Error"
@@ -83,7 +83,7 @@ msgstr "Menu"
 
 #: data/resources/ui/window.ui:89
 msgid "Go"
-msgstr ""
+msgstr "Ir"
 
 #: data/resources/ui/window.ui:103
 msgid "Invalid URL"
@@ -91,17 +91,15 @@ msgstr "URL inválido"
 
 #: data/resources/ui/window.ui:125
 msgid "Set a URL to preview"
-msgstr ""
+msgstr "Definir um URL para visualizar"
 
 #: data/resources/ui/window.ui:202
-#, fuzzy
 msgid "View Metadata"
-msgstr "Metadados"
+msgstr "Visualizar Metadados"
 
 #: data/resources/ui/window.ui:215
-#, fuzzy
 msgid "Show Logs"
-msgstr "Mostrar atalhos"
+msgstr "Exibir registros"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:8
@@ -168,7 +166,7 @@ msgstr ""
 
 #: src/backend/card.rs:104 src/backend/card.rs:275
 msgid "\"{name}\" is empty!"
-msgstr ""
+msgstr "\"{name}\" está vazio!"
 
 #: src/backend/card.rs:111 src/backend/card.rs:169
 msgid ""
@@ -252,18 +250,16 @@ msgid "Format is unsupported"
 msgstr ""
 
 #: src/backend/image.rs:199
-#, fuzzy
 msgid "Network Error: {info}"
-msgstr "Erro de rede"
+msgstr "Erro de rede: {info}"
 
 #: src/backend/image.rs:201
 msgid "Request Error: {info}"
 msgstr ""
 
 #: src/backend/image.rs:203
-#, fuzzy
 msgid "Image Error: {info}"
-msgstr "Erro de imagem"
+msgstr "Erro de imagem: {info}"
 
 #: src/backend/image.rs:206
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
@@ -274,9 +270,8 @@ msgid "Image is too heavy ({actual}), max size is {max}"
 msgstr ""
 
 #: src/backend/image.rs:215
-#, fuzzy
 msgid "Image is unsupported: {info}"
-msgstr "Erro de imagem"
+msgstr "Image não suportada: {info}"
 
 #~ msgid "Go..."
 #~ msgstr "Ir..."
