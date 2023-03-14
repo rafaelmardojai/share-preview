@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 19:14-0500\n"
-"PO-Revision-Date: 2023-03-12 21:41+0000\n"
+"PO-Revision-Date: 2023-03-15 10:39+0000\n"
 "Last-Translator: Felipe Nogueira <contato.fnog@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "share-preview/share-preview/pt_BR/>\n"
@@ -72,7 +72,7 @@ msgstr "Share Preview"
 
 #: data/resources/ui/window.ui:38
 msgid "Toggle Color Scheme"
-msgstr ""
+msgstr "Alternar esquema de cores"
 
 #: data/resources/ui/window.ui:46
 msgid "Menu"
@@ -247,18 +247,16 @@ msgid "Format is unsupported"
 msgstr ""
 
 #: src/backend/image.rs:199
-#, fuzzy
 msgid "Network Error: {info}"
-msgstr "Erro de rede"
+msgstr "Erro de rede: {info}"
 
 #: src/backend/image.rs:201
 msgid "Request Error: {info}"
 msgstr ""
 
 #: src/backend/image.rs:203
-#, fuzzy
 msgid "Image Error: {info}"
-msgstr "Erro de imagem"
+msgstr "Erro de imagem: {info}"
 
 #: src/backend/image.rs:206
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
@@ -269,9 +267,8 @@ msgid "Image is too heavy ({actual}), max size is {max}"
 msgstr ""
 
 #: src/backend/image.rs:215
-#, fuzzy
 msgid "Image is unsupported: {info}"
-msgstr "Erro de imagem"
+msgstr "Image não suportada: {info}"
 
 #, fuzzy
 #~ msgid "View Found Data..."
