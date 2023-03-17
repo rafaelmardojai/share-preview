@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 19:14-0500\n"
-"PO-Revision-Date: 2023-03-13 22:06+0000\n"
+"PO-Revision-Date: 2023-03-18 19:40+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/oc/>\n"
@@ -225,19 +225,19 @@ msgstr "L’imatge « {url} » correspond a las exigéncias."
 
 #: src/backend/card.rs:347 src/backend/card.rs:356
 msgid "Image \"{url}\" did not meet the requirements: {info}."
-msgstr ""
+msgstr "L’imatge « {url} » correspondiá pas a las exigéncias : {info}."
 
 #: src/backend/card.rs:375
 msgid "Image \"{url}\" processed successfully."
-msgstr ""
+msgstr "Imatge « {url} » tractat amb succès."
 
 #: src/backend/card.rs:381
 msgid "Failed to thumbnail \"{url}\": {info}."
-msgstr ""
+msgstr "Fracàs de la creacion de la miniatura « {url} » : {info}."
 
 #: src/backend/card.rs:393
 msgid "No valid occurrences found for \"{name}\"!"
-msgstr ""
+msgstr "Cap d’ocurréncia valida pas trobada per « {name} » !"
 
 #: src/backend/image.rs:124
 msgid "Format is unsupported"
@@ -249,7 +249,7 @@ msgstr "Error ret : {info}"
 
 #: src/backend/image.rs:201
 msgid "Request Error: {info}"
-msgstr ""
+msgstr "Error de requèsta : {info}"
 
 #: src/backend/image.rs:203
 msgid "Image Error: {info}"
@@ -257,11 +257,11 @@ msgstr "Error de l’imatge : {info}"
 
 #: src/backend/image.rs:206
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
-msgstr ""
+msgstr "L’imatge es tròp pichon ({actual}), las dimensions minimalas son {min}"
 
 #: src/backend/image.rs:211
 msgid "Image is too heavy ({actual}), max size is {max}"
-msgstr ""
+msgstr "L’imatge es tròp pesuc ({actual}), la talha maximala es {max}"
 
 #: src/backend/image.rs:215
 msgid "Image is unsupported: {info}"
