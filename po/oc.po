@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-21 11:59-0500\n"
-"PO-Revision-Date: 2023-03-18 19:40+0000\n"
+"PO-Revision-Date: 2023-03-22 16:02+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/oc/>\n"
@@ -74,9 +74,8 @@ msgid "Toggle Color Scheme"
 msgstr "Alternar l’esquèma de color"
 
 #: data/resources/ui/window.ui:46
-#, fuzzy
 msgid "Main Menu"
-msgstr "Menú"
+msgstr "Menú principal"
 
 #: data/resources/ui/window.ui:89
 msgid "Go"
