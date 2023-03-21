@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-09 19:14-0500\n"
+"POT-Creation-Date: 2023-03-21 11:59-0500\n"
 "PO-Revision-Date: 2023-03-12 21:41+0000\n"
 "Last-Translator: Сергей Ворон <voron.s.a@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/share-preview/"
@@ -20,8 +20,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || ("
-"n%100>=11 && n%100<=14)? 2 : 3);\n"
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Generator: Weblate 4.16.2-dev\n"
 
 #: data/resources/ui/card.ui:72
@@ -79,7 +79,8 @@ msgid "Toggle Color Scheme"
 msgstr "Переключить цветовую схему"
 
 #: data/resources/ui/window.ui:46
-msgid "Menu"
+#, fuzzy
+msgid "Main Menu"
 msgstr "Меню"
 
 #: data/resources/ui/window.ui:89

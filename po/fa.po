@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-09 19:14-0500\n"
+"POT-Creation-Date: 2023-03-21 11:59-0500\n"
 "PO-Revision-Date: 2021-11-20 18:16+0330\n"
 "Last-Translator: MohammadSaleh Kamyab <mskf1383@protonmail.com>\n"
 "Language-Team: \n"
@@ -73,7 +73,8 @@ msgid "Toggle Color Scheme"
 msgstr ""
 
 #: data/resources/ui/window.ui:46
-msgid "Menu"
+#, fuzzy
+msgid "Main Menu"
 msgstr "فهرست"
 
 #: data/resources/ui/window.ui:89

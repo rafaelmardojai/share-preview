@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-09 19:14-0500\n"
+"POT-Creation-Date: 2023-03-21 11:59-0500\n"
 "PO-Revision-Date: 2023-03-12 21:41+0000\n"
 "Last-Translator: Felipe Nogueira <contato.fnog@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/share-preview/"
@@ -78,7 +78,8 @@ msgid "Toggle Color Scheme"
 msgstr "Alternar esquema de cores"
 
 #: data/resources/ui/window.ui:46
-msgid "Menu"
+#, fuzzy
+msgid "Main Menu"
 msgstr "Menu"
 
 #: data/resources/ui/window.ui:89
