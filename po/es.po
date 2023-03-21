@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-21 11:59-0500\n"
-"PO-Revision-Date: 2023-03-12 21:41+0000\n"
+"PO-Revision-Date: 2023-03-22 16:02+0000\n"
 "Last-Translator: Rafael Mardojai CM <mardojai.cardenas@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/es/>\n"
@@ -75,9 +75,8 @@ msgid "Toggle Color Scheme"
 msgstr "Conmutar la combinación de colores"
 
 #: data/resources/ui/window.ui:46
-#, fuzzy
 msgid "Main Menu"
-msgstr "Menu"
+msgstr "Menú Principal"
 
 #: data/resources/ui/window.ui:89
 msgid "Go"
