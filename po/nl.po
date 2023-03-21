@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-21 11:59-0500\n"
-"PO-Revision-Date: 2023-03-12 21:41+0000\n"
+"PO-Revision-Date: 2023-03-22 16:02+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/nl/>\n"
@@ -77,9 +77,8 @@ msgid "Toggle Color Scheme"
 msgstr "Van thema wisselen"
 
 #: data/resources/ui/window.ui:46
-#, fuzzy
 msgid "Main Menu"
-msgstr "Menu"
+msgstr "Hoofdmenu"
 
 #: data/resources/ui/window.ui:89
 msgid "Go"
@@ -115,7 +114,7 @@ msgstr ""
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
 msgstr ""
-"Maak een voorvertoning van sociale-media-links en spoor fouten van "
+"Maak een voorvertoning van links op sociale media en spoor fouten van "
 "metagegevens-tags hiervan op."
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:72
