@@ -1,6 +1,6 @@
 [package]
 name = "share-preview"
-version = "0.2.0"
+version = "0.3.0"
 authors = ["Rafael Mardojai CM <email@rafaelmardojai.com>"]
 edition = "2018"
 

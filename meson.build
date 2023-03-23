@@ -1,7 +1,7 @@
 project(
   'share-preview',
   'rust',
-  version: '0.2.0',
+  version: '0.3.0',
   license: 'GPL-3.0',
   meson_version: '>= 0.63.0',
 )

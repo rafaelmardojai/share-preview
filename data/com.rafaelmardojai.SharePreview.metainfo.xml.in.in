@@ -16,12 +16,27 @@
     <screenshot>
       <image>https://github.com/rafaelmardojai/share-preview/raw/master/brand/screenshot-2.png</image>
     </screenshot>
+    <screenshot>
+      <image>https://github.com/rafaelmardojai/share-preview/raw/master/brand/screenshot-3.png</image>
+    </screenshot>
   </screenshots>
   <url type="homepage">https://apps.gnome.org/app/com.rafaelmardojai.SharePreview/</url>
   <url type="bugtracker">https://github.com/rafaelmardojai/share-preview/issues</url>
   <url type="donation">https://mardojai.com/donate/</url>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="0.3.0" date="2023-03-23">
+      <description>
+        <ul>
+          <li>New scraping logger feature</li>
+          <li>Save last selected social platform</li>
+          <li>Design improvements</li>
+          <li>Updated to use latest libadwaita features</li>
+          <li>Many small bug fixes</li>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.2.0" date="2022-03-27">
       <description>
         <ul>
