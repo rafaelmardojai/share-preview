@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-21 11:59-0500\n"
-"PO-Revision-Date: 2023-03-12 21:41+0000\n"
+"PO-Revision-Date: 2023-03-23 23:56+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/hr/>\n"
@@ -79,9 +79,8 @@ msgid "Toggle Color Scheme"
 msgstr "Uključi/Isključi shemu boja"
 
 #: data/resources/ui/window.ui:46
-#, fuzzy
 msgid "Main Menu"
-msgstr "Izbornik"
+msgstr "Glavni izbornik"
 
 #: data/resources/ui/window.ui:89
 msgid "Go"
