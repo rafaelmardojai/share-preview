@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-21 11:59-0500\n"
-"PO-Revision-Date: 2023-03-22 16:02+0000\n"
+"PO-Revision-Date: 2023-03-25 14:40+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/nl/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16.2-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 #: data/resources/ui/card.ui:72
 msgid "Card Error"
@@ -36,7 +36,7 @@ msgstr "Niets om te tonen"
 
 #: data/resources/ui/data-dialog.ui:131
 msgid "Body Images"
-msgstr "Inhoudsafbeeldingen"
+msgstr "Body-afbeeldingen"
 
 #: data/resources/ui/log-dialog.ui:19
 msgid "Scraping Log"
@@ -55,7 +55,7 @@ msgstr "Sneltoetsen tonen"
 #: data/resources/ui/shortcuts.ui:20
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr "Afsluiten"
+msgstr "Sluiten"
 
 #: data/resources/ui/window.ui:6
 msgid "_Keyboard Shortcuts"
@@ -74,7 +74,7 @@ msgstr "Share Preview"
 
 #: data/resources/ui/window.ui:38
 msgid "Toggle Color Scheme"
-msgstr "Van thema wisselen"
+msgstr "Van kleurenschema wisselen"
 
 #: data/resources/ui/window.ui:46
 msgid "Main Menu"
