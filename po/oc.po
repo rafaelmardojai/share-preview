@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-21 11:59-0500\n"
-"PO-Revision-Date: 2023-03-22 16:02+0000\n"
+"PO-Revision-Date: 2023-03-25 14:40+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/oc/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.16.2-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 #: data/resources/ui/card.ui:72
 msgid "Card Error"
@@ -166,14 +166,20 @@ msgstr "« {name} » es void !"
 msgid ""
 "Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
 msgstr ""
+"Impossible de trobar « {name} ». Pensatz de fornir una proprietat meta « "
+"{name} »."
 
 #: src/backend/card.rs:127
 msgid "Unable to find a metadata for title!. Falling back to document title."
 msgstr ""
+"Impossible de trobar una metadonada pel títol. Utilizatz del títol del "
+"document."
 
 #: src/backend/card.rs:137
 msgid "Unable to find the document title!. Falling back to site url."
 msgstr ""
+"Impossible de trobar lo títol del document. Utilizacion de l’adreça del site "
+"a la plaça."
 
 #: src/backend/card.rs:163
 msgid "Found card of type \"{name}\"."
@@ -192,6 +198,8 @@ msgid ""
 "Unable to find a valid image in the metadata, will look for images in the "
 "document body."
 msgstr ""
+"Impossible de trapar un imatge valid dins las metadonadas, recèrca d’imatges "
+"al còs del document."
 
 #: src/backend/card.rs:224 src/backend/card.rs:231
 msgid "No valid images found in the document body."
@@ -200,24 +208,28 @@ msgstr "Cap d’imatge valid pas trobat dins lo còs del document."
 #: src/backend/card.rs:238
 msgid "Unable to find a valid image in the metadata, will render an icon."
 msgstr ""
+"Impossible de trobar un imatge valid dins las metadonadas, se mostrarà una "
+"icòna."
 
 #: src/backend/card.rs:245
 msgid ""
 "Unable to find a valid image in the metadata, will render a \"{name}\" card "
 "with icon."
 msgstr ""
+"Impossible de trobar un imatge valid dins las metadonadas, se mostrarà una "
+"carta « {name} » amb una icòna."
 
 #: src/backend/card.rs:267
 msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
-msgstr ""
+msgstr "Ocurréncia valida trobada per « {name} » amb la valor « {value} »."
 
 #: src/backend/card.rs:285
 msgid "No occurrences found for \"{name}\"!"
-msgstr ""
+msgstr "Cap d’ocurréncia pas trobada per « {name} » !"
 
 #: src/backend/card.rs:306
 msgid "Looking for valid occurrences for \"{name}\""
-msgstr ""
+msgstr "Recèrca d’ocuréncias validas per « {name} »"
 
 #: src/backend/card.rs:316
 msgid "Image \"{url}\" met the requirements."
