@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-21 11:59-0500\n"
-"PO-Revision-Date: 2023-03-12 21:41+0000\n"
+"PO-Revision-Date: 2023-04-03 23:38+0000\n"
 "Last-Translator: Felipe Nogueira <contato.fnog@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/pt/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : ((n != 0 && n % "
 "1000000 == 0) ? 1 : 2);\n"
-"X-Generator: Weblate 4.16.2-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 #: data/resources/ui/card.ui:72
 msgid "Card Error"
@@ -78,9 +78,8 @@ msgid "Toggle Color Scheme"
 msgstr "Alternar esquema de cores"
 
 #: data/resources/ui/window.ui:46
-#, fuzzy
 msgid "Main Menu"
-msgstr "Menu"
+msgstr "Menu Principal"
 
 #: data/resources/ui/window.ui:89
 msgid "Go"
@@ -126,9 +125,8 @@ msgid "Network Error"
 msgstr "Erro de rede"
 
 #: src/window.rs:229 src/window.rs:236
-#, fuzzy
 msgid "Couldn’t connect to the given URL."
-msgstr "Não foi possível estabelecer ligação ao URL fornecido."
+msgstr "Não foi possível conectar à URL fornecida."
 
 #: src/window.rs:232 src/backend/image.rs:217
 msgid "Unexpected Error"
@@ -151,15 +149,15 @@ msgstr ""
 
 #: src/widgets/log_dialog.rs:102
 msgid "INFO"
-msgstr ""
+msgstr "INFORMAÇÃO"
 
 #: src/widgets/log_dialog.rs:106
 msgid "WARNING"
-msgstr ""
+msgstr "AVISO"
 
 #: src/widgets/log_dialog.rs:110
 msgid "ERROR"
-msgstr ""
+msgstr "ERRO"
 
 #: src/backend/card.rs:99
 msgid "Found \"{name}\"."
@@ -248,7 +246,7 @@ msgstr ""
 
 #: src/backend/image.rs:124
 msgid "Format is unsupported"
-msgstr ""
+msgstr "Formato não suportado"
 
 #: src/backend/image.rs:199
 msgid "Network Error: {info}"
@@ -256,7 +254,7 @@ msgstr "Erro de rede: {info}"
 
 #: src/backend/image.rs:201
 msgid "Request Error: {info}"
-msgstr ""
+msgstr "Erro de requisição: {info}"
 
 #: src/backend/image.rs:203
 msgid "Image Error: {info}"
