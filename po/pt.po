@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-21 11:59-0500\n"
-"PO-Revision-Date: 2023-04-03 23:38+0000\n"
-"Last-Translator: Felipe Nogueira <contato.fnog@gmail.com>\n"
+"PO-Revision-Date: 2023-04-05 18:47+0000\n"
+"Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/pt/>\n"
 "Language: pt\n"
@@ -41,7 +41,7 @@ msgstr "Imagens do corpo"
 
 #: data/resources/ui/log-dialog.ui:19
 msgid "Scraping Log"
-msgstr ""
+msgstr "Registos de Colheita de Dados"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -108,7 +108,7 @@ msgstr "Testar cartões de redes sociais localmente"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
 msgid "Gnome;GTK;link;url;unfurl;"
-msgstr ""
+msgstr "Gnome;GTK;weblink;url;unfurl;"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
@@ -133,7 +133,6 @@ msgid "Unexpected Error"
 msgstr "Erro inesperado"
 
 #: src/widgets/card.rs:85
-#, fuzzy
 msgid "Couldn’t find enough data to generate a card for this social media."
 msgstr ""
 "Não foi possível encontrar dados suficientes para gerar um cartão para esta "
@@ -145,7 +144,7 @@ msgstr "Twitter: nenhum cartão encontrado."
 
 #: src/widgets/log_dialog.rs:96
 msgid "DEBUG"
-msgstr ""
+msgstr "DEBUG"
 
 #: src/widgets/log_dialog.rs:102
 msgid "INFO"
@@ -161,7 +160,7 @@ msgstr "ERRO"
 
 #: src/backend/card.rs:99
 msgid "Found \"{name}\"."
-msgstr ""
+msgstr "Encontrado \"{name}\"."
 
 #: src/backend/card.rs:104 src/backend/card.rs:275
 msgid "\"{name}\" is empty!"
@@ -171,78 +170,91 @@ msgstr "\"{name}\" está vazio!"
 msgid ""
 "Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
 msgstr ""
+"Não foi possível encontrar \"{name}\". Considere fornecer uma propriedade "
+"meta \"{name}\"."
 
 #: src/backend/card.rs:127
 msgid "Unable to find a metadata for title!. Falling back to document title."
 msgstr ""
+"Não foi possível encontrar metadados para o título! Usando o título do "
+"documento como alternativa."
 
 #: src/backend/card.rs:137
 msgid "Unable to find the document title!. Falling back to site url."
 msgstr ""
+"Não foi possível encontrar o título do documento! Usando a url do site como "
+"alternativa."
 
 #: src/backend/card.rs:163
 msgid "Found card of type \"{name}\"."
-msgstr ""
+msgstr "Cartão do tipo \"{name}\" encontrado."
 
 #: src/backend/card.rs:180
 msgid "Unable to find any valid card type."
-msgstr ""
+msgstr "Não foi possível encontrar nenhum tipo de cartão válido."
 
 #: src/backend/card.rs:191
 msgid "Unable to find any valid title or description."
-msgstr ""
+msgstr "Não foi possível encontrar nenhum título ou descrição válida."
 
 #: src/backend/card.rs:213
 msgid ""
 "Unable to find a valid image in the metadata, will look for images in the "
 "document body."
 msgstr ""
+"Não foi possível encontrar uma imagem válida nos metadados, procurando "
+"imagens no corpo do documento como alternativa."
 
 #: src/backend/card.rs:224 src/backend/card.rs:231
 msgid "No valid images found in the document body."
-msgstr ""
+msgstr "Nenhuma imagem válida encontrada no corpo do documento."
 
 #: src/backend/card.rs:238
 msgid "Unable to find a valid image in the metadata, will render an icon."
 msgstr ""
+"Não foi possível encontrar uma imagem válida nos metadados, será renderizado "
+"um ícone como alternativa."
 
 #: src/backend/card.rs:245
 msgid ""
 "Unable to find a valid image in the metadata, will render a \"{name}\" card "
 "with icon."
 msgstr ""
+"Não foi possível encontrar uma imagem válida nos metadados, será renderizado "
+"um cartão \"{name}\" com ícone."
 
 #: src/backend/card.rs:267
 msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
 msgstr ""
+"Encontrada uma ocorrência válida para \"{name}\" com o valor \"{value}\"."
 
 #: src/backend/card.rs:285
 msgid "No occurrences found for \"{name}\"!"
-msgstr ""
+msgstr "Nenhuma ocorrência encontrada para \"{name}\"!"
 
 #: src/backend/card.rs:306
 msgid "Looking for valid occurrences for \"{name}\""
-msgstr ""
+msgstr "Procurando por ocorrências válidas para \"{name}\""
 
 #: src/backend/card.rs:316
 msgid "Image \"{url}\" met the requirements."
-msgstr ""
+msgstr "A imagem \"{url}\" atendeu aos requisitos."
 
 #: src/backend/card.rs:347 src/backend/card.rs:356
 msgid "Image \"{url}\" did not meet the requirements: {info}."
-msgstr ""
+msgstr "A imagem \"{url}\" não atendeu aos requisitos: {info}."
 
 #: src/backend/card.rs:375
 msgid "Image \"{url}\" processed successfully."
-msgstr ""
+msgstr "A imagem \"{url}\" foi processada com sucesso."
 
 #: src/backend/card.rs:381
 msgid "Failed to thumbnail \"{url}\": {info}."
-msgstr ""
+msgstr "Falha ao criar miniatura de \"{url}\": {info}."
 
 #: src/backend/card.rs:393
 msgid "No valid occurrences found for \"{name}\"!"
-msgstr ""
+msgstr "Nenhuma ocorrência válida encontrada para \"{name}\"!"
 
 #: src/backend/image.rs:124
 msgid "Format is unsupported"
@@ -262,11 +274,11 @@ msgstr "Erro de imagem: {info}"
 
 #: src/backend/image.rs:206
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
-msgstr ""
+msgstr "A imagem é muito pequena ({actual}), as dimensões mínimas são {min}"
 
 #: src/backend/image.rs:211
 msgid "Image is too heavy ({actual}), max size is {max}"
-msgstr ""
+msgstr "A imagem é muito grande ({actual}), o tamanho máximo é {max}"
 
 #: src/backend/image.rs:215
 msgid "Image is unsupported: {info}"
