@@ -9,36 +9,37 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-21 11:59-0500\n"
-"PO-Revision-Date: 2021-11-11 18:21+0100\n"
-"Last-Translator: Rafał Baran <>\n"
-"Language-Team: Polish <>\n"
+"PO-Revision-Date: 2023-07-30 08:06+0000\n"
+"Last-Translator: Michal Lesniewski <weblate.org@michal.wildnet.pl>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/share-preview/"
+"share-preview/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2)\n"
-"X-Generator: Gtranslator 40.0\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.0-dev\n"
 
 #: data/resources/ui/card.ui:72
 msgid "Card Error"
-msgstr "Błąd Karty"
+msgstr "Błąd karty"
 
 #: data/resources/ui/data-dialog.ui:26
 msgid "Metadata"
-msgstr ""
+msgstr "Metadane"
 
 #: data/resources/ui/data-dialog.ui:108 data/resources/ui/data-dialog.ui:184
 msgid "Nothing to Show"
-msgstr ""
+msgstr "Nie ma nic do wyświetlenia"
 
 #: data/resources/ui/data-dialog.ui:131
 msgid "Body Images"
-msgstr ""
+msgstr "Obrazki ze strony"
 
 #: data/resources/ui/log-dialog.ui:19
 msgid "Scraping Log"
-msgstr ""
+msgstr "Log pobierania danych"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -48,7 +49,7 @@ msgstr "Ogólne"
 #: data/resources/ui/shortcuts.ui:14
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr "Pokaż Skróty"
+msgstr "Pokaż skróty"
 
 #: data/resources/ui/shortcuts.ui:20
 msgctxt "shortcut window"
@@ -57,7 +58,7 @@ msgstr "Wyjdź"
 
 #: data/resources/ui/window.ui:6
 msgid "_Keyboard Shortcuts"
-msgstr "_Skróty Klawiszowe"
+msgstr "_Skróty klawiszowe"
 
 #: data/resources/ui/window.ui:10
 msgid "_About Share Preview"
@@ -72,16 +73,15 @@ msgstr "Share Preview"
 
 #: data/resources/ui/window.ui:38
 msgid "Toggle Color Scheme"
-msgstr ""
+msgstr "Zmień schemat kolorów"
 
 #: data/resources/ui/window.ui:46
-#, fuzzy
 msgid "Main Menu"
 msgstr "Menu"
 
 #: data/resources/ui/window.ui:89
 msgid "Go"
-msgstr ""
+msgstr "Idź"
 
 #: data/resources/ui/window.ui:103
 msgid "Invalid URL"
@@ -93,21 +93,20 @@ msgstr "Wpisz URL do podglądu"
 
 #: data/resources/ui/window.ui:202
 msgid "View Metadata"
-msgstr ""
+msgstr "Zobacz Metadane"
 
 #: data/resources/ui/window.ui:215
-#, fuzzy
 msgid "Show Logs"
-msgstr "Pokaż Skróty"
+msgstr "Pokaż Logi"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:8
 msgid "Test social media cards locally"
-msgstr "Testuj karty z mediów społecznościowych lokalnie"
+msgstr "Testuj lokalnie karty z mediów społecznościowych"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
 msgid "Gnome;GTK;link;url;unfurl;"
-msgstr ""
+msgstr "Gnome;GTK;link;url;unfurl;"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
@@ -121,23 +120,21 @@ msgstr "Rafael Mardojai CM"
 
 #: src/window.rs:228
 msgid "Network Error"
-msgstr "Błąd Sieci"
+msgstr "Błąd sieci"
 
 #: src/window.rs:229 src/window.rs:236
-#, fuzzy
 msgid "Couldn’t connect to the given URL."
 msgstr "Nie można połączyć się z podanym adresem URL."
 
 #: src/window.rs:232 src/backend/image.rs:217
 msgid "Unexpected Error"
-msgstr "Nieoczekiwany Błąd"
+msgstr "Nieoczekiwany błąd"
 
 #: src/widgets/card.rs:85
-#, fuzzy
 msgid "Couldn’t find enough data to generate a card for this social media."
 msgstr ""
-"Nie można znaleźć wystarczająco danych do wygenerowania karty dla tego "
-"medium społecznościowego."
+"Nie można znaleźć wystarczającej ilości danych do wygenerowania karty dla "
+"tego medium społecznościowego."
 
 #: src/widgets/card.rs:88
 msgid "Twitter: No card found."
@@ -145,19 +142,19 @@ msgstr "Twitter: Nie znaleziono karty."
 
 #: src/widgets/log_dialog.rs:96
 msgid "DEBUG"
-msgstr ""
+msgstr "DEBUG"
 
 #: src/widgets/log_dialog.rs:102
 msgid "INFO"
-msgstr ""
+msgstr "INFO"
 
 #: src/widgets/log_dialog.rs:106
 msgid "WARNING"
-msgstr ""
+msgstr "OSTRZEŻENIE"
 
 #: src/widgets/log_dialog.rs:110
 msgid "ERROR"
-msgstr ""
+msgstr "BŁĄD"
 
 #: src/backend/card.rs:99
 msgid "Found \"{name}\"."
@@ -200,7 +197,7 @@ msgstr ""
 
 #: src/backend/card.rs:224 src/backend/card.rs:231
 msgid "No valid images found in the document body."
-msgstr ""
+msgstr "W treści dokumentu nie znaleziono prawidłowych obrazów."
 
 #: src/backend/card.rs:238
 msgid "Unable to find a valid image in the metadata, will render an icon."
@@ -246,34 +243,31 @@ msgstr ""
 
 #: src/backend/image.rs:124
 msgid "Format is unsupported"
-msgstr ""
+msgstr "Format nie jest obsługiwany"
 
 #: src/backend/image.rs:199
-#, fuzzy
 msgid "Network Error: {info}"
-msgstr "Błąd Sieci"
+msgstr "Błąd sieci: {info}"
 
 #: src/backend/image.rs:201
 msgid "Request Error: {info}"
-msgstr ""
+msgstr "Błąd zapytania: {info}"
 
 #: src/backend/image.rs:203
-#, fuzzy
 msgid "Image Error: {info}"
-msgstr "Błąd Obrazu"
+msgstr "Błąd obrazu: {info}"
 
 #: src/backend/image.rs:206
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
-msgstr ""
+msgstr "Obraz jest za mały ({actual}), minimalne rozmiary to {min}"
 
 #: src/backend/image.rs:211
 msgid "Image is too heavy ({actual}), max size is {max}"
-msgstr ""
+msgstr "Obraz jest za duży ({actual}), maksymalne rozmiary to {max}"
 
 #: src/backend/image.rs:215
-#, fuzzy
 msgid "Image is unsupported: {info}"
-msgstr "Błąd Obrazu"
+msgstr "Obraz nie jest wspierany: {info}"
 
 #, fuzzy
 #~ msgid "View Found Data..."
