@@ -23,6 +23,8 @@
   <url type="homepage">https://apps.gnome.org/app/com.rafaelmardojai.SharePreview/</url>
   <url type="bugtracker">https://github.com/rafaelmardojai/share-preview/issues</url>
   <url type="donation">https://mardojai.com/donate/</url>
+  <url type="translate">https://hosted.weblate.org/engage/share-preview/</url>
+  <url type="vcs-browser">https://github.com/rafaelmardojai/share-preview/</url>
   <content_rating type="oars-1.0" />
   <releases>
     <release version="0.3.0" date="2023-03-23">
