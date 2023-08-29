@@ -21,89 +21,67 @@
     <property name="content">
       <object class="GtkWindowHandle">
         <property name="child">
-          <object class="AdwToolbarView">
-            <child type="top">
-              <object class="GtkHeaderBar" id="headerbar">
-                <child>
-                  <object class="GtkButton" id="color_scheme">
-                    <property name="icon_name">display-brightness-symbolic</property>
-                    <property name="tooltip-text" translatable="yes">Toggle Color Scheme</property>
-                    <signal name="clicked" handler="on_color_scheme_clicked" swapped="true" />
+          <object class="AdwToastOverlay" id="toasts">
+            <property name="child">
+              <object class="AdwToolbarView">
+                <child type="top">
+                  <object class="GtkHeaderBar" id="headerbar">
+                    <child>
+                      <object class="GtkButton" id="color_scheme">
+                        <property name="icon_name">display-brightness-symbolic</property>
+                        <property name="tooltip-text" translatable="yes">Toggle Color Scheme</property>
+                        <signal name="clicked" handler="on_color_scheme_clicked" swapped="true" />
+                      </object>
+                    </child>
+                    <child type="end">
+                      <object class="GtkMenuButton" id="menu_button">
+                        <property name="menu_model">primary_menu</property>
+                        <property name="icon_name">open-menu-symbolic</property>
+                        <property name="tooltip-text" translatable="yes">Main Menu</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
-                <child type="end">
-                  <object class="GtkMenuButton" id="menu_button">
-                    <property name="menu_model">primary_menu</property>
-                    <property name="icon_name">open-menu-symbolic</property>
-                    <property name="tooltip-text" translatable="yes">Main Menu</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <child>
-                  <object class="GtkBox">
-                    <property name="orientation">vertical</property>
+
+                <child type="top">
+                  <object class="GtkBox" id="url_box">
+                    <property name="hexpand">true</property>
+                    <property name="halign">fill</property>
                     <style>
+                      <class name="linked"/>
                       <class name="urlbox"/>
                     </style>
                     <child>
-                      <object class="GtkBox" id="url_box">
-                        <property name="hexpand">true</property>
-                        <property name="halign">fill</property>
-                        <style>
-                          <class name="linked"/>
-                        </style>
-                        <child>
-                          <object class="GtkDropDown" id="social">
-                            <property name="halign">end</property>
-                            <property name="valign">center</property>
-                            <property name="model">
-                              <object class="GtkStringList">
-                                <items>
-                                  <item>Facebook</item>
-                                  <item>Mastodon</item>
-                                  <item>Twitter</item>
-                                </items>
-                              </object>
-                            </property>
+                      <object class="GtkDropDown" id="social">
+                        <property name="halign">end</property>
+                        <property name="valign">center</property>
+                        <property name="model">
+                          <object class="GtkStringList">
+                            <items>
+                              <item>Facebook</item>
+                              <item>Mastodon</item>
+                              <item>Twitter</item>
+                            </items>
+                          </object>
+                        </property>
 
-                            <signal name="notify::selected" handler="on_social_selected" swapped="true"/>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="url_entry">
-                            <property name="hexpand">true</property>
-                            <property name="secondary-icon-name">go-next-symbolic</property>
-                            <property name="secondary-icon-sensitive">false</property>
-                            <property name="secondary-icon-tooltip-text" translatable="yes">Go</property>
-                            <signal name="changed" handler="on_url_entry_changed" swapped="true" />
-                            <signal name="activate" handler="on_url_entry_activate" swapped="true" />
-                            <signal name="icon-press" handler="on_url_entry_icon_activate" swapped="true"/>
-                          </object>
-                        </child>
+                        <signal name="notify::selected" handler="on_social_selected" swapped="true"/>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkRevealer" id="url_error">
-                        <property name="transition-type">slide-down</property>
-                        <property name="reveal-child">false</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Invalid URL</property>
-                            <property name="halign">center</property>
-                            <property name="margin-top">6</property>
-                            <style>
-                              <class name="error"/>
-                            </style>
-                          </object>
-                        </child>
+                      <object class="GtkEntry" id="url_entry">
+                        <property name="hexpand">true</property>
+                        <property name="secondary-icon-name">go-next-symbolic</property>
+                        <property name="secondary-icon-sensitive">false</property>
+                        <property name="secondary-icon-tooltip-text" translatable="yes">Go</property>
+                        <signal name="changed" handler="on_url_entry_changed" swapped="true" />
+                        <signal name="activate" handler="on_url_entry_activate" swapped="true" />
+                        <signal name="icon-press" handler="on_url_entry_icon_activate" swapped="true"/>
                       </object>
                     </child>
                   </object>
                 </child>
+
                 <child>
                   <object class="GtkStack" id="stack">
                     <property name="transition-type">crossfade</property>
@@ -244,7 +222,7 @@
                   </object>
                 </child>
               </object>
-            </child>
+            </property>
           </object>
         </property>
       </object>

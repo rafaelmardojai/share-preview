@@ -36,6 +36,8 @@ mod imp {
         pub data: RefCell<Data>,
         pub active_url: RefCell<String>,
         #[template_child]
+        pub toasts: TemplateChild<adw::ToastOverlay>,
+        #[template_child]
         pub color_scheme: TemplateChild<gtk::Button>,
         #[template_child]
         pub social: TemplateChild<gtk::DropDown>,
@@ -43,8 +45,6 @@ mod imp {
         pub url_box: TemplateChild<gtk::Box>,
         #[template_child]
         pub url_entry: TemplateChild<gtk::Entry>,
-        #[template_child]
-        pub url_error: TemplateChild<gtk::Revealer>,
         #[template_child]
         pub stack: TemplateChild<gtk::Stack>,
         #[template_child]
@@ -78,11 +78,11 @@ mod imp {
                 card: RefCell::new(Option::default()),
                 data: RefCell::new(Data::default()),
                 active_url: RefCell::new(String::default()),
+                toasts: TemplateChild::default(),
                 color_scheme: TemplateChild::default(),
                 social: TemplateChild::default(),
                 url_box: TemplateChild::default(),
                 url_entry: TemplateChild::default(),
-                url_error: TemplateChild::default(),
                 stack: TemplateChild::default(),
                 start_page: TemplateChild::default(),
                 spinner: TemplateChild::default(),
@@ -208,7 +208,7 @@ impl SharePreviewWindow {
 
             match Url::parse(&url) {
                 Ok(url) => {
-                    imp.url_error.set_reveal_child(false);
+                    imp.url_entry.remove_css_class("error");
                     imp.url_box.set_sensitive(false);
                     imp.stack.set_visible_child_name("loading");
                     imp.spinner.start();
@@ -249,7 +249,9 @@ impl SharePreviewWindow {
                     spawn();
                 }
                 Err(_) => {
-                    imp.url_error.set_reveal_child(true);
+                    let toast = adw::Toast::new(&gettext("Invalid URL"));
+                    imp.toasts.add_toast(toast);
+                    imp.url_entry.add_css_class("error");
                 }
             }
         }
