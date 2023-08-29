@@ -5,26 +5,16 @@
     <property name="default_height">562</property>
     <property name="modal">True</property>
     <property name="destroy_with_parent">True</property>
+    <property name="title" translatable="yes">Scraping Log</property>
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="AdwHeaderBar" id="headerbar">
-            <style>
-              <class name="flat"/>
-            </style>
-
-            <child type="title">
-              <object class="AdwWindowTitle">
-                <property name="title" translatable="yes">Scraping Log</property>
-              </object>
-            </child>
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar">
           </object>
         </child>
         <child>
-          <object class="GtkScrolledWindow" id="scroll">
+          <object class="GtkScrolledWindow">
             <property name="vexpand">true</property>
-            <property name="vadjustment">adjustment</property>
             <child>
               <object class="GtkListBox" id="list">
                 <property name="selection-mode">none</property>
@@ -39,8 +29,4 @@
       </object>
     </child>
   </template>
-
-  <object class="GtkAdjustment" id="adjustment">
-    <signal name="value-changed" handler="on_sroll_changed" swapped="true" />
-  </object>
 </interface>

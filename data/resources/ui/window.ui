@@ -17,21 +17,13 @@
     <property name="default_width">524</property>
     <property name="default_height">562</property>
     <property name="focus_widget">url_entry</property>
+    <property name="title" translatable="yes">Share Preview</property>
     <property name="content">
       <object class="GtkWindowHandle">
         <property name="child">
-          <object class="GtkBox">
-            <property name="orientation">vertical</property>
-            <child>
+          <object class="AdwToolbarView">
+            <child type="top">
               <object class="GtkHeaderBar" id="headerbar">
-                <style>
-                  <class name="flat"/>
-                </style>
-                <child type="title">
-                  <object class="AdwWindowTitle">
-                    <property name="title" translatable="yes">Share Preview</property>
-                  </object>
-                </child>
                 <child>
                   <object class="GtkButton" id="color_scheme">
                     <property name="icon_name">display-brightness-symbolic</property>

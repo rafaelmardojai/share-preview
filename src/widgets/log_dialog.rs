@@ -20,10 +20,6 @@ mod imp {
     #[template(resource = "/com/rafaelmardojai/SharePreview/log-dialog.ui")]
     pub struct LogDialog {
         #[template_child]
-        pub headerbar: TemplateChild<adw::HeaderBar>,
-        #[template_child]
-        pub scroll: TemplateChild<gtk::ScrolledWindow>,
-        #[template_child]
         pub list: TemplateChild<gtk::ListBox>,
     }
 
@@ -119,15 +115,5 @@ impl LogDialog {
         );
 
         dialog
-    }
-
-    #[template_callback]
-    fn on_sroll_changed(&self, adjustment: &gtk::Adjustment) {
-        let imp = self.imp();
-        if adjustment.value() > 0.0 {
-            imp.headerbar.remove_css_class("flat");
-        } else {
-            imp.headerbar.add_css_class("flat");
-        }
     }
 }
