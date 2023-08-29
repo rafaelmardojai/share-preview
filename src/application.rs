@@ -4,12 +4,10 @@ use gtk::{
     gio,
     glib,
     glib::clone,
-    glib::WeakRef,
     prelude::*,
 };
 use gtk_macros::action;
 use log::{info};
-use once_cell::sync::OnceCell;
 
 use crate::{
     config,
@@ -21,7 +19,7 @@ mod imp {
 
     #[derive(Debug, Default)]
     pub struct SharePreviewApplication {
-        pub window: OnceCell<WeakRef<SharePreviewWindow>>,
+        pub(super) windows: gtk::WindowGroup,
     }
 
     #[glib::object_subclass]
@@ -35,26 +33,16 @@ mod imp {
 
     impl ApplicationImpl for SharePreviewApplication {
         fn activate(&self) {
-            let app = self.obj();
-            if let Some(window) = self.window.get() {
-                let window = window.upgrade().unwrap();
-                window.show();
-                window.present();
-                return;
-            }
-
-            let window = SharePreviewWindow::new(&app.clone());
-            window.present();
-            self.window
-                .set(window.downgrade())
-                .expect("Window already set.");
-
-            app.setup_gactions();
-            app.setup_accels();
+            let win = self.obj().create_window();
+            win.present();
         }
 
         fn startup(&self) {
             self.parent_startup();
+
+            let app = self.obj();
+            app.setup_gactions();
+            app.setup_accels();
         }
     }
 
@@ -77,19 +65,12 @@ impl SharePreviewApplication {
             .build()
     }
 
-    fn get_main_window(&self) -> SharePreviewWindow {
-        self.imp().window.get().unwrap().upgrade().unwrap()
-    }
-
     fn setup_gactions(&self) {
         // Quit
         action!(
             self,
             "quit",
             clone!(@weak self as app => move |_, _| {
-                // This is needed to trigger the delete event
-                // and saving the window state
-                app.get_main_window().close();
                 app.quit();
             })
         );
@@ -102,11 +83,22 @@ impl SharePreviewApplication {
                 app.show_about_dialog();
             })
         );
+
+        // New Window
+        action!(
+            self,
+            "new",
+            clone!(@weak self as app => move |_, _| {
+                let win = app.create_window();
+                win.present();
+            })
+        );
     }
 
     // Sets up keyboard shortcuts
     fn setup_accels(&self) {
         self.set_accels_for_action("app.quit", &["<primary>q"]);
+        self.set_accels_for_action("app.new", &["<primary>n"]);
     }
 
     fn show_about_dialog(&self) {
@@ -118,11 +110,18 @@ impl SharePreviewApplication {
             .version(config::VERSION)
             .developers(vec!["Rafael Mardojai CM https://mardojai.com".to_string()])
             .artists(vec!["Rafael Mardojai CM https://mardojai.com".to_string(), "Tobias Bernard".to_string()])
-            .transient_for(&self.get_main_window())
+            .transient_for(&self.active_window().unwrap())
             .modal(true)
             .build();
 
         dialog.show();
+    }
+
+    fn create_window(&self) -> SharePreviewWindow {
+        let imp = self.imp();
+        let window = SharePreviewWindow::new(&self);
+        imp.windows.add_window(&window);
+        window
     }
 
     pub fn run(&self) {
