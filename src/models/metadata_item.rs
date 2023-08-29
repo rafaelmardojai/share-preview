@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 use std::cell::RefCell;
-use std::convert::TryFrom;
 
 use glib::subclass::prelude::*;
 use gtk::{

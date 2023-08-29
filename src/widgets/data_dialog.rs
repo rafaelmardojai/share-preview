@@ -47,7 +47,7 @@ mod imp {
 
         fn new() -> Self {
             Self {
-                model: gio::ListStore::new(MetadataItem::static_type()),
+                model: gio::ListStore::new::<MetadataItem>(),
                 images_model: gtk::StringList::default(),
                 search: TemplateChild::default(),
                 images_search: TemplateChild::default(),

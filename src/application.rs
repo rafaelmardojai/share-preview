@@ -114,7 +114,7 @@ impl SharePreviewApplication {
             .modal(true)
             .build();
 
-        dialog.show();
+        dialog.present();
     }
 
     fn create_window(&self) -> SharePreviewWindow {

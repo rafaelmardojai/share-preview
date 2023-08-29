@@ -125,7 +125,7 @@ mod imp {
 
             // Devel Profile
             if PROFILE == "Devel" {
-                obj.style_context().add_class("devel");
+                obj.add_css_class("devel");
             }
         }
     }

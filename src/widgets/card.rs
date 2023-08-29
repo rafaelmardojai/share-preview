@@ -121,7 +121,7 @@ impl CardBox {
                 self.imp().textbox.reorder_child_after(&*self.imp().site, None::<&gtk::Widget>);
                 self.imp().title.set_lines(2);
                 self.imp().title.set_wrap(true);
-                self.imp().title.style_context().add_class("title-4");
+                self.imp().title.add_css_class("title-4");
                 if let Some(_) = &card.description {
                     if &card.title.len() <= &65 {
                         self.imp().description.set_visible(true);
@@ -134,10 +134,10 @@ impl CardBox {
             }
             Social::Mastodon => {
                 self.imp().cardbox.set_orientation(gtk::Orientation::Horizontal);
-                self.imp().title.style_context().add_class("heading");
+                self.imp().title.add_css_class("heading");
             }
             Social::Twitter => {
-                self.imp().title.style_context().add_class("heading");
+                self.imp().title.add_css_class("heading");
                 if let Some(_) = &card.description {
                     self.imp().description.set_visible(true);
                     self.imp().description.set_wrap(true);
