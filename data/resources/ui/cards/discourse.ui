@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkBox" id="card">
+    <property name="orientation">vertical</property>
+    <property name="spacing">12</property>
+
+    <style>
+      <class name="card-padding"/>
+    </style>
+
+    <child>
+      <object class="GtkBox">
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkImage" id="favicon">
+            <property name="icon-name">application-x-executable-symbolic</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="site">
+            <property name="xalign">0</property>
+            <property name="ellipsize">end</property>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkBox">
+        <property name="spacing">12</property>
+
+        <child>
+          <object class="CardImage" id="image">
+            <property name="valign">start</property>
+            <property name="halign">start</property>
+            <property name="visible">false</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="spacing">12</property>
+            <property name="width-request">400</property>
+
+            <child>
+              <object class="GtkLabel" id="title">
+                <property name="xalign">0</property>
+                <property name="wrap">true</property>
+
+                <style>
+                  <class name="title-4"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="description">
+                <property name="xalign">0</property>
+                <property name="wrap">true</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

@@ -31,6 +31,7 @@ const MAX_SIZE: usize = 5e+6 as usize;
 /// Enumerates supported platforms
 #[derive(Debug, Clone)]
 pub enum Social {
+    Discourse,
     Facebook,
     Mastodon,
     Twitter,
@@ -39,6 +40,7 @@ pub enum Social {
 impl Display for Social {
     fn fmt(&self, f: &mut Formatter) -> FmtResult {
         match *self {
+            Social::Discourse => write!(f, "Discourse"),
             Social::Facebook => write!(f, "Facebook"),
             Social::Mastodon => write!(f, "Mastodon"),
             Social::Twitter => write!(f, "Twitter"),
@@ -54,10 +56,11 @@ impl FromStr for Social {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match s {
+            "Discourse" => Ok(Self::Discourse),
             "Facebook" => Ok(Self::Facebook),
             "Mastodon" => Ok(Self::Mastodon),
             "Twitter" => Ok(Self::Twitter),
-            _ => Ok(Self::Facebook)
+            _ => Ok(Self::Discourse)
         }
     }
 }
@@ -74,7 +77,7 @@ impl Social {
                 _ => DESCRIPTIONS.iter().map(|s| s.to_string()).collect::<Vec<String>>()
             },
             image: match self {
-                Self::Mastodon => vec_of_strings!["og:image"],
+                Self::Discourse | Self::Mastodon => vec_of_strings!["og:image"],
                 Self::Twitter => vec_of_strings!["twitter:image", "twitter:image:src", "og:image"],
                 _ => IMAGES.iter().map(|s| s.to_string()).collect::<Vec<String>>()
             },
@@ -99,6 +102,9 @@ impl Social {
 
     pub fn image_size(&self, kind: &SocialImageSizeKind) -> (u32, u32) {
         match self {
+            Self::Discourse => {
+                (50, 50)
+            },
             Self::Facebook => {
                 match kind {
                     SocialImageSizeKind::Large => { (600, 315) },

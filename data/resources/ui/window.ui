@@ -64,6 +64,7 @@
                         <property name="model">
                           <object class="GtkStringList">
                             <items>
+                              <item>Discourse</item>
                               <item>Facebook</item>
                               <item>Mastodon</item>
                               <item>Twitter</item>

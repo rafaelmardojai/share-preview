@@ -87,7 +87,7 @@ impl Card {
                 image_sizes.push(SocialImageSizeKind::Medium);
                 site = site.to_uppercase();
             },
-            Social::Mastodon => {
+            Social::Discourse | Social::Mastodon => {
                 image_sizes.push(SocialImageSizeKind::Small);
                 // Mastodon uses og:site_name
                 let look = vec_of_strings!["og:site_name"];
@@ -207,6 +207,12 @@ impl Card {
             },
             None => {
                 match &social {
+                    Social::Discourse => {
+                        logger.log(LogLevel::Warning, format!("{}: {}",
+                            &social,
+                            gettext("Unable to find a valid image in the metadata.")
+                        ));
+                    },
                     Social::Facebook => {
                         logger.log(LogLevel::Warning, format!("{}: {}",
                             &social,

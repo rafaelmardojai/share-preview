@@ -61,7 +61,7 @@ impl Image {
     }
 
     pub async fn fetch(&self) -> Result<Vec<u8>, ImageError> {
-        //! Fetch image ans get it's bytes
+        //! Fetch image and get it's bytes
         //! After the first fetch the bytes, format and size are saved
 
         let saved_bytes = self.bytes.borrow().clone();
@@ -97,7 +97,7 @@ impl Image {
         kinds: &Vec<SocialImageSizeKind>,
         constraints: &SocialConstraints
     ) -> Result<SocialImageSizeKind, ImageError> {
-            let bytes = self.fetch().await?;
+        let bytes = self.fetch().await?;
 
         if let (None, None) = (self.width.get(), self.height.get()) {
             let (width, height) = async_std::task::spawn_blocking( move || -> Result<(u32, u32), ImageError> {

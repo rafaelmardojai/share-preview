@@ -307,7 +307,13 @@ impl SharePreviewWindow {
     #[template_callback]
     fn on_social_selected(&self, _pspec: glib::ParamSpec, drop_down: &gtk::DropDown) {
         let active_url = self.imp().active_url.borrow().to_string();
-        let social = Self::get_social(&drop_down.selected());
+        let string = &drop_down
+            .selected_item()
+            .unwrap()
+            .downcast::<gtk::StringObject>()
+            .unwrap()
+            .string();
+        let social = Social::from_str(string).unwrap();
         self.imp().settings.set_string("social", &social.to_string()).ok();
 
         if !active_url.is_empty() {
@@ -327,7 +333,13 @@ impl SharePreviewWindow {
     pub async fn update_card(&self) {
         self.imp().logger.flush();
 
-        let social = Self::get_social(&self.imp().social.selected());
+        let string =&self.imp().social
+            .selected_item()
+            .unwrap()
+            .downcast::<gtk::StringObject>()
+            .unwrap()
+            .string();
+        let social = Social::from_str(string).unwrap();
         let data = self.imp().data.borrow();
         let card = data.get_card(social, &self.imp().logger).await;
 
@@ -342,14 +354,5 @@ impl SharePreviewWindow {
         }
 
         self.imp().cardbox.prepend(self.imp().card.borrow().as_ref().unwrap());
-    }
-
-    fn get_social(i: &u32) -> Social {
-        match i {
-            0 => Social::Facebook,
-            1 => Social::Mastodon,
-            2 => Social::Twitter,
-            _ => unimplemented!()
-        }
     }
 }

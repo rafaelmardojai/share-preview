@@ -23,16 +23,6 @@ mod imp {
         #[template_child]
         pub cardbox: TemplateChild<gtk::Box>,
         #[template_child]
-        pub image: TemplateChild<CardImage>,
-        #[template_child]
-        pub textbox: TemplateChild<gtk::Box>,
-        #[template_child]
-        pub title: TemplateChild<gtk::Label>,
-        #[template_child]
-        pub description: TemplateChild<gtk::Label>,
-        #[template_child]
-        pub site: TemplateChild<gtk::Label>,
-        #[template_child]
         pub error_message: TemplateChild<gtk::Label>,
     }
 
@@ -95,60 +85,78 @@ impl CardBox {
     }
 
     pub fn set_card(&self, card: &Card) {
-        // Put the card values on the widgets
-        self.imp().title.set_label(&card.title);
+        CardImage::static_type();
+
+        // Get card UI resource for social
+        let ui_resource = format!(
+            "/com/rafaelmardojai/SharePreview/ui/cards/{social}.ui",
+            social=&card.social.to_string().to_lowercase()
+        );
+        let builder = gtk::Builder::from_resource(&ui_resource);
+
+        // Append card for social
+        let card_box: gtk::Box = builder.object("card").expect("Couldn't get card");
+        self.imp().cardbox.append(&card_box);
+
+        // Apply values to well known objects
+        let site: gtk::Label = builder.object("site").expect("Couldn't get UI site");
+        site.set_label(&card.site);
+
+        let title: gtk::Label = builder.object("title").expect("Couldn't get UI title");
+        title.set_label(&card.title);
+
+        let description: gtk::Label = builder.object("description").expect("Couldn't get UI title");
         if let Some(text) = &card.description {
-            self.imp().description.set_label(&text);
+            description.set_label(text);
         }
-        self.imp().site.set_label(&card.site);
 
+        let image: CardImage = builder.object("image").expect("Couldn't get UI image");
         if let Some(img_bytes) = &card.image {
-            self.imp().image.set_image(&img_bytes, &card.size);
-            self.imp().image.set_visible(true);
-        } else {
-            match &card.social {
-                Social::Mastodon | Social::Twitter => {
-                    self.imp().image.set_fallback(&card.size);
-                    self.imp().image.set_visible(true);
-                }
-                _ => ()
-            }
+            image.set_image(&img_bytes, &card.size);
         }
 
-        // Change widget aparence by social
+        // Tweak card UI
         match &card.social {
+            Social::Discourse => {
+                if let Some(_) = &card.image {
+                    image.set_visible(true);
+                }
+            },
             Social::Facebook => {
-                self.imp().textbox.reorder_child_after(&*self.imp().site, None::<&gtk::Widget>);
-                self.imp().title.set_lines(2);
-                self.imp().title.set_wrap(true);
-                self.imp().title.add_css_class("title-4");
+                if let Some(_) = &card.image {
+                    image.set_visible(true);
+                }
+
                 if let Some(_) = &card.description {
-                    if &card.title.len() <= &65 {
-                        self.imp().description.set_visible(true);
+                    if &card.title.chars().count() <= &65 {
+                        description.set_visible(true);
                     }
                 }
 
                 if let CardSize::Medium = card.size {
-                    self.imp().cardbox.set_orientation(gtk::Orientation::Horizontal);
+                    card_box.set_orientation(gtk::Orientation::Horizontal);
                 }
-            }
+            },
             Social::Mastodon => {
-                self.imp().cardbox.set_orientation(gtk::Orientation::Horizontal);
-                self.imp().title.add_css_class("heading");
-            }
+                if let None = &card.image {
+                    image.set_fallback(&card.size);
+                }
+            },
             Social::Twitter => {
-                self.imp().title.add_css_class("heading");
+                if let Some(_) = &card.image {
+                    image.set_visible(true);
+                }
+
                 if let Some(_) = &card.description {
-                    self.imp().description.set_visible(true);
-                    self.imp().description.set_wrap(true);
+                    description.set_visible(true);
                 }
                 match card.size {
                     CardSize::Medium => {
-                        self.imp().cardbox.set_orientation(gtk::Orientation::Horizontal);
-                        self.imp().description.set_lines(3);
+                        card_box.set_orientation(gtk::Orientation::Horizontal);
+                        description.set_lines(3);
                     }
                     CardSize::Large => {
-                        self.imp().description.set_lines(2);
+                        description.set_lines(2);
                     }
                     _ => {}
                 }
