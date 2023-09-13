@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-21 11:59-0500\n"
+"POT-Creation-Date: 2023-09-13 11:23-0500\n"
 "PO-Revision-Date: 2023-04-18 17:47+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/share-preview/"
@@ -19,23 +19,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.17\n"
 
-#: data/resources/ui/card.ui:72
+#: data/resources/ui/card.ui:33
 msgid "Card Error"
 msgstr "Karten-Fehler"
 
-#: data/resources/ui/data-dialog.ui:26
+#: data/resources/ui/data-dialog.ui:72
 msgid "Metadata"
 msgstr "Metadaten"
 
-#: data/resources/ui/data-dialog.ui:108 data/resources/ui/data-dialog.ui:184
+#: data/resources/ui/data-dialog.ui:137 data/resources/ui/data-dialog.ui:195
 msgid "Nothing to Show"
 msgstr "Nichts anzuzeigen"
 
-#: data/resources/ui/data-dialog.ui:131
+#: data/resources/ui/data-dialog.ui:159
 msgid "Body Images"
 msgstr "Rumpf-Bilder"
 
-#: data/resources/ui/log-dialog.ui:19
+#: data/resources/ui/log-dialog.ui:8
 msgid "Scraping Log"
 msgstr "Scraping-Protokoll"
 
@@ -55,17 +55,21 @@ msgid "Quit"
 msgstr "Beenden"
 
 #: data/resources/ui/window.ui:6
+msgid "_New Window"
+msgstr ""
+
+#: data/resources/ui/window.ui:12
 msgid "_Keyboard Shortcuts"
 msgstr "_Tastenkürzel"
 
-#: data/resources/ui/window.ui:10
+#: data/resources/ui/window.ui:16
 msgid "_About Share Preview"
 msgstr "_Über Sharing-Vorschau"
 
-#: data/resources/ui/window.ui:32
+#: data/resources/ui/window.ui:26
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
-#: src/application.rs:114 src/main.rs:24
+#: src/application.rs:106 src/main.rs:24
 msgid "Share Preview"
 msgstr "Sharing-Vorschau"
 
@@ -77,23 +81,19 @@ msgstr "Farbschema wechseln"
 msgid "Main Menu"
 msgstr "Hauptmenü"
 
-#: data/resources/ui/window.ui:89
+#: data/resources/ui/window.ui:83
 msgid "Go"
 msgstr "Los"
 
-#: data/resources/ui/window.ui:103
-msgid "Invalid URL"
-msgstr "Ungültige URL"
-
-#: data/resources/ui/window.ui:125
+#: data/resources/ui/window.ui:102
 msgid "Set a URL to preview"
 msgstr "URL eingeben für Vorschau"
 
-#: data/resources/ui/window.ui:202
+#: data/resources/ui/window.ui:179
 msgid "View Metadata"
 msgstr "Metadaten anzeigen"
 
-#: data/resources/ui/window.ui:215
+#: data/resources/ui/window.ui:192
 msgid "Show Logs"
 msgstr "Protokolle anzeigen"
 
@@ -110,7 +110,7 @@ msgstr "Gnome;GTK;link;url;unfurl;"
 msgid "Preview and debug websites metadata tags for social media share."
 msgstr "Vorschau und Fehlersuche für Social-Media-Karten Websitetags."
 
-#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:72
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:46
 msgid "Rafael Mardojai CM"
 msgstr "Rafael Mardojai CM"
 
@@ -126,67 +126,77 @@ msgstr "Keine Verbindung mit angegebener URL möglich."
 msgid "Unexpected Error"
 msgstr "Unerwarteter Fehler"
 
-#: src/widgets/card.rs:85
+#: src/window.rs:252
+msgid "Invalid URL"
+msgstr "Ungültige URL"
+
+#: src/widgets/card.rs:76
 msgid "Couldn’t find enough data to generate a card for this social media."
 msgstr ""
 "Nicht genug Daten, um eine Karte für dieses soziale Medium zu erstellen."
 
-#: src/widgets/card.rs:88
+#: src/widgets/card.rs:79
 msgid "Twitter: No card found."
 msgstr "Twitter: Keine Karte gefunden."
 
-#: src/widgets/log_dialog.rs:96
+#: src/widgets/log_dialog.rs:92
 msgid "DEBUG"
 msgstr "DEBUG"
 
-#: src/widgets/log_dialog.rs:102
+#: src/widgets/log_dialog.rs:98
 msgid "INFO"
 msgstr "INFO"
 
-#: src/widgets/log_dialog.rs:106
+#: src/widgets/log_dialog.rs:102
 msgid "WARNING"
 msgstr "WARNUNG"
 
-#: src/widgets/log_dialog.rs:110
+#: src/widgets/log_dialog.rs:106
 msgid "ERROR"
 msgstr "FEHLER"
 
-#: src/backend/card.rs:99
+#: src/backend/card.rs:110
 msgid "Found \"{name}\"."
 msgstr "\"{name}\" gefunden."
 
-#: src/backend/card.rs:104 src/backend/card.rs:275
+#: src/backend/card.rs:115 src/backend/card.rs:292
 msgid "\"{name}\" is empty!"
 msgstr "\"{name}\" ist leer!"
 
-#: src/backend/card.rs:111 src/backend/card.rs:169
+#: src/backend/card.rs:122 src/backend/card.rs:180
 msgid ""
 "Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
 msgstr ""
 "\"{name}\" nicht gefunden. Erwägen Sie die Bereitstellung einer Meta-"
 "Eigenschaft \"{name}\"."
 
-#: src/backend/card.rs:127
+#: src/backend/card.rs:138
 msgid "Unable to find a metadata for title!. Falling back to document title."
 msgstr "Keine Metadaten für den Titel gefunden!. Verwende Dokumententitel."
 
-#: src/backend/card.rs:137
+#: src/backend/card.rs:148
 msgid "Unable to find the document title!. Falling back to site url."
 msgstr "Titel des Dokuments nicht gefunden!. Verwende die Website-URL."
 
-#: src/backend/card.rs:163
+#: src/backend/card.rs:174
 msgid "Found card of type \"{name}\"."
 msgstr "Karte des Typs \"{name}\" gefunden."
 
-#: src/backend/card.rs:180
+#: src/backend/card.rs:191
 msgid "Unable to find any valid card type."
 msgstr "Kein gültiger Kartentyp gefunden."
 
-#: src/backend/card.rs:191
+#: src/backend/card.rs:202
 msgid "Unable to find any valid title or description."
 msgstr "Kein gültiger Titel oder Beschreibung gefunden."
 
-#: src/backend/card.rs:213
+#: src/backend/card.rs:224
+#, fuzzy
+msgid "Unable to find a valid image in the metadata."
+msgstr ""
+"Kein gültiges Bild in den Metadaten gefunden, es wird ein Symbol angezeigt."
+
+#: src/backend/card.rs:230
 msgid ""
 "Unable to find a valid image in the metadata, will look for images in the "
 "document body."
@@ -194,16 +204,16 @@ msgstr ""
 "Kein gültiges Bild in den Metadaten gefunden, es wird nach Bildern im "
 "Textkörper gesucht."
 
-#: src/backend/card.rs:224 src/backend/card.rs:231
+#: src/backend/card.rs:241 src/backend/card.rs:248
 msgid "No valid images found in the document body."
 msgstr "Keine gültigen Bilder im Textkörper gefunden."
 
-#: src/backend/card.rs:238
+#: src/backend/card.rs:255
 msgid "Unable to find a valid image in the metadata, will render an icon."
 msgstr ""
 "Kein gültiges Bild in den Metadaten gefunden, es wird ein Symbol angezeigt."
 
-#: src/backend/card.rs:245
+#: src/backend/card.rs:262
 msgid ""
 "Unable to find a valid image in the metadata, will render a \"{name}\" card "
 "with icon."
@@ -211,35 +221,35 @@ msgstr ""
 "Kein gültiges Bild in den Metadaten gefunden, es wird eine \"{name}\"-Karte "
 "mit Symbol angezeigt."
 
-#: src/backend/card.rs:267
+#: src/backend/card.rs:284
 msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
 msgstr "Gültiges Vorkommen für \"{name}\" mit Wert \"{wert}\" gefunden."
 
-#: src/backend/card.rs:285
+#: src/backend/card.rs:302
 msgid "No occurrences found for \"{name}\"!"
 msgstr "Keine Vorkommen für \"{name}\" gefunden!"
 
-#: src/backend/card.rs:306
+#: src/backend/card.rs:323
 msgid "Looking for valid occurrences for \"{name}\""
 msgstr "Suche nach gültigen Vorkommen für \"{name}\""
 
-#: src/backend/card.rs:316
+#: src/backend/card.rs:333
 msgid "Image \"{url}\" met the requirements."
 msgstr "Bild \"{url}\" erfüllt Anforderungen."
 
-#: src/backend/card.rs:347 src/backend/card.rs:356
+#: src/backend/card.rs:364 src/backend/card.rs:373
 msgid "Image \"{url}\" did not meet the requirements: {info}."
 msgstr "Bild \"{url}\" erfüllt Anforderungen nicht: {info}."
 
-#: src/backend/card.rs:375
+#: src/backend/card.rs:392
 msgid "Image \"{url}\" processed successfully."
 msgstr "Bild \"{url}\" erfolgreich verarbeitet."
 
-#: src/backend/card.rs:381
+#: src/backend/card.rs:398
 msgid "Failed to thumbnail \"{url}\": {info}."
 msgstr "Miniaturansicht für \"{url}\" konnte nicht erstellt werden: {info}."
 
-#: src/backend/card.rs:393
+#: src/backend/card.rs:410
 msgid "No valid occurrences found for \"{name}\"!"
 msgstr "Keine gültigen Vorkommen für \"{name}\" gefunden!"
 

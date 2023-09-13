@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-21 11:59-0500\n"
+"POT-Creation-Date: 2023-09-13 11:23-0500\n"
 "PO-Revision-Date: 2022-11-01 18:11+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <gnometurk@gnome.org>\n"
@@ -25,23 +25,23 @@ msgstr ""
 "X-Poedit-SearchPath-0: src\n"
 "X-Poedit-SearchPath-1: data\n"
 
-#: data/resources/ui/card.ui:72
+#: data/resources/ui/card.ui:33
 msgid "Card Error"
 msgstr "Kart Hatası"
 
-#: data/resources/ui/data-dialog.ui:26
+#: data/resources/ui/data-dialog.ui:72
 msgid "Metadata"
 msgstr "Üst veri"
 
-#: data/resources/ui/data-dialog.ui:108 data/resources/ui/data-dialog.ui:184
+#: data/resources/ui/data-dialog.ui:137 data/resources/ui/data-dialog.ui:195
 msgid "Nothing to Show"
 msgstr "Gösterilecek Hiçbir Şey Yok"
 
-#: data/resources/ui/data-dialog.ui:131
+#: data/resources/ui/data-dialog.ui:159
 msgid "Body Images"
 msgstr "Gövde Resimleri"
 
-#: data/resources/ui/log-dialog.ui:19
+#: data/resources/ui/log-dialog.ui:8
 msgid "Scraping Log"
 msgstr ""
 
@@ -61,17 +61,21 @@ msgid "Quit"
 msgstr "Çık"
 
 #: data/resources/ui/window.ui:6
+msgid "_New Window"
+msgstr ""
+
+#: data/resources/ui/window.ui:12
 msgid "_Keyboard Shortcuts"
 msgstr "_Klavye Kısayolları"
 
-#: data/resources/ui/window.ui:10
+#: data/resources/ui/window.ui:16
 msgid "_About Share Preview"
 msgstr "Paylaşım Ön İzle _Hakkında"
 
-#: data/resources/ui/window.ui:32
+#: data/resources/ui/window.ui:26
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
-#: src/application.rs:114 src/main.rs:24
+#: src/application.rs:106 src/main.rs:24
 msgid "Share Preview"
 msgstr "Paylaşım Ön İzle"
 
@@ -84,24 +88,20 @@ msgstr "Renk Şemasını Değiştir"
 msgid "Main Menu"
 msgstr "Menü"
 
-#: data/resources/ui/window.ui:89
+#: data/resources/ui/window.ui:83
 msgid "Go"
 msgstr "Git"
 
-#: data/resources/ui/window.ui:103
-msgid "Invalid URL"
-msgstr "Geçersiz URL"
-
-#: data/resources/ui/window.ui:125
+#: data/resources/ui/window.ui:102
 msgid "Set a URL to preview"
 msgstr "Ön izlenecek URL belirle"
 
-#: data/resources/ui/window.ui:202
+#: data/resources/ui/window.ui:179
 #, fuzzy
 msgid "View Metadata"
 msgstr "Üst veri"
 
-#: data/resources/ui/window.ui:215
+#: data/resources/ui/window.ui:192
 #, fuzzy
 msgid "Show Logs"
 msgstr "Kısayolları Göster"
@@ -123,7 +123,7 @@ msgstr ""
 "Sosyal medya paylaşımı için web sitesi üst veri etiketlerini ön izle ve "
 "hatalarını ayıkla."
 
-#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:72
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:46
 msgid "Rafael Mardojai CM"
 msgstr "Rafael Mardojai CM"
 
@@ -140,113 +140,121 @@ msgstr "Verilen URL’ye bağlanılamadı."
 msgid "Unexpected Error"
 msgstr "Beklenmeyen Hata"
 
-#: src/widgets/card.rs:85
+#: src/window.rs:252
+msgid "Invalid URL"
+msgstr "Geçersiz URL"
+
+#: src/widgets/card.rs:76
 #, fuzzy
 msgid "Couldn’t find enough data to generate a card for this social media."
 msgstr "Bu sosyal medyaya kart oluşturmak için yeterli veri bulunamadı."
 
-#: src/widgets/card.rs:88
+#: src/widgets/card.rs:79
 msgid "Twitter: No card found."
 msgstr "Twitter: Kart bulunamadı."
 
-#: src/widgets/log_dialog.rs:96
+#: src/widgets/log_dialog.rs:92
 msgid "DEBUG"
 msgstr ""
 
-#: src/widgets/log_dialog.rs:102
+#: src/widgets/log_dialog.rs:98
 msgid "INFO"
 msgstr ""
 
-#: src/widgets/log_dialog.rs:106
+#: src/widgets/log_dialog.rs:102
 msgid "WARNING"
 msgstr ""
 
-#: src/widgets/log_dialog.rs:110
+#: src/widgets/log_dialog.rs:106
 msgid "ERROR"
 msgstr ""
 
-#: src/backend/card.rs:99
+#: src/backend/card.rs:110
 msgid "Found \"{name}\"."
 msgstr ""
 
-#: src/backend/card.rs:104 src/backend/card.rs:275
+#: src/backend/card.rs:115 src/backend/card.rs:292
 msgid "\"{name}\" is empty!"
 msgstr ""
 
-#: src/backend/card.rs:111 src/backend/card.rs:169
+#: src/backend/card.rs:122 src/backend/card.rs:180
 msgid ""
 "Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
 msgstr ""
 
-#: src/backend/card.rs:127
+#: src/backend/card.rs:138
 msgid "Unable to find a metadata for title!. Falling back to document title."
 msgstr ""
 
-#: src/backend/card.rs:137
+#: src/backend/card.rs:148
 msgid "Unable to find the document title!. Falling back to site url."
 msgstr ""
 
-#: src/backend/card.rs:163
+#: src/backend/card.rs:174
 msgid "Found card of type \"{name}\"."
 msgstr ""
 
-#: src/backend/card.rs:180
+#: src/backend/card.rs:191
 msgid "Unable to find any valid card type."
 msgstr ""
 
-#: src/backend/card.rs:191
+#: src/backend/card.rs:202
 msgid "Unable to find any valid title or description."
 msgstr ""
 
-#: src/backend/card.rs:213
+#: src/backend/card.rs:224
+msgid "Unable to find a valid image in the metadata."
+msgstr ""
+
+#: src/backend/card.rs:230
 msgid ""
 "Unable to find a valid image in the metadata, will look for images in the "
 "document body."
 msgstr ""
 
-#: src/backend/card.rs:224 src/backend/card.rs:231
+#: src/backend/card.rs:241 src/backend/card.rs:248
 msgid "No valid images found in the document body."
 msgstr ""
 
-#: src/backend/card.rs:238
+#: src/backend/card.rs:255
 msgid "Unable to find a valid image in the metadata, will render an icon."
 msgstr ""
 
-#: src/backend/card.rs:245
+#: src/backend/card.rs:262
 msgid ""
 "Unable to find a valid image in the metadata, will render a \"{name}\" card "
 "with icon."
 msgstr ""
 
-#: src/backend/card.rs:267
+#: src/backend/card.rs:284
 msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
 msgstr ""
 
-#: src/backend/card.rs:285
+#: src/backend/card.rs:302
 msgid "No occurrences found for \"{name}\"!"
 msgstr ""
 
-#: src/backend/card.rs:306
+#: src/backend/card.rs:323
 msgid "Looking for valid occurrences for \"{name}\""
 msgstr ""
 
-#: src/backend/card.rs:316
+#: src/backend/card.rs:333
 msgid "Image \"{url}\" met the requirements."
 msgstr ""
 
-#: src/backend/card.rs:347 src/backend/card.rs:356
+#: src/backend/card.rs:364 src/backend/card.rs:373
 msgid "Image \"{url}\" did not meet the requirements: {info}."
 msgstr ""
 
-#: src/backend/card.rs:375
+#: src/backend/card.rs:392
 msgid "Image \"{url}\" processed successfully."
 msgstr ""
 
-#: src/backend/card.rs:381
+#: src/backend/card.rs:398
 msgid "Failed to thumbnail \"{url}\": {info}."
 msgstr ""
 
-#: src/backend/card.rs:393
+#: src/backend/card.rs:410
 msgid "No valid occurrences found for \"{name}\"!"
 msgstr ""
 
