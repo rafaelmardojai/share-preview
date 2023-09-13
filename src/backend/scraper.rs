@@ -132,8 +132,7 @@ fn is_image(name: &Option<String>, property: &Vec<String>) -> bool {
 async fn get_favicon(url: &Url, html_icons: Vec<String>) -> Option<Image> {
 
     // Filter valid urls and fix relative paths
-    // We reverser the order to match usual HTML lookup
-    let mut icons: Vec<Url> = html_icons.iter().rev().filter_map(|rel| {
+    let mut icons: Vec<Url> = html_icons.iter().filter_map(|rel| {
         match Url::parse(&rel.as_str()) {
             Ok(icon_url) => {
                 Some(icon_url)
