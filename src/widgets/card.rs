@@ -11,7 +11,7 @@ use gtk::{
 };
 
 use crate::backend::{Card, CardError, CardSize, Social};
-use super::{CardImage};
+use super::CardImage;
 
 mod imp {
     use super::*;
