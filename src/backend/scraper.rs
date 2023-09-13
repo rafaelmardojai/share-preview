@@ -6,7 +6,7 @@ use std::{
     fmt::{Display, Formatter, Result as FmtResult}
 };
 
-use url::Url;
+use url::{Url, ParseError};
 use scraper::{Html, Selector, element_ref::ElementRef};
 
 use super::{Data, Meta, Image, CLIENT};
@@ -21,9 +21,13 @@ pub async fn scrape(url: &Url) -> Result<Data, Error> {
     if resp.status().is_success() {
         let mut data = Data::default();
 
-        // Call function to get data from html:
-        get_html_data(&resp.body_string().await?, &mut data, &url).await; // Write html data to a Vec<>
+        // Store favicon urls
+        let mut html_icons: Vec<String> = Vec::default();
 
+        // Call function to get data from html:
+        get_html_data(&resp.body_string().await?, &mut data, &url, &mut html_icons).await; // Write html data to a Vec<>
+
+        data.favicon = get_favicon(&url, html_icons).await;  // Set data favicon
         data.url = url.host_str().unwrap().to_string(); // Set Data URL
 
         Ok(data)
@@ -35,7 +39,8 @@ pub async fn scrape(url: &Url) -> Result<Data, Error> {
 async fn get_html_data(
         text: &String,
         data: &mut Data,
-        url: &Url) {
+        url: &Url,
+        icons: &mut Vec<String>) {
     //! Parse html and get data
 
     let document = Html::parse_document(&text); // HTML document from request text
@@ -72,6 +77,24 @@ async fn get_html_data(
         }
     }
 
+    // Get icons
+    let selector = Selector::parse("link").unwrap();
+    for element in document.select(&selector) {
+        let rel: Option<String> = get_attr_val(&element, "rel");
+        let href: Option<String> = get_attr_val(&element, "href");
+
+        if let Some(value) = rel {
+            match value.as_str() {
+                "shortcut icon" | "icon" => {
+                    if let Some(url) = href {
+                        icons.push(url);
+                    }
+                },
+                _ => {},
+            }
+        }
+    }
+
     // Get images
     let selector = Selector::parse("img").unwrap();
     for element in document.select(&selector) {
@@ -104,6 +127,52 @@ fn is_image(name: &Option<String>, property: &Vec<String>) -> bool {
         }
     }
     false
+}
+
+async fn get_favicon(url: &Url, html_icons: Vec<String>) -> Option<Image> {
+
+    // Filter valid urls and fix relative paths
+    // We reverser the order to match usual HTML lookup
+    let mut icons: Vec<Url> = html_icons.iter().rev().filter_map(|rel| {
+        match Url::parse(&rel.as_str()) {
+            Ok(icon_url) => {
+                Some(icon_url)
+            },
+            Err(err) => {
+                match err {
+                    ParseError::RelativeUrlWithoutBase => {
+                        if let Ok(icon_url) = url.join(&rel) {
+                            Some(icon_url)
+                        } else {
+                            None
+                        }
+                    },
+                    _ => None,
+                }
+            }
+        }
+    }).collect();
+
+    if let Ok(favicon) = Url::parse(url.origin().unicode_serialization().as_str()) {
+        if let Ok(favicon) = favicon.join("favicon.ico") {
+            icons.push(favicon);
+        }
+    }
+
+    for icon in icons.iter() {
+        if let Ok(mut resp) = CLIENT.get(&icon).await {
+            if resp.status().is_success() {
+                if let Ok(bytes) = resp.body_bytes().await {
+                    let image = Image::new(icon.to_string());
+                    image.size.set(Some(bytes.len()));
+                    image.bytes.replace(Some(bytes));
+                    return Some(image);
+                };
+            }
+        };
+    }
+
+    None
 }
 
 #[derive(Debug)]

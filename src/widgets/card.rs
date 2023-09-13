@@ -5,6 +5,7 @@ use gettextrs::*;
 use gtk::{
     CompositeTemplate,
     glib,
+    gdk::Texture,
     prelude::*,
     subclass::prelude::*,
 };
@@ -120,6 +121,14 @@ impl CardBox {
             Social::Discourse => {
                 if let Some(_) = &card.image {
                     image.set_visible(true);
+                }
+
+                if let Some(fav_bytes) = &card.favicon {
+                    if let Ok(texture) = Texture::from_bytes(&glib::Bytes::from(fav_bytes)) {
+                        let favicon: gtk::Image = builder.object("favicon").expect("Couldn't get UI favicon");
+                        favicon.set_from_paintable(Some(&texture));
+                        favicon.set_visible(true);
+                    }
                 }
             },
             Social::Facebook => {

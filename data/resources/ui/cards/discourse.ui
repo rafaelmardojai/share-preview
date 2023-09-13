@@ -13,7 +13,7 @@
         <property name="spacing">6</property>
         <child>
           <object class="GtkImage" id="favicon">
-            <property name="icon-name">application-x-executable-symbolic</property>
+            <property name="visible">false</property>
           </object>
         </child>
         <child>

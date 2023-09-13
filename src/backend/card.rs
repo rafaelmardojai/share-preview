@@ -63,6 +63,7 @@ impl CardSize {
 pub struct Card {
     pub title: String,
     pub site: String,
+    pub favicon: Option<Vec<u8>>,
     pub description: Option<String>,
     pub image: Option<Vec<u8>>,
     pub size: CardSize,
@@ -76,9 +77,19 @@ impl Card {
         let lookups: SocialMetaLookup = social.lookups();
         let constraints: SocialConstraints = social.constraints();
         let mut site = data.url.clone();
+        let mut favicon: Option<Vec<u8>> = Option::None;
         let mut size = CardSize::default(); // Default card size
         let mut image: Option<Vec<u8>> = Option::None;
         let mut image_sizes: Vec<SocialImageSizeKind> = Vec::new();
+
+        if let Some(fav) = &data.favicon {
+            match fav.fetch().await {
+                Ok(bytes) => {
+                    favicon = Some(bytes);
+                },
+                Err(_) => {}
+            };
+        }
 
         // Prepare with already available data
         match social {
@@ -258,7 +269,7 @@ impl Card {
             }
         }
 
-        Ok(Card {title, site, description, image, size, social})
+        Ok(Card {title, site, favicon, description, image, size, social})
     }
 
     pub fn lookup_meta(lookup: &Vec<String>, data: &Data, logger: Option<&(impl Log + ?Sized)>) -> Option<String> {

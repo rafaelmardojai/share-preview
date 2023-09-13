@@ -15,6 +15,7 @@ pub struct Meta {
 pub struct Data {
     pub url: String,
     pub title: Option<String>,
+    pub favicon: Option<Image>,
     pub metadata: Vec<Meta>,
     pub body_images: Vec<Image>,
 }
