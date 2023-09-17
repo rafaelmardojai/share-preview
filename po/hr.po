@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-13 11:23-0500\n"
-"PO-Revision-Date: 2023-03-23 23:56+0000\n"
+"PO-Revision-Date: 2023-09-18 17:01+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/hr/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.16.2-dev\n"
+"X-Generator: Weblate 5.0.2\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
@@ -61,7 +61,7 @@ msgstr "Zatvori program"
 
 #: data/resources/ui/window.ui:6
 msgid "_New Window"
-msgstr ""
+msgstr "_Novi prozor"
 
 #: data/resources/ui/window.ui:12
 msgid "_Keyboard Shortcuts"
@@ -195,10 +195,8 @@ msgid "Unable to find any valid title or description."
 msgstr "Nijedan naslov niti opis nisu pronađeni."
 
 #: src/backend/card.rs:224
-#, fuzzy
 msgid "Unable to find a valid image in the metadata."
-msgstr ""
-"U metapodacima nije pronađena nijedna valjana slika. Prikazat će se ikona."
+msgstr "U metapodacima nije pronađena valjana slika."
 
 #: src/backend/card.rs:230
 msgid ""
