@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-13 11:23-0500\n"
-"PO-Revision-Date: 2023-04-18 17:47+0000\n"
+"PO-Revision-Date: 2023-09-23 19:59+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/de/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
@@ -56,7 +56,7 @@ msgstr "Beenden"
 
 #: data/resources/ui/window.ui:6
 msgid "_New Window"
-msgstr ""
+msgstr "_Neues Fenster"
 
 #: data/resources/ui/window.ui:12
 msgid "_Keyboard Shortcuts"
@@ -191,10 +191,8 @@ msgid "Unable to find any valid title or description."
 msgstr "Kein gültiger Titel oder Beschreibung gefunden."
 
 #: src/backend/card.rs:224
-#, fuzzy
 msgid "Unable to find a valid image in the metadata."
-msgstr ""
-"Kein gültiges Bild in den Metadaten gefunden, es wird ein Symbol angezeigt."
+msgstr "Es konnte kein gültiges Bild in den Metadaten gefunden werden."
 
 #: src/backend/card.rs:230
 msgid ""
