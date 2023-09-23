@@ -1,7 +1,9 @@
 // Copyright 2021 Rafael Mardojai CM
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-use super::{Card, CardError, Image, Log, Social};
+use url::Url;
+
+use super::{Card, CardError, Image, Log, Social, scrape, Error};
 
 #[derive(Debug, Default, Clone)]
 pub struct Meta {
@@ -21,6 +23,10 @@ pub struct Data {
 }
 
 impl Data {
+    pub async fn from_url(url: &Url) -> Result<Data, Error> {
+        scrape(url).await
+    }
+
     pub async fn get_card(&self, social: Social, logger: &impl Log) -> Result<Card, CardError> {
        Card::new(&self, social, logger).await
     }

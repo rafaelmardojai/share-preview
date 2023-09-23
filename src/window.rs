@@ -18,7 +18,7 @@ use url::Url;
 
 use crate::{
     application::SharePreviewApplication,
-    backend::{scrape, Data, Error, Social, Log},
+    backend::{Data, Error, Social, Log},
     config::{APP_ID, PROFILE},
     models::LogListModel,
     widgets::{CardBox, DataDialog, LogDialog}
@@ -215,7 +215,7 @@ impl SharePreviewWindow {
                     let spawn = clone!(@weak self as win => move || {
                         spawn!(async move {
                             let imp = win.imp();
-                            match scrape(&url).await {
+                            match Data::from_url(&url).await {
                                 Ok(data) => {
                                     imp.data.replace(data);
                                     imp.active_url.replace(url.to_string());
