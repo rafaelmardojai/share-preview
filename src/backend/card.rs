@@ -230,7 +230,7 @@ impl Card {
                             gettext("Unable to find a valid image in the metadata, will look for images in the document body.")
                         ));
                         if data.body_images.len() > 0 {
-                            match Card::lookup_fb_body_images(&social, &data.body_images, &constraints).await {
+                            match Card::lookup_fb_body_images(&data.body_images, &constraints).await {
                                 Some(i) => {
                                     image = Some(i);
                                     size = CardSize::Medium;
@@ -326,7 +326,7 @@ impl Card {
 
             for meta in occurrences.iter() {
                 if let Some(image) = &meta.image {
-                    match image.check(social, kinds, constraints).await {
+                    match image.check(kinds, constraints).await {
                         Ok(king) => {
                             if !valid.contains_key(&king) {
                                 logger.log(LogLevel::Debug, gettext_f(
@@ -414,7 +414,6 @@ impl Card {
     }
 
     pub async fn lookup_fb_body_images(
-        social: &Social,
         images: &Vec<Image>,
         constraints: &SocialConstraints
     ) -> Option<Vec<u8>> {
@@ -426,7 +425,7 @@ impl Card {
                     let size = CardSize::from_social(&kind);
                     let (width, height) = size.image_size();
                     match image.thumbnail(width, height).await {
-                        Ok(bytes) => Some(bytes),
+                        Ok(bytes) => return Some(bytes),
                         Err(_) => continue
                     };
                 }

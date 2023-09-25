@@ -16,7 +16,6 @@ use url::{Url, ParseError};
 use crate::i18n::gettext_f;
 use super::{
     CLIENT,
-    Social,
     SocialImageSizeKind,
     SocialConstraints
 };
@@ -91,9 +90,9 @@ impl Image {
         }
     }
 
+    /// Checks if the images meet the constrains of any of the given kinds.
     pub async fn check(
         &self,
-        social: &Social,
         kinds: &Vec<SocialImageSizeKind>,
         constraints: &SocialConstraints
     ) -> Result<SocialImageSizeKind, ImageError> {
@@ -127,20 +126,15 @@ impl Image {
 
         if let (Some(width), Some(height)) = (self.width.get(), self.height.get()) {
             for kind in kinds.iter() {
-                let (min_width, min_height) = social.image_size(kind);
+                let (min_width, min_height) = constraints.image_dimensions;
                 if width >= min_width && height >= min_height {
                     return Ok(kind.to_owned());
                 }
             }
 
-            let sizes: (u32, u32) = match kinds.last() {
-                Some(kind) => social.image_size(kind),
-                None => (0, 0)
-            };
-
             Err(ImageError::TooTiny{
                 actual: format!("{}×{}px", width, height),
-                min: format!("{}×{}px", sizes.0, sizes.1)
+                min: format!("{}×{}px", constraints.image_dimensions.0, constraints.image_dimensions.1)
             })
         } else {
             Err(ImageError::Unexpected)

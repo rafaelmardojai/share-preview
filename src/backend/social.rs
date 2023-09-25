@@ -96,30 +96,31 @@ impl Social {
             },
             image_formats: match self {
                 _ => IMAGE_FORMATS.to_vec()
+            },
+            image_dimensions:  match self {
+                Self::Discourse => (50, 50),
+                Self::Facebook => (200, 200),
+                Self::Mastodon => (100, 100),
+                Self::Twitter => (144, 144),
             }
         }
     }
 
     pub fn image_size(&self, kind: &SocialImageSizeKind) -> (u32, u32) {
         match self {
-            Self::Discourse => {
-                (50, 50)
-            },
             Self::Facebook => {
                 match kind {
-                    SocialImageSizeKind::Large => { (600, 315) },
-                    _ => { (200, 200) }
+                    SocialImageSizeKind::Large => (600, 315),
+                    _ => self.constraints().image_dimensions
                 }
-            },
-            Self::Mastodon => {
-                (100, 100)
             },
             Self::Twitter => {
                 match kind {
                     SocialImageSizeKind::Large => { (300, 300) },
-                    _ => { (144, 144) }
+                    _ => self.constraints().image_dimensions
                 }
             }
+            _ => self.constraints().image_dimensions
         }
     }
 }
@@ -134,8 +135,12 @@ pub struct SocialMetaLookup {
 
 #[derive(Debug, Clone)]
 pub struct SocialConstraints {
+    /// Image maximum size
     pub image_size: usize,
+    /// Image allowed formats
     pub image_formats: Vec<ImageFormat>,
+    /// Image minimum dimensions
+    pub image_dimensions: (u32, u32),
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
