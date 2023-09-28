@@ -130,9 +130,8 @@ impl Data {
     /// This method unlike lookup_meta does not log the process
     ///
     /// * `lookup` - Meta names and properties to lookup
-    /// * `body_images` - If the result should also include de body images
     ///
-    pub fn lookup_meta_images(&self, lookup: &Vec<String>, body_images: bool) -> Vec<&Image> {
+    pub fn lookup_meta_images(&self, lookup: &Vec<String>) -> Vec<&Image> {
 
         let mut images: Vec<&Image> = Vec::new();
         for name in lookup.iter() {
@@ -140,10 +139,21 @@ impl Data {
             images.extend(occurrences);
         }
 
-        if body_images {
-            images.extend(&self.body_images);
-        }
-
         images
+    }
+
+
+    /// Gets Data's body_images with a return type matching lookup_meta_images
+    ///
+    /// It also truncates the vector to a max to avoid long loads
+    ///
+    pub fn get_body_images(&self, len: usize) -> Vec<&Image> {
+        let mut new = self.body_images.iter().map(|img| {
+            img
+        }).collect::<Vec<&Image>>();
+
+        new.truncate(len);
+
+        return new;
     }
 }

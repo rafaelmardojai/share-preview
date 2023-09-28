@@ -229,16 +229,16 @@ impl Card {
         }
 
         // Get possible images
-        let include_body_imgs = match &social {
-            Social::LinkedIn | Social::Facebook => true,
-            _ => false
+        let body_images = match &social {
+            Social::LinkedIn | Social::Facebook => Some(data.get_body_images(5)),
+            _ => None
         };
-        let images = data.lookup_meta_images(&lookups.image, include_body_imgs);
-
+        let images = data.lookup_meta_images(&lookups.image);
 
         match Card::lookup_image(
             &social,
             images,
+            body_images,
             &image_sizes,
             &constraints,
             logger
@@ -287,13 +287,46 @@ impl Card {
     pub async fn lookup_image(
         social: &Social,
         images: Vec<&Image>,
+        body_images: Option<Vec<&Image>>,
         kinds: &Vec<SocialImageSizeKind>,
         constraints: &SocialConstraints,
         logger: &impl Log
     ) -> Option<(Vec<u8>, CardSize)> {
 
-        // Check what images are minimally viable for the given kinds
+        let mut look_body = true;
+        let result = Card::get_ideal_image(social, images, kinds, constraints, false, logger).await;
+
+        if let Some((_, _, ideal)) = result {
+            look_body = !ideal;
+        }
+
+        if let (true, Some(body_images)) = (look_body, body_images) {
+            if let Some((bytes, size, ideal)) = Card::get_ideal_image(social, body_images, kinds, constraints, true, logger).await {
+                if ideal {
+                    return Some((bytes, size));
+                }
+            }
+        }
+        if let Some((bytes, size, _)) = result {
+            return Some((bytes, size));
+        }
+
+        None
+    }
+
+    pub async fn get_ideal_image(
+        social: &Social,
+        images: Vec<&Image>,
+        kinds: &Vec<SocialImageSizeKind>,
+        constraints: &SocialConstraints,
+        first_fit: bool,
+        logger: &impl Log
+    ) -> Option<(Vec<u8>, CardSize, bool)> {
         let mut valid: HashMap<SocialImageSizeKind, Vec<&Image>> = HashMap::new();
+        let mut first_valid: Option<(&&Image, &SocialImageSizeKind)> = None;
+        let mut recommended: Option<(&&Image, &SocialImageSizeKind)> = None;
+
+        // Check what images are minimally viable for the given kinds
         for image in images.iter() {
             match image.check(&social, kinds, constraints).await {
                 Ok(kind) => {
@@ -343,13 +376,18 @@ impl Card {
             }
         }
 
-        for kind in kinds {
+        // Found a image that maches the recommended sizes
+        'outer: for kind in kinds {
             if valid.contains_key(&kind) {
                 let (_, img_vec) = valid.get_key_value(&kind).unwrap();
 
+                /* Store the first valid image for backup */
+                if let (None, Some(first)) = (first_valid, img_vec.first()) {
+                    first_valid = Some((first, kind));
+                }
+
                 let (width, height) = social.image_size(kind).recommended;
                 let mut prev_higher_size: (u32, u32) = (0, 0);
-                let mut prev_higher: Option<&&Image> = None;
 
                 for image in img_vec {
                     let (image_width, image_height) = image.size();
@@ -357,32 +395,53 @@ impl Card {
 
                         if prev_higher_size == (0, 0) || image_width >= prev_higher_size.0 && image_height >= prev_higher_size.1 {
                             prev_higher_size = (image_width, image_height);
-                            prev_higher = Some(image);
+                            recommended = Some((image, &kind));
+
+                            if first_fit {
+                                break 'outer;
+                            }
                         }
                     }
                 }
-
-                if let Some(image) = prev_higher {
-                    let size = CardSize::from_social(kind);
-                    let (cut_width, cut_height) = size.image_size();
-                    match image.thumbnail(cut_width, cut_height).await {
-                        Ok(bytes) => {
-                            logger.log(LogLevel::Debug, gettext_f(
-                                "Image \"{url}\" processed successfully.", &[("url", &image.url)]
-                            ));
-                            return Some((bytes, size));
-                        },
-                        Err(err) => {
-                            logger.log(LogLevel::Debug, gettext_f(
-                                "Failed to thumbnail \"{url}\": {info}.",
-                                &[("url", &image.url), ("info", &err.to_string())]
-                            ));
-                            continue;
-                        }
-                    };
-                }
             }
         }
+
+        if let Some((image, kind)) = recommended {
+            if let Some((bytes, size)) = Card::thumbnail_image(image, kind, logger).await {
+                return Some((bytes, size, true));
+            }
+        } else if let Some((image, kind)) = first_valid {
+            if let Some((bytes, size)) = Card::thumbnail_image(image, kind, logger).await {
+                return Some((bytes, size, false));
+            }
+        }
+
+        None
+    }
+
+    pub async fn thumbnail_image(
+        image: &&Image,
+        kind: &SocialImageSizeKind,
+        logger: &impl Log
+    ) -> Option<(Vec<u8>, CardSize)> {
+        let size = CardSize::from_social(kind);
+        let (width, height) = size.image_size();
+
+        // Thumbnail image
+        match image.thumbnail(width, height).await {
+            Ok(bytes) => {
+                logger.log(LogLevel::Debug, gettext_f(
+                    "Image \"{url}\" processed successfully.", &[("url", &image.url)]
+                ));
+                return Some((bytes, size));
+            },
+            Err(err) => {
+                logger.log(LogLevel::Debug, gettext_f(
+                    "Failed to thumbnail \"{url}\": {info}.",
+                    &[("url", &image.url), ("info", &err.to_string())]
+                ));
+            }
+        };
 
         None
     }
