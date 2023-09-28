@@ -105,7 +105,7 @@ impl Card {
                 image_sizes.push(SocialImageSizeKind::Small);
                 // Mastodon uses og:site_name
                 let look = vec_of_strings!["og:site_name"];
-                if let Some(val) = Card::lookup_meta(&look, &data, None::<&dyn Log>) {
+                if let Some(val) = data.lookup_meta(&look, None::<&dyn Log>) {
                     if !val.is_empty() {
                         site = val.to_string();
                         logger.log(LogLevel::Info, format!("{}: {}",
@@ -132,7 +132,7 @@ impl Card {
         }
 
         // Get first available value from meta-tags to lookup
-        let pre_title = Card::lookup_meta(&lookups.title, &data, Some(logger));
+        let pre_title = data.lookup_meta(&lookups.title, Some(logger));
         let title = match &pre_title {
             Some(title) => title.to_string(),
             None => {
@@ -158,7 +158,7 @@ impl Card {
         };
 
         // TODO: Get description from HTML for Facebook
-        let description = Card::lookup_meta(&lookups.description, &data, Some(logger));
+        let description = data.lookup_meta(&lookups.description, Some(logger));
 
         if let Some(text) = &description {
             if let Social::LinkedIn = &social {
@@ -171,14 +171,14 @@ impl Card {
             }
         }
 
-        let card_type = Card::lookup_meta(&lookups.kind, &data, Some(logger));
+        let card_type = data.lookup_meta(&lookups.kind, Some(logger));
         if let Social::Twitter = &social {
             match card_type {
                 Some(_) => {
                     // Check if it was a "twitter:card" and warn if not
                     // Change card size by the value of "twitter:card" meta-tag
                     let look = vec_of_strings!["twitter:card"];
-                    if let Some(val) = Card::lookup_meta(&look, &data, None::<&dyn Log>) {
+                    if let Some(val) = data.lookup_meta(&look, None::<&dyn Log>) {
                         if val == "summary_large_image" {
                             image_sizes.push(SocialImageSizeKind::Large);
                         }
@@ -218,10 +218,17 @@ impl Card {
             return Err(CardError::NotEnoughData);
         }
 
-        match Card::lookup_meta_image(
+        // Get possible images
+        let include_body_imgs = match &social {
+            Social::LinkedIn | Social::Facebook => true,
+            _ => false
+        };
+        let images = data.lookup_meta_images(&lookups.image, include_body_imgs);
+
+
+        match Card::lookup_image(
             &social,
-            &lookups.image,
-            &data,
+            images,
             &image_sizes,
             &constraints,
             logger
@@ -241,27 +248,8 @@ impl Card {
                     Social::LinkedIn | Social::Facebook => {
                         logger.log(LogLevel::Warning, format!("{}: {}",
                             &social,
-                            gettext("Unable to find a valid image in the metadata, will look for images in the document body.")
+                            gettext("Unable to find a valid image in the metadata or document body.")
                         ));
-                        if data.body_images.len() > 0 {
-                            match Card::lookup_fb_body_images(&data.body_images, &constraints).await {
-                                Some(i) => {
-                                    image = Some(i);
-                                    size = CardSize::Medium;
-                                },
-                                None => {
-                                    logger.log(LogLevel::Warning, format!("{}: {}",
-                                        &social,
-                                        gettext("No valid images found in the document body.")
-                                    ));
-                                }
-                            }
-                        } else {
-                            logger.log(LogLevel::Warning, format!("{}: {}",
-                                &social,
-                                gettext("No valid images found in the document body.")
-                            ));
-                        }
                     },
                     Social::Mastodon => {
                         logger.log(LogLevel::Warning, format!("{}: {}",
@@ -286,166 +274,100 @@ impl Card {
         Ok(Card {title, site, favicon, description, image, size, social})
     }
 
-    pub fn lookup_meta(lookup: &Vec<String>, data: &Data, logger: Option<&(impl Log + ?Sized)>) -> Option<String> {
-        for name in lookup.iter() {
-            let occurrences = data.get_meta(name);
-
-            if let Some(meta) = occurrences.first() {
-                if let Some(val) = &meta.content {
-                    if !val.is_empty() {
-                        if let Some(log) = logger {
-                            log.log(LogLevel::Debug, gettext_f(
-                                "Found a valid occurrence for \"{name}\" with value \"{value}\".",
-                                &[("name", name), ("value", val)]
-                            ));
-                        }
-                        return Some(val.to_string());
-                    } {
-                        if let Some(log) = logger {
-                            log.log(LogLevel::Warning, gettext_f(
-                                "\"{name}\" is empty!", &[("name", name)]
-                            ));
-                        }
-                        continue;
-                    }
-                }
-            };
-
-            if let Some(log) = logger {
-                log.log(LogLevel::Debug, gettext_f(
-                    "No occurrences found for \"{name}\"!", &[("name", name)]
-                ));
-            }
-        }
-        None
-    }
-
-    pub async fn lookup_meta_image(
+    pub async fn lookup_image(
         social: &Social,
-        lookup: &Vec<String>,
-        data: &Data,
+        images: Vec<&Image>,
         kinds: &Vec<SocialImageSizeKind>,
         constraints: &SocialConstraints,
         logger: &impl Log
     ) -> Option<(Vec<u8>, CardSize)> {
-        for name in lookup.iter() {
-            let occurrences = data.get_meta(name);
-            let mut valid: HashMap<SocialImageSizeKind, &Image> = HashMap::new();
-
-            if occurrences.len() > 0 {
-                logger.log(LogLevel::Debug, gettext_f(
-                    "Looking for valid occurrences for \"{name}\"", &[("name", name)]
-                ));
-            }
-
-            for meta in occurrences.iter() {
-                if let Some(image) = &meta.image {
-                    match image.check(kinds, constraints).await {
-                        Ok(king) => {
-                            if !valid.contains_key(&king) {
-                                logger.log(LogLevel::Debug, gettext_f(
-                                    "Image \"{url}\" met the requirements.", &[("url", &image.url)]
-                                ));
-
-                                let first_kind: bool = match kinds.first() {
-                                    Some(k) => k == &king,
-                                    None => false
-                                };
-
-                                valid.insert(king, image);
-
-                                if first_kind {
-                                    break;
-                                }
-                            }
-                        }
-                        Err(err) => {
-                            match err {
-                                ImageError::FetchError(_) => {
-                                    logger.log(LogLevel::Debug, format!(
-                                        "{}: \"{}\".", err, image.url
-                                    ));
-                                },
-                                ImageError::RequestError(_) => {
-                                    logger.log(LogLevel::Error, format!(
-                                        "{}: \"{}\".", err, image.url
-                                    ));
-                                },
-                                ImageError::TooHeavy{..} | ImageError::Unsupported(_) => {
-                                    logger.log(LogLevel::Warning, format!("{}: {}",
-                                        social,
-                                        gettext_f(
-                                            "Image \"{url}\" did not meet the requirements: {info}.",
-                                            &[("url", &image.url), ("info", &err.to_string())]
-                                        )
-                                    ));
-                                },
-                                _ => {
-                                    logger.log(LogLevel::Debug, format!("{}: {}",
-                                        social,
-                                        gettext_f(
-                                            "Image \"{url}\" did not meet the requirements: {info}.",
-                                            &[("url", &image.url), ("info", &err.to_string())]
-                                        )
-                                    ));
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            for kind in kinds {
-                match valid.get(kind) {
-                    Some(image) => {
-                        let size = CardSize::from_social(kind);
-                        let (width, height) = size.image_size();
-                        match image.thumbnail(width, height).await {
-                            Ok(bytes) => {
-                                logger.log(LogLevel::Debug, gettext_f(
-                                    "Image \"{url}\" processed successfully.", &[("url", &image.url)]
-                                ));
-                                return Some((bytes, size));
-                            },
-                            Err(err) => {
-                                logger.log(LogLevel::Debug, gettext_f(
-                                    "Failed to thumbnail \"{url}\": {info}.",
-                                    &[("url", &image.url), ("info", &err.to_string())]
-                                ));
-                                continue;
-                            }
-                        };
-                    }
-                    None => ()
-                }
-            }
-
-            logger.log(LogLevel::Debug, gettext_f(
-                "No valid occurrences found for \"{name}\"!", &[("name", name)]
-            ));
-        }
-        None
-    }
-
-    pub async fn lookup_fb_body_images(
-        images: &Vec<Image>,
-        constraints: &SocialConstraints
-    ) -> Option<Vec<u8>> {
-        let kinds = [SocialImageSizeKind::Medium].to_vec();
+        let mut valid: HashMap<SocialImageSizeKind, &Image> = HashMap::new();
 
         for image in images.iter() {
-            match image.check(social, &kinds, constraints).await {
-                Ok(kind) => {
-                    let size = CardSize::from_social(&kind);
-                    let (width, height) = size.image_size();
-                    match image.thumbnail(width, height).await {
-                        Ok(bytes) => return Some(bytes),
-                        Err(_) => continue
-                    };
+            println!("{}", image.url);
+        }
+
+        for image in images.iter() {
+            match image.check(kinds, constraints).await {
+                Ok(king) => {
+                    if !valid.contains_key(&king) {
+                        logger.log(LogLevel::Debug, gettext_f(
+                            "Image \"{url}\" met the requirements.", &[("url", &image.url)]
+                        ));
+
+                        let first_kind: bool = match kinds.first() {
+                            Some(k) => k == &king,
+                            None => false
+                        };
+
+                        valid.insert(king, image);
+
+                        if first_kind {
+                            break;
+                        }
+                    }
                 }
-                Err(_) => continue
+                Err(err) => {
+                    match err {
+                        ImageError::FetchError(_) => {
+                            logger.log(LogLevel::Debug, format!(
+                                "{}: \"{}\".", err, image.url
+                            ));
+                        },
+                        ImageError::RequestError(_) => {
+                            logger.log(LogLevel::Error, format!(
+                                "{}: \"{}\".", err, image.url
+                            ));
+                        },
+                        ImageError::TooHeavy{..} | ImageError::Unsupported(_) => {
+                            logger.log(LogLevel::Warning, format!("{}: {}",
+                                social,
+                                gettext_f(
+                                    "Image \"{url}\" did not meet the requirements: {info}.",
+                                    &[("url", &image.url), ("info", &err.to_string())]
+                                )
+                            ));
+                        },
+                        _ => {
+                            logger.log(LogLevel::Debug, format!("{}: {}",
+                                social,
+                                gettext_f(
+                                    "Image \"{url}\" did not meet the requirements: {info}.",
+                                    &[("url", &image.url), ("info", &err.to_string())]
+                                )
+                            ));
+                        }
+                    }
+                }
             }
         }
+
+        for kind in kinds {
+            match valid.get(kind) {
+                Some(image) => {
+                    let size = CardSize::from_social(kind);
+                    //let (width, height) = size.image_size();
+                    let (width, height) = social.image_size(kind);
+                    match image.thumbnail(width, height).await {
+                        Ok(bytes) => {
+                            logger.log(LogLevel::Debug, gettext_f(
+                                "Image \"{url}\" processed successfully.", &[("url", &image.url)]
+                            ));
+                            return Some((bytes, size));
+                        },
+                        Err(err) => {
+                            logger.log(LogLevel::Debug, gettext_f(
+                                "Failed to thumbnail \"{url}\": {info}.",
+                                &[("url", &image.url), ("info", &err.to_string())]
+                            ));
+                            continue;
+                        }
+                    };
+                }
+                None => ()
+            }
+        }
+
         None
     }
 }

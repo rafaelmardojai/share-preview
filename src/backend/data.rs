@@ -3,7 +3,8 @@
 
 use url::Url;
 
-use super::{Card, CardError, Image, Log, Social, scrape, Error};
+use crate::i18n::gettext_f;
+use super::{Card, CardError, Image, Log, LogLevel, Social, scrape, Error};
 
 #[derive(Debug, Default, Clone)]
 pub struct Meta {
@@ -31,6 +32,10 @@ impl Data {
        Card::new(&self, social, logger).await
     }
 
+    /// Get a Metas matching a name or property
+    ///
+    /// * `name` - The name or a property of the meta to get
+    ///
     pub fn get_meta(&self, name: &str) -> Vec<&Meta> {
         let mut result = Vec::new();
 
@@ -49,5 +54,96 @@ impl Data {
         }
 
         result
+    }
+
+    /// Similar to get_meta() but directly looks for images
+    ///
+    /// * `name` - The name or a property of the meta to get
+    ///
+    pub fn get_meta_image(&self, name: &str) -> Vec<&Image> {
+        let mut result = Vec::new();
+
+        for meta in self.metadata.iter() {
+
+            if meta.property.contains(&name.to_string()) {
+                if let Some(image) = &meta.image {
+                    result.push(image);
+                }
+                continue;
+            }
+
+            if let Some(s) = &meta.name {
+                if s == name {
+                    if let Some(image) = &meta.image {
+                        result.push(image);
+                    }
+                }
+            }
+        }
+
+        result
+    }
+
+    /// Look for the first matching meta from a strings vector
+    ///
+    /// This method logs the lookup process if logger is provider
+    ///
+    /// * `lookup` - Meta names and properties to lookup
+    /// * `logger` - Log object to log the lookup process
+    ///
+    pub fn lookup_meta(&self, lookup: &Vec<String>, logger: Option<&(impl Log + ?Sized)>) -> Option<String> {
+        for name in lookup.iter() {
+            let occurrences = self.get_meta(name);
+
+            if let Some(meta) = occurrences.first() {
+                if let Some(val) = &meta.content {
+                    if !val.is_empty() {
+                        if let Some(log) = logger {
+                            log.log(LogLevel::Debug, gettext_f(
+                                "Found a valid occurrence for \"{name}\" with value \"{value}\".",
+                                &[("name", name), ("value", val)]
+                            ));
+                        }
+                        return Some(val.to_string());
+                    } {
+                        if let Some(log) = logger {
+                            log.log(LogLevel::Warning, gettext_f(
+                                "\"{name}\" is empty!", &[("name", name)]
+                            ));
+                        }
+                        continue;
+                    }
+                }
+            };
+
+            if let Some(log) = logger {
+                log.log(LogLevel::Debug, gettext_f(
+                    "No occurrences found for \"{name}\"!", &[("name", name)]
+                ));
+            }
+        }
+        None
+    }
+
+    /// Similar to lookup_meta but only looks for images
+    ///
+    /// This method unlike lookup_meta does not log the process
+    ///
+    /// * `lookup` - Meta names and properties to lookup
+    /// * `body_images` - If the result should also include de body images
+    ///
+    pub fn lookup_meta_images(&self, lookup: &Vec<String>, body_images: bool) -> Vec<&Image> {
+
+        let mut images: Vec<&Image> = Vec::new();
+        for name in lookup.iter() {
+            let occurrences = self.get_meta_image(name);
+            images.extend(occurrences);
+        }
+
+        if body_images {
+            images.extend(&self.body_images);
+        }
+
+        images
     }
 }
