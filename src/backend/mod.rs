@@ -21,5 +21,5 @@ pub use self::{
     image::{Image, ImageError},
     log::{Log, LogLevel},
     scraper::{scrape, Error},
-    social::{Social, SocialConstraints, SocialImageSizeKind},
+    social::{Social, SocialConstraints, SocialImageSizeKind, SocialImageConstraints},
 };

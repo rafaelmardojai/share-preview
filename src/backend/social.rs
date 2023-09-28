@@ -100,35 +100,46 @@ impl Social {
             },
             image_formats: match self {
                 _ => IMAGE_FORMATS.to_vec()
-            },
-            image_dimensions:  match self {
-                Self::Discourse => (50, 50),
-                Self::Facebook => (200, 200),
-                Self::LinkedIn => (20, 20),
-                Self::Mastodon => (100, 100),
-                Self::Twitter => (144, 144),
             }
         }
     }
 
-    pub fn image_size(&self, kind: &SocialImageSizeKind) -> (u32, u32) {
-        match self {
-            Self::Facebook => {
-                match kind {
-                    SocialImageSizeKind::Large => (600, 315),
-                    _ => self.constraints().image_dimensions
+    pub fn image_size(&self, kind: &SocialImageSizeKind) -> SocialImageConstraints {
+        SocialImageConstraints {
+            minimum: match self {
+                Self::Discourse => (50, 50),
+                Self::Facebook => {
+                    match kind {
+                        SocialImageSizeKind::Large => (600, 315),
+                        _ => (200, 200)
+                    }
+                },
+                Self::LinkedIn => (20, 20),
+                Self::Mastodon => (100, 100),
+                Self::Twitter => {
+                    match kind {
+                        SocialImageSizeKind::Large => (300, 300),
+                        _ => (144, 144)
+                    }
                 }
             },
-            Self::LinkedIn => {
-                (600, 315)
-            },
-            Self::Twitter => {
-                match kind {
-                    SocialImageSizeKind::Large => { (300, 300) },
-                    _ => self.constraints().image_dimensions
+            recommended: match self {
+                Self::Discourse => (50, 50),
+                Self::Facebook => {
+                    match kind {
+                        SocialImageSizeKind::Large => (600, 315),
+                        _ => (200, 200)
+                    }
+                },
+                Self::LinkedIn => (600, 315),
+                Self::Mastodon => (100, 100),
+                Self::Twitter => {
+                    match kind {
+                        SocialImageSizeKind::Large => (300, 300),
+                        _ => (144, 144)
+                    }
                 }
             }
-            _ => self.constraints().image_dimensions
         }
     }
 }
@@ -147,8 +158,14 @@ pub struct SocialConstraints {
     pub image_size: usize,
     /// Image allowed formats
     pub image_formats: Vec<ImageFormat>,
+}
+
+#[derive(Debug, Clone)]
+pub struct SocialImageConstraints {
     /// Image minimum dimensions
-    pub image_dimensions: (u32, u32),
+    pub minimum: (u32, u32),
+    /// Image recommended dimensions
+    pub recommended: (u32, u32),
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]

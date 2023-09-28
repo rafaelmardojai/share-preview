@@ -16,6 +16,7 @@ use url::{Url, ParseError};
 use crate::i18n::gettext_f;
 use super::{
     CLIENT,
+    Social,
     SocialImageSizeKind,
     SocialConstraints
 };
@@ -93,6 +94,7 @@ impl Image {
     /// Checks if the images meet the constrains of any of the given kinds.
     pub async fn check(
         &self,
+        social: &Social,
         kinds: &Vec<SocialImageSizeKind>,
         constraints: &SocialConstraints
     ) -> Result<SocialImageSizeKind, ImageError> {
@@ -125,8 +127,13 @@ impl Image {
         }
 
         if let (Some(width), Some(height)) = (self.width.get(), self.height.get()) {
+
+            let mut min_width: u32 = 0;
+            let mut min_height: u32 = 0;
+
             for kind in kinds.iter() {
-                let (min_width, min_height) = constraints.image_dimensions;
+                let img_constraints = &social.image_size(kind);
+                (min_width, min_height) = img_constraints.minimum;
                 if width >= min_width && height >= min_height {
                     return Ok(kind.to_owned());
                 }
@@ -134,7 +141,7 @@ impl Image {
 
             Err(ImageError::TooTiny{
                 actual: format!("{}×{}px", width, height),
-                min: format!("{}×{}px", constraints.image_dimensions.0, constraints.image_dimensions.1)
+                min: format!("{}×{}px", min_width, min_height)
             })
         } else {
             Err(ImageError::Unexpected)
@@ -166,6 +173,17 @@ impl Image {
         .await?;
 
         Ok(thumbnail_bytes)
+    }
+
+    /// Return the image size as a tuple
+    ///
+    /// If check() was never called before, this will just return (0, 0)
+    ///
+    pub fn size(&self) -> (u32, u32) {
+        match (self.width.get(), self.height.get()) {
+            (Some(width), Some(height)) => (width, height),
+            _ => (0, 0)
+        }
     }
 }
 

@@ -281,31 +281,22 @@ impl Card {
         constraints: &SocialConstraints,
         logger: &impl Log
     ) -> Option<(Vec<u8>, CardSize)> {
-        let mut valid: HashMap<SocialImageSizeKind, &Image> = HashMap::new();
 
+        // Check what images are minimally viable for the given kinds
+        let mut valid: HashMap<SocialImageSizeKind, Vec<&Image>> = HashMap::new();
         for image in images.iter() {
-            println!("{}", image.url);
-        }
+            match image.check(&social, kinds, constraints).await {
+                Ok(kind) => {
+                    logger.log(LogLevel::Debug, gettext_f(
+                        "Image \"{url}\" met the requirements.", &[("url", &image.url)]
+                    ));
 
-        for image in images.iter() {
-            match image.check(kinds, constraints).await {
-                Ok(king) => {
-                    if !valid.contains_key(&king) {
-                        logger.log(LogLevel::Debug, gettext_f(
-                            "Image \"{url}\" met the requirements.", &[("url", &image.url)]
-                        ));
-
-                        let first_kind: bool = match kinds.first() {
-                            Some(k) => k == &king,
-                            None => false
-                        };
-
-                        valid.insert(king, image);
-
-                        if first_kind {
-                            break;
-                        }
+                    if !valid.contains_key(&kind) {
+                        valid.insert(kind.clone(), Vec::default());
                     }
+
+                    let img_vec = valid.get_mut(&kind).unwrap();
+                    img_vec.push(image);
                 }
                 Err(err) => {
                     match err {
@@ -343,11 +334,27 @@ impl Card {
         }
 
         for kind in kinds {
-            match valid.get(kind) {
-                Some(image) => {
+            if valid.contains_key(&kind) {
+                let (_, img_vec) = valid.get_key_value(&kind).unwrap();
+
+                let (width, height) = social.image_size(kind).recommended;
+                let mut prev_higher_size: (u32, u32) = (0, 0);
+                let mut prev_higher: Option<&&Image> = None;
+
+                for image in img_vec {
+                    let (image_width, image_height) = image.size();
+                    if image_width >= width && image_height >= height {
+
+                        if prev_higher_size == (0, 0) || image_width >= prev_higher_size.0 && image_height >= prev_higher_size.1 {
+                            prev_higher_size = (image_width, image_height);
+                            prev_higher = Some(image);
+                        }
+                    }
+                }
+
+                if let Some(image) = prev_higher {
                     let size = CardSize::from_social(kind);
-                    //let (width, height) = size.image_size();
-                    let (width, height) = social.image_size(kind);
+                    // let (width, height) = size.image_size();
                     match image.thumbnail(width, height).await {
                         Ok(bytes) => {
                             logger.log(LogLevel::Debug, gettext_f(
@@ -364,7 +371,6 @@ impl Card {
                         }
                     };
                 }
-                None => ()
             }
         }
 
