@@ -160,12 +160,22 @@ impl Card {
         // TODO: Get description from HTML for Facebook
         let description = data.lookup_meta(&lookups.description, Some(logger));
 
-        if let Some(text) = &description {
-            if let Social::LinkedIn = &social {
-                if &text.chars().count() < &100 {
+        match &description {
+            Some(text) => {
+                if let Social::LinkedIn = &social {
+                    if &text.chars().count() < &100 {
+                        logger.log(LogLevel::Warning, format!("{}: {}",
+                            &social,
+                            gettext_f("The description should be at least \"{count}\" characters long.", &[("count", "100")])
+                        ));
+                    }
+                }
+            },
+            None => {
+                if let Social::LinkedIn = &social {
                     logger.log(LogLevel::Warning, format!("{}: {}",
                         &social,
-                        gettext_f("The description should be at least \"{count}\" characters long.", &[("count", "100")])
+                        gettext_f(" Add a \"{tag}\" tag to the page to have control over the content.", &[("tag", "og:description")])
                     ));
                 }
             }
