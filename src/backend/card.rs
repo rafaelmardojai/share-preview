@@ -354,8 +354,8 @@ impl Card {
 
                 if let Some(image) = prev_higher {
                     let size = CardSize::from_social(kind);
-                    // let (width, height) = size.image_size();
-                    match image.thumbnail(width, height).await {
+                    let (cut_width, cut_height) = size.image_size();
+                    match image.thumbnail(cut_width, cut_height).await {
                         Ok(bytes) => {
                             logger.log(LogLevel::Debug, gettext_f(
                                 "Image \"{url}\" processed successfully.", &[("url", &image.url)]
