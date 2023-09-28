@@ -10,14 +10,14 @@ use image::ImageFormat;
 
 use crate::vec_of_strings;
 
-const NAMES: [&str; 3] =  [
-    "og:title", "twitter:title", "title"
+const NAMES: [&str; 2] =  [
+    "og:title", "title"
 ];
-const DESCRIPTIONS: [&str; 3] = [
-    "og:description", "twitter:description", "description"
+const DESCRIPTIONS: [&str; 2] = [
+    "og:description", "description"
 ];
-const IMAGES: [&str; 3] = [
-    "og:image", "twitter:image", "twitter:image:src"
+const IMAGES: [&str; 1] = [
+    "og:image"
 ];
 const KINDS: [&str; 1] = ["og:type"];
 const IMAGE_FORMATS: [ImageFormat; 4] = [
@@ -81,7 +81,6 @@ impl Social {
                 _ => DESCRIPTIONS.iter().map(|s| s.to_string()).collect::<Vec<String>>()
             },
             image: match self {
-                Self::Discourse | Self::LinkedIn | Self::Mastodon => vec_of_strings!["og:image"],
                 Self::Twitter => vec_of_strings!["twitter:image", "twitter:image:src", "og:image"],
                 _ => IMAGES.iter().map(|s| s.to_string()).collect::<Vec<String>>()
             },
@@ -115,10 +114,10 @@ impl Social {
                     }
                 },
                 Self::LinkedIn => (20, 20),
-                Self::Mastodon => (100, 100),
+                Self::Mastodon => (50, 50),
                 Self::Twitter => {
                     match kind {
-                        SocialImageSizeKind::Large => (300, 300),
+                        SocialImageSizeKind::Large => (300, 157),
                         _ => (144, 144)
                     }
                 }
@@ -135,7 +134,7 @@ impl Social {
                 Self::Mastodon => (100, 100),
                 Self::Twitter => {
                     match kind {
-                        SocialImageSizeKind::Large => (300, 300),
+                        SocialImageSizeKind::Large => (300, 157),
                         _ => (144, 144)
                     }
                 }
