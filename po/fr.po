@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-13 11:23-0500\n"
+"POT-Creation-Date: 2023-09-28 18:44-0500\n"
 "PO-Revision-Date: 2023-03-25 14:40+0000\n"
 "Last-Translator: rene-coty <irenee.thirion@e.email>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/share-preview/"
@@ -81,19 +81,19 @@ msgstr "Basculer le schéma de couleurs"
 msgid "Main Menu"
 msgstr "Menu principal"
 
-#: data/resources/ui/window.ui:83
+#: data/resources/ui/window.ui:84
 msgid "Go"
 msgstr "Valider"
 
-#: data/resources/ui/window.ui:102
+#: data/resources/ui/window.ui:103
 msgid "Set a URL to preview"
 msgstr "Entrez une URL pour voir l'aperçu"
 
-#: data/resources/ui/window.ui:179
+#: data/resources/ui/window.ui:180
 msgid "View Metadata"
 msgstr "Voir les métadonnées"
 
-#: data/resources/ui/window.ui:192
+#: data/resources/ui/window.ui:193
 msgid "Show Logs"
 msgstr "Afficher les journaux"
 
@@ -124,7 +124,7 @@ msgstr "Erreur de réseau"
 msgid "Couldn’t connect to the given URL."
 msgstr "Impossible de se connecter à l'URL donnée."
 
-#: src/window.rs:232 src/backend/image.rs:217
+#: src/window.rs:232 src/backend/image.rs:229
 msgid "Unexpected Error"
 msgstr "Erreur inattendue"
 
@@ -158,70 +158,73 @@ msgstr "AVERTISSEMENT"
 msgid "ERROR"
 msgstr "ERREUR"
 
-#: src/backend/card.rs:110
+#: src/backend/card.rs:113
 msgid "Found \"{name}\"."
 msgstr "« {name} » trouvé."
 
-#: src/backend/card.rs:115 src/backend/card.rs:292
+#: src/backend/card.rs:118 src/backend/data.rs:111
 msgid "\"{name}\" is empty!"
 msgstr "« {name} » est vide !"
 
-#: src/backend/card.rs:122 src/backend/card.rs:180
+#: src/backend/card.rs:125 src/backend/card.rs:204
 msgid ""
 "Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
 msgstr ""
 "Impossible de trouver « {name} ». Veuillez fournir une propriété méta "
 "« {name} »."
 
-#: src/backend/card.rs:138
+#: src/backend/card.rs:141
 msgid "Unable to find a metadata for title!. Falling back to document title."
 msgstr ""
 "Impossible de trouver une métadonnée pour le titre ! Bascule sur le titre du "
 "document."
 
-#: src/backend/card.rs:148
+#: src/backend/card.rs:151
 msgid "Unable to find the document title!. Falling back to site url."
 msgstr ""
 "Impossible de trouver le titre du document ! Bascule sur l’url du site."
 
-#: src/backend/card.rs:174
+#: src/backend/card.rs:169
+msgid "The description should be at least \"{count}\" characters long."
+msgstr ""
+
+#: src/backend/card.rs:178
+msgid " Add a \"{tag}\" tag to the page to have control over the content."
+msgstr ""
+
+#: src/backend/card.rs:198
 msgid "Found card of type \"{name}\"."
 msgstr "Carte de type « {name} » trouvée."
 
-#: src/backend/card.rs:191
+#: src/backend/card.rs:215
 msgid "Unable to find any valid card type."
 msgstr "Impossible de trouver un type de carte valide."
 
-#: src/backend/card.rs:202
+#: src/backend/card.rs:226
 msgid "Unable to find any valid title or description."
 msgstr "Impossible de trouver un titre ou une description valide."
 
-#: src/backend/card.rs:224
+#: src/backend/card.rs:255
 #, fuzzy
 msgid "Unable to find a valid image in the metadata."
 msgstr ""
 "Impossible de trouver une image valide dans les métadonnées, rendu d’une "
 "icône."
 
-#: src/backend/card.rs:230
-msgid ""
-"Unable to find a valid image in the metadata, will look for images in the "
-"document body."
+#: src/backend/card.rs:261
+#, fuzzy
+msgid "Unable to find a valid image in the metadata or document body."
 msgstr ""
-"Impossible de trouver une image valide dans les métadonnées, recherche "
-"d’images dans le corps du document."
+"Impossible de trouver une image valide dans les métadonnées, rendu d’une "
+"icône."
 
-#: src/backend/card.rs:241 src/backend/card.rs:248
-msgid "No valid images found in the document body."
-msgstr "Aucune image valide trouvée dans le corps du document."
-
-#: src/backend/card.rs:255
+#: src/backend/card.rs:267
 msgid "Unable to find a valid image in the metadata, will render an icon."
 msgstr ""
 "Impossible de trouver une image valide dans les métadonnées, rendu d’une "
 "icône."
 
-#: src/backend/card.rs:262
+#: src/backend/card.rs:274
 msgid ""
 "Unable to find a valid image in the metadata, will render a \"{name}\" card "
 "with icon."
@@ -229,66 +232,74 @@ msgstr ""
 "Impossible de trouver une image valide dans les métadonnées, rendu d’une "
 "carte « {name} » avec icône."
 
-#: src/backend/card.rs:284
-msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
-msgstr "Occurrence valide trouvée pour « {name} » avec la valeur « {value} »."
-
-#: src/backend/card.rs:302
-msgid "No occurrences found for \"{name}\"!"
-msgstr "Aucune occurrence trouvée pour « {name} » !"
-
-#: src/backend/card.rs:323
-msgid "Looking for valid occurrences for \"{name}\""
-msgstr "Recherche d’occurrences valides pour « {name} »"
-
-#: src/backend/card.rs:333
+#: src/backend/card.rs:334
 msgid "Image \"{url}\" met the requirements."
 msgstr "L’image « {url} » correspond aux exigences."
 
-#: src/backend/card.rs:364 src/backend/card.rs:373
+#: src/backend/card.rs:360 src/backend/card.rs:369
 msgid "Image \"{url}\" did not meet the requirements: {info}."
 msgstr "L’image « {url} » ne correspondait pas aux exigences : {info}."
 
-#: src/backend/card.rs:392
+#: src/backend/card.rs:434
 msgid "Image \"{url}\" processed successfully."
 msgstr "Image « {url} » traitée avec succès."
 
-#: src/backend/card.rs:398
+#: src/backend/card.rs:440
 msgid "Failed to thumbnail \"{url}\": {info}."
 msgstr "Échec du vignettage de « {url} » : {info}."
 
-#: src/backend/card.rs:410
-msgid "No valid occurrences found for \"{name}\"!"
-msgstr "Aucune occurrence valide trouvée pour « {name} » !"
+#: src/backend/data.rs:103
+msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
+msgstr "Occurrence valide trouvée pour « {name} » avec la valeur « {value} »."
 
-#: src/backend/image.rs:124
+#: src/backend/data.rs:121
+msgid "No occurrences found for \"{name}\"!"
+msgstr "Aucune occurrence trouvée pour « {name} » !"
+
+#: src/backend/image.rs:125
 msgid "Format is unsupported"
 msgstr "Format non pris en charge"
 
-#: src/backend/image.rs:199
+#: src/backend/image.rs:211
 msgid "Network Error: {info}"
 msgstr "Erreur réseau : {info}"
 
-#: src/backend/image.rs:201
+#: src/backend/image.rs:213
 msgid "Request Error: {info}"
 msgstr "Erreur de requête : {info}"
 
-#: src/backend/image.rs:203
+#: src/backend/image.rs:215
 msgid "Image Error: {info}"
 msgstr "Erreur image : {info}"
 
-#: src/backend/image.rs:206
+#: src/backend/image.rs:218
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
 msgstr ""
 "L’image est trop petite ({actual}), les dimensions minimales sont {min}"
 
-#: src/backend/image.rs:211
+#: src/backend/image.rs:223
 msgid "Image is too heavy ({actual}), max size is {max}"
 msgstr "L’image est trop lourde ({actual}), la taille maximale est {max}"
 
-#: src/backend/image.rs:215
+#: src/backend/image.rs:227
 msgid "Image is unsupported: {info}"
 msgstr "L’image n’est pas prise en charge : {info}"
+
+#~ msgid ""
+#~ "Unable to find a valid image in the metadata, will look for images in the "
+#~ "document body."
+#~ msgstr ""
+#~ "Impossible de trouver une image valide dans les métadonnées, recherche "
+#~ "d’images dans le corps du document."
+
+#~ msgid "No valid images found in the document body."
+#~ msgstr "Aucune image valide trouvée dans le corps du document."
+
+#~ msgid "Looking for valid occurrences for \"{name}\""
+#~ msgstr "Recherche d’occurrences valides pour « {name} »"
+
+#~ msgid "No valid occurrences found for \"{name}\"!"
+#~ msgstr "Aucune occurrence valide trouvée pour « {name} » !"
 
 #~ msgid "Go..."
 #~ msgstr "Aller à..."

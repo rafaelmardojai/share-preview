@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-13 11:23-0500\n"
+"POT-Creation-Date: 2023-09-28 18:44-0500\n"
 "PO-Revision-Date: 2023-03-12 21:41+0000\n"
 "Last-Translator: Vojtěch Perník <translations@pervoj.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/share-preview/"
@@ -87,19 +87,19 @@ msgstr "Přepnout barevné schéma"
 msgid "Main Menu"
 msgstr "Menu"
 
-#: data/resources/ui/window.ui:83
+#: data/resources/ui/window.ui:84
 msgid "Go"
 msgstr "Přejít"
 
-#: data/resources/ui/window.ui:102
+#: data/resources/ui/window.ui:103
 msgid "Set a URL to preview"
 msgstr "Nastavit adresu URL pro náhled"
 
-#: data/resources/ui/window.ui:179
+#: data/resources/ui/window.ui:180
 msgid "View Metadata"
 msgstr "Zobrazit metadata"
 
-#: data/resources/ui/window.ui:192
+#: data/resources/ui/window.ui:193
 msgid "Show Logs"
 msgstr "Zobrazit logy"
 
@@ -130,7 +130,7 @@ msgstr "Chyba sítě"
 msgid "Couldn’t connect to the given URL."
 msgstr "Nepodařilo se připojit na zadanou URL."
 
-#: src/window.rs:232 src/backend/image.rs:217
+#: src/window.rs:232 src/backend/image.rs:229
 msgid "Unexpected Error"
 msgstr "Neočekávaná chyba"
 
@@ -164,62 +164,63 @@ msgstr "VAROVÁNÍ"
 msgid "ERROR"
 msgstr "CHYBA"
 
-#: src/backend/card.rs:110
+#: src/backend/card.rs:113
 msgid "Found \"{name}\"."
 msgstr "Nalezeno „{name}“."
 
-#: src/backend/card.rs:115 src/backend/card.rs:292
+#: src/backend/card.rs:118 src/backend/data.rs:111
 msgid "\"{name}\" is empty!"
 msgstr "„{name}“ je prázdné!"
 
-#: src/backend/card.rs:122 src/backend/card.rs:180
+#: src/backend/card.rs:125 src/backend/card.rs:204
 msgid ""
 "Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
 msgstr ""
 "Nepodařilo se najít „{name}“. Zvažte poskytnutí vlastnosti meta „{name}“."
 
-#: src/backend/card.rs:138
+#: src/backend/card.rs:141
 msgid "Unable to find a metadata for title!. Falling back to document title."
 msgstr "Nepodařilo se najít metadata pro název!. Návrat k názvu dokumentu."
 
-#: src/backend/card.rs:148
+#: src/backend/card.rs:151
 msgid "Unable to find the document title!. Falling back to site url."
 msgstr "Nepodařilo se najít název dokumentu!. Návrat k adrese URL webu."
 
-#: src/backend/card.rs:174
+#: src/backend/card.rs:169
+msgid "The description should be at least \"{count}\" characters long."
+msgstr ""
+
+#: src/backend/card.rs:178
+msgid " Add a \"{tag}\" tag to the page to have control over the content."
+msgstr ""
+
+#: src/backend/card.rs:198
 msgid "Found card of type \"{name}\"."
 msgstr "Nalezena karta typu „{name}“."
 
-#: src/backend/card.rs:191
+#: src/backend/card.rs:215
 msgid "Unable to find any valid card type."
 msgstr "Nepodařilo se najít žádný platný typ karty."
 
-#: src/backend/card.rs:202
+#: src/backend/card.rs:226
 msgid "Unable to find any valid title or description."
 msgstr "Nepodařilo se najít žádný platný název ani popis."
 
-#: src/backend/card.rs:224
+#: src/backend/card.rs:255
 #, fuzzy
 msgid "Unable to find a valid image in the metadata."
 msgstr "Nepodařilo se najít platný obrázek v metadatech, vykreslí se ikona."
 
-#: src/backend/card.rs:230
-msgid ""
-"Unable to find a valid image in the metadata, will look for images in the "
-"document body."
-msgstr ""
-"Nepodařilo se najít platný obrázek v metadatech, hledají se obrázky v těle "
-"dokumentu."
+#: src/backend/card.rs:261
+#, fuzzy
+msgid "Unable to find a valid image in the metadata or document body."
+msgstr "Nepodařilo se najít platný obrázek v metadatech, vykreslí se ikona."
 
-#: src/backend/card.rs:241 src/backend/card.rs:248
-msgid "No valid images found in the document body."
-msgstr "V těle dokumentu nebyly nalezeny žádné platné obrázky."
-
-#: src/backend/card.rs:255
+#: src/backend/card.rs:267
 msgid "Unable to find a valid image in the metadata, will render an icon."
 msgstr "Nepodařilo se najít platný obrázek v metadatech, vykreslí se ikona."
 
-#: src/backend/card.rs:262
+#: src/backend/card.rs:274
 msgid ""
 "Unable to find a valid image in the metadata, will render a \"{name}\" card "
 "with icon."
@@ -227,65 +228,73 @@ msgstr ""
 "Nepodařilo se najít platný obrázek v metadatech, vykreslí se karta „{name}“ "
 "s ikonou."
 
-#: src/backend/card.rs:284
-msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
-msgstr "Nalezen platný výskyt pro „{name}“ s hodnotou „{value}“."
-
-#: src/backend/card.rs:302
-msgid "No occurrences found for \"{name}\"!"
-msgstr "Pro „{name}“ nebyly nalezeny žádné výskyty!"
-
-#: src/backend/card.rs:323
-msgid "Looking for valid occurrences for \"{name}\""
-msgstr "Hledají se platné výskyty pro „{name}“"
-
-#: src/backend/card.rs:333
+#: src/backend/card.rs:334
 msgid "Image \"{url}\" met the requirements."
 msgstr "Obrázek „{url}“ splňuje požadavky."
 
-#: src/backend/card.rs:364 src/backend/card.rs:373
+#: src/backend/card.rs:360 src/backend/card.rs:369
 msgid "Image \"{url}\" did not meet the requirements: {info}."
 msgstr "Obrázek „{url}“ nesplňuje požadavky: {info}."
 
-#: src/backend/card.rs:392
+#: src/backend/card.rs:434
 msgid "Image \"{url}\" processed successfully."
 msgstr "Obrázek „{url}“ byl úspěšně zpracován."
 
-#: src/backend/card.rs:398
+#: src/backend/card.rs:440
 msgid "Failed to thumbnail \"{url}\": {info}."
 msgstr "Nezdařilo se vytvořit miniaturu pro „{url}“: {info}."
 
-#: src/backend/card.rs:410
-msgid "No valid occurrences found for \"{name}\"!"
-msgstr "Pro „{name}“ nebyly nalezeny žádné platné výskyty!"
+#: src/backend/data.rs:103
+msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
+msgstr "Nalezen platný výskyt pro „{name}“ s hodnotou „{value}“."
 
-#: src/backend/image.rs:124
+#: src/backend/data.rs:121
+msgid "No occurrences found for \"{name}\"!"
+msgstr "Pro „{name}“ nebyly nalezeny žádné výskyty!"
+
+#: src/backend/image.rs:125
 msgid "Format is unsupported"
 msgstr "Formát není podporovaný"
 
-#: src/backend/image.rs:199
+#: src/backend/image.rs:211
 msgid "Network Error: {info}"
 msgstr "Chyba sítě: {info}"
 
-#: src/backend/image.rs:201
+#: src/backend/image.rs:213
 msgid "Request Error: {info}"
 msgstr "Chyba požadavku: {info}"
 
-#: src/backend/image.rs:203
+#: src/backend/image.rs:215
 msgid "Image Error: {info}"
 msgstr "Chyba obrázku: {info}"
 
-#: src/backend/image.rs:206
+#: src/backend/image.rs:218
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
 msgstr "Obrázek je příliš malý ({actual}), minimální rozměry jsou {min}"
 
-#: src/backend/image.rs:211
+#: src/backend/image.rs:223
 msgid "Image is too heavy ({actual}), max size is {max}"
 msgstr "Obrázek je příliš velký ({actual}), maximální velikost je {max}"
 
-#: src/backend/image.rs:215
+#: src/backend/image.rs:227
 msgid "Image is unsupported: {info}"
 msgstr "Obrázek není podporovaný: {info}"
+
+#~ msgid ""
+#~ "Unable to find a valid image in the metadata, will look for images in the "
+#~ "document body."
+#~ msgstr ""
+#~ "Nepodařilo se najít platný obrázek v metadatech, hledají se obrázky v "
+#~ "těle dokumentu."
+
+#~ msgid "No valid images found in the document body."
+#~ msgstr "V těle dokumentu nebyly nalezeny žádné platné obrázky."
+
+#~ msgid "Looking for valid occurrences for \"{name}\""
+#~ msgstr "Hledají se platné výskyty pro „{name}“"
+
+#~ msgid "No valid occurrences found for \"{name}\"!"
+#~ msgstr "Pro „{name}“ nebyly nalezeny žádné platné výskyty!"
 
 #~ msgid "Go..."
 #~ msgstr "Načíst…"

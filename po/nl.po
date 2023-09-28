@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-13 11:23-0500\n"
+"POT-Creation-Date: 2023-09-28 18:44-0500\n"
 "PO-Revision-Date: 2023-09-23 19:59+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/share-preview/"
@@ -84,19 +84,19 @@ msgstr "Van kleurenschema wisselen"
 msgid "Main Menu"
 msgstr "Hoofdmenu"
 
-#: data/resources/ui/window.ui:83
+#: data/resources/ui/window.ui:84
 msgid "Go"
 msgstr "Gaan"
 
-#: data/resources/ui/window.ui:102
+#: data/resources/ui/window.ui:103
 msgid "Set a URL to preview"
 msgstr "Stel een URL in om voor te vertonen"
 
-#: data/resources/ui/window.ui:179
+#: data/resources/ui/window.ui:180
 msgid "View Metadata"
 msgstr "Metagegevens bekijken"
 
-#: data/resources/ui/window.ui:192
+#: data/resources/ui/window.ui:193
 msgid "Show Logs"
 msgstr "Logboek tonen"
 
@@ -129,7 +129,7 @@ msgstr "Netwerkfout"
 msgid "Couldn’t connect to the given URL."
 msgstr "Kon geen verbinding maken met de opgegeven URL."
 
-#: src/window.rs:232 src/backend/image.rs:217
+#: src/window.rs:232 src/backend/image.rs:229
 msgid "Unexpected Error"
 msgstr "Onverwachte fout"
 
@@ -163,63 +163,64 @@ msgstr "WAARSCHUWING"
 msgid "ERROR"
 msgstr "FOUT"
 
-#: src/backend/card.rs:110
+#: src/backend/card.rs:113
 msgid "Found \"{name}\"."
 msgstr "‘{name}’ gevonden"
 
-#: src/backend/card.rs:115 src/backend/card.rs:292
+#: src/backend/card.rs:118 src/backend/data.rs:111
 msgid "\"{name}\" is empty!"
 msgstr "‘{name}’ is leeg"
 
-#: src/backend/card.rs:122 src/backend/card.rs:180
+#: src/backend/card.rs:125 src/backend/card.rs:204
 msgid ""
 "Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
 msgstr ""
 "Kon ‘{name}’ niet vinden. Overweeg de meta-eigenschap ‘{name}’ toe te voegen."
 
-#: src/backend/card.rs:138
+#: src/backend/card.rs:141
 msgid "Unable to find a metadata for title!. Falling back to document title."
 msgstr "Kon geen metagegevens voor titel vinden. Documenttitel wordt gebruikt."
 
-#: src/backend/card.rs:148
+#: src/backend/card.rs:151
 msgid "Unable to find the document title!. Falling back to site url."
 msgstr "Kon de documenttitel niet vinden. Website-URL wordt gebruikt."
 
-#: src/backend/card.rs:174
+#: src/backend/card.rs:169
+msgid "The description should be at least \"{count}\" characters long."
+msgstr ""
+
+#: src/backend/card.rs:178
+msgid " Add a \"{tag}\" tag to the page to have control over the content."
+msgstr ""
+
+#: src/backend/card.rs:198
 msgid "Found card of type \"{name}\"."
 msgstr "Kaart gevonden van type ‘{name}’."
 
-#: src/backend/card.rs:191
+#: src/backend/card.rs:215
 msgid "Unable to find any valid card type."
 msgstr "Kon geen geldig kaarttype vinden."
 
-#: src/backend/card.rs:202
+#: src/backend/card.rs:226
 msgid "Unable to find any valid title or description."
 msgstr "Kon geen geldige titel of beschrijving vinden."
 
-#: src/backend/card.rs:224
+#: src/backend/card.rs:255
 msgid "Unable to find a valid image in the metadata."
 msgstr "Kon geen geldige afbeelding vinden in de metagegevens."
 
-#: src/backend/card.rs:230
-msgid ""
-"Unable to find a valid image in the metadata, will look for images in the "
-"document body."
-msgstr ""
-"Kon geen geldige afbeelding vinden in de metagegevens, afbeeldingen worden "
-"gezocht in de document-body."
+#: src/backend/card.rs:261
+#, fuzzy
+msgid "Unable to find a valid image in the metadata or document body."
+msgstr "Kon geen geldige afbeelding vinden in de metagegevens."
 
-#: src/backend/card.rs:241 src/backend/card.rs:248
-msgid "No valid images found in the document body."
-msgstr "Geen geldige afbeeldingen gevonden in de document-body."
-
-#: src/backend/card.rs:255
+#: src/backend/card.rs:267
 msgid "Unable to find a valid image in the metadata, will render an icon."
 msgstr ""
 "Kon geen geldige afbeelding vinden in de metagegevens, een pictogram wordt "
 "gebruikt."
 
-#: src/backend/card.rs:262
+#: src/backend/card.rs:274
 msgid ""
 "Unable to find a valid image in the metadata, will render a \"{name}\" card "
 "with icon."
@@ -227,65 +228,73 @@ msgstr ""
 "Kon geen geldige afbeelding vinden in de metagegevens, een ‘{name}’-kaart "
 "met pictogram wordt gebruikt."
 
-#: src/backend/card.rs:284
-msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
-msgstr "Geldig voorval gevonden voor ‘{name}’ met waarde ‘{value}’."
-
-#: src/backend/card.rs:302
-msgid "No occurrences found for \"{name}\"!"
-msgstr "Geen voorval gevonden voor ‘{name}’"
-
-#: src/backend/card.rs:323
-msgid "Looking for valid occurrences for \"{name}\""
-msgstr "Zoeken naar geldige voorvallen voor ‘{name}’"
-
-#: src/backend/card.rs:333
+#: src/backend/card.rs:334
 msgid "Image \"{url}\" met the requirements."
 msgstr "Afbeelding ‘{url}’ voldoet aan de vereisten"
 
-#: src/backend/card.rs:364 src/backend/card.rs:373
+#: src/backend/card.rs:360 src/backend/card.rs:369
 msgid "Image \"{url}\" did not meet the requirements: {info}."
 msgstr "Afbeelding ‘{url}’ voldoet niet aan de vereisten: {info}"
 
-#: src/backend/card.rs:392
+#: src/backend/card.rs:434
 msgid "Image \"{url}\" processed successfully."
 msgstr "Afbeelding ‘{url}’ succesvol verwerkt"
 
-#: src/backend/card.rs:398
+#: src/backend/card.rs:440
 msgid "Failed to thumbnail \"{url}\": {info}."
 msgstr "Miniatuur maken van ‘{url}’ mislukt: {info}"
 
-#: src/backend/card.rs:410
-msgid "No valid occurrences found for \"{name}\"!"
-msgstr "Geen geldige voorvallen van ‘{name}’ gevonden"
+#: src/backend/data.rs:103
+msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
+msgstr "Geldig voorval gevonden voor ‘{name}’ met waarde ‘{value}’."
 
-#: src/backend/image.rs:124
+#: src/backend/data.rs:121
+msgid "No occurrences found for \"{name}\"!"
+msgstr "Geen voorval gevonden voor ‘{name}’"
+
+#: src/backend/image.rs:125
 msgid "Format is unsupported"
 msgstr "Formaat wordt niet ondersteund"
 
-#: src/backend/image.rs:199
+#: src/backend/image.rs:211
 msgid "Network Error: {info}"
 msgstr "Netwerkfout: {info}"
 
-#: src/backend/image.rs:201
+#: src/backend/image.rs:213
 msgid "Request Error: {info}"
 msgstr "Verzoekfout: {info}"
 
-#: src/backend/image.rs:203
+#: src/backend/image.rs:215
 msgid "Image Error: {info}"
 msgstr "Afbeeldingsfout: {info}"
 
-#: src/backend/image.rs:206
+#: src/backend/image.rs:218
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
 msgstr "Afbeelding is te klein ({actual}), minimale afmetingen zijn {min}"
 
-#: src/backend/image.rs:211
+#: src/backend/image.rs:223
 msgid "Image is too heavy ({actual}), max size is {max}"
 msgstr "Afbeelding is te groot ({actual}), maximale grootte is {max}"
 
-#: src/backend/image.rs:215
+#: src/backend/image.rs:227
 msgid "Image is unsupported: {info}"
 msgstr "Afbeelding wordt niet ondersteund: {info}"
+
+#~ msgid ""
+#~ "Unable to find a valid image in the metadata, will look for images in the "
+#~ "document body."
+#~ msgstr ""
+#~ "Kon geen geldige afbeelding vinden in de metagegevens, afbeeldingen "
+#~ "worden gezocht in de document-body."
+
+#~ msgid "No valid images found in the document body."
+#~ msgstr "Geen geldige afbeeldingen gevonden in de document-body."
+
+#~ msgid "Looking for valid occurrences for \"{name}\""
+#~ msgstr "Zoeken naar geldige voorvallen voor ‘{name}’"
+
+#~ msgid "No valid occurrences found for \"{name}\"!"
+#~ msgstr "Geen geldige voorvallen van ‘{name}’ gevonden"
 
 #~ msgid "Go..."
 #~ msgstr "Gaan…"

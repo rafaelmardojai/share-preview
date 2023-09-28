@@ -16,4 +16,5 @@ src/widgets/data_dialog.rs
 src/widgets/image.rs
 src/widgets/log_dialog.rs
 src/backend/card.rs
+src/backend/data.rs
 src/backend/image.rs
