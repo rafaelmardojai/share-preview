@@ -146,6 +146,11 @@ impl CardBox {
                     card_box.set_orientation(gtk::Orientation::Horizontal);
                 }
             },
+            Social::LinkedIn => {
+                if let Some(_) = &card.image {
+                    image.set_visible(true);
+                }
+            },
             Social::Mastodon => {
                 if let None = &card.image {
                     image.set_fallback(&card.size);

@@ -33,6 +33,7 @@ const MAX_SIZE: usize = 5e+6 as usize;
 pub enum Social {
     Discourse,
     Facebook,
+    LinkedIn,
     Mastodon,
     Twitter,
 }
@@ -42,6 +43,7 @@ impl Display for Social {
         match *self {
             Social::Discourse => write!(f, "Discourse"),
             Social::Facebook => write!(f, "Facebook"),
+            Social::LinkedIn => write!(f, "LinkedIn"),
             Social::Mastodon => write!(f, "Mastodon"),
             Social::Twitter => write!(f, "Twitter"),
         }
@@ -58,6 +60,7 @@ impl FromStr for Social {
         match s {
             "Discourse" => Ok(Self::Discourse),
             "Facebook" => Ok(Self::Facebook),
+            "LinkedIn" => Ok(Self::LinkedIn),
             "Mastodon" => Ok(Self::Mastodon),
             "Twitter" => Ok(Self::Twitter),
             _ => Ok(Self::Discourse)
@@ -73,11 +76,12 @@ impl Social {
                 _ => NAMES.iter().map(|s| s.to_string()).collect::<Vec<String>>()
             },
             description: match self {
+                Self::LinkedIn => vec_of_strings!["og:description"],
                 Self::Twitter => vec_of_strings!["twitter:description", "og:description"],
                 _ => DESCRIPTIONS.iter().map(|s| s.to_string()).collect::<Vec<String>>()
             },
             image: match self {
-                Self::Discourse | Self::Mastodon => vec_of_strings!["og:image"],
+                Self::Discourse | Self::LinkedIn | Self::Mastodon => vec_of_strings!["og:image"],
                 Self::Twitter => vec_of_strings!["twitter:image", "twitter:image:src", "og:image"],
                 _ => IMAGES.iter().map(|s| s.to_string()).collect::<Vec<String>>()
             },
@@ -100,6 +104,7 @@ impl Social {
             image_dimensions:  match self {
                 Self::Discourse => (50, 50),
                 Self::Facebook => (200, 200),
+                Self::LinkedIn => (20, 20),
                 Self::Mastodon => (100, 100),
                 Self::Twitter => (144, 144),
             }
@@ -113,6 +118,9 @@ impl Social {
                     SocialImageSizeKind::Large => (600, 315),
                     _ => self.constraints().image_dimensions
                 }
+            },
+            Self::LinkedIn => {
+                (600, 315)
             },
             Self::Twitter => {
                 match kind {

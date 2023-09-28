@@ -98,6 +98,9 @@ impl Card {
                 image_sizes.push(SocialImageSizeKind::Medium);
                 site = site.to_uppercase();
             },
+            Social::LinkedIn => {
+                image_sizes.push(SocialImageSizeKind::Large);
+            },
             Social::Discourse | Social::Mastodon => {
                 image_sizes.push(SocialImageSizeKind::Small);
                 // Mastodon uses og:site_name
@@ -156,6 +159,17 @@ impl Card {
 
         // TODO: Get description from HTML for Facebook
         let description = Card::lookup_meta(&lookups.description, &data, Some(logger));
+
+        if let Some(text) = &description {
+            if let Social::LinkedIn = &social {
+                if &text.chars().count() < &100 {
+                    logger.log(LogLevel::Warning, format!("{}: {}",
+                        &social,
+                        gettext_f("The description should be at least \"{count}\" characters long.", &[("count", "100")])
+                    ));
+                }
+            }
+        }
 
         let card_type = Card::lookup_meta(&lookups.kind, &data, Some(logger));
         if let Social::Twitter = &social {
@@ -224,7 +238,7 @@ impl Card {
                             gettext("Unable to find a valid image in the metadata.")
                         ));
                     },
-                    Social::Facebook => {
+                    Social::LinkedIn | Social::Facebook => {
                         logger.log(LogLevel::Warning, format!("{}: {}",
                             &social,
                             gettext("Unable to find a valid image in the metadata, will look for images in the document body.")
