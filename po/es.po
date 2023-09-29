@@ -186,7 +186,7 @@ msgstr ""
 
 #: src/backend/card.rs:169
 msgid "The description should be at least \"{count}\" characters long."
-msgstr ""
+msgstr "La descripción debe tener al menos \"{count}\" caracteres."
 
 #: src/backend/card.rs:178
 msgid "Add a \"{tag}\" tag to the page to have control over the content."
@@ -280,6 +280,10 @@ msgstr "Las imagen es demasiado pesada ({actual}), el tamaño máximo es {max}"
 #: src/backend/image.rs:227
 msgid "Image is unsupported: {info}"
 msgstr "La imagen no es compatible: {info}"
+
+#: src/backend/card.rs:178
+msgid " Add a \"{tag}\" tag to the page to have control over the content."
+msgstr ""
 
 #~ msgid ""
 #~ "Unable to find a valid image in the metadata, will look for images in the "
