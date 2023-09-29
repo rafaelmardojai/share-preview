@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-28 21:50-0500\n"
-"PO-Revision-Date: 2023-09-14 16:55+0000\n"
+"PO-Revision-Date: 2023-09-29 02:55+0000\n"
 "Last-Translator: Rafael Mardojai CM <mardojai.cardenas@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/es/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0.1-dev\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
@@ -191,6 +191,8 @@ msgstr "La descripción debe tener al menos \"{count}\" caracteres."
 #: src/backend/card.rs:178
 msgid "Add a \"{tag}\" tag to the page to have control over the content."
 msgstr ""
+"Añada una etiqueta \"{tag}\" a la página para tener control sobre el "
+"contenido."
 
 #: src/backend/card.rs:198
 msgid "Found card of type \"{name}\"."
@@ -209,9 +211,10 @@ msgid "Unable to find a valid image in the metadata."
 msgstr "No se pudo encontrar una imagen válida en los metadatos."
 
 #: src/backend/card.rs:261
-#, fuzzy
 msgid "Unable to find a valid image in the metadata or document body."
-msgstr "No se pudo encontrar una imagen válida en los metadatos."
+msgstr ""
+"No se ha podido encontrar una imagen válida en los metadatos o en el cuerpo "
+"del documento."
 
 #: src/backend/card.rs:267
 msgid "Unable to find a valid image in the metadata, will render an icon."
