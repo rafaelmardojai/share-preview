@@ -27,6 +27,16 @@
   <url type="vcs-browser">https://github.com/rafaelmardojai/share-preview/</url>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="0.4.0" date="2023-09-29">
+      <description>
+        <ul>
+          <li>Allow opening multiple instances of the app</li>
+          <li>Support for Discourse previews</li>
+          <li>Support for LinkedIn previews</li>
+          <li>Internal code improvements</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.3.0" date="2023-03-23">
       <description>
         <ul>
