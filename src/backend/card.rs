@@ -175,7 +175,7 @@ impl Card {
                 if let Social::LinkedIn = &social {
                     logger.log(LogLevel::Warning, format!("{}: {}",
                         &social,
-                        gettext_f(" Add a \"{tag}\" tag to the page to have control over the content.", &[("tag", "og:description")])
+                        gettext_f("Add a \"{tag}\" tag to the page to have control over the content.", &[("tag", "og:description")])
                     ));
                 }
             }

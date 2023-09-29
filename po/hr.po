@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-28 18:44-0500\n"
+"POT-Creation-Date: 2023-09-28 21:50-0500\n"
 "PO-Revision-Date: 2023-09-18 17:01+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/share-preview/"
@@ -187,7 +187,7 @@ msgid "The description should be at least \"{count}\" characters long."
 msgstr ""
 
 #: src/backend/card.rs:178
-msgid " Add a \"{tag}\" tag to the page to have control over the content."
+msgid "Add a \"{tag}\" tag to the page to have control over the content."
 msgstr ""
 
 #: src/backend/card.rs:198
