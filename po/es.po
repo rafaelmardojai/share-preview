@@ -285,7 +285,7 @@ msgid "Image is unsupported: {info}"
 msgstr "La imagen no es compatible: {info}"
 
 #: src/backend/card.rs:178
-msgid " Add a \"{tag}\" tag to the page to have control over the content."
+msgid "Add a \"{tag}\" tag to the page to have control over the content."
 msgstr ""
 
 #~ msgid ""
