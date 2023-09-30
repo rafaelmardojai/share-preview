@@ -28,7 +28,7 @@
   <content_rating type="oars-1.0" />
   <releases>
     <release version="0.4.0" date="2023-09-29">
-      <description>
+      <description translatable="no">
         <ul>
           <li>Allow opening multiple instances of the app</li>
           <li>Support for Discourse previews</li>
@@ -38,7 +38,7 @@
       </description>
     </release>
     <release version="0.3.0" date="2023-03-23">
-      <description>
+      <description translatable="no">
         <ul>
           <li>New scraping logger feature</li>
           <li>Save last selected social platform</li>
@@ -50,7 +50,7 @@
       </description>
     </release>
     <release version="0.2.0" date="2022-03-27">
-      <description>
+      <description translatable="no">
         <ul>
           <li>New page data dialog</li>
           <li>Bug fixes</li>
@@ -60,7 +60,7 @@
       </description>
     </release>
     <release version="0.1.2" date="2021-05-25">
-      <description>
+      <description translatable="no">
         <ul>
           <li>Bug fixes</li>
           <li>Added Turkish translation</li>
@@ -70,12 +70,12 @@
       </description>
     </release>
     <release version="0.1.1" date="2021-05-23">
-      <description>
+      <description translatable="no">
         <p>Bug fixes and improvements.</p>
       </description>
     </release>
     <release version="0.1.0" date="2021-05-21">
-      <description>
+      <description translatable="no">
         <p>First public release.</p>
       </description>
     </release>
