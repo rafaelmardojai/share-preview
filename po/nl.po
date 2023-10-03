@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-28 21:50-0500\n"
-"PO-Revision-Date: 2023-09-23 19:59+0000\n"
+"PO-Revision-Date: 2023-10-04 22:11+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/nl/>\n"
@@ -187,7 +187,7 @@ msgstr "Kon de documenttitel niet vinden. Website-URL wordt gebruikt."
 
 #: src/backend/card.rs:169
 msgid "The description should be at least \"{count}\" characters long."
-msgstr ""
+msgstr "De omschrijving moet minstens {count} tekens lang zijn."
 
 #: src/backend/card.rs:178
 msgid "Add a \"{tag}\" tag to the page to have control over the content."
@@ -210,9 +210,8 @@ msgid "Unable to find a valid image in the metadata."
 msgstr "Kon geen geldige afbeelding vinden in de metagegevens."
 
 #: src/backend/card.rs:261
-#, fuzzy
 msgid "Unable to find a valid image in the metadata or document body."
-msgstr "Kon geen geldige afbeelding vinden in de metagegevens."
+msgstr "Kon geen geldige afbeelding vinden in de metagegevens of document-body."
 
 #: src/backend/card.rs:267
 msgid "Unable to find a valid image in the metadata, will render an icon."
