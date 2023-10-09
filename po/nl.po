@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-28 21:50-0500\n"
-"PO-Revision-Date: 2023-10-04 22:11+0000\n"
+"PO-Revision-Date: 2023-10-10 13:01+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/nl/>\n"
@@ -191,7 +191,7 @@ msgstr "De omschrijving moet minstens {count} tekens lang zijn."
 
 #: src/backend/card.rs:178
 msgid "Add a \"{tag}\" tag to the page to have control over the content."
-msgstr ""
+msgstr "Voeg een ‘{tag}’-tag toe aan de pagina voor controle over de inhoud."
 
 #: src/backend/card.rs:198
 msgid "Found card of type \"{name}\"."
