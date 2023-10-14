@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-28 21:50-0500\n"
-"PO-Revision-Date: 2023-10-14 11:14+0000\n"
+"PO-Revision-Date: 2023-10-16 04:17+0000\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/tr/>\n"
@@ -44,7 +44,7 @@ msgstr "Gövde Resimleri"
 
 #: data/resources/ui/log-dialog.ui:8
 msgid "Scraping Log"
-msgstr ""
+msgstr "Kazıma Günlüğü"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -98,7 +98,7 @@ msgstr "Ön izlenecek URL belirle"
 
 #: data/resources/ui/window.ui:180
 msgid "View Metadata"
-msgstr "Üst Verileri _Görüntüle"
+msgstr "Üst Verileri Görüntüle"
 
 #: data/resources/ui/window.ui:193
 msgid "Show Logs"
@@ -180,104 +180,104 @@ msgstr "\"{name}\" bulunamadı. \"{name}\" üst veri özelliği sağlamayı dü�
 
 #: src/backend/card.rs:141
 msgid "Unable to find a metadata for title!. Falling back to document title."
-msgstr ""
+msgstr "Başlık için üst veri bulunamadı! Belge başlığına geri dönülüyor."
 
 #: src/backend/card.rs:151
 msgid "Unable to find the document title!. Falling back to site url."
-msgstr ""
+msgstr "Belge başlığı bulunamadı! Site URL'sine geri dönülüyor."
 
 #: src/backend/card.rs:169
 msgid "The description should be at least \"{count}\" characters long."
-msgstr ""
+msgstr "Açıklama en az \"{count}\" karakter uzunluğunda olmalıdır."
 
 #: src/backend/card.rs:178
 msgid "Add a \"{tag}\" tag to the page to have control over the content."
 msgstr ""
+"İçerik üzerinde denetim sahibi olmak için sayfaya \"{tag}\" etiketi ekleyin."
 
 #: src/backend/card.rs:198
 msgid "Found card of type \"{name}\"."
-msgstr ""
+msgstr "\"{name}\" türünde bir kart bulundu."
 
 #: src/backend/card.rs:215
 msgid "Unable to find any valid card type."
-msgstr ""
+msgstr "Geçerli bir kart türü bulunamadı."
 
 #: src/backend/card.rs:226
 msgid "Unable to find any valid title or description."
-msgstr ""
+msgstr "Geçerli bir başlık veya açıklama bulunamadı."
 
 #: src/backend/card.rs:255
 msgid "Unable to find a valid image in the metadata."
-msgstr ""
+msgstr "Üst verilerde geçerli bir resim bulunamadı."
 
 #: src/backend/card.rs:261
 msgid "Unable to find a valid image in the metadata or document body."
-msgstr ""
+msgstr "Üst verilerde ya da belge gövdesinde geçerli bir resim bulunamadı."
 
 #: src/backend/card.rs:267
 msgid "Unable to find a valid image in the metadata, will render an icon."
-msgstr ""
+msgstr "Üst verilerde geçerli bir resim bulunamadı, bir simge oluşturacak."
 
 #: src/backend/card.rs:274
 msgid ""
 "Unable to find a valid image in the metadata, will render a \"{name}\" card "
 "with icon."
 msgstr ""
+"Üst verilerde geçerli bir resim bulunamadığında, simgeli bir \"{name}\" "
+"kartı oluşturulur."
 
 #: src/backend/card.rs:334
 msgid "Image \"{url}\" met the requirements."
-msgstr ""
+msgstr "Resim \"{url}\" gereksinimleri karşıladı."
 
 #: src/backend/card.rs:360 src/backend/card.rs:369
 msgid "Image \"{url}\" did not meet the requirements: {info}."
-msgstr ""
+msgstr "Resim \"{url}\" gereksinimleri karşılamadı: {info}."
 
 #: src/backend/card.rs:434
 msgid "Image \"{url}\" processed successfully."
-msgstr ""
+msgstr "Resim \"{url}\" başarıyla işlendi."
 
 #: src/backend/card.rs:440
 msgid "Failed to thumbnail \"{url}\": {info}."
-msgstr ""
+msgstr "\"{url}\" için küçük resim oluşturulamadı: {info}."
 
 #: src/backend/data.rs:103
 msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
-msgstr ""
+msgstr "\"{name}\" için \"{value}\" değerine sahip geçerli bir oluşum bulundu."
 
 #: src/backend/data.rs:121
 msgid "No occurrences found for \"{name}\"!"
-msgstr ""
+msgstr "\"{name}\" için herhangi bir olay bulunamadı!"
 
 #: src/backend/image.rs:125
 msgid "Format is unsupported"
-msgstr ""
+msgstr "Biçim desteklenmiyor"
 
 #: src/backend/image.rs:211
-#, fuzzy
 msgid "Network Error: {info}"
-msgstr "Ağ Hatası"
+msgstr "Ağ Hatası: {info}"
 
 #: src/backend/image.rs:213
 msgid "Request Error: {info}"
-msgstr ""
+msgstr "İstek Hatası: {info}"
 
 #: src/backend/image.rs:215
-#, fuzzy
 msgid "Image Error: {info}"
-msgstr "Resim Hatası"
+msgstr "Resim Hatası {info}"
 
 #: src/backend/image.rs:218
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
-msgstr ""
+msgstr "Resim çok küçük ({actual}), asgari boyutlar {min}"
 
 #: src/backend/image.rs:223
 msgid "Image is too heavy ({actual}), max size is {max}"
-msgstr ""
+msgstr "Resim çok büyük ({actual}), azami boyut {max}"
 
 #: src/backend/image.rs:227
-#, fuzzy
 msgid "Image is unsupported: {info}"
-msgstr "Resim Hatası"
+msgstr "Resim desteklenmiyor: {info}"
 
 #~ msgid "Added Dutch translation"
 #~ msgstr "Flemenkçe çeviri eklendi"
