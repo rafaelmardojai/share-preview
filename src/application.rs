@@ -106,7 +106,7 @@ impl SharePreviewApplication {
             .application_name(&gettext("Share Preview"))
             .application_icon(config::APP_ID)
             .license_type(gtk::License::Gpl30)
-            .website("https://apps.gnome.org/app/com.rafaelmardojai.SharePreview/")
+            .website("https://apps.gnome.org/SharePreview/")
             .version(config::VERSION)
             .developers(vec!["Rafael Mardojai CM https://mardojai.com".to_string()])
             .artists(vec!["Rafael Mardojai CM https://mardojai.com".to_string(), "Tobias Bernard".to_string()])
