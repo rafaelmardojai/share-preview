@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-28 21:50-0500\n"
-"PO-Revision-Date: 2023-03-25 14:40+0000\n"
+"PO-Revision-Date: 2023-10-20 04:09+0000\n"
 "Last-Translator: rene-coty <irenee.thirion@e.email>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/fr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 5.1\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
@@ -56,7 +56,7 @@ msgstr "Quitter"
 
 #: data/resources/ui/window.ui:6
 msgid "_New Window"
-msgstr ""
+msgstr "_Nouvelle fenêtre"
 
 #: data/resources/ui/window.ui:12
 msgid "_Keyboard Shortcuts"
@@ -186,11 +186,11 @@ msgstr ""
 
 #: src/backend/card.rs:169
 msgid "The description should be at least \"{count}\" characters long."
-msgstr ""
+msgstr "La description devrait être longue d’au moins \"{count}\" caractères."
 
 #: src/backend/card.rs:178
 msgid "Add a \"{tag}\" tag to the page to have control over the content."
-msgstr ""
+msgstr "Ajouter une balise \"{tag}\" à la page pour en contrôler le contenu."
 
 #: src/backend/card.rs:198
 msgid "Found card of type \"{name}\"."
@@ -205,18 +205,14 @@ msgid "Unable to find any valid title or description."
 msgstr "Impossible de trouver un titre ou une description valide."
 
 #: src/backend/card.rs:255
-#, fuzzy
 msgid "Unable to find a valid image in the metadata."
-msgstr ""
-"Impossible de trouver une image valide dans les métadonnées, rendu d’une "
-"icône."
+msgstr "Impossible de trouver une image valide dans les métadonnées."
 
 #: src/backend/card.rs:261
-#, fuzzy
 msgid "Unable to find a valid image in the metadata or document body."
 msgstr ""
-"Impossible de trouver une image valide dans les métadonnées, rendu d’une "
-"icône."
+"Impossible de trouver une image valide dans les métadonnées ou dans le corps "
+"du document."
 
 #: src/backend/card.rs:267
 msgid "Unable to find a valid image in the metadata, will render an icon."
