@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-28 21:50-0500\n"
-"PO-Revision-Date: 2023-07-30 08:06+0000\n"
-"Last-Translator: Michal Lesniewski <weblate.org@michal.wildnet.pl>\n"
+"PO-Revision-Date: 2023-11-03 05:12+0000\n"
+"Last-Translator: Eryk Michalak <gnu.ewm@protonmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/pl/>\n"
 "Language: pl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.2-dev\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
@@ -58,7 +58,7 @@ msgstr "Wyjdź"
 
 #: data/resources/ui/window.ui:6
 msgid "_New Window"
-msgstr ""
+msgstr "_Nowe okno"
 
 #: data/resources/ui/window.ui:12
 msgid "_Keyboard Shortcuts"
@@ -162,11 +162,11 @@ msgstr "BŁĄD"
 
 #: src/backend/card.rs:113
 msgid "Found \"{name}\"."
-msgstr ""
+msgstr "Znaleziono \"{name}\"."
 
 #: src/backend/card.rs:118 src/backend/data.rs:111
 msgid "\"{name}\" is empty!"
-msgstr ""
+msgstr "\"{name}\" jest puste!"
 
 #: src/backend/card.rs:125 src/backend/card.rs:204
 msgid ""
@@ -191,15 +191,15 @@ msgstr ""
 
 #: src/backend/card.rs:198
 msgid "Found card of type \"{name}\"."
-msgstr ""
+msgstr "Znaleziono kartę typu \"{name}\"."
 
 #: src/backend/card.rs:215
 msgid "Unable to find any valid card type."
-msgstr ""
+msgstr "Nie można znaleźć żadnego prawidłowego typu karty."
 
 #: src/backend/card.rs:226
 msgid "Unable to find any valid title or description."
-msgstr ""
+msgstr "Nie można znaleźć żadnego prawidłowego tytułu ani opisu."
 
 #: src/backend/card.rs:255
 msgid "Unable to find a valid image in the metadata."
@@ -222,19 +222,19 @@ msgstr ""
 
 #: src/backend/card.rs:334
 msgid "Image \"{url}\" met the requirements."
-msgstr ""
+msgstr "Obraz \"{url}\" spełnia wszystkie wymagania."
 
 #: src/backend/card.rs:360 src/backend/card.rs:369
 msgid "Image \"{url}\" did not meet the requirements: {info}."
-msgstr ""
+msgstr "Obraz \"{url}\" nie spełnia wymagań: {info}."
 
 #: src/backend/card.rs:434
 msgid "Image \"{url}\" processed successfully."
-msgstr ""
+msgstr "Pomyślnie przetworzono obraz \"{url}\"."
 
 #: src/backend/card.rs:440
 msgid "Failed to thumbnail \"{url}\": {info}."
-msgstr ""
+msgstr "Nie udało się utworzyć miniaturki \"{url}\": {info}."
 
 #: src/backend/data.rs:103
 msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
