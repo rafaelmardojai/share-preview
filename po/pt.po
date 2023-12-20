@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-28 21:50-0500\n"
-"PO-Revision-Date: 2023-04-05 18:47+0000\n"
+"PO-Revision-Date: 2023-12-21 15:08+0000\n"
 "Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/pt/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : ((n != 0 && n % "
 "1000000 == 0) ? 1 : 2);\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
@@ -60,7 +60,7 @@ msgstr "Sair"
 
 #: data/resources/ui/window.ui:6
 msgid "_New Window"
-msgstr ""
+msgstr "Janela _Nova"
 
 #: data/resources/ui/window.ui:12
 msgid "_Keyboard Shortcuts"
@@ -191,7 +191,7 @@ msgstr ""
 
 #: src/backend/card.rs:169
 msgid "The description should be at least \"{count}\" characters long."
-msgstr ""
+msgstr "A descrição deve ter pelo menos \"{count}\" caracteres."
 
 #: src/backend/card.rs:178
 msgid "Add a \"{tag}\" tag to the page to have control over the content."
@@ -210,18 +210,14 @@ msgid "Unable to find any valid title or description."
 msgstr "Não foi possível encontrar nenhum título ou descrição válida."
 
 #: src/backend/card.rs:255
-#, fuzzy
 msgid "Unable to find a valid image in the metadata."
-msgstr ""
-"Não foi possível encontrar uma imagem válida nos metadados, será renderizado "
-"um ícone como alternativa."
+msgstr "Não foi possível encontrar uma imagem válida nos metadados."
 
 #: src/backend/card.rs:261
-#, fuzzy
 msgid "Unable to find a valid image in the metadata or document body."
 msgstr ""
-"Não foi possível encontrar uma imagem válida nos metadados, será renderizado "
-"um ícone como alternativa."
+"Não foi possível encontrar uma imagem válida nos metadados ou no corpo do "
+"documento."
 
 #: src/backend/card.rs:267
 msgid "Unable to find a valid image in the metadata, will render an icon."
