@@ -43,9 +43,8 @@ appdata_file = i18n.merge_file(
 if appstreamcli.found()
   test(
     'validate-appdata', appstreamcli,
-    args: [
-      'validate', '--no-net', appdata_file.full_path()
-    ]
+    args: ['validate', '--no-net', '--explain', appdata_file],
+    workdir: meson.current_build_dir()
   )
 endif
 
