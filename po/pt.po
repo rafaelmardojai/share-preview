@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-28 21:50-0500\n"
-"PO-Revision-Date: 2023-12-21 15:08+0000\n"
+"PO-Revision-Date: 2024-01-08 15:06+0000\n"
 "Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/pt/>\n"
@@ -196,6 +196,8 @@ msgstr "A descrição deve ter pelo menos \"{count}\" caracteres."
 #: src/backend/card.rs:178
 msgid "Add a \"{tag}\" tag to the page to have control over the content."
 msgstr ""
+"Adicione uma etiqueta \"{etiqueta}\" à página para ter controlo sobre o "
+"conteúdo."
 
 #: src/backend/card.rs:198
 msgid "Found card of type \"{name}\"."
