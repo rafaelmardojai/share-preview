@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-28 21:50-0500\n"
-"PO-Revision-Date: 2023-03-12 21:41+0000\n"
-"Last-Translator: Сергей Ворон <voron.s.a@gmail.com>\n"
+"PO-Revision-Date: 2024-03-06 09:01+0000\n"
+"Last-Translator: Жмыхов Алексей Сергеевич <mario.nomer.1@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/ru/>\n"
 "Language: ru\n"
@@ -20,9 +20,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
-"(n%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Weblate 4.16.2-dev\n"
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || ("
+"n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
@@ -61,7 +61,7 @@ msgstr "Выйти"
 
 #: data/resources/ui/window.ui:6
 msgid "_New Window"
-msgstr ""
+msgstr "_Новое окно"
 
 #: data/resources/ui/window.ui:12
 msgid "_Keyboard Shortcuts"
@@ -89,7 +89,7 @@ msgstr "Меню"
 
 #: data/resources/ui/window.ui:84
 msgid "Go"
-msgstr ""
+msgstr "Вперёд"
 
 #: data/resources/ui/window.ui:103
 msgid "Set a URL to preview"
