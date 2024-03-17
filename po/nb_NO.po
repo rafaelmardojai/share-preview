@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-28 21:50-0500\n"
-"PO-Revision-Date: 2024-03-08 17:01+0000\n"
+"PO-Revision-Date: 2024-03-18 19:01+0000\n"
 "Last-Translator: Brage Fuglseth <brage.fuglseth@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "share-preview/share-preview/nb_NO/>\n"
@@ -64,14 +64,14 @@ msgstr "_Tastatursnarveier"
 
 #: data/resources/ui/window.ui:16
 msgid "_About Share Preview"
-msgstr "_Om Lenkevisning"
+msgstr "_Om Share Preview"
 
 #: data/resources/ui/window.ui:26
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
 #: src/application.rs:106 src/main.rs:24
 msgid "Share Preview"
-msgstr "Lenkevisning"
+msgstr "Share Preview"
 
 #: data/resources/ui/window.ui:38
 msgid "Toggle Color Scheme"
@@ -111,7 +111,7 @@ msgstr ""
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
 msgstr ""
-"Skal du dele en lenke til nettstedet ditt? Lenkevisning lar deg passe på at "
+"Skal du dele en lenke til nettstedet ditt? Share Preview lar deg passe på at "
 "det ser presentabelt ut når det deles på plattformer som Twitter, Facebook, "
 "Mastodon og LinkedIn."
 
