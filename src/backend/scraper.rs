@@ -6,6 +6,7 @@ use std::{
     fmt::{Display, Formatter, Result as FmtResult}
 };
 
+use data_url::DataUrl;
 use url::{Url, ParseError};
 use scraper::{Html, Selector, element_ref::ElementRef};
 
@@ -159,16 +160,31 @@ async fn get_favicon(url: &Url, html_icons: Vec<String>) -> Option<Image> {
     }
 
     for icon in icons.iter() {
-        if let Ok(mut resp) = CLIENT.get(&icon).await {
-            if resp.status().is_success() {
-                if let Ok(bytes) = resp.body_bytes().await {
-                    let image = Image::new(icon.to_string());
-                    image.size.set(Some(bytes.len()));
-                    image.bytes.replace(Some(bytes));
-                    return Some(image);
-                };
+        match icon.scheme() {
+            "file" | "http" | "https" => {
+                if let Ok(mut resp) = CLIENT.get(&icon).await {
+                    if resp.status().is_success() {
+                        if let Ok(bytes) = resp.body_bytes().await {
+                            let image = Image::new(icon.to_string());
+                            image.size.set(Some(bytes.len()));
+                            image.bytes.replace(Some(bytes));
+                            return Some(image);
+                        };
+                    }
+                }
             }
-        };
+            "data" => {
+                if let Ok(data) = DataUrl::process(icon.as_str()) {
+                    if let Ok((body, _fragment))  = data.decode_to_vec() {
+                        let image = Image::new(icon.to_string());
+                        image.size.set(Some(body.len()));
+                        image.bytes.replace(Some(body));
+                        return Some(image);
+                    }
+                }
+            }
+            _ => ()
+        }
     }
 
     None

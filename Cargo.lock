@@ -597,6 +597,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "data-url"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5c297a1c74b71ae29df00c3e22dd9534821d60eb9af5a0192823fa2acea70c2a"
+
+[[package]]
 name = "derive_more"
 version = "0.99.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2438,6 +2444,7 @@ name = "share-preview"
 version = "0.4.0"
 dependencies = [
  "async-std",
+ "data-url",
  "gettext-rs",
  "gtk-macros",
  "gtk4",
