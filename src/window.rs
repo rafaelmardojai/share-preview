@@ -110,6 +110,10 @@ mod imp {
             klass.install_action("win.log", None, move |win, _, _| {
                 win.show_log();
             });
+
+            klass.install_action("win.url", None, move |win, _, _| {
+                win.imp().url_entry.grab_focus();
+            });
         }
 
         // You must call `Widget`'s `init_template()` within `instance_init()`.
