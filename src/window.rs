@@ -3,6 +3,7 @@ use std::{
     str::FromStr
 };
 
+use adw::prelude::*;
 use adw::subclass::prelude::*;
 use gettextrs::*;
 use gtk::{
@@ -10,8 +11,7 @@ use gtk::{
     EntryIconPosition,
     gio,
     glib,
-    glib::clone,
-    prelude::*
+    glib::clone
 };
 use gtk_macros::spawn;
 use url::Url;
@@ -270,8 +270,7 @@ impl SharePreviewWindow {
 
     fn show_log(&self) {
         let dialog = LogDialog::new(&self.imp().logger);
-        dialog.set_transient_for(Some(self));
-        dialog.present();
+        dialog.present(self);
     }
 
     #[template_callback]

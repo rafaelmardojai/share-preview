@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="LogDialog" parent="AdwWindow">
-    <property name="default_width">524</property>
-    <property name="default_height">562</property>
-    <property name="modal">True</property>
-    <property name="destroy_with_parent">True</property>
+  <template class="LogDialog" parent="AdwDialog">
+    <property name="content-width">500</property>
+    <property name="content-height">500</property>
     <property name="title" translatable="yes">Scraping Log</property>
     <child>
       <object class="AdwToolbarView">

@@ -1,13 +1,13 @@
+use adw::prelude::*;
 use adw::subclass::prelude::*;
 use gettextrs::*;
 use gtk::{
     gio,
     glib,
-    glib::clone,
-    prelude::*,
+    glib::clone
 };
 use gtk_macros::action;
-use log::{info};
+use log::info;
 
 use crate::{
     config,
@@ -103,7 +103,7 @@ impl SharePreviewApplication {
     }
 
     fn show_about_dialog(&self) {
-        let dialog = adw::AboutWindow::builder()
+        let dialog = adw::AboutDialog::builder()
             .application_name(&gettext("Share Preview"))
             .application_icon(config::APP_ID)
             .license_type(gtk::License::Gpl30)
@@ -111,11 +111,9 @@ impl SharePreviewApplication {
             .version(config::VERSION)
             .developers(vec!["Rafael Mardojai CM https://mardojai.com".to_string()])
             .artists(vec!["Rafael Mardojai CM https://mardojai.com".to_string(), "Tobias Bernard".to_string()])
-            .transient_for(&self.active_window().unwrap())
-            .modal(true)
             .build();
 
-        dialog.present();
+        dialog.present(&self.active_window().unwrap());
     }
 
     fn create_window(&self) -> SharePreviewWindow {

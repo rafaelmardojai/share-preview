@@ -1,13 +1,13 @@
 // Copyright 2023 Rafael Mardojai CM
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+use adw::prelude::*;
 use adw::subclass::prelude::*;
 use gettextrs::*;
 use gtk::{
     CompositeTemplate,
     gio,
     glib,
-    prelude::*,
 };
 
 use crate::backend::LogLevel;
@@ -27,7 +27,7 @@ mod imp {
     impl ObjectSubclass for LogDialog {
         const NAME: &'static str = "LogDialog";
         type Type = super::LogDialog;
-        type ParentType = adw::Window;
+        type ParentType = adw::Dialog;
 
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
@@ -42,13 +42,12 @@ mod imp {
 
     impl ObjectImpl for LogDialog {}
     impl WidgetImpl for LogDialog {}
-    impl WindowImpl for LogDialog {}
-    impl AdwWindowImpl for LogDialog {}
+    impl AdwDialogImpl for LogDialog {}
 }
 
 glib::wrapper! {
     pub struct LogDialog(ObjectSubclass<imp::LogDialog>)
-        @extends gtk::Widget, gtk::Window, adw::Window;
+        @extends gtk::Widget, adw::Dialog;
 }
 
 #[gtk::template_callbacks]
