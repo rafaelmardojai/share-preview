@@ -331,7 +331,7 @@ impl Card {
             match image.check(&social, kinds, constraints).await {
                 Ok(kind) => {
                     logger.log(LogLevel::Debug, gettext_f(
-                        "Image \"{url}\" met the requirements.", &[("url", &image.url)]
+                        "Image \"{url}\" met the requirements.", &[("url", &image.url.as_str())]
                     ));
 
                     if !valid.contains_key(&kind) {
@@ -358,7 +358,7 @@ impl Card {
                                 social,
                                 gettext_f(
                                     "Image \"{url}\" did not meet the requirements: {info}.",
-                                    &[("url", &image.url), ("info", &err.to_string())]
+                                    &[("url", &image.url.as_str()), ("info", &err.to_string())]
                                 )
                             ));
                         },
@@ -367,7 +367,7 @@ impl Card {
                                 social,
                                 gettext_f(
                                     "Image \"{url}\" did not meet the requirements: {info}.",
-                                    &[("url", &image.url), ("info", &err.to_string())]
+                                    &[("url", &image.url.as_str()), ("info", &err.to_string())]
                                 )
                             ));
                         }
@@ -431,14 +431,14 @@ impl Card {
         match image.thumbnail(width, height).await {
             Ok(bytes) => {
                 logger.log(LogLevel::Debug, gettext_f(
-                    "Image \"{url}\" processed successfully.", &[("url", &image.url)]
+                    "Image \"{url}\" processed successfully.", &[("url", &image.url.as_str())]
                 ));
                 return Some((bytes, size));
             },
             Err(err) => {
                 logger.log(LogLevel::Debug, gettext_f(
                     "Failed to thumbnail \"{url}\": {info}.",
-                    &[("url", &image.url), ("info", &err.to_string())]
+                    &[("url", &image.url.as_str()), ("info", &err.to_string())]
                 ));
             }
         };

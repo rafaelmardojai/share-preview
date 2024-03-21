@@ -8,6 +8,7 @@ use std::{
     io::Cursor,
 };
 
+use data_url::DataUrl;
 use gettextrs::gettext;
 use human_bytes::human_bytes;
 use image;
@@ -22,9 +23,11 @@ use super::{
 };
 
 
-#[derive(Debug, Default, Clone)]
+#[derive(Debug, Clone)]
 pub struct Image {
-    pub url: String,
+    pub base_url: Url,
+    pub url: Url,
+    pub was_relative: bool,
     pub bytes: RefCell<Option<Vec<u8>>>,
     pub format: Cell<Option<image::ImageFormat>>,
     pub width: Cell<Option<u32>>,
@@ -33,31 +36,40 @@ pub struct Image {
 }
 
 impl Image {
-    pub fn new(url: String) -> Image {
-        Image {
-            url,
-            bytes: RefCell::new(Option::default()),
-            format: Cell::new(Option::default()),
-            width: Cell::new(Option::default()),
-            height: Cell::new(Option::default()),
-            size: Cell::new(Option::default())
-        }
-    }
+    pub fn new(url: &String, base_url: &Url) -> Result<Image, ImageError> {
 
-    pub fn normalize(&mut self, url: &Url) -> &mut Image {
-        //! Normalize image URL if is relative
-
-        if let Err(e) = Url::parse(&self.url) {
-            match e {
-                ParseError::RelativeUrlWithoutBase => {
-                    if let Ok(url) = url.join(&self.url) {
-                        self.url = url.to_string();
-                    }
-                },
-                _ => (),
+        // Check if url is valid and convert it to absolute if needed
+        let (image_url, was_relative) = match Url::parse(&url) {
+            // Return valid url
+            Ok(url) => (url, false),
+            // Convert to an absolute url if relative or fail the whole Image creation
+            Err(e) => {
+                match e {
+                    ParseError::RelativeUrlWithoutBase => {
+                        if let Ok(url) = base_url.join(&url) {
+                            (url, true)
+                        } else {
+                            return Err(ImageError::UrlError(e));
+                        }
+                    },
+                    _ => return Err(ImageError::UrlError(e))
+                }
             }
-        }
-        self
+        };
+
+
+        Ok(
+            Image {
+                base_url: base_url.clone(),
+                url: image_url,
+                was_relative,
+                bytes: RefCell::new(Option::default()),
+                format: Cell::new(Option::default()),
+                width: Cell::new(Option::default()),
+                height: Cell::new(Option::default()),
+                size: Cell::new(Option::default())
+            }
+        )
     }
 
     pub async fn fetch(&self) -> Result<Vec<u8>, ImageError> {
@@ -67,25 +79,42 @@ impl Image {
         let saved_bytes = self.bytes.borrow().clone();
 
         match saved_bytes {
+            // Return saved bytes without further fetching
             Some(bytes) => Ok(bytes),
             None => {
-                let mut resp = CLIENT.get(&self.url).await?;
+                // Fetch conditionally of the url scheme
+                match self.url.scheme() {
+                    "data" => {
+                        let data = DataUrl::process(self.url.as_str())?;
+                        let (body, _fragment) = data.decode_to_vec()?;
 
-                if resp.status().is_success() {
-                    let bytes = resp.body_bytes().await?;
-                    let format = image::guess_format(&bytes)?;
+                        if let None = self.size.get() {
+                            self.size.set(Some(body.len()));
+                        }
 
-                    if let None = self.format.get() {
-                        self.format.set(Some(format));
+                        self.bytes.replace(Some(body));
+                        Ok(self.bytes.borrow().clone().unwrap())
+                    },
+                    _ => {
+                        let mut resp = CLIENT.get(&self.url).await?;
+
+                        if resp.status().is_success() {
+                            let bytes = resp.body_bytes().await?;
+                            let format = image::guess_format(&bytes)?;
+
+                            if let None = self.format.get() {
+                                self.format.set(Some(format));
+                            }
+                            if let None = self.size.get() {
+                                self.size.set(Some(bytes.len()));
+                            }
+
+                            self.bytes.replace(Some(bytes));
+                            Ok(self.bytes.borrow().clone().unwrap())
+                        } else {
+                            Err(ImageError::RequestError(resp.status().canonical_reason()))
+                        }
                     }
-                    if let None = self.size.get() {
-                        self.size.set(Some(bytes.len()));
-                    }
-
-                    self.bytes.replace(Some(bytes));
-                    Ok(self.bytes.borrow().clone().unwrap())
-                } else {
-                    Err(ImageError::RequestError(resp.status().canonical_reason()))
                 }
             }
         }
@@ -189,6 +218,9 @@ impl Image {
 
 #[derive(Debug)]
 pub enum ImageError {
+    UrlError(ParseError),
+    DataUrlError(data_url::DataUrlError),
+    InvalidBase64(data_url::forgiving_base64::InvalidBase64),
     FetchError(surf::Error),
     RequestError(&'static str),
     ImageError(image::error::ImageError),
@@ -207,6 +239,12 @@ pub enum ImageError {
 impl Display for ImageError {
     fn fmt(&self, f: &mut Formatter) -> FmtResult {
         match *self {
+            ImageError::UrlError(ref e) =>
+                write!(f, "{}", gettext_f("Image Url Error: {info}", &[("info", &e.to_string())])),
+            ImageError::DataUrlError(ref e) =>
+                write!(f, "{}", gettext_f("Image Data Url Error: {info}", &[("info", &e.to_string())])),
+            ImageError::InvalidBase64(ref e) =>
+                write!(f, "{}", gettext_f("Image Data Invalid Base64: {info}", &[("info", &e.to_string())])),
             ImageError::FetchError(ref e) =>
                 write!(f, "{}", gettext_f("Network Error: {info}", &[("info", &e.to_string())])),
             ImageError::RequestError(ref s) =>
@@ -228,6 +266,18 @@ impl Display for ImageError {
             ImageError::Unexpected =>
                 write!(f, "{}", gettext("Unexpected Error")),
         }
+    }
+}
+
+impl From<data_url::DataUrlError> for ImageError {
+    fn from(err: data_url::DataUrlError) -> ImageError {
+        ImageError::DataUrlError(err)
+    }
+}
+
+impl From<data_url::forgiving_base64::InvalidBase64> for ImageError {
+    fn from(err: data_url::forgiving_base64::InvalidBase64) -> ImageError {
+        ImageError::InvalidBase64(err)
     }
 }
 

@@ -6,8 +6,7 @@ use std::{
     fmt::{Display, Formatter, Result as FmtResult}
 };
 
-use data_url::DataUrl;
-use url::{Url, ParseError};
+use url::Url;
 use scraper::{Html, Selector, element_ref::ElementRef};
 
 use super::{Data, Meta, Image, CLIENT};
@@ -65,9 +64,11 @@ async fn get_html_data(
         let content: Option<String> = get_attr_val(&element, "content");
         let image: Option<Image> = match (is_image(&name, &property), &content) {
             (true, Some(val)) => {
-                let mut image = Image::new(val.to_string());
-                image.normalize(url);
-                Some(image)
+                if let Ok(image) = Image::new(val, url) {
+                    Some(image)
+                } else {
+                    None
+                }
             },
             _ => None
         };
@@ -102,9 +103,9 @@ async fn get_html_data(
         if let Some(src) = element.value().attr("src") {
             let src = src.trim().to_string();
             if src.contains(".jpg") || src.contains(".jpeg") || src.contains(".png"){
-                let mut image = Image::new(src);
-                image.normalize(url);
-                data.body_images.push(image)
+                if let Ok(image) = Image::new(&src, url) {
+                    data.body_images.push(image);
+                }
             }
         }
     }
@@ -130,60 +131,22 @@ fn is_image(name: &Option<String>, property: &Vec<String>) -> bool {
     false
 }
 
-async fn get_favicon(url: &Url, html_icons: Vec<String>) -> Option<Image> {
+async fn get_favicon(url: &Url, mut icons: Vec<String>) -> Option<Image> {
 
-    // Filter valid urls and fix relative paths
-    let mut icons: Vec<Url> = html_icons.iter().filter_map(|rel| {
-        match Url::parse(&rel.as_str()) {
-            Ok(icon_url) => {
-                Some(icon_url)
-            },
-            Err(err) => {
-                match err {
-                    ParseError::RelativeUrlWithoutBase => {
-                        if let Ok(icon_url) = url.join(&rel) {
-                            Some(icon_url)
-                        } else {
-                            None
-                        }
-                    },
-                    _ => None,
-                }
-            }
-        }
-    }).collect();
-
+    // Add standard favicon.ico to the list
     if let Ok(favicon) = Url::parse(url.origin().unicode_serialization().as_str()) {
         if let Ok(favicon) = favicon.join("favicon.ico") {
-            icons.push(favicon);
+            icons.push(favicon.to_string());
         }
     }
 
+    // Iterate favicon candidates
     for icon in icons.iter() {
-        match icon.scheme() {
-            "file" | "http" | "https" => {
-                if let Ok(mut resp) = CLIENT.get(&icon).await {
-                    if resp.status().is_success() {
-                        if let Ok(bytes) = resp.body_bytes().await {
-                            let image = Image::new(icon.to_string());
-                            image.size.set(Some(bytes.len()));
-                            image.bytes.replace(Some(bytes));
-                            return Some(image);
-                        };
-                    }
-                }
+        // Try to create an image
+        if let Ok(image) = Image::new(icon, url) {
+            if let Ok(_bytes) = image.fetch().await {
+                return Some(image)
             }
-            "data" => {
-                if let Ok(data) = DataUrl::process(icon.as_str()) {
-                    if let Ok((body, _fragment))  = data.decode_to_vec() {
-                        let image = Image::new(icon.to_string());
-                        image.size.set(Some(body.len()));
-                        image.bytes.replace(Some(body));
-                        return Some(image);
-                    }
-                }
-            }
-            _ => ()
         }
     }
 

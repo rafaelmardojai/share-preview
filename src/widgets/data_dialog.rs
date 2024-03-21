@@ -183,7 +183,7 @@ impl DataDialog {
 
         // Set images into the StringsList
         for image in &data.body_images {
-            self.imp().images_model.append(&image.url);
+            self.imp().images_model.append(&image.url.to_string());
         }
 
         // Create filter for the StringsList
