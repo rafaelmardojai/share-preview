@@ -29,7 +29,7 @@ const IMAGE_FORMATS: [ImageFormat; 4] = [
 const MAX_SIZE: usize = 5e+6 as usize;
 
 /// Enumerates supported platforms
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub enum Social {
     Discourse,
     Facebook,

@@ -328,6 +328,13 @@ impl Card {
 
         // Check what images are minimally viable for the given kinds
         for image in images.iter() {
+            if Social::Twitter == *social && image.was_relative {
+                logger.log(LogLevel::Warning, gettext_f(
+                    "Image \"{url}\" is defined with a relative url.", &[("url", &image.url.as_str())]
+                ));
+                continue
+            }
+
             match image.check(&social, kinds, constraints).await {
                 Ok(kind) => {
                     logger.log(LogLevel::Debug, gettext_f(
