@@ -28,7 +28,7 @@
   <content_rating type="oars-1.1" />
   <releases>
     <release version="0.4.0" date="2023-09-29">
-      <description translatable="no">
+      <description translate="no">
         <ul>
           <li>Allow opening multiple instances of the app</li>
           <li>Support for Discourse previews</li>
@@ -38,7 +38,7 @@
       </description>
     </release>
     <release version="0.3.0" date="2023-03-23">
-      <description translatable="no">
+      <description translate="no">
         <ul>
           <li>New scraping logger feature</li>
           <li>Save last selected social platform</li>
@@ -50,7 +50,7 @@
       </description>
     </release>
     <release version="0.2.0" date="2022-03-27">
-      <description translatable="no">
+      <description translate="no">
         <ul>
           <li>New page data dialog</li>
           <li>Bug fixes</li>
@@ -60,7 +60,7 @@
       </description>
     </release>
     <release version="0.1.2" date="2021-05-25">
-      <description translatable="no">
+      <description translate="no">
         <ul>
           <li>Bug fixes</li>
           <li>Added Turkish translation</li>
@@ -70,12 +70,12 @@
       </description>
     </release>
     <release version="0.1.1" date="2021-05-23">
-      <description translatable="no">
+      <description translate="no">
         <p>Bug fixes and improvements.</p>
       </description>
     </release>
     <release version="0.1.0" date="2021-05-21">
-      <description translatable="no">
+      <description translate="no">
         <p>First public release.</p>
       </description>
     </release>
@@ -97,9 +97,9 @@
     <control>touch</control>
   </recommends>
   <!-- developer_name tag deprecated with Appstream 1.0 -->
-  <developer_name translatable="no">Rafael Mardojai CM</developer_name>
+  <developer_name translate="no">Rafael Mardojai CM</developer_name>
   <developer id="com.mardojai">
-    <name translatable="no">Rafael Mardojai CM</name>
+    <name translate="no">Rafael Mardojai CM</name>
   </developer>
   <update_contact>email@rafaelmardojai.com</update_contact>
   <translation type="gettext">@gettext-package@</translation>
