@@ -26,6 +26,10 @@
   <url type="translate">https://hosted.weblate.org/engage/share-preview/</url>
   <url type="vcs-browser">https://github.com/rafaelmardojai/share-preview/</url>
   <content_rating type="oars-1.1" />
+  <branding>
+    <color type="primary" scheme_preference="light">#c582c7</color>
+    <color type="primary" scheme_preference="dark">#603761</color>
+  </branding>
   <releases>
     <release version="0.4.0" date="2023-09-29">
       <description translate="no">
