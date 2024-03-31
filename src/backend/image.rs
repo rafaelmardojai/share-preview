@@ -129,6 +129,7 @@ impl Image {
     ) -> Result<SocialImageSizeKind, ImageError> {
         let bytes = self.fetch().await?;
 
+        // Calculate image dimensions if not available
         if let (None, None) = (self.width.get(), self.height.get()) {
             let (width, height) = async_std::task::spawn_blocking( move || -> Result<(u32, u32), ImageError> {
                 let image = image::load_from_memory(&bytes)?;
@@ -140,6 +141,7 @@ impl Image {
             self.height.set(Some(height));
         }
 
+        // Check if image meets the file size limits
         if let Some(size) = self.size.get() {
             if size > constraints.image_size {
                 return Err(ImageError::TooHeavy{
@@ -149,25 +151,38 @@ impl Image {
             }
         }
 
+        // Check if image meets the file format limitations
         if let Some(format) = self.format.get() {
             if !constraints.image_formats.contains(&format) {
                 return Err(ImageError::Unsupported(gettext("Format is unsupported")));
             }
         }
 
+        // Check if the image dimensions are allowed by some of the size kinds
         if let (Some(width), Some(height)) = (self.width.get(), self.height.get()) {
 
             let mut min_width: u32 = 0;
             let mut min_height: u32 = 0;
 
+            // Loop image size kinds
             for kind in kinds.iter() {
+
+                // Check if image match minimum dimensions for this kind
                 let img_constraints = &social.image_size(kind);
                 (min_width, min_height) = img_constraints.minimum;
                 if width >= min_width && height >= min_height {
+                    // Mastodon requieres the width of the image to be larger than its height for its extended preview
+                    if let (Social::Mastodon, &SocialImageSizeKind::Large) = (social, kind) {
+                        if height >= width {
+                            continue;
+                        }
+                    }
+                    // Kind matches! return it
                     return Ok(kind.to_owned());
                 }
             }
 
+            // No size kind matched, return too tiny error
             Err(ImageError::TooTiny{
                 actual: format!("{}×{}px", width, height),
                 min: format!("{}×{}px", min_width, min_height)

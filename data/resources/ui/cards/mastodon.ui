@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <object class="GtkBox" id="card">
+    <property name="orientation">vertical</property>
 
     <child>
       <object class="CardImage" id="image">
@@ -10,11 +11,19 @@
     <child>
       <object class="GtkBox" id="textbox">
         <property name="orientation">vertical</property>
+        <property name="valign">center</property>
         <property name="spacing">6</property>
 
         <style>
           <class name="card-padding"/>
         </style>
+
+        <child>
+          <object class="GtkLabel" id="site">
+            <property name="xalign">0</property>
+            <property name="hexpand">true</property>
+          </object>
+        </child>
 
         <child>
           <object class="GtkLabel" id="title">
@@ -23,7 +32,7 @@
             <property name="ellipsize">end</property>
 
             <style>
-              <class name="heading"/>
+              <class name="title-4"/>
             </style>
           </object>
         </child>
@@ -34,16 +43,6 @@
             <property name="hexpand">true</property>
             <property name="ellipsize">end</property>
             <property name="visible">false</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkLabel" id="site">
-            <property name="xalign">0</property>
-            <property name="hexpand">true</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
           </object>
         </child>
       </object>

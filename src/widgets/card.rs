@@ -152,8 +152,16 @@ impl CardBox {
                 }
             },
             Social::Mastodon => {
+                if let CardSize::Medium = card.size {
+                    card_box.set_orientation(gtk::Orientation::Horizontal);
+                }
+
                 if let None = &card.image {
                     image.set_fallback(&card.size);
+                }
+
+                if let Some(_) = &card.description {
+                    description.set_visible(true);
                 }
             },
             Social::Twitter => {

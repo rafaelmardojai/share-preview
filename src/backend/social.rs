@@ -114,7 +114,12 @@ impl Social {
                     }
                 },
                 Self::LinkedIn => (20, 20),
-                Self::Mastodon => (50, 50),
+                Self::Mastodon => {
+                    match kind {
+                        SocialImageSizeKind::Large => (300, 157),
+                        _ => (50, 50)
+                    }
+                },
                 Self::Twitter => {
                     match kind {
                         SocialImageSizeKind::Large => (300, 157),
@@ -131,7 +136,12 @@ impl Social {
                     }
                 },
                 Self::LinkedIn => (600, 315),
-                Self::Mastodon => (100, 100),
+                Self::Mastodon => {
+                    match kind {
+                        SocialImageSizeKind::Large => (300, 157),
+                        _ => (100, 100)
+                    }
+                },
                 Self::Twitter => {
                     match kind {
                         SocialImageSizeKind::Large => (300, 157),

@@ -102,8 +102,15 @@ impl Card {
                 image_sizes.push(SocialImageSizeKind::Large);
             },
             Social::Discourse | Social::Mastodon => {
-                image_sizes.push(SocialImageSizeKind::Small);
-                // Mastodon uses og:site_name
+                // Mastodon also supports a bigger card type conditionally
+                if let Social::Mastodon = social {
+                    image_sizes.push(SocialImageSizeKind::Large);
+                    image_sizes.push(SocialImageSizeKind::Medium);
+                } else {
+                    image_sizes.push(SocialImageSizeKind::Small);
+                }
+
+                // Mastodon and Discourse use og:site_name
                 let look = vec_of_strings!["og:site_name"];
                 if let Some(val) = data.lookup_meta(&look, None::<&dyn Log>) {
                     if !val.is_empty() {
