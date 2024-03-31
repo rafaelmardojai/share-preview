@@ -118,14 +118,6 @@ impl Card {
                             gettext_f("\"{name}\" is empty!", &[("name", "og:site_name")])
                         ));
                     }
-                } else {
-                    logger.log(LogLevel::Warning, format!("{}: {}",
-                        &social,
-                        gettext_f(
-                            "Unable to find \"{name}\". Consider providing a \"{name}\" meta property.",
-                            &[("name", "og:site_name")]
-                        )
-                    ));
                 }
             },
             Social::Twitter => {}
