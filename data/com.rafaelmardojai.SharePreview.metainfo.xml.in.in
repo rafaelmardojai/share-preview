@@ -31,6 +31,17 @@
     <color type="primary" scheme_preference="dark">#603761</color>
   </branding>
   <releases>
+    <release version="0.5.0" date="2024-04-02">
+      <description translate="no">
+        <ul>
+          <li>Support data URLs sceheme in favicons</li>
+          <li>Add action to focus URL entry (Ctrl+L)</li>
+          <li>Meta images with relative urls will fail for Twitter previews</li>
+          <li>Minor UI updates for GNOME 46</li>
+          <li>Mastodon preview updated</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.4.0" date="2023-09-29">
       <description translate="no">
         <ul>
