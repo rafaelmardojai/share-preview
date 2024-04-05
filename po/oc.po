@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-31 14:59-0500\n"
-"PO-Revision-Date: 2023-10-02 18:00+0000\n"
+"PO-Revision-Date: 2024-04-06 11:01+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/oc/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
@@ -47,7 +47,7 @@ msgstr "General"
 #: data/resources/ui/shortcuts.ui:14
 msgctxt "shortcut window"
 msgid "Focus the URL entry"
-msgstr ""
+msgstr "Fòcus sul camp de l’URL"
 
 #: data/resources/ui/shortcuts.ui:20
 msgctxt "shortcut window"
@@ -233,9 +233,8 @@ msgstr ""
 "carta « {name} » amb una icòna."
 
 #: src/backend/card.rs:332
-#, fuzzy
 msgid "Image \"{url}\" is defined with a relative url."
-msgstr "L’imatge « {url} » correspond a las exigéncias."
+msgstr "L’imatge « {url} » es definida amb una url relativa."
 
 #: src/backend/card.rs:340
 msgid "Image \"{url}\" met the requirements."
@@ -266,18 +265,16 @@ msgid "Format is unsupported"
 msgstr "Lo format es pas pres en carga"
 
 #: src/backend/image.rs:258
-#, fuzzy
 msgid "Image Url Error: {info}"
-msgstr "Error de l’imatge : {info}"
+msgstr "Error de l’URL de l’imatge : {info}"
 
 #: src/backend/image.rs:260
-#, fuzzy
 msgid "Image Data Url Error: {info}"
-msgstr "Error de l’imatge : {info}"
+msgstr "Error de l’Url amb las donadas de l’imatge : {info}"
 
 #: src/backend/image.rs:262
 msgid "Image Data Invalid Base64: {info}"
-msgstr ""
+msgstr "Donadas de l’imatge en Base64 invalidas : {info}"
 
 #: src/backend/image.rs:264
 msgid "Network Error: {info}"
