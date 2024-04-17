@@ -8,273 +8,282 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-31 14:59-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-04-17 18:03+0000\n"
+"Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
+"Language-Team: Hindi <https://hosted.weblate.org/projects/share-preview/"
+"share-preview/hi/>\n"
 "Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
-msgstr ""
+msgstr "कार्ड त्रुटि"
 
 #: data/resources/ui/data-dialog.ui:72
 msgid "Metadata"
-msgstr ""
+msgstr "मेटाडेटा"
 
 #: data/resources/ui/data-dialog.ui:137 data/resources/ui/data-dialog.ui:195
 msgid "Nothing to Show"
-msgstr ""
+msgstr "दिखाने के लिए कुछ नहीं"
 
 #: data/resources/ui/data-dialog.ui:159
 msgid "Body Images"
-msgstr ""
+msgstr "शारीरिक छवियाँ"
 
 #: data/resources/ui/log-dialog.ui:6
 msgid "Scraping Log"
-msgstr ""
+msgstr "स्क्रैपिंग लॉग"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "सामान्य"
 
 #: data/resources/ui/shortcuts.ui:14
 msgctxt "shortcut window"
 msgid "Focus the URL entry"
-msgstr ""
+msgstr "URL प्रविष्टि पर ध्यान केंद्रित करें"
 
 #: data/resources/ui/shortcuts.ui:20
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr ""
+msgstr "शॉर्टकट दिखाएं"
 
 #: data/resources/ui/shortcuts.ui:26
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "छोड़ें"
 
 #: data/resources/ui/window.ui:6
 msgid "_New Window"
-msgstr ""
+msgstr "नई विंडो (_N)"
 
 #: data/resources/ui/window.ui:12
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "कीबोर्ड शॉर्टकट (_K)"
 
 #: data/resources/ui/window.ui:16
 msgid "_About Share Preview"
-msgstr ""
+msgstr "Share Preview के बारे में (_A)"
 
 #: data/resources/ui/window.ui:26
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
 #: src/application.rs:107 src/main.rs:24
 msgid "Share Preview"
-msgstr ""
+msgstr "Share Preview"
 
 #: data/resources/ui/window.ui:38
 msgid "Toggle Color Scheme"
-msgstr ""
+msgstr "रंग योजना टॉगल करें"
 
 #: data/resources/ui/window.ui:46
 msgid "Main Menu"
-msgstr ""
+msgstr "मुख्य मेनू"
 
 #: data/resources/ui/window.ui:84
 msgid "Go"
-msgstr ""
+msgstr "जायें"
 
 #: data/resources/ui/window.ui:103
 msgid "Set a URL to preview"
-msgstr ""
+msgstr "पूर्वावलोकन करने के लिए एक URL निर्धारित करें"
 
 #: data/resources/ui/window.ui:180
 msgid "View Metadata"
-msgstr ""
+msgstr "मेटाडेटा देखें"
 
 #: data/resources/ui/window.ui:193
 msgid "Show Logs"
-msgstr ""
+msgstr "लॉग दिखाएं"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:8
 msgid "Test social media cards locally"
-msgstr ""
+msgstr "सोशल मीडिया कार्ड का स्थानीय स्तर पर परीक्षण करें"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
 msgid "Gnome;GTK;link;url;unfurl;"
-msgstr ""
+msgstr "Gnome;GTK;लिंक;url;फैलाना;"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
 msgstr ""
+"सोशल मीडिया शेयर के लिए वेबसाइट मेटाडेटा टैग का पूर्वावलोकन और डीबग करें।"
 
 #: src/window.rs:232
 msgid "Network Error"
-msgstr ""
+msgstr "नेटवर्क त्रुटि"
 
 #: src/window.rs:233 src/window.rs:240
 msgid "Couldn’t connect to the given URL."
-msgstr ""
+msgstr "दिए गए URL से कनेक्ट नहीं हो सका।"
 
 #: src/window.rs:236 src/backend/image.rs:282
 msgid "Unexpected Error"
-msgstr ""
+msgstr "अप्रत्याशित त्रुटि"
 
 #: src/window.rs:256
 msgid "Invalid URL"
-msgstr ""
+msgstr "अमान्य URL"
 
 #: src/widgets/card.rs:76
 msgid "Couldn’t find enough data to generate a card for this social media."
-msgstr ""
+msgstr "इस सोशल मीडिया के लिए कार्ड बनाने के लिए पर्याप्त डेटा नहीं मिल सका।"
 
 #: src/widgets/card.rs:79
 msgid "Twitter: No card found."
-msgstr ""
+msgstr "Twitter: कोई कार्ड नहीं मिला।"
 
 #: src/widgets/log_dialog.rs:91
 msgid "DEBUG"
-msgstr ""
+msgstr "डीबग"
 
 #: src/widgets/log_dialog.rs:97
 msgid "INFO"
-msgstr ""
+msgstr "सूचना"
 
 #: src/widgets/log_dialog.rs:101
 msgid "WARNING"
-msgstr ""
+msgstr "चेतावनी"
 
 #: src/widgets/log_dialog.rs:105
 msgid "ERROR"
-msgstr ""
+msgstr "त्रुटि"
 
 #: src/backend/card.rs:120
 msgid "Found \"{name}\"."
-msgstr ""
+msgstr "\"{name}\" मिला।"
 
 #: src/backend/card.rs:125 src/backend/data.rs:111
 msgid "\"{name}\" is empty!"
-msgstr ""
+msgstr "\"{name}\" खाली है!"
 
 #: src/backend/card.rs:140
 msgid "Unable to find a metadata for title!. Falling back to document title."
 msgstr ""
+"शीर्षक के लिए मेटाडेटा ढूंढने में असमर्थ! दस्तावेज़ शीर्षक पर वापस आते हैं।"
 
 #: src/backend/card.rs:150
 msgid "Unable to find the document title!. Falling back to site url."
-msgstr ""
+msgstr "दस्तावेज़ का शीर्षक ढूंढने में असमर्थ! साइट URL पर वापस आते हैं।"
 
 #: src/backend/card.rs:168
 msgid "The description should be at least \"{count}\" characters long."
-msgstr ""
+msgstr "विवरण कम से कम \"{count}\" अक्षर लंबा होना चाहिए।"
 
 #: src/backend/card.rs:177
 msgid "Add a \"{tag}\" tag to the page to have control over the content."
-msgstr ""
+msgstr "सामग्री पर नियंत्रण पाने के लिए पृष्ठ पर एक \"{tag}\" टैग जोड़ें।"
 
 #: src/backend/card.rs:197
 msgid "Found card of type \"{name}\"."
-msgstr ""
+msgstr "\"{name}\" प्रकार का कार्ड मिला।"
 
 #: src/backend/card.rs:203
 msgid ""
 "Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
 msgstr ""
+"\"{name}\" ढूंढने में असमर्थ। \"{name}\" मेटा प्रॉपर्टी प्रदान करने पर विचार "
+"करें।"
 
 #: src/backend/card.rs:214
 msgid "Unable to find any valid card type."
-msgstr ""
+msgstr "कोई वैध कार्ड प्रकार ढूंढने में असमर्थ।"
 
 #: src/backend/card.rs:225
 msgid "Unable to find any valid title or description."
-msgstr ""
+msgstr "कोई वैध शीर्षक या विवरण ढूंढने में असमर्थ।"
 
 #: src/backend/card.rs:254
 msgid "Unable to find a valid image in the metadata."
-msgstr ""
+msgstr "मेटाडेटा में मान्य छवि ढूंढने में असमर्थ।"
 
 #: src/backend/card.rs:260
 msgid "Unable to find a valid image in the metadata or document body."
-msgstr ""
+msgstr "मेटाडेटा या दस्तावेज़ के मुख्य भाग में कोई मान्य छवि ढूंढने में असमर्थ।"
 
 #: src/backend/card.rs:266
 msgid "Unable to find a valid image in the metadata, will render an icon."
-msgstr ""
+msgstr "मेटाडेटा में मान्य छवि ढूंढने में असमर्थ, एक आइकन प्रस्तुत करेगा।"
 
 #: src/backend/card.rs:273
 msgid ""
 "Unable to find a valid image in the metadata, will render a \"{name}\" card "
 "with icon."
 msgstr ""
+"मेटाडेटा में एक वैध छवि ढूंढने में असमर्थ, आइकन के साथ एक \"{name}\" कार्ड "
+"प्रस्तुत करेगा।"
 
 #: src/backend/card.rs:332
 msgid "Image \"{url}\" is defined with a relative url."
-msgstr ""
+msgstr "छवि \"{url}\" को एक सापेक्ष URL से परिभाषित किया गया है।"
 
 #: src/backend/card.rs:340
 msgid "Image \"{url}\" met the requirements."
-msgstr ""
+msgstr "छवि \"{url}\" आवश्यकताओं को पूरा करती है।"
 
 #: src/backend/card.rs:366 src/backend/card.rs:375
 msgid "Image \"{url}\" did not meet the requirements: {info}."
-msgstr ""
+msgstr "छवि \"{url}\" आवश्यकताओं को पूरा नहीं करती: {info}।"
 
 #: src/backend/card.rs:440
 msgid "Image \"{url}\" processed successfully."
-msgstr ""
+msgstr "छवि \"{url}\" सफलतापूर्वक संसाधित हुई।"
 
 #: src/backend/card.rs:446
 msgid "Failed to thumbnail \"{url}\": {info}."
-msgstr ""
+msgstr "\"{url}\" थंबनेल बनाने में विफल: {info}।"
 
 #: src/backend/data.rs:103
 msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
-msgstr ""
+msgstr "\"{name}\" के लिए \"{value}\" मान के साथ एक वैध घटना मिली।"
 
 #: src/backend/data.rs:121
 msgid "No occurrences found for \"{name}\"!"
-msgstr ""
+msgstr "\"{name}\" के लिए कोई घटना नहीं मिली!"
 
 #: src/backend/image.rs:157
 msgid "Format is unsupported"
-msgstr ""
+msgstr "प्रारूप असमर्थित है"
 
 #: src/backend/image.rs:258
 msgid "Image Url Error: {info}"
-msgstr ""
+msgstr "छवि URL त्रुटि: {info}"
 
 #: src/backend/image.rs:260
 msgid "Image Data Url Error: {info}"
-msgstr ""
+msgstr "छवि डेटा URL त्रुटि: {info}"
 
 #: src/backend/image.rs:262
 msgid "Image Data Invalid Base64: {info}"
-msgstr ""
+msgstr "छवि डेटा अमान्य Base64: {info}"
 
 #: src/backend/image.rs:264
 msgid "Network Error: {info}"
-msgstr ""
+msgstr "नेटवर्क त्रुटि: {info}"
 
 #: src/backend/image.rs:266
 msgid "Request Error: {info}"
-msgstr ""
+msgstr "अनुरोध त्रुटि: {info}"
 
 #: src/backend/image.rs:268
 msgid "Image Error: {info}"
-msgstr ""
+msgstr "छवि त्रुटि: {info}"
 
 #: src/backend/image.rs:271
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
-msgstr ""
+msgstr "छवि बहुत छोटी है ({actual}), न्यूनतम आयाम {min} हैं"
 
 #: src/backend/image.rs:276
 msgid "Image is too heavy ({actual}), max size is {max}"
-msgstr ""
+msgstr "छवि बहुत भारी है ({actual}), अधिकतम आकार {max} है"
 
 #: src/backend/image.rs:280
 msgid "Image is unsupported: {info}"
-msgstr ""
+msgstr "छवि असमर्थित है: {info}"
