@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-31 14:59-0500\n"
-"PO-Revision-Date: 2024-04-17 18:03+0000\n"
+"PO-Revision-Date: 2024-05-07 10:07+0000\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/hi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.5.4-dev\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
@@ -33,7 +33,7 @@ msgstr "दिखाने के लिए कुछ नहीं"
 
 #: data/resources/ui/data-dialog.ui:159
 msgid "Body Images"
-msgstr "शारीरिक छवियाँ"
+msgstr "शारीरिक छवियां"
 
 #: data/resources/ui/log-dialog.ui:6
 msgid "Scraping Log"
