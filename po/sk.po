@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-31 14:59-0500\n"
-"PO-Revision-Date: 2023-10-13 10:01+0000\n"
-"Last-Translator: Milan Šalka <salka.milan@googlemail.com>\n"
+"PO-Revision-Date: 2024-06-10 16:09+0000\n"
+"Last-Translator: trailblazercombi <domuhr263@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/sk/>\n"
 "Language: sk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
@@ -38,7 +38,7 @@ msgstr "Obrázky"
 
 #: data/resources/ui/log-dialog.ui:6
 msgid "Scraping Log"
-msgstr "Scraping Log"
+msgstr "Denník"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -48,7 +48,7 @@ msgstr "Všeobecné"
 #: data/resources/ui/shortcuts.ui:14
 msgctxt "shortcut window"
 msgid "Focus the URL entry"
-msgstr ""
+msgstr "Skočiť na pole adresy stránky"
 
 #: data/resources/ui/shortcuts.ui:20
 msgctxt "shortcut window"
@@ -93,20 +93,20 @@ msgstr "Ísť"
 
 #: data/resources/ui/window.ui:103
 msgid "Set a URL to preview"
-msgstr "Nastaviť URL náhľad"
+msgstr "Nastaviť náhľad pre adresu stránky"
 
 #: data/resources/ui/window.ui:180
 msgid "View Metadata"
-msgstr "Zobraziť Metadata"
+msgstr "Zobraziť metaúdaje"
 
 #: data/resources/ui/window.ui:193
 msgid "Show Logs"
-msgstr "Zobraziť Logs"
+msgstr "Zobraziť denník"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:8
 msgid "Test social media cards locally"
-msgstr "Zobraz karty pre sociálne siete"
+msgstr "Zobraziť karty pre sociálne siete"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
 msgid "Gnome;GTK;link;url;unfurl;"
@@ -165,24 +165,26 @@ msgstr "Nájdené \"{name}\"."
 
 #: src/backend/card.rs:125 src/backend/data.rs:111
 msgid "\"{name}\" is empty!"
-msgstr "\"{name}\" je prázdny!"
+msgstr "\"{name}\" je prázdne!"
 
 #: src/backend/card.rs:140
 msgid "Unable to find a metadata for title!. Falling back to document title."
-msgstr "Nemožno nájsť metadáta pre titul!. Zasadiť späť na názov dokumentu."
+msgstr "Metaúdaje neboli nájdené! Namiesto toho bude použitý názov dokumentu."
 
 #: src/backend/card.rs:150
 msgid "Unable to find the document title!. Falling back to site url."
-msgstr "Nemožno nájsť názov dokumentu! Spadnúť späť na stránku url."
+msgstr ""
+"Názov dokumentu nebol nájdený! Namiesto toho bude použitá adresa webovej "
+"stránky."
 
 #: src/backend/card.rs:168
 msgid "The description should be at least \"{count}\" characters long."
-msgstr "Popis by mal byť aspoň \"{count}\" znaky dlho."
+msgstr "Popis by mal obsahovať minimálne \"{count}\" znakov."
 
 #: src/backend/card.rs:177
 msgid "Add a \"{tag}\" tag to the page to have control over the content."
 msgstr ""
-"Pridajte \"{tag}\" štítok na stránku, aby ste mali kontrolu nad obsahom."
+"Pridajte štítok \"{tag}\" na stránku, aby ste mali kontrolu nad obsahom."
 
 #: src/backend/card.rs:197
 msgid "Found card of type \"{name}\"."
@@ -191,40 +193,40 @@ msgstr "Nájdené karty typu \"{name}\"."
 #: src/backend/card.rs:203
 msgid ""
 "Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
-msgstr "Nemožno nájsť \"{name}\". Zvážte poskytovanie \"{name}\" meta majetku."
+msgstr "Nemožno nájsť \"{name}\". Skúste vložiť metaúdaj \"{name}\"."
 
 #: src/backend/card.rs:214
 msgid "Unable to find any valid card type."
-msgstr "Nemožno nájsť žiadny platný typ karty."
+msgstr "Platný typ karty nebol nájdený."
 
 #: src/backend/card.rs:225
 msgid "Unable to find any valid title or description."
-msgstr "Nemožno nájsť žiadny platný titul alebo popis."
+msgstr "Platný názov ani popis nebol nájdený."
 
 #: src/backend/card.rs:254
 msgid "Unable to find a valid image in the metadata."
-msgstr "Nemožno nájsť platný obraz v metadáte."
+msgstr "Vhodný obrázok sa nenachádza v metaúdajoch."
 
 #: src/backend/card.rs:260
 msgid "Unable to find a valid image in the metadata or document body."
-msgstr "Nemožno nájsť platný obraz v metadáta alebo dokument telo."
+msgstr "Vhodný obrázok sa nenachádza v metaúdajoch, ani v tele dokumentu."
 
 #: src/backend/card.rs:266
 msgid "Unable to find a valid image in the metadata, will render an icon."
-msgstr "Nemožno nájsť platný obraz v metadáte, zobrazí ikonu."
+msgstr ""
+"Vhodný obrázok sa nenachádza v metaúdajoch. Namiesto toho bude použitá ikona."
 
 #: src/backend/card.rs:273
 msgid ""
 "Unable to find a valid image in the metadata, will render a \"{name}\" card "
 "with icon."
 msgstr ""
-"Nemožno nájsť platný obraz v metadáte, bude zobrazovať \"{name}\" kartu s "
-"ikonou."
+"Vhodný obrázok sa nenachádza v metaúdajoch. Namiesto toho bude použitá karta "
+"\"{name}\" s ikonou."
 
 #: src/backend/card.rs:332
-#, fuzzy
 msgid "Image \"{url}\" is defined with a relative url."
-msgstr "Obrázok \"{url}\" spĺňa požiadavky."
+msgstr "Pre obrázok \"{url}\" existuje odkaz na webstránku."
 
 #: src/backend/card.rs:340
 msgid "Image \"{url}\" met the requirements."
@@ -232,41 +234,39 @@ msgstr "Obrázok \"{url}\" spĺňa požiadavky."
 
 #: src/backend/card.rs:366 src/backend/card.rs:375
 msgid "Image \"{url}\" did not meet the requirements: {info}."
-msgstr "Obrázok \"{url}\" nespĺňa požiadavky: {info}."
+msgstr "Obrázok \"{url}\" nespĺňa požiadavky. Dôvod: {info}."
 
 #: src/backend/card.rs:440
 msgid "Image \"{url}\" processed successfully."
-msgstr "Obrázok \"{url}\" úspešne spracované."
+msgstr "Obrázok \"{url}\" spracovaný."
 
 #: src/backend/card.rs:446
 msgid "Failed to thumbnail \"{url}\": {info}."
-msgstr "Obdarené miniatúry \"{url}\": {info}."
+msgstr "Nebolo možné vytvoriť miniatúru pre \"{url}\". Dôvod: {info}."
 
 #: src/backend/data.rs:103
 msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
-msgstr "Našiel platný výskyt pre \"{name}\" s hodnotou \"{hodnota}\"."
+msgstr "Nájdené \"{name}\" s hodnotou \"{hodnota}\"."
 
 #: src/backend/data.rs:121
 msgid "No occurrences found for \"{name}\"!"
-msgstr "Neboli nájdené žiadne udalosti pre \"{name}\"!"
+msgstr "Výraz \"{name}\" nebol nájdený!"
 
 #: src/backend/image.rs:157
 msgid "Format is unsupported"
-msgstr "Formát je nepodporovaný"
+msgstr "Nepodporovaný formát"
 
 #: src/backend/image.rs:258
-#, fuzzy
 msgid "Image Url Error: {info}"
-msgstr "Chyba obrázka: {info}"
+msgstr "Chyba odkazu na obrázok. Dôvod: {info}"
 
 #: src/backend/image.rs:260
-#, fuzzy
 msgid "Image Data Url Error: {info}"
-msgstr "Chyba obrázka: {info}"
+msgstr "Chyba obrázka. Dôvod: {info}"
 
 #: src/backend/image.rs:262
 msgid "Image Data Invalid Base64: {info}"
-msgstr ""
+msgstr "Neplatné údaje o obrázku. Dôvod: Base64, {info}"
 
 #: src/backend/image.rs:264
 msgid "Network Error: {info}"
@@ -274,7 +274,7 @@ msgstr "Chyba siete: {info}"
 
 #: src/backend/image.rs:266
 msgid "Request Error: {info}"
-msgstr "Žiadosť o chybu: {info}"
+msgstr "Chyba žiadosti: {info}"
 
 #: src/backend/image.rs:268
 msgid "Image Error: {info}"
@@ -282,15 +282,15 @@ msgstr "Chyba obrázka: {info}"
 
 #: src/backend/image.rs:271
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
-msgstr "Obrázok je príliš malý ({akt}), minimálne rozmery sú {min}"
+msgstr "Obrázok je príliš malý ({actual}), minimálne rozmery sú {min}"
 
 #: src/backend/image.rs:276
 msgid "Image is too heavy ({actual}), max size is {max}"
-msgstr "Obrázok je príliš ťažké ({akt}), max veľkosť je {max}"
+msgstr "Obrázok je príliš veľký ({actual}), maximálna veľkosť je {max}"
 
 #: src/backend/image.rs:280
 msgid "Image is unsupported: {info}"
-msgstr "Obrázok je nepodporovaný: {info}"
+msgstr "Obrázok nie je podporovaný. Dôvod: {info}"
 
 #~ msgid "Rafael Mardojai CM"
 #~ msgstr "Rafael Mardojai CM"
