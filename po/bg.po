@@ -1,0 +1,296 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the share-preview package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# twlvnn kraftwerk <kraft_werk@tutanota.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: share-preview\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-31 14:59-0500\n"
+"PO-Revision-Date: 2024-06-21 23:50+0200\n"
+"Last-Translator: twlvnn kraftwerk <kraft_werk@tutanota.com>\n"
+"Language-Team: Bulgarian <dict-notifications@fsa-bg.org>\n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 46.1\n"
+
+#: data/resources/ui/card.ui:33
+msgid "Card Error"
+msgstr "Грешка в картата"
+
+#: data/resources/ui/data-dialog.ui:72
+msgid "Metadata"
+msgstr "Метаданни"
+
+#: data/resources/ui/data-dialog.ui:137 data/resources/ui/data-dialog.ui:195
+msgid "Nothing to Show"
+msgstr "Нищо за показване"
+
+#: data/resources/ui/data-dialog.ui:159
+msgid "Body Images"
+msgstr "Изображения на тялото"
+
+#: data/resources/ui/log-dialog.ui:6
+msgid "Scraping Log"
+msgstr "Обхождане на журнала"
+
+#: data/resources/ui/shortcuts.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Общи"
+
+#: data/resources/ui/shortcuts.ui:14
+msgctxt "shortcut window"
+msgid "Focus the URL entry"
+msgstr "Фокусиране на записа на адреса"
+
+#: data/resources/ui/shortcuts.ui:20
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Показване на клавишните комбинации"
+
+#: data/resources/ui/shortcuts.ui:26
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Спиране на програмата"
+
+#: data/resources/ui/window.ui:6
+msgid "_New Window"
+msgstr "_Нов прозорец"
+
+#: data/resources/ui/window.ui:12
+msgid "_Keyboard Shortcuts"
+msgstr "_Клавишни комбинации"
+
+#: data/resources/ui/window.ui:16
+msgid "_About Share Preview"
+msgstr "_Относно „Споделяне на преглед“"
+
+#: data/resources/ui/window.ui:26
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
+#: src/application.rs:107 src/main.rs:24
+msgid "Share Preview"
+msgstr "Споделяне на преглед"
+
+#: data/resources/ui/window.ui:38
+msgid "Toggle Color Scheme"
+msgstr "Превключване на цветовата схема"
+
+#: data/resources/ui/window.ui:46
+msgid "Main Menu"
+msgstr "Основно меню"
+
+#: data/resources/ui/window.ui:84
+msgid "Go"
+msgstr "Начало"
+
+#: data/resources/ui/window.ui:103
+msgid "Set a URL to preview"
+msgstr "Задайте адрес за преглеждане"
+
+#: data/resources/ui/window.ui:180
+msgid "View Metadata"
+msgstr "Показване на метаданните"
+
+#: data/resources/ui/window.ui:193
+msgid "Show Logs"
+msgstr "Показване на журнала"
+
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:8
+msgid "Test social media cards locally"
+msgstr "Проверете локално карти за социални мрежи"
+
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
+msgid "Gnome;GTK;link;url;unfurl;"
+msgstr "адрес;връзка;"
+
+#: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
+msgid "Preview and debug websites metadata tags for social media share."
+msgstr ""
+"Предварително прегледайте и отстранете грешки в етикетите за метаданни за "
+"споделяне в социалните мрежи"
+
+#: src/window.rs:232
+msgid "Network Error"
+msgstr "Мрежова грешка"
+
+#: src/window.rs:233 src/window.rs:240
+msgid "Couldn’t connect to the given URL."
+msgstr "Не може да се осъществи връзка с дадения адрес."
+
+#: src/window.rs:236 src/backend/image.rs:282
+msgid "Unexpected Error"
+msgstr "Неочаквана грешка"
+
+#: src/window.rs:256
+msgid "Invalid URL"
+msgstr "Неправилен адрес"
+
+#: src/widgets/card.rs:76
+msgid "Couldn’t find enough data to generate a card for this social media."
+msgstr ""
+"Не са намерени достатъчно данни, за да се генерира карта за тази социална "
+"мрежа."
+
+#: src/widgets/card.rs:79
+msgid "Twitter: No card found."
+msgstr "Twitter: Няма намерена карта."
+
+#: src/widgets/log_dialog.rs:91
+msgid "DEBUG"
+msgstr "Отстраняване на грешки"
+
+#: src/widgets/log_dialog.rs:97
+msgid "INFO"
+msgstr "Информация"
+
+#: src/widgets/log_dialog.rs:101
+msgid "WARNING"
+msgstr "Предупреждение"
+
+#: src/widgets/log_dialog.rs:105
+msgid "ERROR"
+msgstr "Грешка"
+
+#: src/backend/card.rs:120
+msgid "Found \"{name}\"."
+msgstr "Намерено е „{name}“."
+
+#: src/backend/card.rs:125 src/backend/data.rs:111
+msgid "\"{name}\" is empty!"
+msgstr "„{name}“ е празно!"
+
+#: src/backend/card.rs:140
+msgid "Unable to find a metadata for title!. Falling back to document title."
+msgstr ""
+"Метаданни за заглавието на документа не са намерени! Връщане към заглавието "
+"на документа."
+
+#: src/backend/card.rs:150
+msgid "Unable to find the document title!. Falling back to site url."
+msgstr ""
+"Заглавието на документа не е намерен! Връщане към адреса на страницата."
+
+#: src/backend/card.rs:168
+msgid "The description should be at least \"{count}\" characters long."
+msgstr "Дължината на описанието трябва да бъде най-малко „{count}“ знака."
+
+#: src/backend/card.rs:177
+msgid "Add a \"{tag}\" tag to the page to have control over the content."
+msgstr ""
+"Добавете етикет „{tag}“ към страницата, за да имате контрол върху "
+"съдържанието."
+
+#: src/backend/card.rs:197
+msgid "Found card of type \"{name}\"."
+msgstr "Намерена е карта от тип „{name}“."
+
+#: src/backend/card.rs:203
+msgid ""
+"Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
+msgstr "„{name}“ не е намерено. Предоставете „{name}“ мета свойство."
+
+#: src/backend/card.rs:214
+msgid "Unable to find any valid card type."
+msgstr "Правилен тип карта не е намерена."
+
+#: src/backend/card.rs:225
+msgid "Unable to find any valid title or description."
+msgstr "Правилно заглавие или описание не е намерено."
+
+#: src/backend/card.rs:254
+msgid "Unable to find a valid image in the metadata."
+msgstr "Правилно изображение не е намерено в метаданните."
+
+#: src/backend/card.rs:260
+msgid "Unable to find a valid image in the metadata or document body."
+msgstr ""
+"Правилно изображение не е намерено в метаданните или в тялото на документа."
+
+#: src/backend/card.rs:266
+msgid "Unable to find a valid image in the metadata, will render an icon."
+msgstr ""
+"Правилно изображение не е намерено в метаданните, ще се генерира иконка."
+
+#: src/backend/card.rs:273
+msgid ""
+"Unable to find a valid image in the metadata, will render a \"{name}\" card "
+"with icon."
+msgstr ""
+"Правилно изображение не е намерено в метаданните, ще се генерира карта "
+"„{име}“ с иконка."
+
+#: src/backend/card.rs:332
+msgid "Image \"{url}\" is defined with a relative url."
+msgstr "Изображението „{url}“ е дефинирано с относителен адрес."
+
+#: src/backend/card.rs:340
+msgid "Image \"{url}\" met the requirements."
+msgstr "Изображението „{url}“ отговаря на изискванията."
+
+#: src/backend/card.rs:366 src/backend/card.rs:375
+msgid "Image \"{url}\" did not meet the requirements: {info}."
+msgstr "Изображението „{url}“ не отговаря на изискванията: {info}."
+
+#: src/backend/card.rs:440
+msgid "Image \"{url}\" processed successfully."
+msgstr "Изображението „{url}“ е обработено успещно."
+
+#: src/backend/card.rs:446
+msgid "Failed to thumbnail \"{url}\": {info}."
+msgstr "Грешка в предварителен преглед „{url}“: {info}."
+
+#: src/backend/data.rs:103
+msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
+msgstr "Намерено е правилно съвпадения за „{name}“ със стойност „{value}“!"
+
+#: src/backend/data.rs:121
+msgid "No occurrences found for \"{name}\"!"
+msgstr "Няма съвпадения за „{name}“!"
+
+#: src/backend/image.rs:157
+msgid "Format is unsupported"
+msgstr "Форматът не се поддържа"
+
+#: src/backend/image.rs:258
+msgid "Image Url Error: {info}"
+msgstr "Грешка в адреса на изображението: {info}"
+
+#: src/backend/image.rs:260
+msgid "Image Data Url Error: {info}"
+msgstr "Грешка в данните на адреса на изображението: {info}"
+
+#: src/backend/image.rs:262
+msgid "Image Data Invalid Base64: {info}"
+msgstr "Неправилни Base64 данни в изображението: {info}"
+
+#: src/backend/image.rs:264
+msgid "Network Error: {info}"
+msgstr "Мрежова грешка: {info}"
+
+#: src/backend/image.rs:266
+msgid "Request Error: {info}"
+msgstr "Грешка в заявката: {info}"
+
+#: src/backend/image.rs:268
+msgid "Image Error: {info}"
+msgstr "Грешка в изображението: {info}"
+
+#: src/backend/image.rs:271
+msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
+msgstr "Изображението е твърде малко ({actual}), минималните размери са {max}"
+
+#: src/backend/image.rs:276
+msgid "Image is too heavy ({actual}), max size is {max}"
+msgstr "Изображението е твърде голямо ({actual}), максималният размер е {max}"
+
+#: src/backend/image.rs:280
+msgid "Image is unsupported: {info}"
+msgstr "Изображението не се поддържа: {info}"
