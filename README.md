@@ -13,7 +13,7 @@
 <p align="center"><strong>Test social media cards locally</strong></p>
 
 <p align="center">
-  <a href="https://flathub.org/apps/details/com.rafaelmardojai.SharePreview"><img width="200" alt="Download on Flathub" src="https://flathub.org/assets/badges/flathub-badge-en.png"/></a>
+  <a href="https://flathub.org/apps/details/com.rafaelmardojai.SharePreview"><img width="240" alt="Download on Flathub" src="https://flathub.org/api/badge?svg&locale=en"/></a>
 </p>
 
 <p align="center">
