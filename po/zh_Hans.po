@@ -8,273 +8,276 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-31 14:59-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-08-31 09:34+0000\n"
+"Last-Translator: owocc <owocc@qq.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
+"projects/share-preview/share-preview/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
-msgstr ""
+msgstr "卡片错误"
 
 #: data/resources/ui/data-dialog.ui:72
 msgid "Metadata"
-msgstr ""
+msgstr "元数据"
 
 #: data/resources/ui/data-dialog.ui:137 data/resources/ui/data-dialog.ui:195
 msgid "Nothing to Show"
-msgstr ""
+msgstr "暂无内容显示"
 
 #: data/resources/ui/data-dialog.ui:159
 msgid "Body Images"
-msgstr ""
+msgstr "页面图片"
 
 #: data/resources/ui/log-dialog.ui:6
 msgid "Scraping Log"
-msgstr ""
+msgstr "抓取日志"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "常规"
 
 #: data/resources/ui/shortcuts.ui:14
 msgctxt "shortcut window"
 msgid "Focus the URL entry"
-msgstr ""
+msgstr "聚焦到网页链接输入"
 
 #: data/resources/ui/shortcuts.ui:20
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr ""
+msgstr "显示快捷键"
 
 #: data/resources/ui/shortcuts.ui:26
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "退出"
 
 #: data/resources/ui/window.ui:6
 msgid "_New Window"
-msgstr ""
+msgstr "新建窗口"
 
 #: data/resources/ui/window.ui:12
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "键盘快捷键"
 
 #: data/resources/ui/window.ui:16
 msgid "_About Share Preview"
-msgstr ""
+msgstr "关于分享预览"
 
 #: data/resources/ui/window.ui:26
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
 #: src/application.rs:107 src/main.rs:24
 msgid "Share Preview"
-msgstr ""
+msgstr "分享预览"
 
 #: data/resources/ui/window.ui:38
 msgid "Toggle Color Scheme"
-msgstr ""
+msgstr "切换色彩模式"
 
 #: data/resources/ui/window.ui:46
 msgid "Main Menu"
-msgstr ""
+msgstr "主菜单"
 
 #: data/resources/ui/window.ui:84
 msgid "Go"
-msgstr ""
+msgstr "预览"
 
 #: data/resources/ui/window.ui:103
 msgid "Set a URL to preview"
-msgstr ""
+msgstr "输入网址进行预览"
 
 #: data/resources/ui/window.ui:180
 msgid "View Metadata"
-msgstr ""
+msgstr "查看元数据"
 
 #: data/resources/ui/window.ui:193
 msgid "Show Logs"
-msgstr ""
+msgstr "查看日志"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:8
 msgid "Test social media cards locally"
-msgstr ""
+msgstr "本地测试社交媒体卡片预览"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
 msgid "Gnome;GTK;link;url;unfurl;"
-msgstr ""
+msgstr "Gnome;GTK;link;url;unfurl;"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
-msgstr ""
+msgstr "预览和调试网页元信息用于社交媒体卡片。"
 
 #: src/window.rs:232
 msgid "Network Error"
-msgstr ""
+msgstr "网络错误"
 
 #: src/window.rs:233 src/window.rs:240
 msgid "Couldn’t connect to the given URL."
-msgstr ""
+msgstr "无法连接到指定网址。"
 
 #: src/window.rs:236 src/backend/image.rs:282
 msgid "Unexpected Error"
-msgstr ""
+msgstr "意外错误"
 
 #: src/window.rs:256
 msgid "Invalid URL"
-msgstr ""
+msgstr "无效的网址"
 
 #: src/widgets/card.rs:76
 msgid "Couldn’t find enough data to generate a card for this social media."
-msgstr ""
+msgstr "找不到足够的数据来为这个社交媒体生成卡片。"
 
 #: src/widgets/card.rs:79
 msgid "Twitter: No card found."
-msgstr ""
+msgstr "Twitter：未找到卡片。"
 
 #: src/widgets/log_dialog.rs:91
 msgid "DEBUG"
-msgstr ""
+msgstr "调试"
 
 #: src/widgets/log_dialog.rs:97
 msgid "INFO"
-msgstr ""
+msgstr "信息"
 
 #: src/widgets/log_dialog.rs:101
 msgid "WARNING"
-msgstr ""
+msgstr "警告"
 
 #: src/widgets/log_dialog.rs:105
 msgid "ERROR"
-msgstr ""
+msgstr "错误"
 
 #: src/backend/card.rs:120
 msgid "Found \"{name}\"."
-msgstr ""
+msgstr "找到了 \"{name}\"。"
 
 #: src/backend/card.rs:125 src/backend/data.rs:111
 msgid "\"{name}\" is empty!"
-msgstr ""
+msgstr "\"{name}\" 为空！"
 
 #: src/backend/card.rs:140
 msgid "Unable to find a metadata for title!. Falling back to document title."
-msgstr ""
+msgstr "无法找到标题的元数据！将回退到文档标题。"
 
 #: src/backend/card.rs:150
 msgid "Unable to find the document title!. Falling back to site url."
-msgstr ""
+msgstr "无法找到文档标题！将回退到网站URL。"
 
 #: src/backend/card.rs:168
 msgid "The description should be at least \"{count}\" characters long."
-msgstr ""
+msgstr "描述至少应该有 \"{count}\" 个字符长度。"
 
 #: src/backend/card.rs:177
 msgid "Add a \"{tag}\" tag to the page to have control over the content."
-msgstr ""
+msgstr "在页面中添加一个 \"{tag}\" 标签以控制内容。"
 
 #: src/backend/card.rs:197
 msgid "Found card of type \"{name}\"."
-msgstr ""
+msgstr "找到了类型为 \"{name}\" 的卡片。"
 
 #: src/backend/card.rs:203
 msgid ""
 "Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
-msgstr ""
+msgstr "未找到 \"{name}\"。请考虑添加 \"{name}\" 的元数据属性。"
 
 #: src/backend/card.rs:214
 msgid "Unable to find any valid card type."
-msgstr ""
+msgstr "未能找到任何有效的卡片类型。"
 
 #: src/backend/card.rs:225
 msgid "Unable to find any valid title or description."
-msgstr ""
+msgstr "未能找到有效的标题或描述。"
 
 #: src/backend/card.rs:254
 msgid "Unable to find a valid image in the metadata."
-msgstr ""
+msgstr "在元数据中未能找到有效的图片。"
 
 #: src/backend/card.rs:260
 msgid "Unable to find a valid image in the metadata or document body."
-msgstr ""
+msgstr "在元数据或页面中未能找到有效的图片。"
 
 #: src/backend/card.rs:266
 msgid "Unable to find a valid image in the metadata, will render an icon."
-msgstr ""
+msgstr "在元数据中未能找到有效的图片，将渲染一个图标。"
 
 #: src/backend/card.rs:273
 msgid ""
 "Unable to find a valid image in the metadata, will render a \"{name}\" card "
 "with icon."
-msgstr ""
+msgstr "在元数据中未能找到有效的图片，将渲染一个带有图标的 \"{name}\" 卡片。"
 
 #: src/backend/card.rs:332
 msgid "Image \"{url}\" is defined with a relative url."
-msgstr ""
+msgstr "图片 \"{url}\" 使用了相对路径定义。"
 
 #: src/backend/card.rs:340
 msgid "Image \"{url}\" met the requirements."
-msgstr ""
+msgstr "图片 \"{url}\" 符合要求。"
 
 #: src/backend/card.rs:366 src/backend/card.rs:375
 msgid "Image \"{url}\" did not meet the requirements: {info}."
-msgstr ""
+msgstr "图片 \"{url}\" 未满足要求: {info}。"
 
 #: src/backend/card.rs:440
 msgid "Image \"{url}\" processed successfully."
-msgstr ""
+msgstr "图片 \"{url}\" 已成功处理。"
 
 #: src/backend/card.rs:446
 msgid "Failed to thumbnail \"{url}\": {info}."
-msgstr ""
+msgstr "生成 \"{url}\" 的缩略图失败: {info}。"
 
 #: src/backend/data.rs:103
 msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
-msgstr ""
+msgstr "找到了 \"{name}\" 的有效值 \"{value}\"。"
 
 #: src/backend/data.rs:121
 msgid "No occurrences found for \"{name}\"!"
-msgstr ""
+msgstr "未找到 \"{name}\" 的任何匹配项！"
 
 #: src/backend/image.rs:157
 msgid "Format is unsupported"
-msgstr ""
+msgstr "格式不受支持"
 
 #: src/backend/image.rs:258
 msgid "Image Url Error: {info}"
-msgstr ""
+msgstr "Image Url Error: {info}"
 
 #: src/backend/image.rs:260
 msgid "Image Data Url Error: {info}"
-msgstr ""
+msgstr "图片数据URL错误: {info}"
 
 #: src/backend/image.rs:262
 msgid "Image Data Invalid Base64: {info}"
-msgstr ""
+msgstr "图片数据为无效的Base64编码: {info}"
 
 #: src/backend/image.rs:264
 msgid "Network Error: {info}"
-msgstr ""
+msgstr "网络错误: {info}"
 
 #: src/backend/image.rs:266
 msgid "Request Error: {info}"
-msgstr ""
+msgstr "请求错误: {info}"
 
 #: src/backend/image.rs:268
 msgid "Image Error: {info}"
-msgstr ""
+msgstr "图片错误: {info}"
 
 #: src/backend/image.rs:271
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
-msgstr ""
+msgstr "图片尺寸太小（实际尺寸为 {actual}），最小尺寸要求为 {min}"
 
 #: src/backend/image.rs:276
 msgid "Image is too heavy ({actual}), max size is {max}"
-msgstr ""
+msgstr "图片尺寸过大（实际尺寸为 {actual}），最大图片尺寸限制为 {max}"
 
 #: src/backend/image.rs:280
 msgid "Image is unsupported: {info}"
-msgstr ""
+msgstr "图片不受支持: {info}"
