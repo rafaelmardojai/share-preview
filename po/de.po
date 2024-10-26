@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-31 14:59-0500\n"
-"PO-Revision-Date: 2024-04-25 11:07+0000\n"
-"Last-Translator: Mia <frittierapparat@gmail.com>\n"
+"PO-Revision-Date: 2024-10-27 14:00+0000\n"
+"Last-Translator: Sebin Nyshkim <sebin.nyshkim@icloud.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/de/>\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.1-dev\n"
+"X-Generator: Weblate 5.8.2-dev\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
@@ -179,6 +179,7 @@ msgstr "Die Beschreibung sollte sein mindestens \"{count}\" Zeichen lang sein."
 #: src/backend/card.rs:177
 msgid "Add a \"{tag}\" tag to the page to have control over the content."
 msgstr ""
+"\"{tag}\"-Tag zur Seite hinzufügen, um Kontrolle über den Inhalt zu haben."
 
 #: src/backend/card.rs:197
 msgid "Found card of type \"{name}\"."
@@ -244,7 +245,7 @@ msgstr "Miniaturansicht für \"{url}\" konnte nicht erstellt werden: {info}."
 
 #: src/backend/data.rs:103
 msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
-msgstr "Gültiges Vorkommen für \"{name}\" mit Wert \"{wert}\" gefunden."
+msgstr "Gültiges Vorkommen für \"{name}\" mit Wert \"{value}\" gefunden."
 
 #: src/backend/data.rs:121
 msgid "No occurrences found for \"{name}\"!"
@@ -255,14 +256,12 @@ msgid "Format is unsupported"
 msgstr "Format wird nicht unterstützt"
 
 #: src/backend/image.rs:258
-#, fuzzy
 msgid "Image Url Error: {info}"
-msgstr "Bild-Fehler: {info}"
+msgstr "Bild-URL-Fehler: {info}"
 
 #: src/backend/image.rs:260
-#, fuzzy
 msgid "Image Data Url Error: {info}"
-msgstr "Bild-Fehler: {info}"
+msgstr "Bilddaten-URL-Fehler: {info}"
 
 #: src/backend/image.rs:262
 msgid "Image Data Invalid Base64: {info}"
