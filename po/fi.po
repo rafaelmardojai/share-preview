@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-31 14:59-0500\n"
-"PO-Revision-Date: 2024-06-20 16:09+0000\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
+"PO-Revision-Date: 2024-11-29 14:00+0000\n"
+"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/fi/>\n"
 "Language: fi\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6-rc\n"
+"X-Generator: Weblate 5.9-dev\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
@@ -191,6 +191,8 @@ msgstr "Kortti tyyppiä \"{name}\" löytyi."
 msgid ""
 "Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
 msgstr ""
+"\"{name}\":ta ei voi löytää. Harkitse meta-omaisuuden \"{name}\" "
+"tiedottamista."
 
 #: src/backend/card.rs:214
 msgid "Unable to find any valid card type."
@@ -217,6 +219,8 @@ msgid ""
 "Unable to find a valid image in the metadata, will render a \"{name}\" card "
 "with icon."
 msgstr ""
+"Metatiedoista kelvollista kuvaa ei voi löytää; hahmonnetaan kortti \"{name}\""
+", jossa on kuvake."
 
 #: src/backend/card.rs:332
 msgid "Image \"{url}\" is defined with a relative url."
@@ -236,7 +240,7 @@ msgstr "Kuva \"{url}\" käsitelty."
 
 #: src/backend/card.rs:446
 msgid "Failed to thumbnail \"{url}\": {info}."
-msgstr ""
+msgstr "Pikkukuvan \"{url}\" luominen epäonnistui: {info}."
 
 #: src/backend/data.rs:103
 msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
