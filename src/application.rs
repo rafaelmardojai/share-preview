@@ -106,6 +106,7 @@ impl SharePreviewApplication {
         let dialog = adw::AboutDialog::builder()
             .application_name(&gettext("Share Preview"))
             .application_icon(config::APP_ID)
+            .issue_url("https://github.com/rafaelmardojai/share-preview/issues")
             .license_type(gtk::License::Gpl30)
             .website("https://apps.gnome.org/SharePreview/")
             .version(config::VERSION)
