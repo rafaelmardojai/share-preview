@@ -79,6 +79,7 @@
                     <child>
                       <object class="GtkEntry" id="url_entry">
                         <property name="hexpand">true</property>
+                        <property name="input-purpose">url</property>
                         <property name="secondary-icon-name">go-next-symbolic</property>
                         <property name="secondary-icon-sensitive">false</property>
                         <property name="secondary-icon-tooltip-text" translatable="yes">Go</property>
