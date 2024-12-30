@@ -166,35 +166,41 @@ impl SharePreviewWindow {
         let social = self.imp().settings.string("social");
         self.imp().social.set_selected(Social::from_str(&social).unwrap() as u32);
 
-        self.imp().logger.connect_items_changed(clone!(@weak self as win => move |logger,_,_,_| {
-            let (inf_count, war_count, err_count) = logger.worrying_count();
+        self.imp().logger.connect_items_changed(
+            clone!(
+                #[weak(rename_to = win)]
+                self,
+                move |logger,_,_,_| {
+                    let (inf_count, war_count, err_count) = logger.worrying_count();
 
-            if inf_count > 0 {
-                win.imp().inf_count.add_css_class("accent");
-                win.imp().inf_count.remove_css_class("dim-label");
-            } else {
-                win.imp().inf_count.add_css_class("dim-label");
-                win.imp().inf_count.remove_css_class("accent");
-            }
-            if war_count > 0 {
-                win.imp().war_count.add_css_class("warning");
-                win.imp().war_count.remove_css_class("dim-label");
-            } else {
-                win.imp().war_count.add_css_class("dim-label");
-                win.imp().war_count.remove_css_class("warning");
-            }
-            if err_count > 0 {
-                win.imp().err_count.add_css_class("error");
-                win.imp().err_count.remove_css_class("dim-label");
-            } else {
-                win.imp().err_count.add_css_class("dim-label");
-                win.imp().err_count.remove_css_class("error");
-            }
+                    if inf_count > 0 {
+                        win.imp().inf_count.add_css_class("accent");
+                        win.imp().inf_count.remove_css_class("dim-label");
+                    } else {
+                        win.imp().inf_count.add_css_class("dim-label");
+                        win.imp().inf_count.remove_css_class("accent");
+                    }
+                    if war_count > 0 {
+                        win.imp().war_count.add_css_class("warning");
+                        win.imp().war_count.remove_css_class("dim-label");
+                    } else {
+                        win.imp().war_count.add_css_class("dim-label");
+                        win.imp().war_count.remove_css_class("warning");
+                    }
+                    if err_count > 0 {
+                        win.imp().err_count.add_css_class("error");
+                        win.imp().err_count.remove_css_class("dim-label");
+                    } else {
+                        win.imp().err_count.add_css_class("dim-label");
+                        win.imp().err_count.remove_css_class("error");
+                    }
 
-            win.imp().inf_count.set_label(&inf_count.to_string());
-            win.imp().war_count.set_label(&war_count.to_string());
-            win.imp().err_count.set_label(&err_count.to_string());
-        }));
+                    win.imp().inf_count.set_label(&inf_count.to_string());
+                    win.imp().war_count.set_label(&war_count.to_string());
+                    win.imp().err_count.set_label(&err_count.to_string());
+                }
+            )
+        );
     }
 
     fn run(&self) {
@@ -216,40 +222,44 @@ impl SharePreviewWindow {
                     imp.url_box.set_sensitive(false);
                     imp.stack.set_visible_child_name("loading");
                     imp.spinner.start();
-                    let spawn = clone!(@weak self as win => move || {
-                        spawn!(async move {
-                            let imp = win.imp();
-                            match Data::from_url(&url).await {
-                                Ok(data) => {
-                                    imp.data.replace(data);
-                                    imp.active_url.replace(url.to_string());
-                                    win.update_card().await;
-                                    imp.stack.set_visible_child_name("card");
-                                }
-                                Err(error) => {
-                                    let error_texts = match error {
-                                        Error::NetworkError(_) => (
-                                            gettext("Network Error"),
-                                            gettext("Couldn’t connect to the given URL.")
-                                        ),
-                                        Error::Unexpected(status) => (
-                                            gettext("Unexpected Error"),
-                                            if !status.is_empty() {
-                                                gettext!("Server Error {}", status)
-                                            } else {
+                    let spawn = clone!(
+                        #[weak(rename_to = win)]
+                        self,
+                        move || {
+                            spawn!(async move {
+                                let imp = win.imp();
+                                match Data::from_url(&url).await {
+                                    Ok(data) => {
+                                        imp.data.replace(data);
+                                        imp.active_url.replace(url.to_string());
+                                        win.update_card().await;
+                                        imp.stack.set_visible_child_name("card");
+                                    }
+                                    Err(error) => {
+                                        let error_texts = match error {
+                                            Error::NetworkError(_) => (
+                                                gettext("Network Error"),
                                                 gettext("Couldn’t connect to the given URL.")
-                                            }
-                                        )
-                                    };
-                                    imp.error_title.set_label(&error_texts.0);
-                                    imp.error_message.set_label(&error_texts.1);
-                                    imp.stack.set_visible_child_name("error");
+                                            ),
+                                            Error::Unexpected(status) => (
+                                                gettext("Unexpected Error"),
+                                                if !status.is_empty() {
+                                                    gettext!("Server Error {}", status)
+                                                } else {
+                                                    gettext("Couldn’t connect to the given URL.")
+                                                }
+                                            )
+                                        };
+                                        imp.error_title.set_label(&error_texts.0);
+                                        imp.error_message.set_label(&error_texts.1);
+                                        imp.stack.set_visible_child_name("error");
+                                    }
                                 }
-                            }
-                            imp.spinner.stop();
-                            imp.url_box.set_sensitive(true);
-                        });
-                    });
+                                imp.spinner.stop();
+                                imp.url_box.set_sensitive(true);
+                            });
+                        }
+                    );
                     spawn();
                 }
                 Err(_) => {
@@ -270,7 +280,7 @@ impl SharePreviewWindow {
 
     fn show_log(&self) {
         let dialog = LogDialog::new(&self.imp().logger);
-        dialog.present(self);
+        dialog.present(Some(self));
     }
 
     #[template_callback]
@@ -322,13 +332,17 @@ impl SharePreviewWindow {
         if !active_url.is_empty() {
             self.imp().stack.set_visible_child_name("loading");
             self.imp().spinner.start();
-            let spawn = clone!(@weak self as win => move || {
-                spawn!(async move {
-                    win.update_card().await;
-                    win.imp().stack.set_visible_child_name("card");
-                    win.imp().spinner.stop();
-                });
-            });
+            let spawn = clone!(
+                #[weak(rename_to = win)]
+                self,
+                move || {
+                    spawn!(async move {
+                        win.update_card().await;
+                        win.imp().stack.set_visible_child_name("card");
+                        win.imp().spinner.stop();
+                    });
+                }
+            );
             spawn();
         }
     }

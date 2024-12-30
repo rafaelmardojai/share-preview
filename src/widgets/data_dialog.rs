@@ -10,7 +10,7 @@ use gtk::{
     prelude::*,
 };
 
-use crate::backend::{Data};
+use crate::backend::Data;
 use crate::models::MetadataItem;
 
 mod imp {
@@ -157,24 +157,35 @@ impl DataDialog {
         // Bind model with ListBox
         self.imp().list.bind_model(
             Some(&filter_model),
-            clone!(@weak self as self_ =>  @default-panic, move |item| {
-                let item = item.downcast_ref::<MetadataItem>().expect("Couldn't get MetadataItem");
-                self_.metadata_row(
-                    Some(&item.property::<String>("key")),
-                    Some(&item.property::<String>("value"))
-                )
-            })
+            clone!(
+                #[weak(rename_to = obj)]
+                self,
+                #[upgrade_or_panic]
+                move |item| {
+                    let item = item.downcast_ref::<MetadataItem>().expect("Couldn't get MetadataItem");
+                    obj.metadata_row(
+                        Some(&item.property::<String>("key")),
+                        Some(&item.property::<String>("value"))
+                    )
+                }
+            )
         );
 
         // Setup no results view
-        filter_model.connect_items_changed(clone!(@weak stack => move |model,_,_,_| {
-            let model = model.upcast_ref::<gio::ListModel>();
-            if model.n_items() > 0 {
-                stack.set_visible_child_name("list");
-            } else {
-                stack.set_visible_child_name("empty");
-            }
-        }));
+        filter_model.connect_items_changed(
+            clone!(
+                #[weak]
+                stack,
+                move |model,_,_,_| {
+                    let model = model.upcast_ref::<gio::ListModel>();
+                    if model.n_items() > 0 {
+                        stack.set_visible_child_name("list");
+                    } else {
+                        stack.set_visible_child_name("empty");
+                    }
+                }
+            )
+        );
         filter_model.items_changed(0, 0, 0);
     }
 
@@ -207,21 +218,33 @@ impl DataDialog {
         // Bind model with ListBox
         self.imp().images_list.bind_model(
             Some(&filter_model),
-            clone!(@weak self as self_ =>  @default-panic, move |item| {
-            let item = item.downcast_ref::<gtk::StringObject>().expect("Couldn't get MetadataItem");
+            clone!(
+                #[weak(rename_to = obj)]
+                self,
+                #[upgrade_or_panic]
+                move |item| {
+                    let item = item.downcast_ref::<gtk::StringObject>().expect("Couldn't get MetadataItem");
 
-            self_.metadata_row(None, Some(&item.string().to_string()))
-        }));
+                    obj.metadata_row(None, Some(&item.string().to_string()))
+                }
+            )
+        );
 
         // Setup no results view
-        filter_model.connect_items_changed(clone!(@weak images_stack => move |model,_,_,_| {
-            let model = model.upcast_ref::<gio::ListModel>();
-            if model.n_items() > 0 {
-                images_stack.set_visible_child_name("list");
-            } else {
-                images_stack.set_visible_child_name("empty");
-            }
-        }));
+        filter_model.connect_items_changed(
+            clone!(
+                #[weak]
+                images_stack,
+                move |model,_,_,_| {
+                    let model = model.upcast_ref::<gio::ListModel>();
+                    if model.n_items() > 0 {
+                        images_stack.set_visible_child_name("list");
+                    } else {
+                        images_stack.set_visible_child_name("empty");
+                    }
+                }
+            )
+        );
         filter_model.items_changed(0, 0, 0);
     }
 

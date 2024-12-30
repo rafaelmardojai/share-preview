@@ -70,28 +70,40 @@ impl SharePreviewApplication {
         action!(
             self,
             "quit",
-            clone!(@weak self as app => move |_, _| {
-                app.quit();
-            })
+            clone!(
+                #[weak(rename_to = app)]
+                self,
+                move |_, _| {
+                    app.quit();
+                }
+            )
         );
 
         // About
         action!(
             self,
             "about",
-            clone!(@weak self as app => move |_, _| {
-                app.show_about_dialog();
-            })
+            clone!(
+                #[weak(rename_to = app)]
+                self,
+                move |_, _| {
+                    app.show_about_dialog();
+                }
+            )
         );
 
         // New Window
         action!(
             self,
             "new",
-            clone!(@weak self as app => move |_, _| {
-                let win = app.create_window();
-                win.present();
-            })
+            clone!(
+                #[weak(rename_to = app)]
+                self,
+                move |_, _| {
+                    let win = app.create_window();
+                    win.present();
+                }
+            )
         );
     }
 
@@ -114,7 +126,7 @@ impl SharePreviewApplication {
             .artists(vec!["Rafael Mardojai CM https://mardojai.com".to_string(), "Tobias Bernard".to_string()])
             .build();
 
-        dialog.present(&self.active_window().unwrap());
+        dialog.present(Some(&self.active_window().unwrap()));
     }
 
     fn create_window(&self) -> SharePreviewWindow {
