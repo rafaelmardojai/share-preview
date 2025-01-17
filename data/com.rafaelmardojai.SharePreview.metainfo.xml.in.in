@@ -104,7 +104,7 @@
      <kudo>HiDpiIcon</kudo>
   </kudos>
   <requires>
-    <display_length compare="ge">524</display_length>
+    <display_length compare="eq">524</display_length>
   </requires>
   <recommends>
     <control>keyboard</control>
