@@ -11,17 +11,17 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-31 14:59-0500\n"
-"PO-Revision-Date: 2024-01-08 15:06+0000\n"
-"Last-Translator: ssantos <ssantos@web.de>\n"
+"PO-Revision-Date: 2025-01-20 01:00+0000\n"
+"Last-Translator: Carolina Silva <abadscarolina@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : ((n != 0 && n % "
-"1000000 == 0) ? 1 : 2);\n"
-"X-Generator: Weblate 5.4-dev\n"
+"Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ((n != 0 && n % 1000000 == 0)"
+" ? 1 : 2);\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
@@ -51,7 +51,7 @@ msgstr "Geral"
 #: data/resources/ui/shortcuts.ui:14
 msgctxt "shortcut window"
 msgid "Focus the URL entry"
-msgstr ""
+msgstr "Foque a entrada da URL"
 
 #: data/resources/ui/shortcuts.ui:20
 msgctxt "shortcut window"
@@ -237,9 +237,8 @@ msgstr ""
 "um cartão \"{name}\" com ícone."
 
 #: src/backend/card.rs:332
-#, fuzzy
 msgid "Image \"{url}\" is defined with a relative url."
-msgstr "A imagem \"{url}\" atendeu aos requisitos."
+msgstr "A imagem \"{url}\" é definida com uma url relativa."
 
 #: src/backend/card.rs:340
 msgid "Image \"{url}\" met the requirements."
@@ -271,18 +270,16 @@ msgid "Format is unsupported"
 msgstr "Formato não suportado"
 
 #: src/backend/image.rs:258
-#, fuzzy
 msgid "Image Url Error: {info}"
-msgstr "Erro de imagem: {info}"
+msgstr "Erro Url da Imagem: {info}"
 
 #: src/backend/image.rs:260
-#, fuzzy
 msgid "Image Data Url Error: {info}"
-msgstr "Erro de imagem: {info}"
+msgstr "Erro de URL de dados de imagem: {info}"
 
 #: src/backend/image.rs:262
 msgid "Image Data Invalid Base64: {info}"
-msgstr ""
+msgstr "Dados de Imagem Inválida Base64: {info}"
 
 #: src/backend/image.rs:264
 msgid "Network Error: {info}"
