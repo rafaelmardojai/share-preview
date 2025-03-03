@@ -8,273 +8,290 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-31 14:59-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-03-04 03:21+0000\n"
+"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
+"Language-Team: Tamil <https://hosted.weblate.org/projects/share-preview/"
+"share-preview/ta/>\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
-msgstr ""
+msgstr "அட்டை பிழை"
 
 #: data/resources/ui/data-dialog.ui:72
 msgid "Metadata"
-msgstr ""
+msgstr "மேனிலை தரவு"
 
 #: data/resources/ui/data-dialog.ui:137 data/resources/ui/data-dialog.ui:195
 msgid "Nothing to Show"
-msgstr ""
+msgstr "காட்ட எதுவும் இல்லை"
 
 #: data/resources/ui/data-dialog.ui:159
 msgid "Body Images"
-msgstr ""
+msgstr "உடல் படங்கள்"
 
 #: data/resources/ui/log-dialog.ui:6
 msgid "Scraping Log"
-msgstr ""
+msgstr "ச்கிராப்பிங் பதிவு"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "பொது"
 
 #: data/resources/ui/shortcuts.ui:14
 msgctxt "shortcut window"
 msgid "Focus the URL entry"
-msgstr ""
+msgstr "முகவரி நுழைவை மையப்படுத்தவும்"
 
 #: data/resources/ui/shortcuts.ui:20
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr ""
+msgstr "குறுக்குவழிகளைக் காட்டு"
 
 #: data/resources/ui/shortcuts.ui:26
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "வெளியேறு"
 
 #: data/resources/ui/window.ui:6
 msgid "_New Window"
-msgstr ""
+msgstr "_ புதிய சாளரம்"
 
 #: data/resources/ui/window.ui:12
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "விசைப்பலகை குறுக்குவழிகள்"
 
 #: data/resources/ui/window.ui:16
 msgid "_About Share Preview"
-msgstr ""
+msgstr "_ பங்கு முன்னோட்டம்"
 
 #: data/resources/ui/window.ui:26
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
 #: src/application.rs:107 src/main.rs:24
 msgid "Share Preview"
-msgstr ""
+msgstr "முன்னோட்டத்தைப் பகிரவும்"
 
 #: data/resources/ui/window.ui:38
 msgid "Toggle Color Scheme"
-msgstr ""
+msgstr "வண்ணத் திட்டத்தை மாற்றவும்"
 
 #: data/resources/ui/window.ui:46
 msgid "Main Menu"
-msgstr ""
+msgstr "பட்டியல் விளையாடுங்கள்"
 
 #: data/resources/ui/window.ui:84
 msgid "Go"
-msgstr ""
+msgstr "போ"
 
 #: data/resources/ui/window.ui:103
 msgid "Set a URL to preview"
-msgstr ""
+msgstr "முன்னோட்டமிட ஒரு முகவரி ஐ அமைக்கவும்"
 
 #: data/resources/ui/window.ui:180
 msgid "View Metadata"
-msgstr ""
+msgstr "மெட்டாடேட்டாவைக் காண்க"
 
 #: data/resources/ui/window.ui:193
 msgid "Show Logs"
-msgstr ""
+msgstr "பதிவுகளைக் காட்டு"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:8
 msgid "Test social media cards locally"
-msgstr ""
+msgstr "சமூக ஊடக அட்டைகளை உள்நாட்டில் சோதிக்கவும்"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
 msgid "Gnome;GTK;link;url;unfurl;"
-msgstr ""
+msgstr "Gnome; gtk; இணைப்பு; url; underl;"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
 msgstr ""
+"சமூக ஊடக பகிர்வுக்கான வலைத்தளங்களை முன்னோட்டம் மற்றும் பிழைத்திருத்த வலைத்தளங்கள் மேனிலை "
+"தரவு குறிச்சொற்கள்."
 
 #: src/window.rs:232
 msgid "Network Error"
-msgstr ""
+msgstr "பிணைய பிழை"
 
 #: src/window.rs:233 src/window.rs:240
 msgid "Couldn’t connect to the given URL."
-msgstr ""
+msgstr "கொடுக்கப்பட்ட முகவரி உடன் இணைக்க முடியவில்லை."
 
 #: src/window.rs:236 src/backend/image.rs:282
 msgid "Unexpected Error"
-msgstr ""
+msgstr "எதிர்பாராத பிழை"
 
 #: src/window.rs:256
 msgid "Invalid URL"
-msgstr ""
+msgstr "தவறான முகவரி"
 
 #: src/widgets/card.rs:76
 msgid "Couldn’t find enough data to generate a card for this social media."
 msgstr ""
+"இந்த சமூக ஊடகத்திற்கான அட்டையை உருவாக்க போதுமான தரவைக் கண்டுபிடிக்க முடியவில்லை."
 
 #: src/widgets/card.rs:79
 msgid "Twitter: No card found."
-msgstr ""
+msgstr "ட்விட்டர்: அட்டை எதுவும் கிடைக்கவில்லை."
 
 #: src/widgets/log_dialog.rs:91
 msgid "DEBUG"
-msgstr ""
+msgstr "பிழைத்திருத்தம்"
 
 #: src/widgets/log_dialog.rs:97
 msgid "INFO"
-msgstr ""
+msgstr "தகவல்"
 
 #: src/widgets/log_dialog.rs:101
 msgid "WARNING"
-msgstr ""
+msgstr "எச்சரிக்கை"
 
 #: src/widgets/log_dialog.rs:105
 msgid "ERROR"
-msgstr ""
+msgstr "பிழை"
 
 #: src/backend/card.rs:120
 msgid "Found \"{name}\"."
-msgstr ""
+msgstr "\"{name}\" கிடைத்தது."
 
 #: src/backend/card.rs:125 src/backend/data.rs:111
 msgid "\"{name}\" is empty!"
-msgstr ""
+msgstr "\"{name}\" காலியாக உள்ளது!"
 
 #: src/backend/card.rs:140
 msgid "Unable to find a metadata for title!. Falling back to document title."
 msgstr ""
+"தலைப்புக்கு ஒரு மெட்டாடேட்டாவைக் கண்டுபிடிக்க முடியவில்லை! ஆவண தலைப்புக்கு மீண்டும் "
+"விழுகிறது."
 
 #: src/backend/card.rs:150
 msgid "Unable to find the document title!. Falling back to site url."
 msgstr ""
+"ஆவண தலைப்பைக் கண்டுபிடிக்க முடியவில்லை! தள முகவரி க்கு மீண்டும் விழுகிறது."
 
 #: src/backend/card.rs:168
 msgid "The description should be at least \"{count}\" characters long."
-msgstr ""
+msgstr "விளக்கம் குறைந்தபட்சம் \"{count}\" எழுத்துக்கள் நீளமாக இருக்க வேண்டும்."
 
 #: src/backend/card.rs:177
 msgid "Add a \"{tag}\" tag to the page to have control over the content."
 msgstr ""
+"உள்ளடக்கத்தின் மீது கட்டுப்பாட்டைக் கொண்டுவர பக்கத்தில் \"{tag}\" குறிச்சொல்லைச் சேர்க்கவும்."
 
 #: src/backend/card.rs:197
 msgid "Found card of type \"{name}\"."
-msgstr ""
+msgstr "\"{name}\" வகையின் அட்டை."
 
 #: src/backend/card.rs:203
 msgid ""
 "Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
 msgstr ""
+"\"{name}\" ஐ கண்டுபிடிக்க முடியவில்லை. \"{name}\" மேவு சொத்தை வழங்குவதைக் "
+"கவனியுங்கள்."
 
 #: src/backend/card.rs:214
 msgid "Unable to find any valid card type."
-msgstr ""
+msgstr "எந்த செல்லுபடியாகும் அட்டை வகையையும் கண்டுபிடிக்க முடியவில்லை."
 
 #: src/backend/card.rs:225
 msgid "Unable to find any valid title or description."
-msgstr ""
+msgstr "எந்தவொரு சரியான தலைப்பு அல்லது விளக்கத்தையும் கண்டுபிடிக்க முடியவில்லை."
 
 #: src/backend/card.rs:254
 msgid "Unable to find a valid image in the metadata."
-msgstr ""
+msgstr "மெட்டாடேட்டாவில் செல்லுபடியாகும் படத்தைக் கண்டுபிடிக்க முடியவில்லை."
 
 #: src/backend/card.rs:260
 msgid "Unable to find a valid image in the metadata or document body."
 msgstr ""
+"மேனிலை தரவு அல்லது ஆவண உடலில் செல்லுபடியாகும் படத்தைக் கண்டுபிடிக்க முடியவில்லை."
 
 #: src/backend/card.rs:266
 msgid "Unable to find a valid image in the metadata, will render an icon."
 msgstr ""
+"மெட்டாடேட்டாவில் செல்லுபடியாகும் படத்தைக் கண்டுபிடிக்க முடியவில்லை, ஒரு ஐகானை வழங்கும்."
 
 #: src/backend/card.rs:273
 msgid ""
 "Unable to find a valid image in the metadata, will render a \"{name}\" card "
 "with icon."
 msgstr ""
+"மெட்டாடேட்டாவில் செல்லுபடியாகும் படத்தைக் கண்டுபிடிக்க முடியவில்லை, ஐகானுடன் \"{name}\" "
+"கார்டை வழங்கும்."
 
 #: src/backend/card.rs:332
 msgid "Image \"{url}\" is defined with a relative url."
-msgstr ""
+msgstr "படம் \"{url}\" ஒரு தொடர்புடைய முகவரி உடன் வரையறுக்கப்படுகிறது."
 
 #: src/backend/card.rs:340
 msgid "Image \"{url}\" met the requirements."
-msgstr ""
+msgstr "படம் \"{url}\" தேவைகளை நிறைவு செய்தது."
 
 #: src/backend/card.rs:366 src/backend/card.rs:375
 msgid "Image \"{url}\" did not meet the requirements: {info}."
-msgstr ""
+msgstr "படம் \"{url}\" தேவைகளை நிறைவு செய்யவில்லை: {info}."
 
 #: src/backend/card.rs:440
 msgid "Image \"{url}\" processed successfully."
-msgstr ""
+msgstr "படம் \"{url}\" வெற்றிகரமாக செயலாக்கப்பட்டது."
 
 #: src/backend/card.rs:446
 msgid "Failed to thumbnail \"{url}\": {info}."
-msgstr ""
+msgstr "\"{url}\": {info} என்ற சிறுபடத்தில் தோல்வியுற்றது."
 
 #: src/backend/data.rs:103
 msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
 msgstr ""
+"\"{name}\" மதிப்புக்கு \"{value}\" க்கு செல்லுபடியாகும் நிகழ்வைக் கண்டறிந்தது."
 
 #: src/backend/data.rs:121
 msgid "No occurrences found for \"{name}\"!"
-msgstr ""
+msgstr "\"{name}\" க்கு எந்த நிகழ்வுகளும் கிடைக்கவில்லை!"
 
 #: src/backend/image.rs:157
 msgid "Format is unsupported"
-msgstr ""
+msgstr "வடிவம் ஆதரிக்கப்படவில்லை"
 
 #: src/backend/image.rs:258
 msgid "Image Url Error: {info}"
-msgstr ""
+msgstr "பட முகவரி பிழை: {info}"
 
 #: src/backend/image.rs:260
 msgid "Image Data Url Error: {info}"
-msgstr ""
+msgstr "பட தரவு முகவரி பிழை: {info}"
 
 #: src/backend/image.rs:262
 msgid "Image Data Invalid Base64: {info}"
-msgstr ""
+msgstr "படத் தரவு தவறான அடிப்படை 64: {info}"
 
 #: src/backend/image.rs:264
 msgid "Network Error: {info}"
-msgstr ""
+msgstr "பிணைய பிழை: {info}"
 
 #: src/backend/image.rs:266
 msgid "Request Error: {info}"
-msgstr ""
+msgstr "கோரிக்கை பிழை: {info}"
 
 #: src/backend/image.rs:268
 msgid "Image Error: {info}"
-msgstr ""
+msgstr "பட பிழை: {info}"
 
 #: src/backend/image.rs:271
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
-msgstr ""
+msgstr "படம் மிகவும் சிறியது ({actual}), குறைந்தபட்ச பரிமாணங்கள் {min}"
 
 #: src/backend/image.rs:276
 msgid "Image is too heavy ({actual}), max size is {max}"
-msgstr ""
+msgstr "படம் மிகவும் கனமானது ({actual}), அதிகபட்ச அளவு {max}"
 
 #: src/backend/image.rs:280
 msgid "Image is unsupported: {info}"
-msgstr ""
+msgstr "படம் ஆதரிக்கப்படவில்லை: {info}"
