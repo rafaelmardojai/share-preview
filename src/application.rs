@@ -73,7 +73,7 @@ mod imp {
             if uris.len() > 0 {
                 // Create a new window instance for each URL argument
                 for (i, uri) in uris.iter().enumerate()  {
-                    // If not new window and in we're in the first URL, get the active window if exists
+                    // If not new window option and we're in the first URL, get the active window if exists
                     let win = if let (Some(win), false, 0) = (self.obj().active_window(), new_window, i) {
                         win.downcast::<SharePreviewWindow>().unwrap()
                     } else {
