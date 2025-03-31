@@ -12,7 +12,7 @@ jobs:
       options: --privileged
     steps:
     - uses: actions/checkout@v2
-    - uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v4
+    - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
       with:
         bundle: "share-preview-devel.flatpak"
         manifest-path: "build-aux/com.rafaelmardojai.SharePreview.Devel.json"
