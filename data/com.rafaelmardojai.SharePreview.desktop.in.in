@@ -10,3 +10,8 @@ Keywords=Gnome;GTK;link;url;unfurl;
 # Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 Icon=@icon@
 StartupNotify=true
+Actions=new-window;
+
+[Desktop Action new-window]
+Name=New Window
+Exec=share-preview --new-window

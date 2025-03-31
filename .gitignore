@@ -8,4 +8,5 @@ src/config.rs
 *.ui.in~
 *.ui~
 .flatpak/
+*.flatpak
 .vscode

@@ -29,7 +29,23 @@ mod imp {
         type ParentType = adw::Application;
     }
 
-    impl ObjectImpl for SharePreviewApplication {}
+    impl ObjectImpl for SharePreviewApplication {
+        fn constructed(&self) {
+            let app = self.obj();
+
+            app.add_main_option(
+                "new-window",
+                b'w'.into(),
+                glib::OptionFlags::NONE,
+                glib::OptionArg::None,
+                "Always open a new window for opening specified URIs",
+                None
+            );
+
+            app.setup_gactions();
+            app.setup_accels();
+        }
+    }
 
     impl ApplicationImpl for SharePreviewApplication {
         fn activate(&self) {
@@ -46,20 +62,24 @@ mod imp {
 
         fn startup(&self) {
             self.parent_startup();
-
-            let app = self.obj();
-            app.setup_gactions();
-            app.setup_accels();
         }
 
         fn command_line(&self, command_line: &gio::ApplicationCommandLine) -> glib::ExitCode {
             let args = command_line.arguments();
+            let options = command_line.options_dict();
             let uris = args[1..].to_vec();
+            let new_window = options.contains("new-window");
 
             if uris.len() > 0 {
                 // Create a new window instance for each URL argument
-                for uri in &args[1..]  {
-                    let win = self.obj().create_window();
+                for (i, uri) in uris.iter().enumerate()  {
+                    // If not new window and in we're in the first URL, get the active window if exists
+                    let win = if let (Some(win), false, 0) = (self.obj().active_window(), new_window, i) {
+                        win.downcast::<SharePreviewWindow>().unwrap()
+                    } else {
+                        self.obj().create_window()
+                    };
+
                     win.present();
                     win.open_uri(uri.to_str().unwrap());
                 }
