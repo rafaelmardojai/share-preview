@@ -44,6 +44,24 @@ mod imp {
             app.setup_gactions();
             app.setup_accels();
         }
+
+        fn command_line(&self, command_line: &gio::ApplicationCommandLine) -> glib::ExitCode {
+            let args = command_line.arguments();
+            let uris = args[1..].to_vec();
+
+            if uris.len() > 0 {
+                // Create a new window instance for each URL argument
+                for uri in &args[1..]  {
+                    let win = self.obj().create_window();
+                    win.present();
+                    win.open_uri(uri.to_str().unwrap());
+                }
+            } else {
+                self.activate();
+            }
+
+            glib::ExitCode::SUCCESS
+        }
     }
 
     impl GtkApplicationImpl for SharePreviewApplication {}
@@ -60,7 +78,7 @@ impl SharePreviewApplication {
     pub fn new() -> Self {
         glib::Object::builder()
             .property("application-id", config::APP_ID)
-            .property("flags", &gio::ApplicationFlags::empty())
+            .property("flags", &gio::ApplicationFlags::HANDLES_COMMAND_LINE)
             .property("resource-base-path", Some("/com/rafaelmardojai/SharePreview/"))
             .build()
     }

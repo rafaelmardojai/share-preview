@@ -160,6 +160,11 @@ impl SharePreviewWindow {
         window
     }
 
+    pub fn open_uri(&self, uri: &str) {
+        self.imp().url_entry.set_text(uri);
+        self.run();
+    }
+
     fn setup_widgets(&self) {
         self.imp().start_page.set_icon_name(Some(APP_ID));
 
