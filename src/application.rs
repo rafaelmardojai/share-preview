@@ -33,6 +33,13 @@ mod imp {
 
     impl ApplicationImpl for SharePreviewApplication {
         fn activate(&self) {
+            self.parent_activate();
+
+            if let Some(win) = self.obj().active_window() {
+                win.present();
+                return;
+            }
+
             let win = self.obj().create_window();
             win.present();
         }
