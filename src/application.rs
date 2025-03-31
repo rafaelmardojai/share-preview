@@ -95,7 +95,7 @@ impl SharePreviewApplication {
         // New Window
         action!(
             self,
-            "new",
+            "new-window",
             clone!(
                 #[weak(rename_to = app)]
                 self,
@@ -110,7 +110,7 @@ impl SharePreviewApplication {
     // Sets up keyboard shortcuts
     fn setup_accels(&self) {
         self.set_accels_for_action("app.quit", &["<primary>q"]);
-        self.set_accels_for_action("app.new", &["<primary>n"]);
+        self.set_accels_for_action("app.new-window", &["<primary>n"]);
         self.set_accels_for_action("win.url", &["<primary>l"]);
     }
 
