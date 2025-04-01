@@ -20,6 +20,7 @@ use crate::{
     application::SharePreviewApplication,
     backend::{Data, Error, Social, Log},
     config::{APP_ID, PROFILE},
+    i18n::gettext_f,
     models::LogListModel,
     widgets::{CardBox, DataDialog, LogDialog}
 };
@@ -249,7 +250,7 @@ impl SharePreviewWindow {
                                             Error::Unexpected(status) => (
                                                 gettext("Unexpected Error"),
                                                 if !status.is_empty() {
-                                                    gettext!("Server Error {}", status)
+                                                    gettext_f("Server Error {status}",  &[("status", &status)])
                                                 } else {
                                                     gettext("Couldn’t connect to the given URL.")
                                                 }

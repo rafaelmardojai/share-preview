@@ -5,18 +5,18 @@ authors = ["Rafael Mardojai CM <email@rafaelmardojai.com>"]
 edition = "2018"
 
 [dependencies]
-adw = { package = "libadwaita", version = "0.7.1", features = ["v1_6"] }
-image = "0.24"
+adw = { package = "libadwaita", version = "0.7.2", features = ["v1_7"] }
+image = "0.25.6"
 log = "0.4"
 im-rc = "15.1.0"
 pretty_env_logger = "0.4"
-gettext-rs = { version = "0.6", features = ["gettext-system"] }
-gtk = { package = "gtk4", version = "0.9.5", features = ["gnome_47"] }
+gettext-rs = { version = "0.7.2", features = ["gettext-system"] }
+gtk = { package = "gtk4", version = "0.9.6", features = ["gnome_47"] }
 gtk-macros = "0.3"
 once_cell = "1.5"
 url = "2.2"
 data-url = "0.3"
-scraper = "0.12"
-surf = "2.2"
+scraper = "0.23.1"
+surf = "2.3.2"
 async-std = "1.12"
 human_bytes = { version = "0.4", default-features = false }
