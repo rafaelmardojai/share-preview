@@ -84,7 +84,11 @@ mod imp {
                     win.open_uri(uri.to_str().unwrap());
                 }
             } else {
-                self.activate();
+                if new_window {
+                    self.obj().activate_action("new-window", None);
+                } else {
+                    self.activate();
+                }
             }
 
             glib::ExitCode::SUCCESS
