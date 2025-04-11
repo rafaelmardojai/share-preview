@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-31 14:59-0500\n"
+"POT-Creation-Date: 2025-04-06 16:49-0500\n"
 "PO-Revision-Date: 2025-01-28 13:02+0000\n"
 "Last-Translator: GolfNovemberUniform <standard-0010@proton.me>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/share-preview/"
@@ -75,7 +75,7 @@ msgstr "_Про Share Preview"
 #: data/resources/ui/window.ui:26
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
-#: src/application.rs:107 src/main.rs:24
+#: src/application.rs:168 src/main.rs:24
 msgid "Share Preview"
 msgstr "Поділитися"
 
@@ -87,19 +87,19 @@ msgstr "Змінити кольорову схему"
 msgid "Main Menu"
 msgstr "Головне меню"
 
-#: data/resources/ui/window.ui:84
+#: data/resources/ui/window.ui:85
 msgid "Go"
 msgstr "Вперед"
 
-#: data/resources/ui/window.ui:103
+#: data/resources/ui/window.ui:104
 msgid "Set a URL to preview"
 msgstr "Встановити URL для попереднього перегляду"
 
-#: data/resources/ui/window.ui:180
+#: data/resources/ui/window.ui:181
 msgid "View Metadata"
 msgstr "Перегляд метаданих"
 
-#: data/resources/ui/window.ui:193
+#: data/resources/ui/window.ui:194
 msgid "Show Logs"
 msgstr "Показати журнали"
 
@@ -108,9 +108,14 @@ msgstr "Показати журнали"
 msgid "Test social media cards locally"
 msgstr "Локально тестуйте картки соціальних мереж"
 
-#: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:10
 msgid "Gnome;GTK;link;url;unfurl;"
 msgstr ""
+
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:17
+#, fuzzy
+msgid "New Window"
+msgstr "_Нове вікно"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
@@ -118,19 +123,23 @@ msgstr ""
 "Попередній перегляд та налагодження тегів метаданих вебсайтів для публікації "
 "в соціальних мережах."
 
-#: src/window.rs:232
+#: src/window.rs:247
 msgid "Network Error"
 msgstr "Помилка мережі"
 
-#: src/window.rs:233 src/window.rs:240
+#: src/window.rs:248 src/window.rs:255
 msgid "Couldn’t connect to the given URL."
 msgstr "Не вдалося під'єднатися до вказаної URL-адреси."
 
-#: src/window.rs:236 src/backend/image.rs:282
+#: src/window.rs:251 src/backend/image.rs:282
 msgid "Unexpected Error"
 msgstr "Неочікувана помилка"
 
-#: src/window.rs:256
+#: src/window.rs:253
+msgid "Server Error {status}"
+msgstr ""
+
+#: src/window.rs:272
 msgid "Invalid URL"
 msgstr "Неправильна URL-адреса"
 

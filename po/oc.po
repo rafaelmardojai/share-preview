@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-31 14:59-0500\n"
+"POT-Creation-Date: 2025-04-06 16:49-0500\n"
 "PO-Revision-Date: 2024-04-06 11:01+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/share-preview/"
@@ -74,7 +74,7 @@ msgstr "_A prepaus d’Apercebut de partiment"
 #: data/resources/ui/window.ui:26
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
-#: src/application.rs:107 src/main.rs:24
+#: src/application.rs:168 src/main.rs:24
 msgid "Share Preview"
 msgstr "Apercebut de partiment"
 
@@ -86,19 +86,19 @@ msgstr "Alternar l’esquèma de color"
 msgid "Main Menu"
 msgstr "Menú principal"
 
-#: data/resources/ui/window.ui:84
+#: data/resources/ui/window.ui:85
 msgid "Go"
 msgstr "Aviar"
 
-#: data/resources/ui/window.ui:103
+#: data/resources/ui/window.ui:104
 msgid "Set a URL to preview"
 msgstr "Definir una URL a previsualizar"
 
-#: data/resources/ui/window.ui:180
+#: data/resources/ui/window.ui:181
 msgid "View Metadata"
 msgstr "Veire las metadonadas"
 
-#: data/resources/ui/window.ui:193
+#: data/resources/ui/window.ui:194
 msgid "Show Logs"
 msgstr "Afichar los jornals"
 
@@ -107,9 +107,14 @@ msgstr "Afichar los jornals"
 msgid "Test social media cards locally"
 msgstr "Provar las cartas de malhums socials en local"
 
-#: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:10
 msgid "Gnome;GTK;link;url;unfurl;"
 msgstr "Gnome;GTK;ligam;url;unfurl;"
+
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:17
+#, fuzzy
+msgid "New Window"
+msgstr "Fenèstra _novèla"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
@@ -117,19 +122,23 @@ msgstr ""
 "Previsualizar e debugar las etiquetas de metadonadas de site web pels "
 "partiements de ligam."
 
-#: src/window.rs:232
+#: src/window.rs:247
 msgid "Network Error"
 msgstr "Error ret"
 
-#: src/window.rs:233 src/window.rs:240
+#: src/window.rs:248 src/window.rs:255
 msgid "Couldn’t connect to the given URL."
 msgstr "Connexion impossibla a l’URL donada."
 
-#: src/window.rs:236 src/backend/image.rs:282
+#: src/window.rs:251 src/backend/image.rs:282
 msgid "Unexpected Error"
 msgstr "Error inesperada"
 
-#: src/window.rs:256
+#: src/window.rs:253
+msgid "Server Error {status}"
+msgstr ""
+
+#: src/window.rs:272
 msgid "Invalid URL"
 msgstr "URL invalida"
 

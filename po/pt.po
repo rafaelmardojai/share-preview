@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-31 14:59-0500\n"
+"POT-Creation-Date: 2025-04-06 16:49-0500\n"
 "PO-Revision-Date: 2025-01-20 01:00+0000\n"
 "Last-Translator: Carolina Silva <abadscarolina@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/share-preview/"
@@ -19,8 +19,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ((n != 0 && n % 1000000 == 0)"
-" ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ((n != 0 && n % 1000000 == "
+"0) ? 1 : 2);\n"
 "X-Generator: Weblate 5.10-dev\n"
 
 #: data/resources/ui/card.ui:33
@@ -78,7 +78,7 @@ msgstr "_Acerca do Share Preview"
 #: data/resources/ui/window.ui:26
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
-#: src/application.rs:107 src/main.rs:24
+#: src/application.rs:168 src/main.rs:24
 msgid "Share Preview"
 msgstr "Share Preview"
 
@@ -90,19 +90,19 @@ msgstr "Alternar esquema de cores"
 msgid "Main Menu"
 msgstr "Menu Principal"
 
-#: data/resources/ui/window.ui:84
+#: data/resources/ui/window.ui:85
 msgid "Go"
 msgstr "Ir"
 
-#: data/resources/ui/window.ui:103
+#: data/resources/ui/window.ui:104
 msgid "Set a URL to preview"
 msgstr "Definir um URL para visualizar"
 
-#: data/resources/ui/window.ui:180
+#: data/resources/ui/window.ui:181
 msgid "View Metadata"
 msgstr "Visualizar Metadados"
 
-#: data/resources/ui/window.ui:193
+#: data/resources/ui/window.ui:194
 msgid "Show Logs"
 msgstr "Exibir registros"
 
@@ -111,9 +111,14 @@ msgstr "Exibir registros"
 msgid "Test social media cards locally"
 msgstr "Testar cartões de redes sociais localmente"
 
-#: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:10
 msgid "Gnome;GTK;link;url;unfurl;"
 msgstr "Gnome;GTK;weblink;url;unfurl;"
+
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:17
+#, fuzzy
+msgid "New Window"
+msgstr "Janela _Nova"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
@@ -121,19 +126,23 @@ msgstr ""
 "Visualizar e depurar etiquetas de metadados de websites para partilha em "
 "rede social."
 
-#: src/window.rs:232
+#: src/window.rs:247
 msgid "Network Error"
 msgstr "Erro de rede"
 
-#: src/window.rs:233 src/window.rs:240
+#: src/window.rs:248 src/window.rs:255
 msgid "Couldn’t connect to the given URL."
 msgstr "Não foi possível conectar à URL fornecida."
 
-#: src/window.rs:236 src/backend/image.rs:282
+#: src/window.rs:251 src/backend/image.rs:282
 msgid "Unexpected Error"
 msgstr "Erro inesperado"
 
-#: src/window.rs:256
+#: src/window.rs:253
+msgid "Server Error {status}"
+msgstr ""
+
+#: src/window.rs:272
 msgid "Invalid URL"
 msgstr "URL inválido"
 

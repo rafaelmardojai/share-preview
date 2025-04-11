@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-31 14:59-0500\n"
+"POT-Creation-Date: 2025-04-06 16:49-0500\n"
 "PO-Revision-Date: 2024-08-31 09:34+0000\n"
 "Last-Translator: owocc <owocc@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -74,7 +74,7 @@ msgstr "关于分享预览"
 #: data/resources/ui/window.ui:26
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
-#: src/application.rs:107 src/main.rs:24
+#: src/application.rs:168 src/main.rs:24
 msgid "Share Preview"
 msgstr "分享预览"
 
@@ -86,19 +86,19 @@ msgstr "切换色彩模式"
 msgid "Main Menu"
 msgstr "主菜单"
 
-#: data/resources/ui/window.ui:84
+#: data/resources/ui/window.ui:85
 msgid "Go"
 msgstr "预览"
 
-#: data/resources/ui/window.ui:103
+#: data/resources/ui/window.ui:104
 msgid "Set a URL to preview"
 msgstr "输入网址进行预览"
 
-#: data/resources/ui/window.ui:180
+#: data/resources/ui/window.ui:181
 msgid "View Metadata"
 msgstr "查看元数据"
 
-#: data/resources/ui/window.ui:193
+#: data/resources/ui/window.ui:194
 msgid "Show Logs"
 msgstr "查看日志"
 
@@ -107,27 +107,36 @@ msgstr "查看日志"
 msgid "Test social media cards locally"
 msgstr "本地测试社交媒体卡片预览"
 
-#: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:10
 msgid "Gnome;GTK;link;url;unfurl;"
 msgstr "Gnome;GTK;link;url;unfurl;"
+
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:17
+#, fuzzy
+msgid "New Window"
+msgstr "新建窗口"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
 msgstr "预览和调试网页元信息用于社交媒体卡片。"
 
-#: src/window.rs:232
+#: src/window.rs:247
 msgid "Network Error"
 msgstr "网络错误"
 
-#: src/window.rs:233 src/window.rs:240
+#: src/window.rs:248 src/window.rs:255
 msgid "Couldn’t connect to the given URL."
 msgstr "无法连接到指定网址。"
 
-#: src/window.rs:236 src/backend/image.rs:282
+#: src/window.rs:251 src/backend/image.rs:282
 msgid "Unexpected Error"
 msgstr "意外错误"
 
-#: src/window.rs:256
+#: src/window.rs:253
+msgid "Server Error {status}"
+msgstr ""
+
+#: src/window.rs:272
 msgid "Invalid URL"
 msgstr "无效的网址"
 

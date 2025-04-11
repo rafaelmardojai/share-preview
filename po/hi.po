@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-31 14:59-0500\n"
+"POT-Creation-Date: 2025-04-06 16:49-0500\n"
 "PO-Revision-Date: 2024-05-07 10:07+0000\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/share-preview/"
@@ -74,7 +74,7 @@ msgstr "Share Preview के बारे में (_A)"
 #: data/resources/ui/window.ui:26
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
-#: src/application.rs:107 src/main.rs:24
+#: src/application.rs:168 src/main.rs:24
 msgid "Share Preview"
 msgstr "Share Preview"
 
@@ -86,19 +86,19 @@ msgstr "रंग योजना टॉगल करें"
 msgid "Main Menu"
 msgstr "मुख्य मेनू"
 
-#: data/resources/ui/window.ui:84
+#: data/resources/ui/window.ui:85
 msgid "Go"
 msgstr "जायें"
 
-#: data/resources/ui/window.ui:103
+#: data/resources/ui/window.ui:104
 msgid "Set a URL to preview"
 msgstr "पूर्वावलोकन करने के लिए एक URL निर्धारित करें"
 
-#: data/resources/ui/window.ui:180
+#: data/resources/ui/window.ui:181
 msgid "View Metadata"
 msgstr "मेटाडेटा देखें"
 
-#: data/resources/ui/window.ui:193
+#: data/resources/ui/window.ui:194
 msgid "Show Logs"
 msgstr "लॉग दिखाएं"
 
@@ -107,28 +107,36 @@ msgstr "लॉग दिखाएं"
 msgid "Test social media cards locally"
 msgstr "सोशल मीडिया कार्ड का स्थानीय स्तर पर परीक्षण करें"
 
-#: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:10
 msgid "Gnome;GTK;link;url;unfurl;"
 msgstr "Gnome;GTK;लिंक;url;फैलाना;"
 
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:17
+#, fuzzy
+msgid "New Window"
+msgstr "नई विंडो (_N)"
+
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
-msgstr ""
-"सोशल मीडिया शेयर के लिए वेबसाइट मेटाडेटा टैग का पूर्वावलोकन और डीबग करें।"
+msgstr "सोशल मीडिया शेयर के लिए वेबसाइट मेटाडेटा टैग का पूर्वावलोकन और डीबग करें।"
 
-#: src/window.rs:232
+#: src/window.rs:247
 msgid "Network Error"
 msgstr "नेटवर्क त्रुटि"
 
-#: src/window.rs:233 src/window.rs:240
+#: src/window.rs:248 src/window.rs:255
 msgid "Couldn’t connect to the given URL."
 msgstr "दिए गए URL से कनेक्ट नहीं हो सका।"
 
-#: src/window.rs:236 src/backend/image.rs:282
+#: src/window.rs:251 src/backend/image.rs:282
 msgid "Unexpected Error"
 msgstr "अप्रत्याशित त्रुटि"
 
-#: src/window.rs:256
+#: src/window.rs:253
+msgid "Server Error {status}"
+msgstr ""
+
+#: src/window.rs:272
 msgid "Invalid URL"
 msgstr "अमान्य URL"
 
@@ -166,8 +174,7 @@ msgstr "\"{name}\" खाली है!"
 
 #: src/backend/card.rs:140
 msgid "Unable to find a metadata for title!. Falling back to document title."
-msgstr ""
-"शीर्षक के लिए मेटाडेटा ढूंढने में असमर्थ! दस्तावेज़ शीर्षक पर वापस आते हैं।"
+msgstr "शीर्षक के लिए मेटाडेटा ढूंढने में असमर्थ! दस्तावेज़ शीर्षक पर वापस आते हैं।"
 
 #: src/backend/card.rs:150
 msgid "Unable to find the document title!. Falling back to site url."
@@ -188,9 +195,7 @@ msgstr "\"{name}\" प्रकार का कार्ड मिला।"
 #: src/backend/card.rs:203
 msgid ""
 "Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
-msgstr ""
-"\"{name}\" ढूंढने में असमर्थ। \"{name}\" मेटा प्रॉपर्टी प्रदान करने पर विचार "
-"करें।"
+msgstr "\"{name}\" ढूंढने में असमर्थ। \"{name}\" मेटा प्रॉपर्टी प्रदान करने पर विचार करें।"
 
 #: src/backend/card.rs:214
 msgid "Unable to find any valid card type."
@@ -217,8 +222,7 @@ msgid ""
 "Unable to find a valid image in the metadata, will render a \"{name}\" card "
 "with icon."
 msgstr ""
-"मेटाडेटा में एक वैध छवि ढूंढने में असमर्थ, आइकन के साथ एक \"{name}\" कार्ड "
-"प्रस्तुत करेगा।"
+"मेटाडेटा में एक वैध छवि ढूंढने में असमर्थ, आइकन के साथ एक \"{name}\" कार्ड प्रस्तुत करेगा।"
 
 #: src/backend/card.rs:332
 msgid "Image \"{url}\" is defined with a relative url."

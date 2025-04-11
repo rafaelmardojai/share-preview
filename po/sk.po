@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-31 14:59-0500\n"
+"POT-Creation-Date: 2025-04-06 16:49-0500\n"
 "PO-Revision-Date: 2024-06-10 16:09+0000\n"
 "Last-Translator: trailblazercombi <domuhr263@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/share-preview/"
@@ -75,7 +75,7 @@ msgstr "_O aplikácii"
 #: data/resources/ui/window.ui:26
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
-#: src/application.rs:107 src/main.rs:24
+#: src/application.rs:168 src/main.rs:24
 msgid "Share Preview"
 msgstr "Náhľad zdieľaní"
 
@@ -87,19 +87,19 @@ msgstr "Prepnúť farebnú schému"
 msgid "Main Menu"
 msgstr "Hlavné menu"
 
-#: data/resources/ui/window.ui:84
+#: data/resources/ui/window.ui:85
 msgid "Go"
 msgstr "Ísť"
 
-#: data/resources/ui/window.ui:103
+#: data/resources/ui/window.ui:104
 msgid "Set a URL to preview"
 msgstr "Nastaviť náhľad pre adresu stránky"
 
-#: data/resources/ui/window.ui:180
+#: data/resources/ui/window.ui:181
 msgid "View Metadata"
 msgstr "Zobraziť metaúdaje"
 
-#: data/resources/ui/window.ui:193
+#: data/resources/ui/window.ui:194
 msgid "Show Logs"
 msgstr "Zobraziť denník"
 
@@ -108,9 +108,14 @@ msgstr "Zobraziť denník"
 msgid "Test social media cards locally"
 msgstr "Zobraziť karty pre sociálne siete"
 
-#: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:10
 msgid "Gnome;GTK;link;url;unfurl;"
 msgstr "Gnome;GTK;link;url;unfurl;"
+
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:17
+#, fuzzy
+msgid "New Window"
+msgstr "_Nové okno"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
@@ -118,19 +123,23 @@ msgstr ""
 "Vlož hypertextový odkaz a zisti, ako bude vyzerať jeho karta na sociálnych "
 "sieťach."
 
-#: src/window.rs:232
+#: src/window.rs:247
 msgid "Network Error"
 msgstr "Chyba siete"
 
-#: src/window.rs:233 src/window.rs:240
+#: src/window.rs:248 src/window.rs:255
 msgid "Couldn’t connect to the given URL."
 msgstr "Nebolo možné pripojiť sa na server, na ktorý odkaz odkazuje."
 
-#: src/window.rs:236 src/backend/image.rs:282
+#: src/window.rs:251 src/backend/image.rs:282
 msgid "Unexpected Error"
 msgstr "Neočakávaná chyba"
 
-#: src/window.rs:256
+#: src/window.rs:253
+msgid "Server Error {status}"
+msgstr ""
+
+#: src/window.rs:272
 msgid "Invalid URL"
 msgstr "Neplatná adresa stránky"
 

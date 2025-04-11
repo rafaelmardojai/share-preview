@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-31 14:59-0500\n"
+"POT-Creation-Date: 2025-04-06 16:49-0500\n"
 "PO-Revision-Date: 2021-11-20 18:16+0330\n"
 "Last-Translator: MohammadSaleh Kamyab <mskf1383@protonmail.com>\n"
 "Language-Team: \n"
@@ -73,7 +73,7 @@ msgstr "_دربارهٔ پیش‌نمایش اشتراک‌گذاری"
 #: data/resources/ui/window.ui:26
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
-#: src/application.rs:107 src/main.rs:24
+#: src/application.rs:168 src/main.rs:24
 msgid "Share Preview"
 msgstr "پیش‌نمایش اشتراک‌گذاری"
 
@@ -86,19 +86,19 @@ msgstr ""
 msgid "Main Menu"
 msgstr "فهرست"
 
-#: data/resources/ui/window.ui:84
+#: data/resources/ui/window.ui:85
 msgid "Go"
 msgstr ""
 
-#: data/resources/ui/window.ui:103
+#: data/resources/ui/window.ui:104
 msgid "Set a URL to preview"
 msgstr "ثبت یک نشانی برای پیش‌نمایش"
 
-#: data/resources/ui/window.ui:180
+#: data/resources/ui/window.ui:181
 msgid "View Metadata"
 msgstr ""
 
-#: data/resources/ui/window.ui:193
+#: data/resources/ui/window.ui:194
 #, fuzzy
 msgid "Show Logs"
 msgstr "نمایش میان‌برها"
@@ -108,8 +108,12 @@ msgstr "نمایش میان‌برها"
 msgid "Test social media cards locally"
 msgstr "بررسی کارت‌های شبکه‌های مجازی به‌صورت محلّی"
 
-#: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:10
 msgid "Gnome;GTK;link;url;unfurl;"
+msgstr ""
+
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:17
+msgid "New Window"
 msgstr ""
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
@@ -118,20 +122,24 @@ msgstr ""
 "پیش‌نمایش و اشکال‌زدایی برچسب‌های فرادادهٔ وبگاه‌ها برای اشتراک‌گذاری در شبکه‌های "
 "اجتماعی."
 
-#: src/window.rs:232
+#: src/window.rs:247
 msgid "Network Error"
 msgstr "خطای شبکه"
 
-#: src/window.rs:233 src/window.rs:240
+#: src/window.rs:248 src/window.rs:255
 #, fuzzy
 msgid "Couldn’t connect to the given URL."
 msgstr "به نشانی داده شده متّصل نشد."
 
-#: src/window.rs:236 src/backend/image.rs:282
+#: src/window.rs:251 src/backend/image.rs:282
 msgid "Unexpected Error"
 msgstr "خطای ناشناخته"
 
-#: src/window.rs:256
+#: src/window.rs:253
+msgid "Server Error {status}"
+msgstr ""
+
+#: src/window.rs:272
 msgid "Invalid URL"
 msgstr "نشانی نامعتبر"
 

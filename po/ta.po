@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-31 14:59-0500\n"
+"POT-Creation-Date: 2025-04-06 16:49-0500\n"
 "PO-Revision-Date: 2025-03-04 03:21+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/share-preview/"
@@ -74,7 +74,7 @@ msgstr "_ பங்கு முன்னோட்டம்"
 #: data/resources/ui/window.ui:26
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
-#: src/application.rs:107 src/main.rs:24
+#: src/application.rs:168 src/main.rs:24
 msgid "Share Preview"
 msgstr "முன்னோட்டத்தைப் பகிரவும்"
 
@@ -86,19 +86,19 @@ msgstr "வண்ணத் திட்டத்தை மாற்றவும�
 msgid "Main Menu"
 msgstr "பட்டியல் விளையாடுங்கள்"
 
-#: data/resources/ui/window.ui:84
+#: data/resources/ui/window.ui:85
 msgid "Go"
 msgstr "போ"
 
-#: data/resources/ui/window.ui:103
+#: data/resources/ui/window.ui:104
 msgid "Set a URL to preview"
 msgstr "முன்னோட்டமிட ஒரு முகவரி ஐ அமைக்கவும்"
 
-#: data/resources/ui/window.ui:180
+#: data/resources/ui/window.ui:181
 msgid "View Metadata"
 msgstr "மெட்டாடேட்டாவைக் காண்க"
 
-#: data/resources/ui/window.ui:193
+#: data/resources/ui/window.ui:194
 msgid "Show Logs"
 msgstr "பதிவுகளைக் காட்டு"
 
@@ -107,9 +107,14 @@ msgstr "பதிவுகளைக் காட்டு"
 msgid "Test social media cards locally"
 msgstr "சமூக ஊடக அட்டைகளை உள்நாட்டில் சோதிக்கவும்"
 
-#: data/com.rafaelmardojai.SharePreview.desktop.in.in:9
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:10
 msgid "Gnome;GTK;link;url;unfurl;"
 msgstr "Gnome; gtk; இணைப்பு; url; underl;"
+
+#: data/com.rafaelmardojai.SharePreview.desktop.in.in:17
+#, fuzzy
+msgid "New Window"
+msgstr "_ புதிய சாளரம்"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
@@ -117,19 +122,23 @@ msgstr ""
 "சமூக ஊடக பகிர்வுக்கான வலைத்தளங்களை முன்னோட்டம் மற்றும் பிழைத்திருத்த வலைத்தளங்கள் மேனிலை "
 "தரவு குறிச்சொற்கள்."
 
-#: src/window.rs:232
+#: src/window.rs:247
 msgid "Network Error"
 msgstr "பிணைய பிழை"
 
-#: src/window.rs:233 src/window.rs:240
+#: src/window.rs:248 src/window.rs:255
 msgid "Couldn’t connect to the given URL."
 msgstr "கொடுக்கப்பட்ட முகவரி உடன் இணைக்க முடியவில்லை."
 
-#: src/window.rs:236 src/backend/image.rs:282
+#: src/window.rs:251 src/backend/image.rs:282
 msgid "Unexpected Error"
 msgstr "எதிர்பாராத பிழை"
 
-#: src/window.rs:256
+#: src/window.rs:253
+msgid "Server Error {status}"
+msgstr ""
+
+#: src/window.rs:272
 msgid "Invalid URL"
 msgstr "தவறான முகவரி"
 
@@ -174,8 +183,7 @@ msgstr ""
 
 #: src/backend/card.rs:150
 msgid "Unable to find the document title!. Falling back to site url."
-msgstr ""
-"ஆவண தலைப்பைக் கண்டுபிடிக்க முடியவில்லை! தள முகவரி க்கு மீண்டும் விழுகிறது."
+msgstr "ஆவண தலைப்பைக் கண்டுபிடிக்க முடியவில்லை! தள முகவரி க்கு மீண்டும் விழுகிறது."
 
 #: src/backend/card.rs:168
 msgid "The description should be at least \"{count}\" characters long."
@@ -249,8 +257,7 @@ msgstr "\"{url}\": {info} என்ற சிறுபடத்தில் த�
 
 #: src/backend/data.rs:103
 msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
-msgstr ""
-"\"{name}\" மதிப்புக்கு \"{value}\" க்கு செல்லுபடியாகும் நிகழ்வைக் கண்டறிந்தது."
+msgstr "\"{name}\" மதிப்புக்கு \"{value}\" க்கு செல்லுபடியாகும் நிகழ்வைக் கண்டறிந்தது."
 
 #: src/backend/data.rs:121
 msgid "No occurrences found for \"{name}\"!"
