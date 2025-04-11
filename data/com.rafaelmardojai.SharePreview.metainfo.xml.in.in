@@ -34,11 +34,8 @@
   <release version="1.0.0" date="2025-04-10">
       <description translate="no">
         <ul>
-          <li>Support data URLs sceheme in favicons</li>
-          <li>Add action to focus URL entry (Ctrl+L)</li>
-          <li>Meta images with relative urls will fail for Twitter previews</li>
-          <li>Minor UI updates for GNOME 46</li>
-          <li>Mastodon preview updated</li>
+          <li>Support opening HTTP URLs from desktop and cli</li>
+          <li>Improve handling of multiple windows</li>
         </ul>
       </description>
     </release>
