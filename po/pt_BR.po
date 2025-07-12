@@ -46,9 +46,10 @@ msgid "General"
 msgstr "Geral"
 
 #: data/resources/ui/shortcuts.ui:14
+#, fuzzy
 msgctxt "shortcut window"
 msgid "Focus the URL entry"
-msgstr ""
+msgstr "Focar na URL"
 
 #: data/resources/ui/shortcuts.ui:20
 msgctxt "shortcut window"
@@ -114,7 +115,7 @@ msgstr "Gnome;GTK;weblink;url;unfurl;"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:17
 msgid "New Window"
-msgstr "Nova Janela"
+msgstr "Nova janela"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
@@ -136,7 +137,7 @@ msgstr "Erro inesperado"
 
 #: src/window.rs:253
 msgid "Server Error {status}"
-msgstr ""
+msgstr "Erro {status} do Servidor"
 
 #: src/window.rs:272
 msgid "Invalid URL"
@@ -190,11 +191,11 @@ msgstr ""
 
 #: src/backend/card.rs:168
 msgid "The description should be at least \"{count}\" characters long."
-msgstr ""
+msgstr "A descrição deve ter pelo menos \"{count}\" caracteres."
 
 #: src/backend/card.rs:177
 msgid "Add a \"{tag}\" tag to the page to have control over the content."
-msgstr ""
+msgstr "Adicione a tag \"{tag}\" à página para ter controle sobre o contexto."
 
 #: src/backend/card.rs:197
 msgid "Found card of type \"{name}\"."
@@ -289,7 +290,7 @@ msgstr "Erro de imagem: {info}"
 
 #: src/backend/image.rs:262
 msgid "Image Data Invalid Base64: {info}"
-msgstr ""
+msgstr "Erro de Dados da Imagem Base64: {Info}"
 
 #: src/backend/image.rs:264
 msgid "Network Error: {info}"
