@@ -8,283 +8,288 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-06 16:49-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-07-22 03:03+0000\n"
+"Last-Translator: Ahmed Najmawi <iramosu@protonmail.com>\n"
+"Language-Team: Arabic <https://hosted.weblate.org/projects/share-preview/"
+"share-preview/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
-msgstr ""
+msgstr "خطأ في البطاقة"
 
 #: data/resources/ui/data-dialog.ui:72
 msgid "Metadata"
-msgstr ""
+msgstr "البيانات الوصفية"
 
 #: data/resources/ui/data-dialog.ui:137 data/resources/ui/data-dialog.ui:195
 msgid "Nothing to Show"
-msgstr ""
+msgstr "لا شيء لعرضه"
 
 #: data/resources/ui/data-dialog.ui:159
 msgid "Body Images"
-msgstr ""
+msgstr "صور المتن"
 
 #: data/resources/ui/log-dialog.ui:6
 msgid "Scraping Log"
-msgstr ""
+msgstr "سجل الكشط"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "عام"
 
 #: data/resources/ui/shortcuts.ui:14
 msgctxt "shortcut window"
 msgid "Focus the URL entry"
-msgstr ""
+msgstr "ركِّز على مدخلة مسار"
 
 #: data/resources/ui/shortcuts.ui:20
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr ""
+msgstr "أظهِر الاختصارات"
 
 #: data/resources/ui/shortcuts.ui:26
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "اخرج"
 
 #: data/resources/ui/window.ui:6
 msgid "_New Window"
-msgstr ""
+msgstr "_نافذة جديدة"
 
 #: data/resources/ui/window.ui:12
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "ا_ختصارات لوحة المفاتيح"
 
 #: data/resources/ui/window.ui:16
 msgid "_About Share Preview"
-msgstr ""
+msgstr "_عَنْ «معاينة المشاركة»"
 
 #: data/resources/ui/window.ui:26
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
 #: src/application.rs:168 src/main.rs:24
 msgid "Share Preview"
-msgstr ""
+msgstr "معاينة المشاركة"
 
 #: data/resources/ui/window.ui:38
 msgid "Toggle Color Scheme"
-msgstr ""
+msgstr "بدِّل مخطط الألوان"
 
 #: data/resources/ui/window.ui:46
 msgid "Main Menu"
-msgstr ""
+msgstr "القائمة الرئيسة"
 
 #: data/resources/ui/window.ui:85
 msgid "Go"
-msgstr ""
+msgstr "اذهب"
 
 #: data/resources/ui/window.ui:104
 msgid "Set a URL to preview"
-msgstr ""
+msgstr "ضع مسارًا لمعاينته"
 
 #: data/resources/ui/window.ui:181
 msgid "View Metadata"
-msgstr ""
+msgstr "اعرض البيانات الوصفية"
 
 #: data/resources/ui/window.ui:194
 msgid "Show Logs"
-msgstr ""
+msgstr "أظهِر السجلات"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:8
 msgid "Test social media cards locally"
-msgstr ""
+msgstr "اختبر بطاقات الشبكات الاجتماعية محليًا"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:10
 msgid "Gnome;GTK;link;url;unfurl;"
-msgstr ""
+msgstr "جنوم;جتك;مسار;رابط;url;unfurl;Gnome;GTK;link;"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:17
 msgid "New Window"
-msgstr ""
+msgstr "نافذة جديدة"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
 msgstr ""
+"عاين وصحِّح وسوم البيانات الوصفية للمواقع لمشاركتها على الشبكات الاجتماعية."
 
 #: src/window.rs:247
 msgid "Network Error"
-msgstr ""
+msgstr "خطأ في الشبكة"
 
 #: src/window.rs:248 src/window.rs:255
 msgid "Couldn’t connect to the given URL."
-msgstr ""
+msgstr "تعذَّر الاتصال بالمسار المُعطى."
 
 #: src/window.rs:251 src/backend/image.rs:282
 msgid "Unexpected Error"
-msgstr ""
+msgstr "خطأ غير متوقع"
 
 #: src/window.rs:253
 msgid "Server Error {status}"
-msgstr ""
+msgstr "خطأ في الخادوم {status}"
 
 #: src/window.rs:272
 msgid "Invalid URL"
-msgstr ""
+msgstr "مسار غير صالح"
 
 #: src/widgets/card.rs:76
 msgid "Couldn’t find enough data to generate a card for this social media."
-msgstr ""
+msgstr "تعذَّر العثور على بيانات كافية لإنشاء بطاقة لهذه الشبكة الاجتماعية."
 
 #: src/widgets/card.rs:79
 msgid "Twitter: No card found."
-msgstr ""
+msgstr "تويتر: لم يُعثر على بطاقة."
 
 #: src/widgets/log_dialog.rs:91
 msgid "DEBUG"
-msgstr ""
+msgstr "تنقيح"
 
 #: src/widgets/log_dialog.rs:97
 msgid "INFO"
-msgstr ""
+msgstr "معلومات"
 
 #: src/widgets/log_dialog.rs:101
 msgid "WARNING"
-msgstr ""
+msgstr "تحذير"
 
 #: src/widgets/log_dialog.rs:105
 msgid "ERROR"
-msgstr ""
+msgstr "خطأ"
 
 #: src/backend/card.rs:120
 msgid "Found \"{name}\"."
-msgstr ""
+msgstr "عُثِر على «{name}»."
 
 #: src/backend/card.rs:125 src/backend/data.rs:111
 msgid "\"{name}\" is empty!"
-msgstr ""
+msgstr "«{name}» فارغ!"
 
 #: src/backend/card.rs:140
 msgid "Unable to find a metadata for title!. Falling back to document title."
-msgstr ""
+msgstr "تعذَّر العثور على بيانات وصفية للعنوان! سيُلجئ إلى عنوان المستند."
 
 #: src/backend/card.rs:150
 msgid "Unable to find the document title!. Falling back to site url."
-msgstr ""
+msgstr "تعذَّر العثور على عنوان المستند! سيُلجئ إلى مسار الموقع."
 
 #: src/backend/card.rs:168
 msgid "The description should be at least \"{count}\" characters long."
-msgstr ""
+msgstr "يجب أن يتكوَّن الوصف من «{count}» محرفًا على الأقل."
 
 #: src/backend/card.rs:177
 msgid "Add a \"{tag}\" tag to the page to have control over the content."
-msgstr ""
+msgstr "أضِف وسم «{tag}» إلى الصفحة للتحكم في المحتوى."
 
 #: src/backend/card.rs:197
 msgid "Found card of type \"{name}\"."
-msgstr ""
+msgstr "عُثر على بطاقة من نوع «{name}»."
 
 #: src/backend/card.rs:203
 msgid ""
 "Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
-msgstr ""
+msgstr "تعذَّر العثور على «{name}». وفِّر خاصيَّة «{name}» الوصفية."
 
 #: src/backend/card.rs:214
 msgid "Unable to find any valid card type."
-msgstr ""
+msgstr "تعذَّر العثور على أي نوع بطاقة صالح."
 
 #: src/backend/card.rs:225
 msgid "Unable to find any valid title or description."
-msgstr ""
+msgstr "تعذَّر العثور على أي عنوان أو وصف صالح."
 
 #: src/backend/card.rs:254
 msgid "Unable to find a valid image in the metadata."
-msgstr ""
+msgstr "تعذَّر العثور على صورة صالحة في البيانات الوصفية."
 
 #: src/backend/card.rs:260
 msgid "Unable to find a valid image in the metadata or document body."
-msgstr ""
+msgstr "تعذَّر العثور على صورة صالحة في البيانات الوصفية أو محتوى المستند."
 
 #: src/backend/card.rs:266
 msgid "Unable to find a valid image in the metadata, will render an icon."
-msgstr ""
+msgstr "تعذَّر العثور على صورة صالحة في البيانات الوصفية، فستُصيَّر أيقونة."
 
 #: src/backend/card.rs:273
 msgid ""
 "Unable to find a valid image in the metadata, will render a \"{name}\" card "
 "with icon."
 msgstr ""
+"تعذَّر العثور على صورة صالحة في البيانات الوصفية، فستصيَّر بطاقة «{name}» مع "
+"أيقونة."
 
 #: src/backend/card.rs:332
 msgid "Image \"{url}\" is defined with a relative url."
-msgstr ""
+msgstr "عُرِّفَت الصورة «{url}» بمسار نسبي."
 
 #: src/backend/card.rs:340
 msgid "Image \"{url}\" met the requirements."
-msgstr ""
+msgstr "تفِ الصورة «{url}» بالمتطلبات."
 
 #: src/backend/card.rs:366 src/backend/card.rs:375
 msgid "Image \"{url}\" did not meet the requirements: {info}."
-msgstr ""
+msgstr "لا تفِ الصورة «{url}» بالمتطلبات: {info}."
 
 #: src/backend/card.rs:440
 msgid "Image \"{url}\" processed successfully."
-msgstr ""
+msgstr "عُولجت الصورة «{url}» بنجاح."
 
 #: src/backend/card.rs:446
 msgid "Failed to thumbnail \"{url}\": {info}."
-msgstr ""
+msgstr "أخفق تصغير الصورة «{url}»: {info}."
 
 #: src/backend/data.rs:103
 msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
-msgstr ""
+msgstr "عُثر على تكرار صالح ل‍ِ«{name}» بقيمة «{value}»."
 
 #: src/backend/data.rs:121
 msgid "No occurrences found for \"{name}\"!"
-msgstr ""
+msgstr "لم يُعثر على أي تكرار ل‍ِ«{name}»!"
 
 #: src/backend/image.rs:157
 msgid "Format is unsupported"
-msgstr ""
+msgstr "الصيغة غير مدعومة"
 
 #: src/backend/image.rs:258
 msgid "Image Url Error: {info}"
-msgstr ""
+msgstr "خطأ في مسار الصورة: {info}"
 
 #: src/backend/image.rs:260
 msgid "Image Data Url Error: {info}"
-msgstr ""
+msgstr "خطأ في بيانات مسار الصورة: {info}"
 
 #: src/backend/image.rs:262
 msgid "Image Data Invalid Base64: {info}"
-msgstr ""
+msgstr "بيانات الصورة Base64 غير صالحة: {info}"
 
 #: src/backend/image.rs:264
 msgid "Network Error: {info}"
-msgstr ""
+msgstr "خطأ في الشبكة: {info}"
 
 #: src/backend/image.rs:266
 msgid "Request Error: {info}"
-msgstr ""
+msgstr "خطأ في الطلب: {info}"
 
 #: src/backend/image.rs:268
 msgid "Image Error: {info}"
-msgstr ""
+msgstr "خطأ في الصورة: {info}"
 
 #: src/backend/image.rs:271
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
-msgstr ""
+msgstr "الصورة صغيرة جدًا ({actual})، والأبعاد الدنيا هي {min}"
 
 #: src/backend/image.rs:276
 msgid "Image is too heavy ({actual}), max size is {max}"
-msgstr ""
+msgstr "الصورة كبيرة جدًا ({actual})، والحجم الأقصى هو {max}"
 
 #: src/backend/image.rs:280
 msgid "Image is unsupported: {info}"
-msgstr ""
+msgstr "الصورة غير مدعومة: {info}"
