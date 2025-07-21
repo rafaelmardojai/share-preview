@@ -6,7 +6,7 @@ Exec=share-preview %U
 Terminal=false
 Categories=Utility;GNOME;GTK;
 MimeType=x-scheme-handler/http;x-scheme-handler/https
-Keywords=Gnome;GTK;link;url;unfurl;
+Keywords=Gnome;GTK;link;url;unfurl;social;
 # Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 Icon=@icon@
 StartupNotify=true
