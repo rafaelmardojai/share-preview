@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-06 16:49-0500\n"
-"PO-Revision-Date: 2024-06-21 23:50+0200\n"
-"Last-Translator: twlvnn kraftwerk <kraft_werk@tutanota.com>\n"
-"Language-Team: Bulgarian <dict-notifications@fsa-bg.org>\n"
+"PO-Revision-Date: 2025-07-28 12:04+0000\n"
+"Last-Translator: twlvnn <kraft_werk@tutanota.com>\n"
+"Language-Team: Bulgarian <https://hosted.weblate.org/projects/share-preview/"
+"share-preview/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 46.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
@@ -112,15 +113,14 @@ msgid "Gnome;GTK;link;url;unfurl;"
 msgstr "адрес;връзка;"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:17
-#, fuzzy
 msgid "New Window"
-msgstr "_Нов прозорец"
+msgstr "Нов прозорец"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
 msgstr ""
 "Предварително прегледайте и отстранете грешки в етикетите за метаданни за "
-"споделяне в социалните мрежи"
+"споделяне в социалните мрежи."
 
 #: src/window.rs:247
 msgid "Network Error"
@@ -136,7 +136,7 @@ msgstr "Неочаквана грешка"
 
 #: src/window.rs:253
 msgid "Server Error {status}"
-msgstr ""
+msgstr "Грешка на сървъра {status}"
 
 #: src/window.rs:272
 msgid "Invalid URL"
@@ -258,7 +258,7 @@ msgstr "Грешка в предварителен преглед „{url}“: {
 
 #: src/backend/data.rs:103
 msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
-msgstr "Намерено е правилно съвпадения за „{name}“ със стойност „{value}“!"
+msgstr "Намерено е правилно съвпадения за „{name}“ със стойност „{value}“."
 
 #: src/backend/data.rs:121
 msgid "No occurrences found for \"{name}\"!"
