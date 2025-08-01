@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-06 16:49-0500\n"
-"PO-Revision-Date: 2024-11-29 14:00+0000\n"
+"PO-Revision-Date: 2025-08-02 17:01+0000\n"
 "Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/fi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
@@ -112,9 +112,8 @@ msgid "Gnome;GTK;link;url;unfurl;"
 msgstr "Gnome;GTK;link;url;unfurl;linkki;"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:17
-#, fuzzy
 msgid "New Window"
-msgstr "_Uusi ikkuna"
+msgstr "Uusi ikkuna"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
@@ -136,7 +135,7 @@ msgstr "Odottamaton virhe"
 
 #: src/window.rs:253
 msgid "Server Error {status}"
-msgstr ""
+msgstr "Palvelinvirhe {status}"
 
 #: src/window.rs:272
 msgid "Invalid URL"
