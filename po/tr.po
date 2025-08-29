@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-06 16:49-0500\n"
-"PO-Revision-Date: 2024-04-06 11:01+0000\n"
+"PO-Revision-Date: 2025-08-30 16:01+0000\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/tr/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.13.1-dev\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: _;C_;G_;NC_;gettext\n"
 "X-Poedit-SearchPath-0: src\n"
@@ -121,9 +121,8 @@ msgstr ""
 "share;preview;"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:17
-#, fuzzy
 msgid "New Window"
-msgstr "_Yeni Pencere"
+msgstr "Yeni Pencere"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
@@ -145,7 +144,7 @@ msgstr "Beklenmeyen Hata"
 
 #: src/window.rs:253
 msgid "Server Error {status}"
-msgstr ""
+msgstr "Sunucu Hatası {status}"
 
 #: src/window.rs:272
 msgid "Invalid URL"
