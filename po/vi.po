@@ -8,282 +8,295 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-06 16:49-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-12-05 14:00+0000\n"
+"Last-Translator: Loc Huynh <huynhloc.contact@gmail.com>\n"
+"Language-Team: Vietnamese <https://hosted.weblate.org/projects/share-preview/"
+"share-preview/vi/>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
-msgstr ""
+msgstr "Lỗi Thẻ"
 
 #: data/resources/ui/data-dialog.ui:72
 msgid "Metadata"
-msgstr ""
+msgstr "Metadata"
 
 #: data/resources/ui/data-dialog.ui:137 data/resources/ui/data-dialog.ui:195
 msgid "Nothing to Show"
-msgstr ""
+msgstr "Không có gì để Hiển Thị"
 
 #: data/resources/ui/data-dialog.ui:159
 msgid "Body Images"
-msgstr ""
+msgstr "Hình Ảnh Thân"
 
 #: data/resources/ui/log-dialog.ui:6
 msgid "Scraping Log"
-msgstr ""
+msgstr "Cào Nhật Ký"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "Chung"
 
 #: data/resources/ui/shortcuts.ui:14
 msgctxt "shortcut window"
 msgid "Focus the URL entry"
-msgstr ""
+msgstr "Tập trung mục nhập URL"
 
 #: data/resources/ui/shortcuts.ui:20
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr ""
+msgstr "Hiển Thị Phím Tắt"
 
 #: data/resources/ui/shortcuts.ui:26
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "Thoát"
 
 #: data/resources/ui/window.ui:6
 msgid "_New Window"
-msgstr ""
+msgstr "_Cửa Sổ Mới"
 
 #: data/resources/ui/window.ui:12
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "_Phím Tắt Bàn Phím"
 
 #: data/resources/ui/window.ui:16
 msgid "_About Share Preview"
-msgstr ""
+msgstr "_Giới Thiệu Về Share Preview"
 
 #: data/resources/ui/window.ui:26
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
 #: src/application.rs:168 src/main.rs:24
 msgid "Share Preview"
-msgstr ""
+msgstr "Share Preview"
 
 #: data/resources/ui/window.ui:38
 msgid "Toggle Color Scheme"
-msgstr ""
+msgstr "Bật/Tắt Bảng Màu"
 
 #: data/resources/ui/window.ui:46
 msgid "Main Menu"
-msgstr ""
+msgstr "Menu Chính"
 
 #: data/resources/ui/window.ui:85
 msgid "Go"
-msgstr ""
+msgstr "Bắt Đầu"
 
 #: data/resources/ui/window.ui:104
 msgid "Set a URL to preview"
-msgstr ""
+msgstr "Đặt URL để xem trước"
 
 #: data/resources/ui/window.ui:181
 msgid "View Metadata"
-msgstr ""
+msgstr "Xem Metadata"
 
 #: data/resources/ui/window.ui:194
 msgid "Show Logs"
-msgstr ""
+msgstr "Hiện Nhật Ký"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:8
 msgid "Test social media cards locally"
-msgstr ""
+msgstr "Kiểm tra thẻ truyền thông xã hội một cách cục bộ"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:10
 msgid "Gnome;GTK;link;url;unfurl;"
-msgstr ""
+msgstr "Gnome;GTK;link;url;unfurl;liên kết;url;mở ra;"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:17
 msgid "New Window"
-msgstr ""
+msgstr "Cửa Sổ Mới"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
 msgstr ""
+"Xem trước và gỡ lỗi thẻ metadata của trang web để chia sẻ trên mạng xã hội."
 
 #: src/window.rs:247
 msgid "Network Error"
-msgstr ""
+msgstr "Lỗi Mạng"
 
 #: src/window.rs:248 src/window.rs:255
 msgid "Couldn’t connect to the given URL."
-msgstr ""
+msgstr "Không thể kết nối với URL đã cho."
 
 #: src/window.rs:251 src/backend/image.rs:282
 msgid "Unexpected Error"
-msgstr ""
+msgstr "Lỗi Không Mong Muốn"
 
 #: src/window.rs:253
 msgid "Server Error {status}"
-msgstr ""
+msgstr "Lỗi Máy Chủ {status}"
 
 #: src/window.rs:272
 msgid "Invalid URL"
-msgstr ""
+msgstr "URL không hợp lệ"
 
 #: src/widgets/card.rs:76
 msgid "Couldn’t find enough data to generate a card for this social media."
 msgstr ""
+"Không thể tìm thấy đủ dữ liệu để tạo thẻ cho phương tiện truyền thông xã hội "
+"này."
 
 #: src/widgets/card.rs:79
 msgid "Twitter: No card found."
-msgstr ""
+msgstr "Twitter: Không tìm thấy thẻ."
 
 #: src/widgets/log_dialog.rs:91
 msgid "DEBUG"
-msgstr ""
+msgstr "GỠ LỖI"
 
 #: src/widgets/log_dialog.rs:97
 msgid "INFO"
-msgstr ""
+msgstr "THÔNG TIN"
 
 #: src/widgets/log_dialog.rs:101
 msgid "WARNING"
-msgstr ""
+msgstr "CẢNH BÁO"
 
 #: src/widgets/log_dialog.rs:105
 msgid "ERROR"
-msgstr ""
+msgstr "LỖI"
 
 #: src/backend/card.rs:120
 msgid "Found \"{name}\"."
-msgstr ""
+msgstr "Đã tìm thấy \"{name}\"."
 
 #: src/backend/card.rs:125 src/backend/data.rs:111
 msgid "\"{name}\" is empty!"
-msgstr ""
+msgstr "\"{name}\" trống!"
 
 #: src/backend/card.rs:140
 msgid "Unable to find a metadata for title!. Falling back to document title."
 msgstr ""
+"Không thể tìm thấy siêu dữ liệu cho tiêu đề!. Quay trở lại tiêu đề tài liệu."
 
 #: src/backend/card.rs:150
 msgid "Unable to find the document title!. Falling back to site url."
-msgstr ""
+msgstr "Không thể tìm thấy tiêu đề tài liệu!. Quay trở lại url trang web."
 
 #: src/backend/card.rs:168
 msgid "The description should be at least \"{count}\" characters long."
-msgstr ""
+msgstr "Mô tả phải dài ít nhất \"{count}\" ký tự."
 
 #: src/backend/card.rs:177
 msgid "Add a \"{tag}\" tag to the page to have control over the content."
-msgstr ""
+msgstr "Thêm thẻ \"{tag}\" vào trang để kiểm soát nội dung."
 
 #: src/backend/card.rs:197
 msgid "Found card of type \"{name}\"."
-msgstr ""
+msgstr "Đã tìm thấy thẻ thuộc loại \"{name}\"."
 
 #: src/backend/card.rs:203
 msgid ""
 "Unable to find \"{name}\". Consider providing a \"{name}\" meta property."
 msgstr ""
+"Không thể tìm thấy \"{name}\". Hãy cân nhắc việc cung cấp thuộc tính meta \""
+"{name}\"."
 
 #: src/backend/card.rs:214
 msgid "Unable to find any valid card type."
-msgstr ""
+msgstr "Không thể tìm thấy bất kỳ loại thẻ hợp lệ."
 
 #: src/backend/card.rs:225
 msgid "Unable to find any valid title or description."
-msgstr ""
+msgstr "Không thể tìm thấy bất kỳ tiêu đề hoặc mô tả hợp lệ nào."
 
 #: src/backend/card.rs:254
 msgid "Unable to find a valid image in the metadata."
-msgstr ""
+msgstr "Không thể tìm thấy hình ảnh hợp lệ trong metadata."
 
 #: src/backend/card.rs:260
 msgid "Unable to find a valid image in the metadata or document body."
 msgstr ""
+"Không thể tìm thấy hình ảnh hợp lệ trong metadata hoặc nội dung tài liệu."
 
 #: src/backend/card.rs:266
 msgid "Unable to find a valid image in the metadata, will render an icon."
 msgstr ""
+"Không thể tìm thấy hình ảnh hợp lệ trong metadata, sẽ hiển thị một biểu "
+"tượng."
 
 #: src/backend/card.rs:273
 msgid ""
 "Unable to find a valid image in the metadata, will render a \"{name}\" card "
 "with icon."
 msgstr ""
+"Không thể tìm thấy hình ảnh hợp lệ trong siêu dữ liệu, sẽ hiển thị thẻ \""
+"{name}\" có biểu tượng."
 
 #: src/backend/card.rs:332
 msgid "Image \"{url}\" is defined with a relative url."
-msgstr ""
+msgstr "Hình ảnh \"{url}\" được xác định bằng url tương đối."
 
 #: src/backend/card.rs:340
 msgid "Image \"{url}\" met the requirements."
-msgstr ""
+msgstr "Hình ảnh \"{url}\" đáp ứng yêu cầu."
 
 #: src/backend/card.rs:366 src/backend/card.rs:375
 msgid "Image \"{url}\" did not meet the requirements: {info}."
-msgstr ""
+msgstr "Hình ảnh \"{url}\" không đáp ứng được yêu cầu: {info}."
 
 #: src/backend/card.rs:440
 msgid "Image \"{url}\" processed successfully."
-msgstr ""
+msgstr "Hình ảnh \"{url}\" được xử lý thành công."
 
 #: src/backend/card.rs:446
 msgid "Failed to thumbnail \"{url}\": {info}."
-msgstr ""
+msgstr "Không thu nhỏ được \"{url}\": {info}."
 
 #: src/backend/data.rs:103
 msgid "Found a valid occurrence for \"{name}\" with value \"{value}\"."
-msgstr ""
+msgstr "Đã tìm thấy sự xuất hiện hợp lệ cho \"{name}\" có giá trị \"{value}\"."
 
 #: src/backend/data.rs:121
 msgid "No occurrences found for \"{name}\"!"
-msgstr ""
+msgstr "Không tìm thấy sự kiện nào cho \"{name}\"!"
 
 #: src/backend/image.rs:157
 msgid "Format is unsupported"
-msgstr ""
+msgstr "Định dạng không được hỗ trợ"
 
 #: src/backend/image.rs:258
 msgid "Image Url Error: {info}"
-msgstr ""
+msgstr "Lỗi Url Hình Ảnh: {info}"
 
 #: src/backend/image.rs:260
 msgid "Image Data Url Error: {info}"
-msgstr ""
+msgstr "Lỗi Url Dữ Liệu Hình Ảnh: {info}"
 
 #: src/backend/image.rs:262
 msgid "Image Data Invalid Base64: {info}"
-msgstr ""
+msgstr "Dữ Liệu Hình Ảnh Base64 Không Hợp Lệ: {info}"
 
 #: src/backend/image.rs:264
 msgid "Network Error: {info}"
-msgstr ""
+msgstr "Lỗi Mạng: {info}"
 
 #: src/backend/image.rs:266
 msgid "Request Error: {info}"
-msgstr ""
+msgstr "Lỗi Yêu Cầu: {info}"
 
 #: src/backend/image.rs:268
 msgid "Image Error: {info}"
-msgstr ""
+msgstr "Lỗi Hình Ảnh: {info}"
 
 #: src/backend/image.rs:271
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
-msgstr ""
+msgstr "Hình ảnh quá nhỏ ({actual}), kích thước tối thiểu là {min}"
 
 #: src/backend/image.rs:276
 msgid "Image is too heavy ({actual}), max size is {max}"
-msgstr ""
+msgstr "Hình ảnh quá nặng ({actual}), kích thước tối đa là {max}"
 
 #: src/backend/image.rs:280
 msgid "Image is unsupported: {info}"
-msgstr ""
+msgstr "Hình ảnh không được hỗ trợ: {info}"
