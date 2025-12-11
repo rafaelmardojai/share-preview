@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-06 16:49-0500\n"
-"PO-Revision-Date: 2025-12-05 14:00+0000\n"
+"PO-Revision-Date: 2025-12-12 03:00+0000\n"
 "Last-Translator: Loc Huynh <huynhloc.contact@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/share-preview/"
 "share-preview/vi/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
-msgstr "Lỗi Thẻ"
+msgstr "Lỗi thẻ"
 
 #: data/resources/ui/data-dialog.ui:72
 msgid "Metadata"
@@ -29,20 +29,20 @@ msgstr "Metadata"
 
 #: data/resources/ui/data-dialog.ui:137 data/resources/ui/data-dialog.ui:195
 msgid "Nothing to Show"
-msgstr "Không có gì để Hiển Thị"
+msgstr "Không có gì để hiện"
 
 #: data/resources/ui/data-dialog.ui:159
 msgid "Body Images"
-msgstr "Hình Ảnh Thân"
+msgstr "Hình ảnh thân"
 
 #: data/resources/ui/log-dialog.ui:6
 msgid "Scraping Log"
-msgstr "Cào Nhật Ký"
+msgstr "Cào nhật ký"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr "Chung"
+msgstr "Tổng quan"
 
 #: data/resources/ui/shortcuts.ui:14
 msgctxt "shortcut window"
@@ -52,7 +52,7 @@ msgstr "Tập trung mục nhập URL"
 #: data/resources/ui/shortcuts.ui:20
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr "Hiển Thị Phím Tắt"
+msgstr "Hiển thị phím tắt"
 
 #: data/resources/ui/shortcuts.ui:26
 msgctxt "shortcut window"
@@ -61,15 +61,15 @@ msgstr "Thoát"
 
 #: data/resources/ui/window.ui:6
 msgid "_New Window"
-msgstr "_Cửa Sổ Mới"
+msgstr "_Cửa sổ mới"
 
 #: data/resources/ui/window.ui:12
 msgid "_Keyboard Shortcuts"
-msgstr "_Phím Tắt Bàn Phím"
+msgstr "_Phím tắt bàn phím"
 
 #: data/resources/ui/window.ui:16
 msgid "_About Share Preview"
-msgstr "_Giới Thiệu Về Share Preview"
+msgstr "_Giới thiệu về Share Preview"
 
 #: data/resources/ui/window.ui:26
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:3
@@ -80,15 +80,15 @@ msgstr "Share Preview"
 
 #: data/resources/ui/window.ui:38
 msgid "Toggle Color Scheme"
-msgstr "Bật/Tắt Bảng Màu"
+msgstr "Bật/Tắt bảng màu"
 
 #: data/resources/ui/window.ui:46
 msgid "Main Menu"
-msgstr "Menu Chính"
+msgstr "Menu chính"
 
 #: data/resources/ui/window.ui:85
 msgid "Go"
-msgstr "Bắt Đầu"
+msgstr "Bắt đầu"
 
 #: data/resources/ui/window.ui:104
 msgid "Set a URL to preview"
@@ -100,7 +100,7 @@ msgstr "Xem Metadata"
 
 #: data/resources/ui/window.ui:194
 msgid "Show Logs"
-msgstr "Hiện Nhật Ký"
+msgstr "Hiện nhật ký"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:8
@@ -109,11 +109,11 @@ msgstr "Kiểm tra thẻ truyền thông xã hội một cách cục bộ"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:10
 msgid "Gnome;GTK;link;url;unfurl;"
-msgstr "Gnome;GTK;link;url;unfurl;liên kết;url;mở ra;"
+msgstr "Gnome;GTK;link;url;unfurl;liên kết;"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:17
 msgid "New Window"
-msgstr "Cửa Sổ Mới"
+msgstr "Cửa sổ mới"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
@@ -122,7 +122,7 @@ msgstr ""
 
 #: src/window.rs:247
 msgid "Network Error"
-msgstr "Lỗi Mạng"
+msgstr "Lỗi mạng"
 
 #: src/window.rs:248 src/window.rs:255
 msgid "Couldn’t connect to the given URL."
@@ -130,11 +130,11 @@ msgstr "Không thể kết nối với URL đã cho."
 
 #: src/window.rs:251 src/backend/image.rs:282
 msgid "Unexpected Error"
-msgstr "Lỗi Không Mong Muốn"
+msgstr "Lỗi không mong muốn"
 
 #: src/window.rs:253
 msgid "Server Error {status}"
-msgstr "Lỗi Máy Chủ {status}"
+msgstr "Lỗi máy chủ {status}"
 
 #: src/window.rs:272
 msgid "Invalid URL"
@@ -152,15 +152,15 @@ msgstr "Twitter: Không tìm thấy thẻ."
 
 #: src/widgets/log_dialog.rs:91
 msgid "DEBUG"
-msgstr "GỠ LỖI"
+msgstr "GỠ_LỖI"
 
 #: src/widgets/log_dialog.rs:97
 msgid "INFO"
-msgstr "THÔNG TIN"
+msgstr "THÔNG_TIN"
 
 #: src/widgets/log_dialog.rs:101
 msgid "WARNING"
-msgstr "CẢNH BÁO"
+msgstr "CẢNH_BÁO"
 
 #: src/widgets/log_dialog.rs:105
 msgid "ERROR"
@@ -177,7 +177,7 @@ msgstr "\"{name}\" trống!"
 #: src/backend/card.rs:140
 msgid "Unable to find a metadata for title!. Falling back to document title."
 msgstr ""
-"Không thể tìm thấy siêu dữ liệu cho tiêu đề!. Quay trở lại tiêu đề tài liệu."
+"Không thể tìm thấy metadata cho tiêu đề!. Quay trở lại tiêu đề tài liệu."
 
 #: src/backend/card.rs:150
 msgid "Unable to find the document title!. Falling back to site url."
@@ -230,8 +230,8 @@ msgid ""
 "Unable to find a valid image in the metadata, will render a \"{name}\" card "
 "with icon."
 msgstr ""
-"Không thể tìm thấy hình ảnh hợp lệ trong siêu dữ liệu, sẽ hiển thị thẻ \""
-"{name}\" có biểu tượng."
+"Không thể tìm thấy hình ảnh hợp lệ trong metadata, sẽ hiển thị thẻ \"{name}"
+"\" có biểu tượng."
 
 #: src/backend/card.rs:332
 msgid "Image \"{url}\" is defined with a relative url."
@@ -267,27 +267,27 @@ msgstr "Định dạng không được hỗ trợ"
 
 #: src/backend/image.rs:258
 msgid "Image Url Error: {info}"
-msgstr "Lỗi Url Hình Ảnh: {info}"
+msgstr "Lỗi url hình ảnh: {info}"
 
 #: src/backend/image.rs:260
 msgid "Image Data Url Error: {info}"
-msgstr "Lỗi Url Dữ Liệu Hình Ảnh: {info}"
+msgstr "Lỗi url dữ liệu hình ảnh: {info}"
 
 #: src/backend/image.rs:262
 msgid "Image Data Invalid Base64: {info}"
-msgstr "Dữ Liệu Hình Ảnh Base64 Không Hợp Lệ: {info}"
+msgstr "Dữ liệu hình ảnh Base64 không hợp lệ: {info}"
 
 #: src/backend/image.rs:264
 msgid "Network Error: {info}"
-msgstr "Lỗi Mạng: {info}"
+msgstr "Lỗi mạng: {info}"
 
 #: src/backend/image.rs:266
 msgid "Request Error: {info}"
-msgstr "Lỗi Yêu Cầu: {info}"
+msgstr "Lỗi yêu cầu: {info}"
 
 #: src/backend/image.rs:268
 msgid "Image Error: {info}"
-msgstr "Lỗi Hình Ảnh: {info}"
+msgstr "Lỗi hình ảnh: {info}"
 
 #: src/backend/image.rs:271
 msgid "Image is too tiny ({actual}), minimum dimensions are {min}"
