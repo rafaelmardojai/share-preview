@@ -8,26 +8,28 @@ msgstr ""
 "Project-Id-Version: share-preview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-06 16:49-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2026-04-15 05:09+0000\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <https://hosted.weblate.org/projects/share-preview/"
+"share-preview/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 #: data/resources/ui/card.ui:33
 msgid "Card Error"
-msgstr ""
+msgstr "ბარათის შეცდომა"
 
 #: data/resources/ui/data-dialog.ui:72
 msgid "Metadata"
-msgstr ""
+msgstr "მეტამონაცემები"
 
 #: data/resources/ui/data-dialog.ui:137 data/resources/ui/data-dialog.ui:195
 msgid "Nothing to Show"
-msgstr ""
+msgstr "საჩვენებელი არაფერია"
 
 #: data/resources/ui/data-dialog.ui:159
 msgid "Body Images"
@@ -40,7 +42,7 @@ msgstr ""
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "ზოგადი"
 
 #: data/resources/ui/shortcuts.ui:14
 msgctxt "shortcut window"
@@ -50,20 +52,20 @@ msgstr ""
 #: data/resources/ui/shortcuts.ui:20
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr ""
+msgstr "მალსახმობების ჩვენება"
 
 #: data/resources/ui/shortcuts.ui:26
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "გასვლა"
 
 #: data/resources/ui/window.ui:6
 msgid "_New Window"
-msgstr ""
+msgstr "_ახალი ფანჯარა"
 
 #: data/resources/ui/window.ui:12
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "_კლავიატურის მალსახმობები"
 
 #: data/resources/ui/window.ui:16
 msgid "_About Share Preview"
@@ -74,7 +76,7 @@ msgstr ""
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:7
 #: src/application.rs:168 src/main.rs:24
 msgid "Share Preview"
-msgstr ""
+msgstr "Share Preview"
 
 #: data/resources/ui/window.ui:38
 msgid "Toggle Color Scheme"
@@ -82,11 +84,11 @@ msgstr ""
 
 #: data/resources/ui/window.ui:46
 msgid "Main Menu"
-msgstr ""
+msgstr "მთავარი მენიუ"
 
 #: data/resources/ui/window.ui:85
 msgid "Go"
-msgstr ""
+msgstr "წინ"
 
 #: data/resources/ui/window.ui:104
 msgid "Set a URL to preview"
@@ -98,7 +100,7 @@ msgstr ""
 
 #: data/resources/ui/window.ui:194
 msgid "Show Logs"
-msgstr ""
+msgstr "ჟურნალის ჩვენება"
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:4
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:8
@@ -111,7 +113,7 @@ msgstr ""
 
 #: data/com.rafaelmardojai.SharePreview.desktop.in.in:17
 msgid "New Window"
-msgstr ""
+msgstr "ახალი ფანჯარა"
 
 #: data/com.rafaelmardojai.SharePreview.metainfo.xml.in.in:10
 msgid "Preview and debug websites metadata tags for social media share."
@@ -119,7 +121,7 @@ msgstr ""
 
 #: src/window.rs:247
 msgid "Network Error"
-msgstr ""
+msgstr "ქსელის შეცდომა"
 
 #: src/window.rs:248 src/window.rs:255
 msgid "Couldn’t connect to the given URL."
@@ -127,15 +129,15 @@ msgstr ""
 
 #: src/window.rs:251 src/backend/image.rs:282
 msgid "Unexpected Error"
-msgstr ""
+msgstr "გაუთვალისწინებელი შეცდომა"
 
 #: src/window.rs:253
 msgid "Server Error {status}"
-msgstr ""
+msgstr "სერვერის შეცდომა {status}"
 
 #: src/window.rs:272
 msgid "Invalid URL"
-msgstr ""
+msgstr "არასწორი URL"
 
 #: src/widgets/card.rs:76
 msgid "Couldn’t find enough data to generate a card for this social media."
@@ -147,27 +149,27 @@ msgstr ""
 
 #: src/widgets/log_dialog.rs:91
 msgid "DEBUG"
-msgstr ""
+msgstr "გამართვა"
 
 #: src/widgets/log_dialog.rs:97
 msgid "INFO"
-msgstr ""
+msgstr "ინფო"
 
 #: src/widgets/log_dialog.rs:101
 msgid "WARNING"
-msgstr ""
+msgstr "გაფრთხილება"
 
 #: src/widgets/log_dialog.rs:105
 msgid "ERROR"
-msgstr ""
+msgstr "ERROR"
 
 #: src/backend/card.rs:120
 msgid "Found \"{name}\"."
-msgstr ""
+msgstr "აღმოჩენილია \"{name}\"."
 
 #: src/backend/card.rs:125 src/backend/data.rs:111
 msgid "\"{name}\" is empty!"
-msgstr ""
+msgstr "\"{name}\" ცარიელია!"
 
 #: src/backend/card.rs:140
 msgid "Unable to find a metadata for title!. Falling back to document title."
